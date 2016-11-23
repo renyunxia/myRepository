@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="reset.css" />
+    <style>
+    html { height: 100%; overflow: hidden; }
+    body { height: 100%; overflow: hidden; user-select: none; -moz-user-select: none; -webkit-user-select: none; background: _url("images/yuyue_bg.jpg") no-repeat center; background-size: 100% 100%; font-family: '微软雅黑'; }
+    li { list-style: none; }
+    .middle { width: 1000px; height: 620px; position: absolute; left: 50%; top: 50%; margin-left: -500px; margin-top: -310px; }
+    .scene { width: 400px; height: 400px; margin: 0 auto; perspective: 900px; -webkit-perspective: 900px; position: relative; transform-style:preserve-3d; -webkit-transform-style:preserve-3d; color: #00a0e9; }
+    .box { width: 100%; height: 100%; position: relative; transform-style:preserve-3d; -webkit-transform-style:preserve-3d; perspective-origin: center 250px; }
+    .ring { width: 100%; height: 100%; transform-style:preserve-3d; -webkit-transform-style:preserve-3d; position: absolute; }
+    .ring li { line-height: 30px; text-align: center; font-size: 16px; position: absolute; margin-top: -25px; margin-left: -15px; transition: all .6s; background: red; width: 19px;height: 19px;}
+    li.all { transition: all .6s cubic-bezier(.75,.25,1,1); }
+    li.one { transition: transform .6s cubic-bezier(0,0,.25,.75); }
+    .text { position: absolute; top: 30px; left: 50%; margin-left: -329px; padding: 15px 18px; width: 602px; height: 318px; border: 1px solid #e5e5e5; border-radius: 8px; box-shadow: 0 5px 5px #d4dbe1; background-color: #fff; transform: scale(.5); opacity: 0; transition: opacity .3s cubic-bezier(.15,.84,.35,1), transform .3s cubic-bezier(.15,.84,.35,1); display: none; }
+    .text p { margin-bottom: 12px; font-size: 12px; }
+    .text textarea { resize: none; width: 580px; height: 220px; padding: 10px; border: 1px solid #cacaca; border-radius: 8px; background-color: #f3f7fa; margin-bottom: 15px; color: #00a0e9; }
+    .text a { position: absolute; top: 10px; right: 10px; width: 19px; height: 19px; background: url("images/close.png") no-repeat center; }
+    .btn { margin: 0 auto; width: 260px; overflow: hidden; }
+    .btn button { width: 120px; height: 30px; border: 1px solid #cacaca; border-radius: 15px; float: left; }
+    .btn button:nth-of-type(1) { margin-right: 18px; }
+    .table { width: 400px; margin: 20px auto 10px; overflow: hidden; }
+    .table a { float: left; width: 100px; height: 12px; padding-top: 94px; font-size: 12px; line-height: 12px; text-align: center; color: #889199; }
+    /*.table a:nth-of-type(1) { background: url("images/circle.png") no-repeat center 2px; }
+    .table a:nth-of-type(2) { background: url("images/Cone.png") no-repeat center top; }
+    .table a:nth-of-type(3) { background: url("images/Column.png") no-repeat center top; }
+    .table a:nth-of-type(4) { background: url("images/Column2.png") no-repeat center top; }
+    .table a:nth-of-type(1):hover { background: url("images/circle-hover.png") no-repeat center 2px; }
+    .table a:nth-of-type(2):hover { background: url("images/Cone-hover.png") no-repeat center top; }
+    .table a:nth-of-type(3):hover { background: url("images/Column-hover.png") no-repeat center top; }
+    .table a:nth-of-type(4):hover { background: url("images/Column2-hover.png") no-repeat center top; }
+    .table a:nth-of-type(1).active { background: url("images/circle-active.png") no-repeat center 2px; }
+    .table a:nth-of-type(2).active { background: url("images/Cone-active.png") no-repeat center top; }
+    .table a:nth-of-type(3).active { background: url("images/Column-active.png") no-repeat center top; }
+    .table a:nth-of-type(4).active { background: url("images/Column2-active.png") no-repeat center top; }*/
+    .line { width: 734px; height: 1px; margin: 0 auto 14px; background: -webkit-linear-gradient(left,#7ecef4,#94cc8e,#fff45c); }
+    .btn2 { width: 204px; margin: 0 auto; overflow: hidden; }
+    .btn2 button { width: 100px; height: 30px; border: 1px solid #cacaca; float: left; }
+    .btn2 button:nth-of-type(1) { border-radius: 15px 0 0 15px; }
+    .btn2 button:nth-of-type(2) { margin-left: -1px; border-radius: 0 15px 15px 0; }
+    button { background: linear-gradient(#fff,#e3ecf3); color: #889199; }
+    button:hover { background: linear-gradient(#fff,#bef5ff 10%,#6cb7df); border-color: #bef5ff; color: #00a0e9; }
+    button:active { background: linear-gradient(#fff,#6cb7df 10%,#bef5ff); }
+    button.active { background: linear-gradient(#fff,#6cb7df 10%,#bef5ff); }
+    .item { width: 400px; padding: 30px; top: 100px; margin: -30px; position: fixed; transform: scale(2); -webkit-transform: scale(2); opacity: 0; display: none; transform-origin: center center 200px; -webkit-transform-origin: center center 200px; opacity: 0; transition: all .5s ease; }
+    .item a { position: absolute; top: 10px; right: 10px; width: 19px; height: 19px; background: url("images/close.png") no-repeat center; }
+    .item p { font-size: 14px; line-height: 24px; word-break: break-all; }
+    img{
+        width: 50px;
+        height: 50px;
+    }
+    #list {
+        width: 600px;
+        height: 440px;
+        margin: 50px auto 0;
+        padding: 0;
+        list-style: none;
+    }   
+    #list li {
+        width: 60px;
+        height: 44px;
+        float: left;
+        background: url(images/img3.gif) no-repeat;
+    }
+    </style>
+    <script src="css3.js" type="text/javascript"></script>
+    <script>
+        var arr = [1,3,5,7,9,11,13,11,9,7,5,3,1];
+        window.onload = function () {
+            var oSence = document.querySelector('.scene');
+            var oBox = oSence.querySelector('.box');
+            var oUl = oBox.getElementsByTagName('ul')[0];
+            var aLi = oUl.getElementsByTagName('li');
+            var oTable = document.getElementsByClassName('table')[0];
+            var aA = oTable.getElementsByTagName('a');
+            var theta = Math.PI/(arr.length-1);
+            var phi = 0;
+            var r = 200;
+            var angleX = 0;
+            var angleY = 0;
+
+            star();
+
+            //生成形状
+            function star(){
+                //圆
+                for (var i = 0; i < arr.length; i++) {
+                    theta = Math.PI/arr.length;
+                    phi = 2*Math.PI/arr[i];
+                    for (var j = 0; j < arr[i]; j++) {
+                       var li = document.createElement('li');
+                       // li.innerHTML = '圆';
+                       drawCircle(li,theta,phi,i,j);
+                       oUl.appendChild(li);
+                    };
+                };
+
+                //圆柱
+                liNub = 0;
+                columnH = Math.floor(aLi.length/(arr.length-2));
+                columnNum = columnH*(arr.length-2);
+                for(var i=0; i<arr.length-1; i++){
+
+                    phi = 2*Math.PI/columnH;
+                    for(var j=0; j<columnH; j++){
+
+                        drawColumn(aLi[liNub],phi,i,j);
+                        liNub++;
+
+                    }
+
+                }
+
+                //改变3D位置
+                for (var i = 0; i < aLi.length; i++) {
+                    setCss3(aLi[i],{transform:'translate3D('+ aLi[i].circleX +'px,'+ aLi[i].circleY +'px,'+ aLi[i].circleZ +'px) rotateY('+ aLi[i].circlePhi +'rad) rotateX('+ (aLi[i].circleTheta-Math.PI/2) +'rad)'});
+                };
+            }
+
+           
+
+            aA[0].onclick = function(){
+                //变大
+                for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].className = 'all';
+                     aLi[i].style.transform = 'translate3D('+ aLi[i].bigCircleX +'px,'+ aLi[i].bigCircleY +'px,'+ aLi[i].bigCircleZ +'px) rotateY('+ aLi[i].circlePhi +'rad) rotateX('+ (aLi[i].circleTheta-Math.PI/2) +'rad)';
+                     aLi[i].style.opacity = 0;
+                };
+                //变回来
+                setTimeout(function(){
+                    for (var i = 0; i < aLi.length; i++) {
+                        aLi[i].className = 'one';
+                        aLi[i].style.opacity = 1;
+                        aLi[i].style.transform = 'translate3D('+ aLi[i].circleX +'px,'+ aLi[i].circleY +'px,'+ aLi[i].circleZ +'px) rotateY('+ aLi[i].circlePhi +'rad) rotateX('+ (aLi[i].circleTheta-Math.PI/2) +'rad)';
+                    };
+                },1050)
+            };
+
+            aA[1].onclick = function(){
+                startChange();
+                setTimeout(function(){
+                    changeColumn();
+                },1050)
+            }
+
+            //拖拽旋转
+            oSence.onmousedown = function(ev){
+                clearInterval(timer);
+                var e = ev||event;
+                var clickX = e.clientX;
+                var clickY = e.clientY;
+                var disX = 0;
+                var disY = 0;
+                document.onmousemove = function(ev){
+                    var e = ev||event;
+                    disX = e.clientX - clickX;
+                    disY = e.clientY - clickY;
+                    oBox.style.transform = 'rotateX('+(angleX - disY)+'deg) rotateY('+(angleY+disX)+'deg)';
+                }
+                document.onmouseup = function(){
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                    angleX = angleX - disY;
+                    angleY = angleY + disX;
+
+                    //判断单击后继续转
+                    if(disY==0 && disX==0){
+                        disX = -300;
+                    }
+                    timer = setInterval(function(){
+                        angleX -= disY/100;
+                        angleY += disX/100;
+                        oBox.style.transform = 'rotateX('+angleX+'deg) rotateY('+angleY+'deg)';
+                    },60);
+                }
+                return false;
+            }
+
+           //旋转
+            var timer = setInterval(function(){
+                //angleX -= 3;
+                angleY -= 3;
+                setCss3(oBox,{ transform: 'rotateX('+ angleX +'deg) rotateY('+ angleY +'deg)' });
+
+            },60);
+
+            // var timer = setInterval(function(){
+            // angleY++;
+            // // oBox.style.transform = 'rotateY('+angleX+'deg) rotateY('+angleX+'deg)';
+            // oBox.style.transform = 'rotateY('+angleY+'deg)';
+            // },60)
+
+           //生成圆
+            function drawCircle(obj,theta,phi,i,j){
+                obj.circleX = r*Math.sin(theta*i)*Math.sin(phi*j) + 200;
+                obj.circleY = -r*Math.cos(theta*i) + 200;
+                obj.circleZ = r*Math.sin(theta*i)*Math.cos(phi*j);
+                obj.circleTheta = theta*(arr.length-i);
+                obj.circlePhi = phi*j;
+
+
+                obj.bigCircleX = (r+1000)*Math.sin(theta*i)*Math.sin(phi*j) + 200;
+                obj.bigCircleY = -(r+1000)*Math.cos(theta*i) + 200;
+                obj.bigCircleZ = (r+1000)*Math.sin(theta*i)*Math.cos(phi*j);
+                obj.maxX = obj.bigCircleX;
+                obj.maxY = obj.bigCircleY;
+                obj.maxZ = obj.bigCircleZ;
+                obj.maxTheta = obj.circleTheta;
+                obj.maxPhi = obj.circlePhi;
+            }
+
+            //圆柱
+            function drawColumn(obj,phi,i,j){
+
+                obj.columnX = r/1.5*Math.sin(phi*j) + 200;
+                obj.columnY = (2*r/(arr.length-2))*i + 50;
+                obj.columnZ = (r/1.5*Math.cos(phi*j)).toFixed(2);
+                obj.columnPhi = phi*j;
+                obj.bigColumnX = (r+2000)/1.5*Math.sin(phi*j) + 200;
+                obj.bigColumnY = (2*(r+2000)/(arr.length-2))*i + 50-2000;
+                obj.bigColumnZ = ((r+2000)/1.5*Math.cos(phi*j)).toFixed(2);
+
+            }
+
+            //开始切换
+            function startChange(){
+                for(var i=0; i<aLi.length; i++) {
+                    aLi[i].className = 'all';
+                    aLi[i].style.transform = 'translate3D(' + aLi[i].maxX + 'px,' + aLi[i].maxY + 'px,' + aLi[i].maxZ + 'px) rotateY(' + aLi[i].maxPhi + 'rad) rotateX(' + (aLi[i].maxTheta - Math.PI / 2) + 'rad)';
+                    aLi[i].style.opacity = 0;
+                }
+            }
+
+            //圆锥
+            function changeColumn(){
+
+                for(var i=0; i<columnNum; i++){
+
+                    aLi[i].className = '';
+                    aLi[i].maxX = aLi[i].bigColumnX;
+                    aLi[i].maxY = aLi[i].bigColumnY;
+                    aLi[i].maxZ = aLi[i].bigColumnZ;
+                    aLi[i].maxTheta = 0;
+                    aLi[i].maxPhi = aLi[i].columnPhi;
+                    setCss3(aLi[i],{transform:'translate3D('+ aLi[i].maxX +'px,'+ aLi[i].maxY +'px,'+ aLi[i].maxZ +'px) rotateY('+ aLi[i].maxPhi +'rad) rotateX('+ aLi[i].maxTheta +'rad)'});
+
+                }
+                setTimeout(function(){
+
+                    for(var i=0; i<columnNum; i++){
+
+                        aLi[i].className = 'one';
+                        aLi[i].style.opacity = 1;
+                        setCss3(aLi[i], {transform: 'translate3D(' + aLi[i].columnX + 'px,' + aLi[i].columnY + 'px,' + aLi[i].columnZ + 'px) rotateY(' + aLi[i].columnPhi + 'rad)'});
+                        // console.log(aLi[i].columnZ,aLi[i].columnPhi);
+
+                    }
+
+                },100);
+                // console.log(aLi[153].columnZ,aLi[153].columnPhi);
+
+            }
+       }
+    </script>
+</head>
+<body>
+<div class="middle">
+    <!-- <ul id="list"></ul> -->
+    <div class="scene">
+        <div class="box">
+            <ul class="ring">
+
+            </ul>
+        </div>
+        <div class="item">
+        </div>
+    </div>
+    <div class="table" style="width:200px;">
+        <a href="javascript:;">圆球</a>
+        <a href="javascript:;">圆柱</a>
+    </div>
+</div>
+</body>
+</html>
