@@ -1,2 +1,2 @@
 # myRepository
-妙味练习
+# this is tip
