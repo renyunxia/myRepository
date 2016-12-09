@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#wrap{
+		width: 300px;
+		background: #fff;
+		margin: 20px;
+	}
+	#wrap li{
+		height: 24px;
+		font-size: 12px;
+		line-height: 24px;
+		padding: 0 15px 0 40px;
+		position: relative;
+		color: #000;
+		list-style: none;
+	}
+	#wrap ul input{
+		position: absolute;
+		left: 20px;
+		top:3px;
+	}
+	#wrap span{
+		display: inline-block;
+	}
+	.left{
+		float: left;
+	}
+	.right{
+		float: right;
+	}
+	.bottom{
+		height: 25px;
+		font-size: 12px;
+		border-top:1px #666 solid;
+		padding:8px 15px 0 15px;
+	}
+	.bottom label{
+		float: left;
+		margin-right:15px; 
+	}
+	.bottom input{
+		border: 1px #999 solid;
+		color: #999;
+		background: #ebebeb;
+		float: left;
+		margin: 0 5px;
+		border-radius: 5px;
+		padding: 0 8px;
+	}
+	.bottom .btnsty{
+		border:1px #333 solid;
+		color: #333;
+	}
+	</style>
+	<script>
+	window.onload = function (){
+		var wrap = document.getElementById("wrap");
+		var li = wrap.getElementsByTagName("li");
+		var ckeck = document.getElementById("check");
+		var checks = document.getElementsByTagName("ul")[0].getElementsByTagName("input");
+		var colors =["red","green","blue"];
+		var oldColor = "";
+		for (var i = 0; i < li.length; i++) {
+			li[i].style.background = colors[i%colors.length];
+			li[i].onmouseover = function(){
+				oldColor = this.style.background;
+				this.style.background = "pink";
+			};
+			li[i].onmouseout = function(){
+				this.style.background = oldColor;
+			};
+		}
+		ckeck.onclick = function(){
+			for (var i = 0; i < checks.length; i++) {
+				checks[i].checked = this.checked;
+			}
+		};
+		for (var i = 0; i < checks.length; i++) {
+			checks[i].onclick = function(){
+				var isChecked = true;
+				for (var i = 0; i < checks.length; i++) {
+					if(checks[i].checked == false){
+						isChecked = false;
+					}
+				}
+				check.checked = isChecked;
+			}
+		}
+	};
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<ul>
+			<li>
+				<input type="checkbox" >私奔<span class="right">私奔</span>
+			</li>
+			<li>
+				<input type="checkbox">喜欢你<span class="right">私奔</span></li>
+			<li>
+				<input type="checkbox">春天里<span class="right">私奔</span>
+			</li>
+			<li>
+				<input type="checkbox">北京北京<span class="right">梁博</span>
+			</li>
+			<li>
+				<input type="checkbox">回来<span class="right">梁博</span>
+			</li>
+			<li>
+				<input type="checkbox">爱要有你才完美<span class="right">梁博，那英</span>
+			</li>
+		</ul>
+		<div class="bottom">
+			<input type="checkbox" id="check">全选
+		</div>
+	</div>
+</body>
+</html>

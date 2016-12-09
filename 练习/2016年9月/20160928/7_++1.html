@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#wrap{
+		width: 400px;
+		height: 50px;
+		border: 1px #000 solid;
+		margin: 150px auto 0;
+		font: 24px/50px "宋体";
+		position: relative;
+	}
+	#box{
+		height: 50px;
+		width: 0;
+		background: red;
+	}
+	span{
+		display: inline-block;
+		position: absolute;
+		top: 0;
+		z-index: 10;
+	}
+	</style>
+	<script type="text/javascript" src="MTween.js"></script>
+	<script>
+	window.onload = function () {
+		var wrap = getId("wrap");
+		var str = '';
+		var len = 10;
+		var timer = 0;
+		var timer2 = 0;
+		var timer3 = 0;
+		for (var i = 0; i < len; i++) {
+			str +='<span style="left:'+ i*41 +'px;">+1</span>'
+		};
+		wrap.innerHTML += str;
+		document.onclick = function(){
+			var box = getId("box");
+			var spans = document.querySelectorAll("span");
+			var num = 0;
+			mTween(box,{width:400,opacity:100},900,"linear",function(){
+				mTween(box,{width:400,opacity:0},900,"linear",function(){
+					box.style.width = '0';
+					box.style.opacity = '100';
+				});
+			})
+			// clearInterval( timer );
+			// timer = setInterval(function(){
+			// 	mTween(box,{width:500,opacity:0},1000,"linear")
+			// },2000) 
+
+
+			clearTimeout(timer3);
+			timer2 = setTimeout(function(){
+				timer3 = setInterval(function(){
+					if( num === len-1 ){
+						mTween(spans[num],{top:-90,opacity:0},400,"linear",function(){
+							for (var i = 0; i < len; i++) {
+								spans[i].style.top = "0px";
+								spans[i].style.opacity="100";
+							};
+						});
+						// clearInterval(timer3);
+					}else{
+						mTween(spans[num],{top:-90,opacity:0},400,"linear");
+					}	
+					num++;
+					if(num === len){
+						clearInterval(timer3);
+						num = 0;
+					}
+				},200)
+			},200)
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<div id="box"></div>
+	</div>
+</body>
+</html>

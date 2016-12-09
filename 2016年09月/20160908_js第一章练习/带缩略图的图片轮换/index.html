@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,ul,li {
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				list-style: none;
+			}
+			.wrap {
+				width: 730px;
+				height: 454px;
+				margin: 0 auto;
+				border: 1px ridge #000;
+				position: relative;
+			}
+			.pic {
+				position: absolute;
+				width: 100%;
+			}
+			.pic img {
+				position: absolute;
+				left: 0;
+				top: 0;
+				opacity: 0;
+				transition: all 560ms;
+			}
+			.nav {
+				width: 80%;
+				height: 30px;
+				position: absolute;
+				left: 10%;
+				bottom: 30px;
+				text-align: center;
+				z-index: 999;
+			}
+			.nav li {
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				background: #666;
+				border-radius: 50%;
+				position: relative;
+				line-height: 30px;
+				transform: scale(.5);
+			}
+			.nav li img {
+				height: 50px;
+				border: 1px solid #fff;
+				position: absolute;
+				top: -60px;
+				left: -20px;
+				display: none;
+			}
+			.nav li.active {
+				background: #f88;
+			}
+			.prev,.next {
+				width: 50px;
+				height: 50px;
+				border: 2px solid skyblue;
+				font-size: 28px;
+				line-height: 50px;
+				text-align: center;
+				position: absolute;
+				z-index: 999;
+				top: 50%;
+				margin-top: -27px;
+				right: 5px;
+				color: #FFFFFF;
+				font-weight: bold;
+				background: rgba(0,0,0,.5);
+			}
+			.prev {
+				left: 5px;
+			}
+		</style>
+		<script>
+			var data = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg','img/6.jpg'];
+			window.onload = function (){
+				/*
+				 * 1.利用data这个数据生成对应数量的图片还有导航栏按钮
+				 * 2.生成完这个数据之后 要获取一下生成后的所有img和li 
+				 * 		还有li下所有的缩略图
+				 * 3.循环所有的img和li还有li对应的缩略图给他们添加事件
+				 * 
+				 * 		a 上一张和下一张的点击事件
+				 * 		b 鼠标移入li上面的事件 对应的还有 移除事件
+				 *   		* 鼠标移入的时候显示缩略图 切换对应的图片
+				 * 			* 鼠标移出的时候 隐藏缩略图
+				 */
+				//获取元素的部分 以及 初始化变量
+				var pic = document.querySelector('.pic');
+				var	nav = document.querySelector('.nav');
+				var prev = document.querySelector('.prev');
+				var next = document.querySelector('.next');
+				
+				//console.log(pic,nav,prev,next)
+				
+				var n = 0;
+				
+				var str = '';
+				var list = '';
+				
+				/*var i;
+				var len = data.length;*/
+				
+				for(var i=0,len = data.length; i<len; i++){
+					str += '<img src="'+data[i]+'"/>';
+					list += '<li><img src="'+data[i]+'"/></li>'
+				}
+				
+				pic.innerHTML = str;
+				nav.innerHTML = list;
+				
+				
+				//所有的图片
+				var imgs = pic.getElementsByTagName('img');
+				//所有图片对应的小按钮
+				var lis = nav.getElementsByTagName('li');
+				//所有的缩略图
+				var sImg = nav.getElementsByTagName('img');
+				
+				init();
+				
+				prev.onclick = function (){
+					n--;
+					if(n < 0){
+						n = len - 1;
+					}
+					init();
+				};
+				next.onclick = function (){
+					n++;
+					if(n > len - 1){
+						n = 0;
+					}
+					init();
+				};
+				for(var i=0; i<len; i++){
+					/*
+					 * 1.当一组元素需要控制另外一组元素的时候
+					 * 	  首先想到索引值。
+					 * 2.给控制方添加索引值
+					 */
+					lis[i].index = i;
+					lis[i].onclick = function (){
+						n = this.index;
+						init();
+					};
+					//onmouseenter 鼠标移入事件
+					lis[i].onmouseenter = function (){
+						sImg[this.index].style.display = 'block';
+					};
+					//onmuserleave 鼠标移出事件
+					lis[i].onmouseleave = function (){
+						sImg[this.index].style.display = '';
+					};
+				}
+				
+				function init(){
+					for(var i=0; i<len; i++){
+						imgs[i].style.opacity = 0;
+						lis[i].className = '';
+					}
+					imgs[n].style.opacity = 1;
+					lis[n].className = 'active';
+				}
+				
+			};
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="pic">
+			</div>
+			<ul class="nav">
+			</ul>
+			<div class="prev"><</div>
+			<div class="next">></div>
+		</div>
+	</body>
+</html>

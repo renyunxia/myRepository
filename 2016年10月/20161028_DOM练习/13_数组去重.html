@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		var arr = [12,234,23,12,124,3,23,12,3];
+		for(var i = 0; i < arr.length; i++){
+			remove(i);
+		}
+		function remove(index){
+			//arr.indexOf(,index+1);
+			var inner = arr[index];
+			index = index+1;
+			while(arr.indexOf(inner,index)>=0){
+				index = arr.indexOf(inner,index);
+				arr.splice(index,1);
+			}
+		}
+		console.log(arr);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

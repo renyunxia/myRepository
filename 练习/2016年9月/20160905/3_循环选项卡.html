@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#wrap{
+		width: 300px;
+		height: 200px;
+		margin: 20px auto;
+	}
+	#nav{
+		height: 30px;
+	}
+	#nav a{
+		width: 98px;
+		line-height: 30px;
+		display: inline-block;
+		font-size: 12px;
+		text-align: center;
+		background: #ccc;
+		border:1px #000 solid;
+		color: #000;
+		text-decoration: none;
+		float: left;
+	}
+	#nav .active{
+		background: #000;
+		color: #fff;
+	}
+	section div{
+		width: 298px;
+		border: 1px #000 solid;
+	    text-align: center;
+	    font-size: 80px;
+	    line-height: 200px;
+	    color: #fff;
+	    background: #000;
+	    display: none; 
+	}
+	#wrap .show{
+		display: block;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var navs = document.querySelectorAll("#nav a");
+		var divs = document.querySelectorAll("#wrap div");
+		var prev = document.getElementById("prev");
+		var next = document.getElementById("next");
+		var nub = "";
+		
+		 prev.onclick = function (){
+		 	var index  = 0;
+		 	//查找当前显示的navs的索引值
+		 	for(i=0; i<navs.length; i++)
+		 	{
+		 		if(navs[i].className == 'active')
+		 		{
+		 			index = i;
+		 			navs[index].className="";
+		 			divs[index].className="";
+		 			//break;
+		 		}
+		 	}
+		 	//索引值计算
+		 	index--;
+		 	//临界值判断
+		 	if(index < 0)	index=navs.length - 1;
+		 	//navs和div显示
+		 	navs[index].className = "active";
+		 	divs[index].className = "show";
+		 }
+		 
+		 next.onclick = function (){
+		 	var index  = 0;
+		 	for(var i=0; i<navs.length; i++)
+		 	{
+		 		if(navs[i].className == 'active')
+		 		{
+		 			index = i;
+		 			navs[index].className="";
+		 			divs[index].className="";
+		 			//break;
+		 		}
+		 	}
+		 	index++;
+		 	if(index == navs.length)index=0;
+		 	navs[index].className = "active";
+		 	divs[index].className = "show";
+		 }
+
+			for(i=0; i<navs.length; i++){
+				navs[i].index = i;
+				navs[i].onmouseover=function(){
+					for(i=0; i<navs.length; i++){
+						console.log(this.index);
+						navs[i].className = "";
+						divs[i].className="";
+					}
+					this.className = "active";
+					divs[this.index].className="show";
+				}
+			}
+	};
+	</script>
+</head>
+<body>
+	<section id="wrap">
+		<input type="button" value="上一组" id="prev">
+		<input type="button" value="下一组" id="next">
+		<br>
+		<nav id="nav">
+			<a href="#" class="active">选项一</a>
+			<a href="#">选项二</a>
+			<a href="#">选项三</a>
+		</nav>
+		<div class="show">1</div>
+		<div>2</div>
+		<div>3</div>
+	</section>
+</body>
+</html>

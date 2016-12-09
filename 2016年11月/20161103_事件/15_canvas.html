@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body {
+	background: #ccc;
+}
+#c{
+	display: block;
+	background: #fff;
+	margin: 50px auto 0;
+}
+#colorNav {
+	width: 400px;
+	margin: 0 auto;
+}
+#colorNav a {
+	width: 100px;
+	height: 100px;
+	float: left;
+}
+.red {
+	background: red;
+}
+.yellow {
+	background: yellow;
+}
+.blue {
+	background: blue;
+}
+.green {
+	background: green;
+}
+#btn {
+	display: block;
+	margin: 0 auto;
+}
+</style>
+</head>
+<body>
+<canvas id="c" width="400" height="400"></canvas>
+<script type="text/javascript">
+(function(){
+	var c  = document.querySelector('canvas');
+	var cxt = c.getContext("2d");
+	cxt.rect(200,200,100,100);
+	cxt.fill();
+	cxt.save(); //在save和restore中间设置的样式不会影响到下边的内容
+	cxt.beginPath();
+	cxt.fillStyle = "blue";
+	cxt.rect(0,0,100,100);
+	cxt.fill();
+	cxt.closePath();
+	cxt.restore();
+
+	cxt.beginPath();
+	cxt.rect(100,100,100,100);
+	cxt.fill();
+	cxt.closePath();
+})();
+</script>
+</body>
+</html>

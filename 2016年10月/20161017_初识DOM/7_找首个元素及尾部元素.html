@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<ul id="ul1">
+		<li>11</li>
+		<li>22</li>
+		<li>33</li>
+		<li>44</li>
+	</ul>
+<script type="text/javascript">
+	/*
+		 需要：
+		 	让11变成红色，44变成绿色，别的变成蓝色
+		 	
+		可以通过
+			第一个或者最后一个
+			node.firstElementChild（获取node中第一个子节点）
+			node.lastElementChild（获取node中最后一个子节点）
+	*/
+	
+	var ul = document.getElementById('ul1');
+	var lis = ul.children;
+	
+//	console.log(document.getElementById('ul1').lastElementChild)
+//	console.log(document.getElementById('ul1').firstElementChild)
+	
+	var first = ul.firstElementChild;
+	var last = ul.lastElementChild;
+	
+	for(var i=0;i<lis.length;i++){
+//		if(i == 0){
+//			lis[i].style.background = 'red';
+//		}else if(i == lis.length-1){
+//			lis[i].style.background = 'green';
+//		}else{
+//			lis[i].style.background = 'blue';
+//		}
+
+		if(lis[i] == first){
+			lis[i].style.background = 'red';
+		}else if(lis[i] == last){
+			lis[i].style.background = 'green';
+		}else{
+			lis[i].style.background = 'blue';
+		}
+		
+	}
+	
+	
+	
+	
+</script>
+</body>
+</html>

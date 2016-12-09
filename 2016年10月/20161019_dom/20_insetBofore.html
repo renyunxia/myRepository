@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+window.onload = function(){
+	var ul = document.getElementsByTagName('ul')[0];
+	var lis = ul.getElementsByTagName('li');
+	var li = document.createElement("li");
+	li.innerHTML = "哈哈哈";
+	ul.insertBefore(li,lis[0]);
+	//parentNode.insertBefore(newChildNode,oldChildNode);
+	//在一个节点前插入一个指定的节点
+	// 把节点newChildNode 放在oldChildNode前边
+};
+</script>
+</head>
+<body>
+	<ul>
+		
+	</ul>
+</body>
+</html>

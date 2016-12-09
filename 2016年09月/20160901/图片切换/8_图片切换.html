@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#wrap{
+			width: 300px;
+			border: 2px solid #000;
+			margin:30px auto;
+			text-align: center;
+		}
+	</style>
+	<script>
+		var arr = [
+			"pics/img1.jpg",
+			"pics/img2.jpg",
+			"pics/img3.jpg",
+			"pics/img4.jpg"
+		];
+		var arrText = [
+			"第一张",
+			"第二张",
+			"第三张",
+			"第四张"
+		];
+		window.onload = function(){
+			var now = 0;
+			var img = document.getElementById("img");
+			var prev = document.getElementById('prev');
+			var next = document.getElementById('next');
+			var txt = document.getElementById('text');
+			var page = document.getElementById('page');
+			var btn = document.getElementById("btn1");
+			var btn2 = document.getElementById("btn2");
+			var title = document.getElementById("title");
+			var isPlay = true;
+			btn.onclick = function(){
+				title.innerHTML = "现在执行循环切换";
+				isPlay = true;
+			};
+			btn2.onclick = function(){
+				title.innerHTML = "现在执行顺序切换";
+				isPlay = false;
+			};
+			prev.onclick = fnPrev;
+			next.onclick = fnNext;
+			function fnPrev() {
+				now--;
+				if(now < 0){
+					if(isPlay) {
+						now = arr.length - 1;
+					} else {
+						now = 0;
+						alert("前边没有了");
+					}
+				}
+				img.src = arr[now];
+				txt.innerHTML = arrText[now];
+				page.innerHTML = now + 1 + "/" + arr.length;
+			};
+			function fnNext() {
+				now++;
+				if(now > arr.length - 1){
+					if(isPlay) {
+						now = 0;
+					} else {
+						now = arr.length - 1;
+						alert("后边没有了");
+					}
+				}
+				img.src = arr[now];
+				txt.innerHTML = arrText[now];
+				page.innerHTML = now + 1 + "/" + arr.length;
+			};
+		};
+	</script>
+</head>
+<body>
+<div id="wrap">
+	<input type="button" value="循环播放" id="btn1" />
+	<input type="button" value="顺序播放" id="btn2" />
+	<p id="title">现在执行循环切换 <!--现在执行顺序切换--></p>
+	<a href="javascript:;" id="prev">上一张</a>
+	<a href="javascript:;" id="next">下一张</a>
+	<p id="page">1/4</p>
+	<img src="pics/img1.jpg" id="img">
+	<p id="text">第一张</p>
+</div>
+</body>
+</html>

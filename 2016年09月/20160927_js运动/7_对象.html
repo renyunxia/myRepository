@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		/*
+			var obj = {};
+			obj["name"] = "leo";
+			obj.age = 40;
+			console.log(obj);
+		*/
+		var obj = {
+			index: 0,
+			name: "付强",
+			age: 18,
+			gender: "mela",
+			job: "FE",
+			abbr: "front-end Web developer"
+		};
+		/* 遍历对象需要用到 for in 循环 */
+		//console.log(obj["job"]);
+		/*
+			for 需要一个数字变量
+			for in 需要一个字符串变量
+				这个字符串会在循环中依次变成 对象的属性名
+		*/
+		for (var s in obj) {
+			console.log(s);
+			console.log(obj[s]);
+			alert();
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

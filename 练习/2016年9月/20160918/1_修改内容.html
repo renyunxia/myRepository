@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		li{
+			margin: 5px;
+		}
+		.edit{
+			display: none;
+		}
+		</style>
+		<script>
+			window.onload = function() {
+				var li = document.querySelectorAll('li')[0];
+				var show = li.getElementsByClassName('show')[0];
+				var edit = li.getElementsByClassName('edit')[0];
+				var span = show.getElementsByTagName('span')[0];
+				var btn = show.getElementsByTagName('input')[0];
+				var txt = edit.getElementsByTagName('input')[0];
+				var save = edit.getElementsByTagName('a')[0];
+				var cancel = edit.getElementsByTagName('a')[1];
+				// console.log(li,show,edit,span,btn,txt,save,cancel,txt);
+				btn.onclick = function() {
+					show.style.display = "none";
+					edit.style.display = "block";
+					txt.value = span.innerHTML;
+				}
+				save.onclick = function() {
+					show.style.display = "block";
+					edit.style.display = "none";
+					span.innerHTML = txt.value;
+				}
+				cancel.onclick = function() {
+					show.style.cssText = "";
+					edit.style.cssText = "";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<ul id="list">
+			<li>
+				<div class="show">
+					<span>开始学习</span>
+					<input type="button"  value="修改"/>
+				</div>
+				<div class="edit">
+					<input type="text" />
+					<a href="javascript:;">保存</a>
+					<a href="javascript:;">取消</a>
+				</div>
+			</li>
+			<li>
+				<div class="show">
+					<span>开始学习</span>
+					<input type="button"  value="修改"/>
+				</div>
+				<div class="edit">
+					<input type="text" />
+					<a href="javascript:;">保存</a>
+					<a href="javascript:;">取消</a>
+				</div>
+			</li>
+			<li>
+				<div class="show">
+					<span>开始学习</span>
+					<input type="button"  value="修改"/>
+				</div>
+				<div class="edit">
+					<input type="text" />
+					<a href="javascript:;">保存</a>
+					<a href="javascript:;">取消</a>
+				</div>
+			</li>
+		</ul>
+	</body>
+</html>

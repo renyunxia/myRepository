@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body,p{
+		margin: 0;
+		padding: 0;
+	}
+	ul{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	input,textarea{
+		border: 1px solid #f7b619;
+		padding: 0;
+		margin: 0;
+		display: block;
+		outline: none;
+	}
+	textarea{
+		width: ;
+		resize: none;
+		overflow: hidden;
+	}
+	#wrap{
+		width: 400px;
+		padding: 10px;
+		background: #fada85;
+		border: 1px solid #f7b619;
+		margin: 30px auto;
+		font: 16px/30px "宋体";
+	}
+	#message input,#message textarea{
+		width: 100%;
+		height: 30px;
+		padding: 2px 5px;
+		box-sizing:border-box;
+		background: #fff;
+	}
+	#message textarea{
+		height: 90px;
+		margin: 10px 0;
+	}
+	.messageList{
+		margin-top: 10px;
+		background: #ccc;
+	}
+	.messageHeader{
+		margin-top: 10px;
+		background: #eae0c7;
+		padding: 0 5px;
+	}
+	.list li{
+		background: #fcfcfc;
+		padding: 5px;
+		border-bottom: 1px solid #f7b619;
+		font-size: 12px;
+		height: 0;
+		overflow: hidden;
+	}
+	.list header{
+		background: #fefefe;
+		padding: 0 5px;
+		height: 30px;
+	}
+	.list span{
+		float: left;
+	}
+	.list time{
+		float: right;
+	}
+	.list p{
+		padding: 5px;
+		line-height: 22px;
+	}
+	#info{
+		background: #fefefe;
+		font: 20px/100px "宋体";
+		text-align: center;
+		overflow: hidden;
+	}
+	</style>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script>
+	window.onload = function(){
+		var sunBtn = document.querySelector('input[type="button"]');
+		var textName = document.querySelector('input[type="text"]');
+		var textMessage = document.querySelector('#message textarea');
+		var list = document.querySelector('.list');
+		var lis = list.children;
+		var info = document.querySelector('#info');
+		sunBtn.onclick = function(){
+
+			if(!textName.value || !textMessage.value){
+				alert("请输入完整信息");
+				return;
+			}
+			var li = document.createElement('li');
+			var section = document.createElement('section');
+			var header = document.createElement('header');
+			var span = document.createElement('span');
+			var time = document.createElement('time');
+			var p = document.createElement('p');
+			span.innerHTML = textName.value;
+			p.innerHTML = textMessage.value;
+			time.innerHTML = getTime();
+			header.appendChild(span);
+			header.appendChild(time);
+			section.appendChild(header);
+			section.appendChild(p);
+			li.appendChild(section);
+			if(lis.length > 0){
+				list.insertBefore(li,lis[0]);
+				mTween(li,{height:section.offsetHeight},800,"easeOut");
+			}else{
+				mTween(info,{height:0,opcity:0},400,"easeOut",function(){
+					list.appendChild(li);
+					info.parentNode.removeChild(info);
+					mTween(li,{height:section.offsetHeight},800,"easeOut");
+				})
+			}
+			console.log(section.offsetHeight);
+			textName.value = "";
+			textMessage.value = "";
+		}		
+	}
+	function getTime(){ 
+		var newDate = new Date();
+		var year = toDB(newDate.getFullYear());
+		var month = toDB(newDate.getMonth()+1);
+		var day = toDB(newDate.getDate());
+		var hours = toDB(newDate.getHours());
+		var minutes = toDB(newDate.getMinutes());
+		return year+'-'+month+'-'+day+'-'+hours+':'+minutes
+	}
+	function toDB(n){
+		return n < 10 ? "0" + n : "" + n;
+	}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<div id="message">
+			<input type="text" placeholder="请输入您的名字">
+			<textarea placeholder="请输入您的留言内容"></textarea>
+			<input type="button" value="提交留言">
+		</div>
+		<div id="messageList">
+			<header class="messageHeader">显示留言</header>
+			<div id="info">-抢沙发-</div>
+			<ul class="list">
+				
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

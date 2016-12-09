@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div {
+	width: 60px;
+	height: 60px;
+	background: red;
+	text-align: center;
+	line-height: 60px;
+	font-size: 26px;
+	color: #fff;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+    }
+</style>
+<script>
+window.onload=function(){
+		var aDiv=document.getElementsByTagName('div');
+		for(var i=0; i<5; i++){
+				document.body.innerHTML+='<div>'+i+'</div>';
+			} 
+		var len=aDiv.length;
+		var y=0;
+		var x=0;
+		var i=0;
+				
+		for(var i=0; i<len; i++){
+			aDiv[i].style.left=5+i*60+'px';
+			if (i<len/2){	//条件1
+			aDiv[i].style.top=i*60+'px';	//len=11/2=5.5 i<5.5时 y轴坐标递增60px; 第6个DIV乘以5(i从0递加5次等于5) 最后i=5*60 =300px; i=6时条件不靠谱;
+			} //alert(i);
+			if(x<len/2){
+				x++; //x<len/2时，x递增; 最后x=6
+			}	//alert(x);
+			if(i<len && i>len/2-1){ //i>len/2-1 i=5时条件靠谱(如果len为12 i=6时条件才靠谱)
+				y++ 
+			aDiv[i].style.top=(x-y)*60+'px';// i=5时  第6个div的top值等于 (x=6 y=0+1; 6-1=5; 5*60px=300px;)第6个DIV的top值为300px;与条件1重叠;当len的长度为双数时，不会漏掉div的top值；
+				}
+		}									
+}
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

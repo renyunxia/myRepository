@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			var input = document.querySelectorAll("input");
+			input[1].onclick = function(){
+				var val = input[0].value;
+				for(var i = 0; i < val.length;i++){
+					if(val[i] == "."){
+						alert("请不要输入小数");
+						break;
+					}
+				}
+			};
+		};
+	</script>
+</head>
+<body>
+	<input type="text">
+	<input type="button" value="判断">
+</body>
+</html>

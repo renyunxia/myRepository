@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	div,span,input{
+		margin: 0;
+		padding: 0;
+	}
+	#wrap{
+		padding: 20px;
+		font: 14px/30px "微软雅黑";
+	}
+	#wrap span{
+		width: 100px;
+		text-align: right;
+		display: inline-block;
+	}
+	#wrap button{
+		width: 70px;
+		margin-left: 100px;
+	}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<span>用户QQ：</span><input type="text">
+		<br/>
+		<span>用户邮箱：</span><input type="text">
+		<br/>
+		<span>生日：</span><input type="text">
+		<br/>
+		<button>提交</button>
+	</div>
+	<script>
+	(function(){
+		var aInput = document.querySelectorAll('input');
+		var btn = document.querySelector('button');
+
+		//onfocus
+		btn.addEventListener('click',click);
+		function click(){
+			var valA = aInput[0].value;
+			var valB = aInput[1].value;
+			var valC = aInput[2].value;
+
+			//QQ
+			if(/^[1-9]\d{4,10}$/.test(valA.trim())){
+				aInput[0].style.borderColor = "green";
+			}else{
+				aInput[0].style.borderColor = "red";
+			}
+
+			//email
+			if(/^[a-zA-Z]\w{5,17}@[a-z1-9]+\.(com|com.cn|cn)$/.test(valB)){
+				aInput[1].style.borderColor = "green";
+			}else{
+				aInput[1].style.borderColor = "red";
+			}
+
+			//birthday
+
+			// var gap = function(n){
+			// 	var now =new Date;
+			// 	now.setFullYear(now.getFullYear() - n);
+			// 	return now;
+			// }
+			// var date = gap(100);
+		    // alert("距当前日期100年前的日期时间: " + date.toLocaleString ());
+
+			if(/^(19|20)\d{2}\D(1[0-2]|0?[1-9])\D(0?[1-9]|[1-2][0-9]|3[0-1])$/.test(valC)){
+				aInput[2].style.borderColor = "green";
+			}else{
+				aInput[2].style.borderColor = "red";
+			}
+		}
+
+		// onblur
+		// aInput[0].onblur = function(){
+		// 	if(/^[1-9]\d{4,10}$/.test(valA.trim())){
+		// 		aInput[0].style.borderColor = "green";
+		// 	}
+		// }
+		console.log(/^(1[0-2]|0?[1-9])$/.test(07))
+	})();
+	</script>
+</body>
+</html>

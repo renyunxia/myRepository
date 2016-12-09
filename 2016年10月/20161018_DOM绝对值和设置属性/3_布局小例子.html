@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> New Document </title>
+  <meta charset = 'utf-8' />
+  <style>
+    ul {width: 200px;}
+    ul li {color: #666;background-color: #eee;font-weight:bold; font-size: 14x; height: 30px; line-height: 30px; padding: 0 20px;list-style:none;}
+    ul .focus {font-size: 22px; background-color: #555;color:#fff;}
+    ul .near {font-size:18px; background-color: #ccc;color:blue;}
+    ul .none {background:#333;color:#fff;}
+    ul .side {background:orange;}
+  </style>
+<script>
+	/*
+		首行和末行默认class   none
+			移入之后class 变为 side
+		
+		别的class默认是没有class
+			移入之后class  当前的是focus  兄弟元素 near
+		
+		思路：
+			循环所有的li
+			把第一个和最后一个拿到
+			
+			移入的时候，判断以下，当前的是不是第一个||最后一个，如果是走 side 
+			如果不是，当前的变成focus，上一个和下一个变near  首个和最后一个变成none
+			
+			
+			移出的时候将所有的class清空，把首个和最后一个变成none
+			
+			first = parentNode.firstElementChild;
+
+	*/
+	
+window.onload = function(){
+//	var i = undefined
+	var ul1 = document.getElementById('ul1');
+	var lis = ul1.children;
+	var first = ul1.firstElementChild;
+	var last = ul1.lastElementChild;
+//	i = 0
+//	alert(i); //a:报错，b:undefind，c:找到了某个  d:0
+//	var next = lis[i].nextElementSibling;
+//	console.log(next);
+	
+	for(var i=0;i<lis.length;i++){
+		
+		lis[i].onmouseover = function(){
+			if(this == first || this == last){
+				this.className = 'side';
+			}else{
+				this.className = 'focus';
+				this.previousElementSibling.className = this.nextElementSibling.className = 'near';
+				first.className = last.className = 'none';
+//				this.previousElementSibling.className = 'near';
+//				this.nextElementSibling.className = 'near';
+//				first.className = 'none';
+//				last.className = 'none';
+			}
+		}
+		
+		lis[i].onmouseout = function(){
+			for(var i=0;i<lis.length;i++){
+				lis[i].className = '';
+			}
+			first.className = last.className = 'none';
+//			first.className = 'none';
+//			last.className = 'none';
+		}
+		
+	}
+	
+}
+	
+	
+</script>
+ </head>
+  
+ <body>
+
+  <ul id="ul1">
+    <li class="none">这是首行</li>
+    <li>111111</li>
+    <li>222222</li>
+    <li>333333</li>
+    <li>444444</li>
+    <li>555555</li>
+    <li>666666</li>
+    <li>111111</li>
+    <li>222222</li>
+    <li>333333</li>
+    <li>444444</li>
+    <li>555555</li>
+    <li class="none">这是末行</li>
+  </ul>
+
+ </body>
+</html>

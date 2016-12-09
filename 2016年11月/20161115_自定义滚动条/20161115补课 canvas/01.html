@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<div class="box" style="width: 100px;height: 100px;position: absolute; left: 0;top: 0;background-color: goldenrod;"></div>
+	<script>
+		var box = document.querySelector('.box');
+
+		// var timer = setInterval(function(){
+		// 	if(box.offsetLeft < 200)
+		// 		box.style.left = box.offsetLeft + 2 + 'px';
+		// 	else
+		// 		clearInterval(timer)
+		// }, 20);
+ 
+		//window.requestAnimationFrame(); // 用来做动画的
+
+		function update(){
+			if(box.offsetLeft < 200){
+				box.style.left = box.offsetLeft + 3 + 'px';
+			}
+			window.requestAnimationFrame(update);
+		}
+
+		update();
+
+
+
+	</script>
+</body>
+</html>

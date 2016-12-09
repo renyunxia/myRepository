@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+*{
+	margin: 0;
+	font-size:12px;
+}
+
+#div1{
+	width:410px;
+	height: 60px;
+	background:red;
+	overflow: hidden;
+}
+#div2{
+	width:50px;
+	height: 50px;
+	background:yellow;
+	position: absolute;
+	left:0;
+}
+#b{
+	width:400px;
+	height: 50px;
+	border:5px solid #000;
+	position: relative;
+}
+</style>
+</head>
+<body>
+	<div id="div1">
+		<div id="b">
+			<div id="div2"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		/*
+			在FF下，如果父级加了边框同时也加了overfllow:* 时，FF会重新计算offsetLeft值
+			
+			当前的left值 - 边框值
+			
+			解决：
+				只要不给父级加边框或者overfllow:*就可以解决啦！
+			
+		*/
+		var timer = null;
+		var div2 = document.getElementById('div2');
+		document.onclick = function(){
+			timer = setInterval(function(){
+				//alert(div2.offsetLeft)
+				div2.style.left = div2.offsetLeft + 5 + 'px';
+			},30);
+		}
+	</script>
+</body>
+</html>

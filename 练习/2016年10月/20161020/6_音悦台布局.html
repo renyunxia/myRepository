@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	div,ul,li,p,span,h4{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		background: #f2f2f2;
+		font-size: 12px; 
+		font: 12px/1.5 Tahoma,'\5FAE\8F6F\96C5\9ED1','Microsoft Yahei',"hiragino sans gb", Helvetica, Arial, "\5b8b\4f53", 'sans-serif';
+	}
+	ul{
+		list-style: none;
+	}
+	.index_box{
+		width: auto;
+		padding: 0 70px;
+		margin: 20px auto;
+		position: relative;
+	}
+	.group_pre,.group_next{
+        position: absolute;
+	    top: 116px;
+	    width: 60px;
+	    height: 66px;
+	    /*display: none;*/
+	    text-indent: 100%;
+	    white-space: nowrap;
+	    overflow: hidden;
+	    z-index: 200;
+	    background: url(img/ico_sliding_910.png) no-repeat;
+	    color: #333;
+	}
+	.group_pre{
+		left: 0;
+		background-position: 0 -300px;
+	}
+	.group_pre:hover {
+	    background-position: 0 -366px;
+	}
+	.group_next{
+		right: 0;
+		background-position: -60px -300px;
+	}
+	.group_next:hover {
+	    background-position: -60px -366px;
+	}
+	.index_list{
+		width: 970px;
+	    margin: 0 auto;
+		height: 298px;
+	}
+	.index_list li{
+		float: left;
+		width: 970px;
+	}
+	/*.mv_1x2 {
+	    float: left;
+	    position: relative;
+	    width: 226px;
+	    margin-right: 22px;
+	}*/
+	.mvinfo_box{
+		width: 220px;
+	    float: left;
+	    padding: 2px;
+	    position: relative;
+	    background-color: #fff;
+	    display: block;
+	    border: 1px #e8e8e8 solid;
+	    margin: 0 11px 19px 11px;
+	    display: inline-block;
+	}
+	.mvinfo_box:hover {
+	    box-shadow: 0 0 3px #690;
+	    -webkit-box-shadow: 0 0 3px #690;
+	    -moz-box-shadow: 0 0 3px #690;
+	    border: 1px #b4c88b solid;
+	}
+	.mv_pic{
+		width: 220px;
+		height: 124px;
+		position: relative;
+	    display: block;
+	    overflow: hidden;
+	    z-index: 10;
+	}
+	.mv_pic img {
+	    vertical-align: top;
+	    border: none;
+	}
+	.play_name{
+	    width: 100%;
+	    height: 124px;
+	    position: absolute;
+	    left: 0;
+	    bottom: 0;
+	    color: #fff;
+	    background: url("img/index_play_bg.png") repeat-x left bottom;
+	}
+	.title{
+	    padding: 0 10px;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    width: 90%;
+	    display: block;
+	    margin-top: 80px;
+	    font-weight: 700;
+	}
+	.author{
+		padding: 0 10px;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    width: 90%;
+	    display: block;
+        color: #cf9;
+	}
+	.ico_play {
+	    position: absolute;
+	    left: 50%;
+	    top: 50%;
+	    margin: -40px 0 0 -30px;
+	    width: 60px;
+	    height: 60px;
+	    display: none;
+	    cursor: pointer;
+	    line-height: 1000px;
+	    overflow: hidden;
+	    background: url("img/ico_play_718.png") 0 0 no-repeat;
+	}
+	.mv_pic_info {
+	    width: 224px;
+	    height: 0;
+	    padding-top: 128px;
+	    display: none;
+	    position: absolute;
+	    left: -1px;
+	    top: -1px;
+	    background-color: #F6F9F1;
+	    overflow: hidden;
+	    -webkit-box-shadow: 0 0 2px #690;
+	    -moz-box-shadow: 0 0 2px #690;
+	    box-shadow: 0 0 2px #690;
+	    border: 1px #b4c88b solid;
+	}
+	/*.mvinfo_box:hover .mv_pic_info{
+		display: block;
+	}*/
+	.summary{
+	    padding: 3px 3px 0 6px;
+	    background-color: #fff;
+	    color: #996;
+	    overflow: hidden;
+	}
+	.num{
+	    height: 20px;
+	    padding: 5px 0 5px 10px;
+	    background-color: #fff;
+	}
+	.paly{
+		padding-left: 18px;
+		background: url("img/ico20_1113.png") no-repeat 0 2px;
+	    color: #999;
+	    margin-right: 10px;
+	}
+	.message{
+		padding-left: 18px;
+		background: url("img/ico20_1113.png") no-repeat 0 -18px;
+	    color: #999;
+	    margin-right: 10px;
+	}
+	.list{
+		padding-left: 22px;
+	    margin-right: 0;
+	    background: url("img/ico20_1113.png") no-repeat 0 -43px;;
+	    color: #999;
+	}
+	.describe{
+		padding: 10px;
+	    line-height: 20px;
+	    color: #666;
+	    display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+		overflow: hidden;
+	}
+	</style>
+	<script type="text/javascript" src="data.js"></script>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script>
+
+	window.onload = function(){
+		var prev = document.querySelector('.group_pre');
+		var next = document.querySelector('.group_next');
+		var indexList = document.querySelector('.index_list');
+		var mvInfoBox = document.querySelector('.mvinfo_box');
+		var mvPicInfo = document.querySelector('.mv_pic_info');
+		var childrens = mvPicInfo.children;
+		var icoPlay = document.querySelector('.ico_play');
+		mvInfoBox.onmouseover = function(){
+			icoPlay.style.display = "block";
+			mvPicInfo.style.display = "block";
+			mTween(mvPicInfo,{height:148},700,"linear");
+		}
+		mvInfoBox.onmouseout = function(){
+			icoPlay.style.display = "";
+			mTween(mvPicInfo,{height:0},700,"linear");
+			// mvPicInfo.style.display = "";
+		}
+
+	}
+	</script>
+</head>
+<body>
+	<div class="index_box">
+		<a href="javascript:;" class="group_pre"></a>
+		<a href="javascript:;" class="group_next"></a>
+		<ul class="index_list_w" style="display: block; margin-left: 0px;">
+			<li class="index_list"> 
+				<div class="mvinfo_box"> 
+					<a href="#" class="mv_pic">
+					 	<img src="img/001.jpg" width="220" height="124">
+					 	<div class="play_name" style="display: block;">
+					 		<h4 class="title">Overnight</h4>
+					 		<p class="author"> Jake Miller</p>
+					 	</div>
+					 	<span class="ico_play">播放</span>
+				 	</a>
+				 	<div class="mv_pic_info" style="height: 0px;">
+					 	<p class="summary">
+					 		“美国女子体操运动员西蒙惊喜出镜”
+					 	</p>
+				 		<p class="num">
+					 		<span class="paly">26157</span>
+					 		<span class="message">23</span>
+					 		<span class="list">23</span>
+					 	</p>
+				 		<p class="describe">MV描述：Jake Miller最新单曲《Overnight》MV首播!美国女子体操运动员Simone Biles惊喜出镜!
+				 		</p>
+			 		</div>
+			 	</div> 
+			 	<div class="mvinfo_box"> 
+					<a href="#" class="mv_pic">
+					 	<img src="img/001.jpg" width="220" height="124">
+					 	<div class="play_name" style="display: block;">
+					 		<h4 class="title">Overnight</h4>
+					 		<p class="author"> Jake Miller</p>
+					 	</div>
+					 	<span class="ico_play">播放</span>
+				 	</a>
+				 	<div class="mv_pic_info" style="height: 0px;">
+					 	<p class="summary">
+					 		“美国女子体操运动员西蒙惊喜出镜”
+					 	</p>
+				 		<p class="num">
+					 		<span class="paly">26157</span>
+					 		<span class="message">23</span>
+					 		<span class="list">23</span>
+					 	</p>
+				 		<p class="describe">MV描述：Jake Miller最新单曲《Overnight》MV首播!美国女子体操运动员Simone Biles惊喜出镜!
+				 		</p>
+			 		</div>
+			 	</div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

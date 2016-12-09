@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+#div1{
+	width: 100px;
+	height: 100px;
+	background: red;
+}	
+#la{
+	position: relative;
+}
+span{
+	width:100px;	
+	position: absolute;
+	top:3px;
+	left:3px;
+	font-size: 12px;
+	color: #ccc;
+}
+</style>
+</head>
+<body>
+	<label id="la">
+		<input type="text" name="txt" id="txt" value="" _placeholder="请输入内容" />
+		<span id="span">请输入内容...</span><em id="em"> 0 </em>字
+		<!--<input type="text" name="txt" id="txt" value="" />-->
+	</label>
+<script type="text/javascript">
+	/*
+		焦点：
+			当打开页面的时候就已经有焦点了，默认在document上，
+			选中焦点元素时，焦点会从document上到焦点元素身上。
+			当离开焦点元素的时候默认回到document身上。
+			
+			oninput:(IE9以上浏览器兼容)
+				当输入框内容发生变化时触发
+
+			
+	*/
+	var txt = document.getElementById('txt');
+	var span = document.getElementById('span');
+	var em = document.getElementById('em');
+	var timer = null;
+	txt.onfocus = function(){
+		span.style.display = 'none';
+		timer = setInterval(function(){
+			em.innerHTML = txt.value.length+ ' ';
+		},10);
+	}
+	txt.onblur = function(){
+		//alert(2);
+		if(!this.value){
+			span.style.display = 'block';
+		}
+		clearInterval(timer);
+	}
+	
+//	txt.oninput = function(){
+//		em.innerHTML = this.value.length+ ' ';
+//	}
+	
+	//console.dir(div);
+</script>
+</body>
+</html>

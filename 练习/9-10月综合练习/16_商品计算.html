@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	ul{
+		padding: 0;
+	}
+	li{list-style: none;}
+	</style>
+	<script>
+	window.onload = function(){
+		var lis = document.querySelectorAll('#list li');
+		var ems = document.querySelectorAll('em');
+		var sum = document.querySelectorAll('#list span:nth-of-type(odd)');
+		var total = document.querySelectorAll('#list span:nth-of-type(even)');
+		var infos = document.querySelectorAll('.info span');
+		console.log(infos)
+		for (var i = 0; i < lis.length; i++) {
+			price(lis[i])
+		};
+		function price(ele){
+			var btns = ele.getElementsByTagName('button');
+			var num = ele.getElementsByTagName('em')[0];
+			var spans = ele.getElementsByTagName('span');
+			btns[0].onclick = function(){
+				var c = num.innerHTML*1;
+				var per = parseFloat(span[0].innerHTML);
+				c--;
+				if(c < 0){
+					c = 0;
+				}
+				num.innerHTML = c;
+				spans[1].innerHTML = c * per;
+				addInfo();
+			}
+			btns[1].onclick = function(){
+				var c = num.innerHTML*1;
+				var per = parseFloat(spans[0].innerHTML);
+				c++;
+				num.innerHTML = c;
+				spans[1].innerHTML = c * per + '元';
+				addInfo();
+			}
+		}
+		function addInfo(){
+			var a = 0;
+			var b = 0;
+			var c = 0;
+			for (var i = 0; i < ems.length; i++) {
+				a += parseFloat(ems[i].innerHTML);
+				b += parseFloat(total[i].innerHTML);
+				if(c < parseFloat(total[i].innerHTML)){
+					c = parseFloat(total[i].innerHTML);
+				}
+			};
+			console.log(c);
+			infos[0].innerHTML = a;
+			infos[1].innerHTML = b;
+			infos[2].innerHTML = c;
+		}
+	}
+	</script>
+</head>
+<body>
+	<ul id="list">
+		<li>
+			<button>-</button>
+			<em>0</em>
+			<button>+</button>
+			单价：<span>12.5元</span>
+			小计：<span>0元</span>
+		</li>
+		<li>
+			<button>-</button>
+			<em>0</em>
+			<button>+</button>
+			单价：<span>12.5元</span>
+			小计：<span>0元</span>
+		</li>
+		<li>
+			<button>-</button>
+			<em>0</em>
+			<button>+</button>
+			单价：<span>12.5元</span>
+			小计：<span>0元</span>
+		</li>
+		<li>
+			<button>-</button>
+			<em>0</em>
+			<button>+</button>
+			单价：<span>12.5元</span>
+			小计：<span>0元</span>
+		</li>
+	</ul>
+	<div class="info">
+		商品合计：<span>0</span> 件<br>
+		商品总计：<span>0</span> 元<br>
+		最贵的：<span>0</span> 元<br>
+	</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+body{
+	height: 3000px;
+}
+#div1{
+	width: 100px;
+	height: 100px;
+	background: red;
+	position: absolute;
+	top:0;
+	left: 0;
+	cursor:move;
+}	
+
+</style>
+</head>
+<body>
+	<input type="text" name="" id="txt" value="" />
+	<input type="button" name="" id="btn" value="按钮" />
+	<ul id="ul">
+		
+	</ul>
+<script type="text/javascript">
+	/*
+		当按键时，如果在按键的基础上又按了一个键值，这个时候第二次会把第一次的键值覆盖
+		keyCode只认最后一次的按键键值。
+		
+		特殊按键：
+			ev.altKey
+			ev.shiftKey
+			ev.ctrlKey
+			
+		他们的默认键值为false，一旦按下，就变为true
+			
+	*/
+	var txt = document.getElementById('txt');
+	var btn = document.getElementById('btn');
+	var ul = document.getElementById('ul');
+	btn.onclick = function(){
+		var val = txt.value;
+		var li = document.createElement('li');
+		li.innerHTML = val;
+		ul.appendChild(li);
+		txt.value = '';
+	}
+	
+	document.onkeydown = function(ev){
+		if(ev.keyCode == 13 && ev.shiftKey){//说明按了回车键
+			btn.onclick();
+		}
+		
+		
+//		console.log(ev.keyCode);
+//		console.log('ev.altKey')
+//		console.log(ev.altKey)
+	}
+	
+//	document.onkeyup = function(ev){
+//		console.log(ev.keyCode);
+//		console.log('ev.altKey')
+//		console.log(ev.altKey)
+//	}
+	
+	
+	
+	
+	
+</script>
+</body>
+</html>

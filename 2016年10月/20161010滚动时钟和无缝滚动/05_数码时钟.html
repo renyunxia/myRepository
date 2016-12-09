@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数码时钟</title>
+	<style>
+		body,ul,li {
+			margin: 0;
+			padding: 0;
+		}
+		ul {
+			height: 210px;
+			overflow: -hidden;
+		}
+		li {
+			list-style: none;
+			float: left;
+			position: relative;
+		}
+		img {
+			display: block;
+		}
+	</style>
+	<script src="mTween.js"></script>
+	<script>
+		window.onload = function(){
+			var lis = document.querySelectorAll('.t');
+			var point = document.querySelectorAll('.p');
+
+			for(var i=0; i<lis.length; i++){
+				lis[i].t = 0;
+			}
+
+			//上一秒的时间 000000  164730 164731
+			//下一秒的时间 164730  164731 164732
+
+			setTime();
+
+			setInterval(setTime,20);
+
+			function setTime() {
+				var nowTime = new Date();
+				var h = nowTime.getHours(),
+					m = nowTime.getMinutes(),
+					s = nowTime.getSeconds();
+				var strTime = add0(h) + add0(m) + add0(s);
+
+				for(var i=0; i<strTime.length; i++){
+					if(lis[i].t != strTime[i]){
+						fnMove(lis[i],strTime[i]);
+						lis[i].t = strTime[i];
+					}
+				}
+			}
+
+			function fnMove(obj,src) {
+				var pics = obj.getElementsByTagName('img');
+				pics[0].src = 'images/'+obj.t+'.png';
+				obj.style.top = 0;
+				pics[1].src = 'images/'+src+'.png';
+				mTween(obj,{top:-210});
+			}
+
+			function add0(n) {
+				return n < 10 ? '0' + n : '' + n;
+			}
+
+			var onOff = true;
+
+			//swinkle(onOff)
+
+			setInterval(function(){
+				onOff = !onOff;
+				swinkle(onOff);
+			},500)
+
+			function swinkle(onOff) {
+				var src = onOff ? 'fuh' : 'nfh';
+				/*var src = '';
+				if(onOff){
+					src = 'fuh';
+				}else{
+					src = 'nfh';
+				}*/
+				for(var i=0; i<point.length; i++){
+					point[i].src = 'images/'+src+'.png';
+				}
+			}
+		};
+	</script>
+</head>
+<body>
+	<ul>
+		<li class="t">
+			<img src="images/0.png">
+			<img src="images/0.png">
+		</li>
+		<li class="t">
+			<img src="images/0.png">
+			<img src="images/0.png">
+		</li>
+		<li>
+			<img src="images/fuh.png" class="p">
+		</li>
+		<li class="t">
+			<img src="images/0.png">
+			<img src="images/0.png">
+		</li>
+		<li class="t">
+			<img src="images/0.png">
+			<img src="images/0.png">
+		</li>
+		<li>
+			<img src="images/fuh.png" class="p">
+		</li>
+		<li class="t">
+			<img src="images/0.png">
+			<img src="images/0.png">
+		</li>
+		<li class="t">
+			<img src="images/0.png">
+			<img src="images/0.png">
+		</li>
+	</ul>
+</body>
+</html>

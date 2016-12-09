@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#wrap{
+			width: 300px;
+			border: 2px solid #000;
+			margin:30px auto;
+			text-align: center;
+		}
+	</style>
+	<script>
+		var arr = [
+			"pics/img1.jpg",
+			"pics/img2.jpg",
+			"pics/img3.jpg",
+			"pics/img4.jpg"
+		];
+		var arrText = [
+			"第一张",
+			"第二张",
+			"第三张",
+			"第四张"
+		];
+		window.onload = function(){
+			var now = 0;
+			var img = document.getElementById("img");
+			var prev = document.getElementById('prev');
+			var next = document.getElementById('next');
+			var txt = document.getElementById('text');
+			var page = document.getElementById('page');
+			prev.onclick = function() {
+				now--;
+				if(now < 0){
+					now = arr.length - 1;
+				}
+				img.src = arr[now];
+				txt.innerHTML = arrText[now];
+				page.innerHTML = now + 1 + "/" + arr.length;
+				//alert(now);
+			};
+			next.onclick = function() {
+				now++;
+				if(now > arr.length - 1){
+					now = 0;
+				}
+				img.src = arr[now];
+				txt.innerHTML = arrText[now];
+				page.innerHTML = now + 1 + "/" + arr.length;
+				//alert(now);
+			};
+		};
+	</script>
+</head>
+<body>
+<div id="wrap">
+	<a href="javascript:;" id="prev">上一张</a>
+	<a href="javascript:;" id="next">下一张</a>
+	<p id="page">1/4</p>
+	<img src="pics/img1.jpg" id="img">
+	<p id="text">第一张</p>
+</div>
+</body>
+</html>

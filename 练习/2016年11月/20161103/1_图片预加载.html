@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body,div{
+		margin: 0;
+		padding: 0;
+	}
+	#wrap{
+		width: 520px;
+	}
+	#list{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	#list li{
+		width: 240px;
+		height: 240px;
+		border: 1px solid #000;
+		margin: 9px;
+		float: left;
+		background: url(images/loading.gif) no-repeat center center;
+	}
+	input{
+		width: 200px;
+		height: 40px;
+		display: block;
+		margin: 0 auto;
+	}
+	#list img{
+		opacity: 0;
+	}
+	</style>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script>
+	var data = [];
+	for(var i = 0; i < 100; i++){
+		data.push("images/"+(i%16+1)+".jpg");
+	}
+	window.onload = function(){
+		var list = document.getElementById('list');
+		var btn = document.getElementById('btn');
+		var lis = list.children;
+		console.log(lis);
+		var length = 8;
+		var start = 0;
+		create();
+		btn.onclick = function (){
+			start += length;
+			create();
+		};
+		function create() {
+			var end = start + length;
+			for (var i = start; i < end; i++) {
+				var li = document.createElement('li');
+				li.dataset.img = data[i];
+				li.isCreate = false;
+				list.appendChild(li);
+			};
+			if(end >= data.length){
+				btn.style.display = "none";
+			}
+			show();
+		}
+		window.onscroll = window.onresize = function(){
+			show();
+		}
+		function show(){
+			for (var i = 0; i < lis.length; i++) {
+				var rect = lis[i].getBoundingClientRect(); //可视区
+				if ((rect.top + rect.height) > 0 && rect.top < window.innerHeight && !lis[i].isCreate) { //li距离可视区的高度+li自身高度 > 0 并且 li距离可视区的高度 < 滚动条的高度 并且 没有创建li
+					createImg(lis[i]);
+					lis[i].isCreate = true;
+				};
+			};
+		}
+		function createImg(li){
+			var img = new Image();
+			img.src = li.dataset.img;
+			li.appendChild(img);
+			mTween(img,{opacity:100},500,"easeOut");
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<ul id="list">
+		</ul>
+		<input type="button" value="加载更多图片" id="btn">
+	</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+/*
+var a;
+var a;
+function a (){
+	console.log("haha");
+}
+console.log(a);
+a = 0;	
+console.log(a);
+console.log(a);
+a = function(){
+	console.log("1");
+}
+console.log(a);
+a = 0;
+console.log(a);
+*/
+
+	console.log(a); // 0 function a(){console.log("haha");}
+	var a = 0;	
+	console.log(a); // 0 
+	function a (){
+		console.log("haha");
+	}
+	console.log(a); // 0 
+	var a = function(){
+		console.log("1"); 
+	}
+	console.log(a); // 0 function(){ console.log("1"); }
+	a = 0;
+	console.log(a); // 0 
+</script>
+</head>
+<body>
+	
+</body>
+</html>

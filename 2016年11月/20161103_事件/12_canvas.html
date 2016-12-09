@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body {
+	background: #ccc;
+}
+#c{
+	display: block;
+	background: #fff;
+	margin: 50px auto 0;
+}
+#colorNav {
+	width: 400px;
+	margin: 0 auto;
+}
+#colorNav a {
+	width: 100px;
+	height: 100px;
+	float: left;
+}
+.red {
+	background: red;
+}
+.yellow {
+	background: yellow;
+}
+.blue {
+	background: blue;
+}
+.green {
+	background: green;
+}
+#btn {
+	display: block;
+	margin: 0 auto;
+}
+</style>
+</head>
+<body>
+<input type="button" value="清除画布" id="btn">
+<canvas id="c" width="400" height="400"></canvas>
+<nav id="colorNav">
+	<a href="javascript:;" class="red"></a>	
+	<a href="javascript:;" class="yellow"></a>	
+	<a href="javascript:;" class="blue"></a>
+	<a href="javascript:;" class="green"></a>		
+</nav>
+<script type="text/javascript">
+(function(){
+	var c  = document.querySelector('canvas');
+	var navs = document.querySelectorAll('nav a');
+	var cxt = c.getContext("2d");
+	var rect = c.getBoundingClientRect();
+	var clearBtn = document.querySelector('input');
+	cxt.lineWidth = 4;
+	cxt.strokeStyle = "red";
+	c.onmousedown = function(e){
+		var mX = e.clientX - rect.left;
+		var mY = e.clientY - rect.top;
+		cxt.beginPath();
+		cxt.moveTo(mX,mY);
+		c.onmousemove = function(e){
+			var mX = e.clientX - rect.left;
+			var mY = e.clientY - rect.top;
+			cxt.lineTo(mX,mY);
+			cxt.stroke();
+		};
+		c.onmouseup = function(){
+			cxt.closePath();
+			c.onmousemove = null;
+			c.onmouseup = null;
+		}
+	};
+	clearBtn.onclick = function(){
+		//cxt.clearRect(100,100,50,50);//clearRect(x,y,w,y)
+		cxt.clearRect(0,0,c.width,c.height);
+	};
+	for(var i = 0; i < navs.length; i++){
+		navs[i].onclick = function(){
+			cxt.strokeStyle = this.className;
+		};
+	}
+})();
+</script>
+</body>
+</html>

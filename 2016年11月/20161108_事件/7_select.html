@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+#div1{
+	width: 100px;
+	height: 100px;
+	background: red;
+}	
+#la{
+	position: relative;
+}
+span{
+	width:100px;	
+	position: absolute;
+	top:3px;
+	left:3px;
+	font-size: 12px;
+	color: #ccc;
+}
+</style>
+</head>
+<body>
+	<div id="la">
+		<input type="text" name="txt" id="txt" value="" _placeholder="请输入内容" />
+		<input value="选中" type="button" id="btn"/>
+	</div>
+<script type="text/javascript">
+	/*
+	 	input.select()/textarea.select()
+		选中input或textarea中的内容。
+	*/
+	var txt = document.getElementById('txt');
+	var btn = document.getElementById('btn');
+	btn.onclick = function(){
+		txt.select();
+	}
+	
+	
+	//console.dir(div);
+</script>
+</body>
+</html>

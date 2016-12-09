@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box {
+			position: absolute;
+			left: 0;
+			top: 100px;
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+<input type="button" value="跑!">
+<input type="button" value="卧倒!">	
+<div id="box"></div>
+</body>
+</html>
+<script type="text/javascript">
+function css(el,attr){
+	if(el.currentStyle) {
+		return el.currentStyle[attr];	
+	} else {
+		return getComputedStyle(el)[attr];
+	}
+}
+/*
+	clearInterval(编号) --- 清除重复执行定时器
+
+*/
+(function() {
+	var box = document.querySelector("#box");
+	var btn = document.querySelectorAll("input");
+	var timer = 0;
+	btn[0].onclick = function() {
+		timer = setInterval(
+			function() {
+				var left = parseFloat(css(box,"left"));
+				box.style.left = left + 1 +"px";	
+			},20
+		);
+	};
+	btn[1].onclick = function() {
+		clearInterval(timer);
+	};
+})();
+</script>

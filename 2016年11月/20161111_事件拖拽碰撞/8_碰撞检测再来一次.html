@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+#div1{
+	width:100px;
+	height: 100px;
+	background: red;
+	position: absolute;
+	top:0;
+	left:0;
+}	
+.c1{
+	background:yellowgreen;
+}
+.c2{
+	background:blue;
+}	
+#div2{
+	width:100px;
+	height: 100px;
+	margin: 150px auto;
+}
+</style>
+</head>
+<body>
+	<div id="div1"></div>
+	<div id="div2" class="c1"></div>
+	<script type="text/javascript">
+		var obj2 = document.getElementById('div2');
+		Drag('div1');
+		
+		function Drag(id){
+			var obj = document.getElementById(id);
+			obj.addEventListener('mousedown',fnDown);
+			function fnDown(ev){
+				var disX = ev.pageX - obj.offsetLeft;
+				var disY = ev.pageY - obj.offsetTop;
+				
+				document.addEventListener('mousemove',fnMove);
+				document.addEventListener('mouseup',fnUp);
+				
+				function fnMove(ev){
+					var l1 = ev.pageX - disX;
+					var t1 = ev.pageY - disY;
+					
+
+					obj.style.left = l1 + 'px';
+					obj.style.top = t1 + 'px';
+					
+					var b1 = t1 + obj.offsetHeight;
+					var r1 = l1 + obj.offsetWidth;
+					
+					var l2 = obj2.offsetLeft;
+					var t2 = obj2.offsetTop;
+					var b2 = t2 + obj2.offsetHeight;
+					var r2 = l2 + obj2.offsetWidth;
+					
+					if(r1 < l2 || b1 < t2 || l1 > r2 || t1 > b2){
+						obj2.className = 'c1';
+					}else{
+						obj2.className = 'c2';
+					}
+					
+				}
+				function fnUp(){
+					document.removeEventListener('mousemove',fnMove);
+					document.removeEventListener('mouseup',fnUp);
+				}				
+				ev.preventDefault();//阻止默认行为
+			}
+		}
+	</script>
+</body>
+</html>

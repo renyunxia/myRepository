@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	#box{
+		width: 405px;
+		height: 280px;
+		margin: 30px auto;
+		position: relative;
+		overflow: hidden;
+	}
+	#navs{
+		width: 100%;
+		height: 30px;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+	}
+	#navs a{
+		width: 25%;
+		line-height: 30px;
+		font: 14px/30px "微软雅黑";
+		background: rgba(0,0,0,.6);
+		color: #fff;
+		text-decoration: none;
+		text-align: center;
+		float: left;
+	}
+	#navs .active{
+		color: #000;
+		background-color: rgba(250,250,250,.6);
+	}
+	.list{
+		width: 400%;
+		height: 280px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		/*-webkit-transform: .5;
+		-moz-transform: .5;
+		-ms-transform: .5;
+		-o-transform: .5;
+		transform: .5;*/
+	}
+	.list li{
+		float: left;
+	}
+	img{
+		display: block;
+		width: 405px;
+		height: 280px;
+	}
+	</style>
+	<script type="text/javascript" src="MTween.js"></script>
+	<script>
+	window.onload = function(){
+		var box = document.getElementById('box');
+		var navs = document.querySelectorAll('a');
+		var list = document.querySelector('ul');
+		var li = list.querySelectorAll('li');
+		// console.log(li);
+		var imgW = parseFloat(css(li[0],'width'));
+		var now = 0;
+		var timer = 0;
+		for (var i = 0; i < navs.length; i++) {
+			navs[i].index = i;
+			navs[i].onmouseover = function(){
+				now = this.index;
+				tab();
+			}
+		};
+		timer =setInterval(next,2000);
+		box.onmouseover = function(){
+			clearInterval(timer);
+			console.log("停止");
+		}
+		box.onmouseout = function(){
+			timer =setInterval(next,2000);
+		}
+		function next(){
+			now++;
+			if(now > navs.length-1){
+				now = 0;
+			}
+			tab();
+	   	}
+		function tab(){
+			for (var i = 0; i < navs.length; i++) {
+				navs[i].className = "";
+			};
+			navs[now].className = "active";
+			mTween(list,"left",-imgW*now,600,"easeBoth");
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<ul class="list" style="left:0">
+			<li><img src="images/img1.gif"></li>
+			<li><img src="images/img2.gif"></li>
+			<li><img src="images/img3.gif"></li>
+			<li><img src="images/img4.gif"></li>
+		</ul>
+		<nav id="navs">
+			<a href="javascript:;" class="active">Tab1</a>
+			<a href="javascript:;">Tab2</a>
+			<a href="javascript:;">Tab3</a>
+			<a href="javascript:;">Tab4</a>
+		</nav>
+	</div>
+</body>
+</html>

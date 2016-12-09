@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body style="height: 3000px;">
+	<img src="fangdajing/images/b1.jpg"/>
+<script type="text/javascript">
+	/*
+		浏览器默认行为：
+			我们没有让它那么做，浏览器偷偷地帮我们做了某些事，这样事就叫默认行为。
+			浏览器的默认行为是指非js添加的默认就有的一些功能
+			
+			解决浏览器默认行为:
+				传统的事件绑定：
+					return false
+				注意：
+					要解除默认行为，要找到触发浏览器默认行为的源头。
+					
+=======================================================================	
+
+				事件绑定的情况下：(移动端常用)
+					ev.preventDefault();
+				
+				注意：
+					低版本IE不支持。
+	*/
+//	document.onkeydown = function(ev){
+//		if(ev.keyCode === 32){
+//			return false;
+//		}
+//	}
+	
+	document.addEventListener('keydown',function(ev){
+		if(ev.keyCode === 32){
+			ev.preventDefault();
+		}
+	});
+	
+	document.addEventListener('mousedown',function(ev){
+		ev.preventDefault();
+	});
+	
+	
+</script>
+</body>
+</html>

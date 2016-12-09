@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body {
+	background: #ccc;
+	margin: 0;
+}
+canvas {
+	display: block;
+	background: #fff;
+	margin:30px auto;
+}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var c = document.querySelector('canvas');
+	var cxt = c.getContext("2d");
+	c.onmousedown = function(e){
+		var cRect = c.getBoundingClientRect();
+		var mouseX = e.clientX - cRect.left;
+		var mouseY = e.clientY - cRect.top;
+		cxt.moveTo(mouseX,mouseY);
+		c.onmousemove = function(e){
+			var cRect = c.getBoundingClientRect();
+			var mouseX = e.clientX - cRect.left;
+			var mouseY = e.clientY - cRect.top;
+			cxt.lineTo(mouseX,mouseY);
+			cxt.stroke();
+		};
+	}
+	c.onmouseup = function(){
+		c.onmousemove = null;
+	};
+};
+</script>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400"></canvas>
+</body>
+</html>

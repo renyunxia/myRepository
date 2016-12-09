@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        #wrap {
+            width: 500px;
+            margin: 0 auto;
+        }
+        h2 {
+             border-bottom: 1px solid #000;
+        }
+        .message {
+            padding: 20px;
+            border-bottom: 1px solid #000;
+            font: 14px/30px "宋体";
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            border: 1px solid #000;
+            overflow: auto;
+            resize: none;
+            box-sizing: border-box;
+        }
+        input {
+            width: 100%;
+            height: 40px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function() {
+            var message = document.querySelector(".message");
+            var ps = message.getElementsByTagName('p');
+            var text = document.querySelector('textarea');
+            var btn = document.querySelector('input');
+            var nub = 0;
+            var colors = ["#ccc","#f60","#60f"];
+            btn.onclick = function() {
+                var val = text.value;
+                nub++;
+                message.innerHTML += "<p style='background:"+colors[nub%colors.length]+";'>"+val+"</p>";
+                setEv();
+            };
+            function setEv() {
+                for(var i = 0; i < ps.length; i++){
+                    ps[i].startColor = ps[i].style.background;
+                    ps[i].onmouseover = function() {
+                        this.oldColor = this.style.background;
+                        this.style.background = "red"; 
+                    };
+                    ps[i].onclick = function() {
+                        console.log(this.oldColor == this.startColor)
+                        if(this.oldColor == this.startColor) {
+                            this.style.background = "yellow"; 
+                        } else {
+                            this.style.background = this.startColor; 
+                        } 
+                        this.oldColor = this.style.background;
+                    };
+                    ps[i].onmouseout = function() {
+                        this.style.background = this.oldColor; 
+                    };
+                }
+            }          
+        };
+    </script>
+</head>
+<body>
+    <section id="wrap">
+        <h2>留言板</h2>
+        <div class="message"></div>
+        <h3>请输入留言内容</h3>
+        <textarea></textarea>
+        <input type="button" value="发表留言">
+    </section>
+</body>
+</html>

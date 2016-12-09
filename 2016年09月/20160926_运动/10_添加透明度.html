@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+.box {
+	float: left;
+	background: #000;
+}
+.box img {
+	display: block;
+	opacity: .3;
+	filter: alpha(opacity = 30);
+}
+</style>
+</head>
+<body>
+<div class="box">
+	<img src="img.jpg">
+</div>
+<script type="text/javascript" src="MTween.js"></script>
+<script type="text/javascript">
+window.onload = function() {
+	var img = document.getElementsByTagName("img")[0];
+	img.onmouseover = function() {
+		mTween(this,"opacity",100,800,"easeOut");  //元素 透明度样式 目标点100px 过渡时间800ms 运动类型  
+	};
+	img.onmouseout = function() {
+		mTween(this,"opacity",30,800,"easeOut");  //
+	};
+};
+</script>
+</body>
+</html>

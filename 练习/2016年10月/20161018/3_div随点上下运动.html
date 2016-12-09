@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+#wrap{ 
+}
+div{
+	width: 80px;
+	height: 80px;
+	background: red;
+	position: absolute;
+	top: 0;
+}
+</style>
+<script type="text/javascript" src="miaov.js"></script>
+<script>
+window.onload = function(){
+	var str = "";
+	var len = 15;
+	// var wrap = document.getElementById('wrap');
+	for (var i = 0; i < len; i++) {
+		str += '<div style="left:'+i*90+'px;"></div>';
+	};
+	document.body.innerHTML = str;
+	var divs = document.querySelectorAll('div');
+	for (var i = 0; i < divs.length; i++) {
+		divs[i].onclick = function(){
+			mTween(this,{top:300},500,"linear");
+			// mTween(this,{top:300},500,"easeOut");
+			moveNext(this);
+			movePrev(this);
+		}
+	};
+	function moveNext(el){
+		var next = el.nextElementSibling;
+		if(next){
+			setTimeout(function(){
+				mTween(next,{top:300},500,"linear");
+				moveNext(next);
+			},100)
+		}
+	}
+	function movePrev(el){
+		var prev = el.previousElementSibling;
+		if(prev){
+			setTimeout(function(){
+				mTween(prev,{top:300},500,"linear");
+				movePrev(prev);
+			},100)
+		}
+	}
+}
+</script>
+<body>
+	
+</body>
+</html>

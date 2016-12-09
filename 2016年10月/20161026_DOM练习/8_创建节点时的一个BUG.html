@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+<script type="text/javascript">
+var arr = [];
+var nub = 0;
+document.onclick = function(){
+	var div = document.createElement("div");
+	div.innerHTML = nub;
+	arr[0] = div;
+	for(var i = 0; i < arr.length; i++){
+		document.body.appendChild(arr[i]);
+	}
+	nub++;
+};
+</script>
+</body>
+</html>

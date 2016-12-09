@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        #wrap {
+            width: 500px;
+            margin: 0 auto;
+        }
+        h2 {
+             border-bottom: 1px solid #000;
+        }
+        .message {
+            padding: 20px;
+            border-bottom: 1px solid #000;
+            font: 14px/30px "宋体";
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            border: 1px solid #000;
+            overflow: auto;
+            resize: none;
+            box-sizing: border-box;
+        }
+        input {
+            width: 100%;
+            height: 40px;
+        }
+        .red {
+        	background: red;
+        }
+        .blue {
+        	background: blue;
+        }
+        .green {
+        	background: green;
+        }
+        .yellow {
+        	background: yellow;
+        }
+        .gray {
+        	background: gray;
+        }
+    </style>
+    <script type="text/javascript">
+    	window.onload = function() {
+    		var message = document.querySelector(".message");
+    		var textarea = document.querySelector("textarea");
+    		var but = document.querySelector("input");
+    		var p = message.getElementsByTagName("p");
+    		var arr = ["red","blue","green"];
+    		var now = 0;
+    		but.onclick = function() {
+    			var val = textarea.value;
+				message.innerHTML += '<p class="'+arr[now%arr.length]+'">'+val+'</p>';
+				now++;
+    		};
+    	};
+    </script>
+</head>
+<body>
+    <section id="wrap">
+        <h2>留言板</h2>
+        <div class="message">
+        	
+        </div>
+        <h3>请输入留言内容</h3>
+        <textarea></textarea>
+        <input type="button" value="发表留言">
+    </section>
+</body>
+</html>

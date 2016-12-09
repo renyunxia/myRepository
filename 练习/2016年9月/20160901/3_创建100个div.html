@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#wrap{
+		position: relative;
+	}
+	#wrap div{
+		width: 48px;
+		height: 48px;
+		position: absolute;
+		border:1px #000 solid;
+		background: red;
+		font-size: 20px/48px;
+		text-align: center;
+		color: #fff;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var btn = document.getElementById("btn");
+		var wrap = document.getElementById("wrap");
+		btn.onclick = function(){
+			var html = "";
+			for(var i=0; i<100; i++){
+				html = html + '<div>'+i+ '</div>'
+			}
+			wrap.innerHTML = html;
+			var div = wrap.getElementsByTagName("div");
+			for(var i=0; i<10; i++){
+				for(var j=0; j<10; j++){
+					var top=i*50;
+					var left=j*50;
+					div[i*10+j].style.cssText="left:"+left+"px;top:"+top+"px";
+				}
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+	<input type="button" value="创建100个div" id="btn">
+	<div id="wrap">
+		
+	</div>
+</body>
+</html>

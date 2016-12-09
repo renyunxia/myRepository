@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#box{
+		width: 240px;
+		height: 240px;
+		/*background: url(images/4.jpg) no-repeat;*/
+		margin: 0 auto;
+		border: 2px solid red;
+		position: relative;
+		perspective: 800px;
+	}
+	#box img{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin: -120px 0 0 -120px;
+		transform-origin: center center -100px;
+		transition:.5; 
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var img = document.querySelector('img');
+		var baseLine = window.innerWidth/2;
+
+		document.onmousemove = function(e){
+			var disX = e.clientX;
+			// if(disX < baseLine){
+				img.style.transform = `rotateY(${(disX - baseLine) / baseLine * 60}deg)`;
+			// }
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<img src="images/4.jpg">
+	</div>
+</body>
+</html>

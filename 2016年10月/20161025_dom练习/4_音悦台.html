@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<link href="css/index.css" rel="stylesheet">
+<script type="text/javascript" src="js/data.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var imgList = document.querySelector('#imgList');
+	//console.log(data.length);
+	for(var i = 0 ; i < data.length; i++){
+		var ul = document.createElement("ul");
+		for(var j = 0; j < data[i].length; j++){
+			var liData = data[i][j];
+			var li = document.createElement("li");
+			var imgs = document.createElement("div");
+			imgs.className = "imgs";
+
+
+			var a = document.createElement("a");
+			var img = new Image();//创建img对象
+			var gradient  = document.createElement('span');
+			var title = document.createElement('strong');
+			var author = document.createElement('span');
+			gradient.className = 'gradient';
+			title.className = 'title';
+			author.className = 'author';
+
+			img.src = liData.src;
+			title.innerHTML = liData.title;
+			author.innerHTML = liData.author;
+			a.appendChild(img);
+			a.appendChild(gradient);
+			a.appendChild(title);
+			a.appendChild(author);
+			imgs.appendChild(a);
+			if(i==0&&j==0){
+				li.id = "index";
+			}else{
+				var description = document.createElement("p");
+				description.className = "description";
+				description.innerHTML = liData.description;
+				imgs.appendChild(description);
+				var div = document.createElement("div");
+				var play = document.createElement('span');
+				var message = document.createElement('span');
+				var list = document.createElement('span');
+				play.className = 'play';
+				message.className = 'message';
+				list.className = 'list';
+				play.innerHTML = liData.play;
+				message.innerHTML = liData.message;
+				list.innerHTML = liData.list;
+				div.appendChild(play);
+				div.appendChild(message);
+				div.appendChild(list);
+				imgs.appendChild(div);
+				var MVDescription = document.createElement("p");
+				MVDescription.className = 'MVDescription';
+				MVDescription.innerHTML = liData.MVDescription;
+				imgs.appendChild(MVDescription);
+			}
+			li.appendChild(imgs);
+			ul.appendChild(li);
+		}
+		imgList.appendChild(ul);
+	}
+};
+</script>
+
+</head>
+<body>
+<div id="wrap">
+	<a href="javascript:;" class="btn"><</a>
+	<div id="imgWrap">
+		<section id="imgList">
+		</section>
+	</div>
+	<a href="javascript:;" class="btn">></a>
+</div>	
+</body>
+</html>

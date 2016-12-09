@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script type="text/javascript">
+	// 一个函数执行完之后，在执行下边的代码 --- js本身是单线程的语言	
+function fn(nub){
+	console.log(nub);
+	if(nub > 0 ){
+		fn(nub-1);
+	}
+	console.log(nub);
+}
+fn(3);
+</script>
+</body>
+</html>

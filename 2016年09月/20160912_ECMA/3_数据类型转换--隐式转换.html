@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		/*
+			点击第2个input的时候，
+			1. 获取第0个input 和 第1个input的value值
+			2. 把两个value值相加 
+			3. 把相加的结果 赋给第3个input的value
+		*/
+		window.onload = function(){
+			var input = document.getElementsByTagName("input");
+			input[2].onclick = function(){
+				alert(typeof input[0].value);
+				//input[3].value = input[0].value + input[1].value;
+			};
+		};
+	</script>
+</head>
+<body>
+	<input type="text">
+	+ 
+	<input type="text">
+	<input type="button" value="=">
+	<input type="text" name="">	
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="digit.js"></script>
+	<script>
+	(function(){
+		var W = 800, H = 600;
+		var R = 5;
+		var L = 50, T = 50;
+
+		var endTime = new Date();
+		endTime.setTime(endTime.getTime)
+
+		var showCurrentTime = getCurrentTime();
+
+
+		function getCurrentTime(){
+			var nowTime = new Date().getTime();
+			var ret = Math.round((endTime - nowTime)/1000);
+			return ret > 0 ? ret : 0;
+		}
+
+		function update(){
+			cxt.clearRect(0,0,cxt.canvas.width,cxt.canvas.height);
+			var curTime = getCurrentTime();
+			var curHours = parseInt(curTime / 3600);
+			var curMins = parseInt(curTime - curHours * 3600)/ 60;
+			var curSecs = curTime % 60;
+
+			var showHours = parseInt(showCurrentTime / 3600);
+			var showMins = parseInt(showCurrentTime - showHours * 3600)/ 60;
+			var showSecs = showCurrentTime % 60;
+
+			renderDigit(L,T,parseInt(showHours / 10),cxt);
+			renderDigit(L + 15*(R + 1),T,showHours % 10,cxt);
+
+			renderDigit(L + 30*(R + 1),T,10,cxt);
+
+			renderDigit(L + 39*(R + 1),T,parseInt(showMins / 10),cxt);
+			renderDigit(L + 54*(R + 1),T,parseInt(showMins % 10),cxt);
+
+			renderDigit(L + 69*(R + 1),T,10,cxt);
+
+			renderDigit(L + 78*(R + 1),T,parseInt(showSecs / 10),cxt);
+			renderDigit(L + 93*(R + 1),T,parseInt(showSecs % 10),cxt);
+		}
+
+		function renderDigit(x,y,num,cxt){
+			cxt.fillStyle = '#f88';
+			for (var i = 0; i < ; i++) {
+				Things[i]
+			};
+		}
+	})();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

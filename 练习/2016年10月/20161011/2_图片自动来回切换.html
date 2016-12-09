@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	ul{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	img{
+		vertical-align: top;
+	}
+	#wrap{
+		width: 550px;
+		margin: 30px auto;
+		position: relative;
+	}
+	#list{
+		overflow: hidden;
+	}
+	#list li{
+		float: left;
+		border: 5px #fff solid;
+	}
+	#list img{
+		width: 100px;
+		height: 100px;
+	}
+	#list .active{
+		border: 5px red solid;
+	}
+	#wrap input{
+		width: 40px;
+		height: 40px;
+		font: 20px; "宋体";
+		position: absolute;
+		top: 30px;
+	}
+	#prev{
+		left: -50px;
+	}
+	#next{
+		right: -50px;
+	}
+	</style>
+	<script>
+	/*
+		1.获取所有的li
+		2.循环所有的li 天假鼠标移入事件
+		3.大清洗 或 定点清除
+
+		1.记录当前选中第几个
+		2.点击上一步 --
+		3.点击下一步 ++
+	*/
+	window.onload = function(){
+		var list = document.getElementById('list');
+		var lis = document.querySelectorAll('#list li');
+		var prev = document.getElementById('prev');
+		var next = document.getElementById('next');
+		var now = 0;
+		var isNub = true;
+		timer = null;
+		for (var i = 0; i < lis.length; i++) {
+			lis[i].index = i;
+			lis[i].onmouseover=function(){
+				clearInterval(timer);
+				now = this.index;
+				tab();
+			}
+		};	
+		
+		prev.onclick = function(){
+			now--
+			if(now < 0){
+				now = lis.length-1;
+			}
+			tab();
+		}
+		next.onclick = function(){
+			now++
+			if(now > lis.length-1){
+				now = 0;
+			}
+			tab();
+		}
+		function tab(){
+			for(i=0; i<lis.length; i++){
+				lis[i].className = "";
+			}
+			lis[now].className = "active";
+		}
+		function auto(){
+			timer = setInterval(function(){
+				if(now == 0){
+					isNub = true;
+				}
+				if(now == lis.length-1){
+					isNub = false;
+				}
+				if(isNub){
+					now++;
+				}else{
+					now--;
+				}
+				if(now > lis.length - 1) {
+					now = 0;
+				}
+				tab();
+			},1000);
+		}
+		auto();
+		list.onmouseover = function(){
+			clearInterval(timer);
+		}
+		list.onmouseout=function(){
+			auto();
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<ul id="list">
+			<li class="active"><img src="images/img1.gif"></li>
+			<li><img src="images/img2.gif"></li>
+			<li><img src="images/img3.gif"></li>
+			<li><img src="images/img4.gif"></li>
+			<li><img src="images/img5.gif"></li>
+			
+		</ul>
+		<input id="prev" type="button" value="<">
+		<input id="next" type="button" value=">">
+	</div>
+</body>
+</html>

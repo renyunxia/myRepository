@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	ul,ol{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	#wrap{
+		width: 400px;
+		height: 200px;
+		border: 2px green solid;
+		border-bottom: none;
+	}
+	#left{
+		float: left;
+		width: 98px;
+		border-right: 2px green solid;
+	}
+	#imgs{
+		float: left;
+		width: 200px;
+		border-bottom: 2px green solid;
+	}
+	#right{
+		float: right;
+		width: 98px;
+		border-left: 2px green solid;
+	}
+	#left .active,#right .active{
+		background: red;
+		color: #fff;
+	}
+	#left li,#right li{
+		height: 48px;
+		border-bottom: 2px green solid;
+		font: 16px/48px "宋体";
+		text-align: center;
+		cursor: pointer;
+	}
+	#imgs img{
+		width: 200px;
+		height: 198px;
+		display: block;
+	}
+	#imgs li{
+		display: none;
+	}
+	#imgs .show{
+		display: block;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var wrap = document.getElementById('wrap');
+		var left = document.getElementById('left');
+		var lisL = left.getElementsByTagName('li');
+		var imgs = document.getElementById('imgs');
+		var imgsLs = imgs.getElementsByTagName('li')
+		var right = document.getElementById('right');
+		var lisR = right.getElementsByTagName('li');
+		var arr1 = Array.from(lisL);
+		var arr2 = Array.from(lisR);
+		var arr3 = arr1.concat(arr2);
+		 // console.log(imgsLs.length);
+		var timer = 0;
+		var now = 0
+		var dis = 1;
+		for (var i = 0; i < arr3.length; i++) {
+			arr3[i].index = i;
+			arr3[i].onmouseover = function(){
+				for (var i = 0; i < arr3.length; i++) {
+					arr3[i].className ="";
+					imgsLs[i].className ="";
+				};
+				this.className = "active";
+				imgsLs[this.index].className ="show";
+				now = this.index;
+			}
+		};
+		function auto(){
+			timer = setInterval(function(){
+				if(now == 0){
+					dis = 1;
+				}
+				if(now == arr3.length-1){
+					dis = -1;
+				}
+				now += dis;
+				if(now > arr3.length - 1) {
+					now = 0;
+				}
+				for (var i = 0; i < arr3.length; i++) {
+					arr3[i].className ="";
+					imgsLs[i].className ="";
+				};
+				arr3[now].className = "active";
+				imgsLs[now].className ="show";
+			},800);
+		}
+		auto();
+		wrap.onmouseover = function(){
+			clearInterval(timer);
+		}
+		wrap.onmouseout=function(){
+			auto();
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<ul id="left">
+			<li class="active">选项一</li>
+			<li>选项二</li>
+			<li>选项三</li>
+			<li>选项四</li>
+		</ul>
+		<ol id="imgs">
+			<li class="show"><img src="images/img1.gif"></li>
+			<li><img src="images/img2.gif"></li>
+			<li><img src="images/img3.gif"></li>
+			<li><img src="images/img4.gif"></li>
+			<li><img src="images/img5.gif"></li>
+			<li><img src="images/img6.gif"></li>
+			<li><img src="images/img7.gif"></li>
+			<li><img src="images/img8.gif"></li>
+		</ol>
+		<ul id="right">
+			<li>选项五</li>
+			<li>选项六</li>
+			<li>选项七</li>
+			<li>选项八</li>
+		</ul>
+	</div>
+</body>
+</html>

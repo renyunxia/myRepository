@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<ul>
+		<li>1<a href="javascript:;">删除</a></li>
+		<li>2<a href="javascript:;">删除</a></li>
+		<li>3<a href="javascript:;">删除</a></li>
+		<li>4<a href="javascript:;">删除</a></li>
+		<li>5<a href="javascript:;">删除</a></li>
+		<li>6<a href="javascript:;">删除</a></li>
+	</ul>
+<script type="text/javascript">
+	var lis = document.getElementsByTagName('li');
+	var as = document.getElementsByTagName('a');
+	
+//	for(var i=0;i<as.length;i++){
+//		(function(index){
+//			as[index].onclick = function(){
+//				//alert(index);
+//				lis[index].style.display = 'none';
+//			}
+//		})(i);
+//	};
+
+		/*
+			当点击a的时候（this），然后通过点击的这个a找到对应的父级元素，找到之后，将父级元素隐藏即可。 
+		*/
+		for(var i=0;i<as.length;i++){
+			as[i].onclick = function(){
+				//alert(index);
+				this.parentNode.style.display = 'none';
+			}
+		};
+	
+</script>
+</body>
+</html>

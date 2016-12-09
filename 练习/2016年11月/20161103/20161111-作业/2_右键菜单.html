@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	* {margin: 0; padding: 0;}
+	#list ul{display: none;}
+	#list>ul{display: block;}
+	h2 {font-size: 12px; font-weight: normal; height: 30px; line-height: 30px; width: 133px; padding-left: 15px;}
+	.active {border: 1px solid #999; height: 28px; line-height: 28px; background: #ccc; cursor: default;}
+	ul {width: 150px; background: #99F; border: 1px solid #888;}
+	li {position: relative; list-style: none; float: left;}
+	li.active h2 {border: 1px solid #999; height: 28px; line-height: 28px; background: #ccc; cursor: default;}
+	li.active span {border-color: #ccc #ccc #ccc #333;}
+	#menu{position: absolute; display: none;}
+	#menu ul {position: absolute; top: 0; left: 145px; display: none;}
+	span {display: block; width: 0; height: 0; border-width: 4px; border-style: solid; border-color: #99F #99F #99F #333; font-size: 0; line-height: 0; float: right; position: absolute; top: 10px; right: 15px;}
+	li h2.active span{border-color: #ccc #ccc #ccc #333;}
+</style>
+<script type="text/javascript" src="js/menu.js"></script>
+</head>
+<body>
+	<nav></nav>
+	<script>
+	(function(){
+		var nav = document.querySelector('nav');
+		nav.appendChild(setLayout(data,1));
+		function setLayout(data,level){
+			var ul = document.createElement('ul');
+			if(level == 1){
+				ul.setAttribute('id','menu');
+			}
+			for (var i = 0; i < data.length; i++) {
+				var li = document.createElement('li');
+				var h2 = document.createElement('h2');
+				h2.innerHTML = data[i].name;
+				li.appendChild(h2);
+				if(data[i].child){
+					var child = setLayout(data[i].child,++level);
+					var span = document.createElement('span');
+					h2.appendChild(span);
+					li.appendChild(child);
+				}
+				ul.appendChild(li);
+			};
+			return ul;
+		}
+		document.oncontextmenu = function(ev){
+			var list = document.getElementById('menu');
+			var h2 = document.getElementsByTagName('h2');
+			var lis = list.children;
+			// console.log(lis);
+			list.style.display = 'block';
+			list.style.left = ev.pageX + 'px';
+			list.style.top = ev.pageY + 'px';
+			// list.onmouseover = function(){
+			// 	if(ev.target.tagName == 'H2'){
+			// 		if(ev.target.nextElementSibling){
+			// 			ev.target.nextElementSibling.style.display = 'block';
+			// 		}
+			// 	}
+			// }
+			for (var i = 0; i < h2.length; i++) {
+				h2[i].onmouseover = function(){
+					var next = this.nextElementSibling;
+					var ul = this.parentNode.parentNode.getElementsByTagName('ul');
+					for (var i = 0; i < ul.length; i++) {
+						if(ul[i] != next){
+							this.className = '';
+							ul[i].style.display = 'none';
+						}
+					};
+					if(next){
+						if(next.style.display == "block"){
+							next.style.display = "none";
+						}else{
+							this.className = 'active';
+							next.style.display = "block";
+						}
+					}
+				}
+				h2[i].onmouseout = function(){
+					this.className = '';
+				}
+			};
+			return false;
+		}
+		document.onmouseup = function(){
+			document.onmouseup = document.onmouseover = null;
+		}
+		document.onclick = function() {
+			var list = document.getElementById('menu');
+			list.style.display = 'none';
+		}
+		
+	})();
+	</script>
+</body>
+</html>
+

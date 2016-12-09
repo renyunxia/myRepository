@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text">
+	<select name="" id="">
+		<option value="0">Enter</option>
+		<option value="1">Ctrl+Enter</option>
+		<option value="2">Ctrl+Shift+alt+Enter</option>
+	</select>
+	<ul>
+	</ul>
+	<script>
+	(function(){
+		var input = document.querySelector('input');
+		var select = document.querySelector('select');
+		console.log(select.value)
+		var ul = document.querySelector('ul');
+		document.onkeydown = function(ev){
+			if(select.value == '0' && ev.keyCode == 13 && !ev.ctrlKey && !ev.shiftKey && !ev.altKey){
+				fn1();
+			}else if(select.value == '1' && ev.ctrlKey && ev.keyCode == 13 && !ev.altKey){
+				fn1();
+			}else if(select.value == '2' && ev.ctrlKey && ev.shiftKey && ev.altKey && ev.keyCode == 13){
+				fn1();
+			}
+		}
+		function fn1(){
+			var li = document.createElement('li');
+			li.innerHTML = input.value;
+			input.value = '';
+			ul.appendChild(li);
+		}
+	})();
+	</script>
+</body>
+</html>

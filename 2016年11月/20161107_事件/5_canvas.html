@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body {
+	background: #ccc;
+	margin: 0;
+}
+#c {
+	display: block;
+	margin: 50px auto;
+	background: #fff;
+}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var c = document.querySelector('canvas');
+	var cxt = c.getContext("2d");
+	//var src = "img.jpg";
+	cxt.fillRect(0,0,100,100);
+	cxt.fillStyle = "red";
+	cxt.fillRect(50,50,10,10);
+	var data = cxt.getImageData(0,0,100,100);
+	var color = getData(data,49,51);
+
+};
+function getData(data,x,y){
+	var ceils = data.width;
+	var colos = [];
+	var index = ceils*y+x;
+	colos[0] = data.data[index*4];
+	colos[1] = data.data[index*4+1];
+	colos[2] = data.data[index*4+2];
+	colos[3] = data.data[index*4+3];
+	return colos;
+}
+/*
+	drawImage 在读取图片的时候，图片必须已经加载完成
+	img.onload 图片加载完成
+*/
+</script>
+</head>
+<body>
+<canvas id="c" width="500" height="400"></canvas>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#wrap{
+		width: 400px;
+		height: 50px;
+		border: 1px #000 solid;
+		margin: 150px auto 0;
+		font: 20px/50px "微软雅黑";
+		position: relative;
+	}
+	#box{
+		height: 50px;
+		width: 0;
+		background: red;
+	}
+	span{
+		display: inline-block;
+		margin: 0 5px;
+		position: absolute;
+		top: 0;
+		z-index: 10;
+	}
+	</style>
+	<script type="text/javascript" src="MTween.js"></script>
+	<script>
+	window.onload = function () {
+		var wrap = getId("wrap");
+		var str = '';
+		var len = 10;
+		var timer = 0;
+		var timer2 = 0;
+		for (var i = 0; i < len; i++) {
+			str +='<span style="left:'+ i*40 +'px;">+1</span>'
+		};
+		wrap.innerHTML += str;
+		wrap.onclick = function(){
+			var box = getId("box");
+			var spans = document.querySelectorAll("span");
+			var num = 0;
+			//mTween(box,{width:500,opacity:100},2000,"linear")
+			//clearInterval( timer );
+			//timer = setInterval(function(){
+			mTween(box,{width:400,opacity:100},1000,"linear", function(){
+				mTween(box,{opacity:0},1000,"linear", function(){
+					box.style.background='red';
+					box.style.width='0px';
+				})
+			})
+			//},500) 
+
+			clearTimeout(timer2);
+				timer2 = setInterval(function(){
+					if(num === len-1)
+						//最后一个元素动画完成后调用回调函数，把所有元素初始化
+						mTween(spans[num],{top:-90,opacity:0},500,"linear", function(){
+						 for(var i=0;i<len;i++)
+						 {
+						 	spans[i].style.top = '0px';
+						 	spans[i].style.opacity='100';
+						 }
+						});
+					else
+						//其他函数没有回调函数
+						mTween(spans[num],{top:-90,opacity:0},500,"linear");
+					num++;
+					if(num === len){
+						 clearInterval(timer2);
+						 
+						 num = 0;
+					}	
+				},200)
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<div id="box"></div>
+	</div>
+</body>
+</html>

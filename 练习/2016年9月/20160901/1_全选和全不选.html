@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	var flag = true;
+	window.onload = function (){
+		var input = document.getElementsByTagName("input");
+		input[input.length-1].onclick = function(){
+			for(var i = 0; i < input.length; i ++){
+				if(input[i].type == "checkbox"){
+					if(flag){
+						input[i].checked = true;	
+					}else{
+						input[i].checked = false;
+					}
+				}
+			}
+			flag =!flag;
+		}
+	}
+	</script>
+</head>
+<body>
+	<input type="checkbox"/>
+	<input type="checkbox"/>
+	<input type="checkbox"/>
+	<input type="checkbox"/>
+	<input type="checkbox"/>
+	<input type="checkbox"/>
+	<input type="checkbox"/>
+	<input type="checkbox"/>
+	<input type="checkbox"/>
+	<input type="checkbox"/>
+	<br>
+	<input type="button" value="全选/全不选">
+</body>
+</html>

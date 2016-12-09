@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+	<style type="text/css">
+		#box {
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var btn = document.getElementById('btn');
+			alert(btn.value);
+			var box1 = document.getElementById('box1');
+			alert(box1.innerHTML);
+		};
+	</script>
+</head>
+<body>
+	<input type="button" value="按钮1" id="btn">
+	<div id="box1">哈哈哈今天的天气啊 不错</div>
+</body>
+</html>

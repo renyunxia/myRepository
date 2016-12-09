@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#box{
+		width: 38px;
+		height: 38px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin: -19px 0 0 -19px;
+		background: url(img/tnak.png) no-repeat 0 0;
+	}
+	.left{
+		background: url(img/tnak.png) no-repeat -114px 0 !important;
+	}
+	.top{
+		background: url(img/tnak.png) no-repeat 0 0 !important;
+	}
+	.right{
+		background: url(img/tnak.png) no-repeat -38px 0 !important;
+	}
+	.bottom {
+		background: url(img/tnak.png) no-repeat -76px 0 !important;
+	}
+	span{
+		width: 10px;
+		height: 10px;
+		position: absolute;
+		border-radius: 50%;
+		background: yellow;
+	}
+	span img {
+		width: 100px;
+		height: 100px;
+		position: absolute;
+		left: -45px;
+		top: -45px;
+	}
+	.top span {
+		left: 14px;
+		top: -10px ;
+	}
+	.left span {
+		left: -10px;
+		top: 14px ;
+	}
+	.bottom span {
+		left: 14px;
+		top: 38px ;
+	}
+	.right span {
+		left: 38px;
+		top: 14px ;
+	}
+	</style>
+	<script type = "text/javascript" src="miaov.js"></script>
+	<script>
+	window.onload = function(){
+		var box = document.getElementById('box');
+		var fireImg = [
+			"img/img1.png",
+			"img/img2.png",
+			"img/img3.png",
+			"img/img4.png",
+			"img/img5.png",
+			"img/img6.png",
+			"img/img7.png",
+			"img/img8.png"
+		];
+		box.style.left = box.offsetLeft + 'px';
+		box.style.top = box.offsetTop + 'px';
+		box.style.margin = 0 + 'px';
+		 
+		window.onkeydown = function(e){
+			var code = e.keyCode;
+			switch(code){
+				case 37:
+				box.className = 'left';
+				box.style.left = box.offsetLeft - 5 + 'px';
+				break;
+				case 38:
+				box.className = 'top';
+				box.style.top = box.offsetTop - 5 + 'px';
+				break;
+				case 39:
+				box.className = 'right';
+				box.style.left = box.offsetLeft + 5 + 'px';
+				break;
+				case 40:
+				box.className = 'bottom';
+				box.style.top = box.offsetTop + 5 + 'px';
+				break;
+				case 32:
+				fire();
+				break;
+			}
+		}
+		function fire(){
+			var span = document.createElement('span');
+			var img = new Image();
+			var timer = 0;
+			var now = 0;
+			var rect = box.getBoundingClientRect();
+			img.src = fireImg[now];
+			document.body.appendChild(span);
+			switch(box.className){
+				case "top":
+					span.style.left = rect.left + 14 + "px";
+					span.style.top = rect.top - 10 + "px";
+					mTween(span,{top:rect.top - 10 -200},300,"easeOut",boom);
+					break;
+				case "right":
+					span.style.left = rect.left + 38 + "px";
+					span.style.top = rect.top + 14 + "px";
+					mTween(span,{left:rect.left + 38 + 200},300,"easeOut",boom);
+					break;	
+				case "left":
+					span.style.left = rect.left - 10 + "px";
+					span.style.top = rect.top + 14 + "px";
+					mTween(span,{left:rect.left - 10 - 200},300,"easeOut",boom);
+					break;	
+				case "bottom":
+					span.style.left = rect.left + 14 + "px";
+					span.style.top = rect.top + 38 + "px";
+					mTween(span,{top:rect.top + 38 + 200},300,"easeOut",boom);
+					break;		
+			}
+			function boom(){
+				span.appendChild(img);
+				timer = setInterval(function(){
+					now++;
+					if(now >= fireImg.length){
+						clearInterval(timer);
+						document.body.removeChild(span);
+					}else{
+						img.src = fireImg[now];
+					}
+				},100);
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="box" class="top"></div>
+</body>
+</html>

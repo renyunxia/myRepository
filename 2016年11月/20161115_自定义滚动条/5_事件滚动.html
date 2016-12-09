@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body style="height: 3000px;">
+<script type="text/javascript">
+	window.onscroll = function(){
+		//console.info(window.pageYOffset)
+	}
+	/*
+		onmousewheel:chrome和IE都兼容
+			滚轮事件
+			上滚动：
+				120
+			下滚动:
+				-120
+			总结：
+				*下滚动为负值，上滚动为正值
+				ev.wheelDelta可以检测到用户滚动方向。
+		
+		FF：DOMMouseScroll必须用事件绑定的方式去绑定
+			ev.detail可以检测到用户滚动方向。
+			上滚动：
+				-3
+			下滚动:
+				3
+			总结：
+				*下滚动为正值，上滚动为负值
+		
+	*/
+	window.onmousewheel = fn1;
+	
+	document.addEventListener('DOMMouseScroll',fn1);
+	
+	function fn1(ev){
+		alert(ev.detail);
+		//alert(ev.wheelDelta)
+	}
+
+</script>
+</body>
+</html>

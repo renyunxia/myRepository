@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		img {
+			display: block;
+			width: 700px;
+			height: 400px;
+		}
+		#wrap {
+		    border: 5px solid #E7E7E7;
+		    height: 400px;
+		    width: 800px;
+		    overflow: hidden;
+		    margin: 0 auto;
+		    position: relative;
+		}
+		#navs {
+			width: 100px;
+		}
+		#navs a {
+			display: block;
+			width: 100px;
+			line-height: 99px;
+		    text-align: center;
+		    background-color: #000;
+		    border-bottom: 1px solid #E7E7E7;
+		    text-decoration:  none;
+		    color: #fff;
+		}
+		#navs .active {
+			background: #f60;
+		}
+		#cons {
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 700px;
+			transition: .5s;
+		}
+		.box {
+			width: 700px;
+			height: 400px;
+			overflow: hidden;
+			position: relative;
+		}
+		.list {
+			position: absolute;
+			left: 0;
+			top: 0;
+			transition: .5s;
+		}
+		.list li  {
+			float: left;
+		}
+		.box nav {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			display: flex;
+		}
+		.box nav a {
+			flex: 1;
+			font: 14px/30px "宋体";
+			text-align: center;
+			text-decoration: none;
+			color: #fff;
+			box-sizing: border-box;
+			background: rgba(0,0,0,.4);
+		}
+		.box nav .active {
+			background: rgba(255,255,255,.6);
+			color: #000;
+		}
+	</style>
+	<script type="text/javascript">
+		function css(el,attr){
+			if(el.currentStyle) {
+				return el.currentStyle[attr];	
+			} else {
+				return getComputedStyle(el)[attr];
+			}
+		}
+		function getId(name){
+			return document.getElementById(name);  //返回document下获取的ID
+		}
+		function getTag(parent,tag){
+			return parent.getElementsByTagName(tag); //返回父级下获取的标签名
+		}
+		// function getClass(parent,name){
+		// 	return parent.getElementsByTagName(name);
+		// }
+		function tabWrap() {
+			var navs = getId("navs");   //获取外面大框的navs
+			var navas = getTag(navs,"a"); //获取navs下所有的a标签
+			var cons = getId("cons");  //找到cons
+			var conH = parseFloat(css(navs,"height"));  //获取cons下的每个navs的高度
+			for(var i = 0; i < navas.length; i++) {
+				navas[i].index = i;   //索引值  记录当前选中
+				navas[i].onmouseover = function() {
+					for(var i = 0; i < navas.length; i++) {
+						navas[i].className = "";    //清空当前选中的className
+					}
+					this.className = "active";  //给当前元素加"active"
+					cons.style.top = -conH*this.index + "px";  //cons的高度等于减去自己高度后乘以个数
+				};
+			}
+		}
+		function tabPic(index) {
+			var cons = getId("cons"); //获取 cons
+			var box = getTag(cons,"div")[index]; //找到cons下的所有div的第0个
+			var list = getTag(box,"ul")[0]; //找到list
+			var li = getTag(list,"li");   //找到list 下面的li标签
+			var nav = getTag(box,"nav")[0];  //找到box下的第0个nav导航
+			var navs = getTag(nav,"a");    //找到nav导航下的a
+			var imgW = parseFloat(css(li[0],"width"));   //获取图片的高度并转换为数字，li的高度
+			list.style.width = li.length + "00%";     //list的width等于li的个数乘以百分百
+			for(var i = 0; i < navs.length; i++) {
+				navs[i].index = i;     //索引值  记录当前
+				navs[i].onmouseover = function() {
+					for(var i = 0; i < navs.length; i++) {
+						navs[i].className = "";
+					}
+					this.className = "active";
+					list.style.left = -imgW*this.index+"px";
+				};
+			}
+		}
+		window.onload = function() {
+			var box = getTag(cons,"div");
+			tabWrap();
+			for (var i = 0; i < box.length; i++) {
+				tabPic(i)
+			};
+		};
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<nav id="navs">
+			<a href="javascript:;" class="active">暖色调</a>
+			<a href="javascript:;">金色夕阳</a>
+			<a href="javascript:;">灰色格调</a>
+			<a href="javascript:;">baby</a>
+		</nav>
+		<div id="cons">
+			<div class="box">
+				<ul class="list">
+					<li>
+						<a href="#">
+							<img src="images/img1.gif">
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/img2.gif">
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/img3.gif">
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/img4.gif">
+						</a>
+					</li>
+				</ul>
+				<nav>
+					<a href="#" class="active">暖色键盘</a>
+					<a href="#">惬意时光</a>
+					<a href="#">午后</a>
+					<a href="#">一杯苦咖啡</a>
+				</nav>
+			</div>
+			<div class="box">
+				<ul class="list">
+					<li>
+						<a href="#">
+							<img src="images/img5.gif">
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/img6.gif">
+						</a>
+					</li>
+				</ul>
+				<nav>
+					<a href="#" class="active">街边夕阳</a>
+					<a href="#">金色稻草</a>
+				</nav>
+			</div>
+			<div class="box">
+				<ul class="list">
+					<li>
+						<a href="#">
+							<img src="images/img7.gif">
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/img8.gif">
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/img9.gif">
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/img10.gif">
+						</a>
+					</li>
+				</ul>
+				<nav>
+					<a href="#" class="active">灰色通讯</a>
+					<a href="#">咖啡'配'饼干</a>
+					<a href="#">孤单键盘</a>
+					<a href="#">枯树</a>
+				</nav>
+			</div>
+			<div class="box">
+				<ul class="list">
+					<li>
+						<a href="#">
+							<img src="images/img11.gif">
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/img12.gif">
+						</a>
+					</li>
+				</ul>
+				<nav>
+					<a href="#" class="active">baby素材一</a>
+					<a href="#">baby素材二</a>
+				</nav>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box {
+			width: 100px;
+			height: 100px;
+			border: 2px solid #000;
+			background: red;
+		}
+	</style>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script type="text/javascript">
+		//target = {width:300,height:400};
+		function mTween(el,target,time,type,callBack) {
+			clearInterval(el.timer);
+			var t = 0;
+			var b = {}; 
+			var c = {}; 	
+			var d = time/20; 
+			for(var s in target) {
+				b[s] = css(el,s);  
+				c[s] = target[s] - b[s];
+			}
+			el.timer = setInterval(function(){
+				t++;
+				if(t>d) {
+					clearInterval(el.timer);
+
+				} else {
+					for(var s in target) {
+						var val = Tween[type](t,b[s],c[s],d);
+						css(el,s,val);
+					}
+				}
+			},20);
+		}
+		window.onload = function() {
+			var box = getId("box");
+			box.onmouseover = function() {
+				mTween(this,{width:300},1000,"elasticOut");
+				setTimeout(
+					function(){
+						// 定时器中不能用this
+						// 定时器中的 this指向 window
+						//console.log(this);
+						//mTween(this,{height:300},1000,"elasticOut");
+						mTween(box,{height:300},1000,"elasticOut");
+					},1000
+				);
+				setTimeout(
+					function(){
+						mTween(box,{opacity:30},1000,"elasticOut");
+					},2000
+				);
+			};
+			box.onmouseout = function() {
+				mTween(this,{width:100,height:100,opacity:100},2600,"elasticOut");
+			};
+		};
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>

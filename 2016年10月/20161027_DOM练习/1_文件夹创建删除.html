@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body,
+html {
+	margin: 0;
+	height: 100%;
+}
+#wrap {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}	
+header {
+	height: 80px;
+	padding: 10px 0;
+	border-bottom: 1px solid #000;
+}
+#files {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	top: 101px;
+	bottom: 0;
+	overflow: auto;
+	padding: 10px;
+	box-sizing: border-box;
+}
+.add {
+	width: 60px;
+	height: 60px;
+	float: left;
+	background: url(img/add.png) no-repeat;
+	background-size: cover;
+	margin: 15px 0 0 15px;
+}
+.remove {
+	width: 60px;
+	height: 60px;
+	float: right;
+	background: url(img/remove.png) no-repeat;
+	background-size: cover;
+	margin: 15px 15px 0 0;
+}
+.file {
+	width: 80px;
+	height: 90px;
+	padding: 10px;
+	border: 1px solid rgba(0, 0, 0, 0);
+	position: relative;
+	float: left;
+	margin: 10px;
+}
+.fileActive {
+	border-color: rgba(8, 247, 205, 1);
+	background: rgba(8, 247, 205, .1);
+}
+.file .ico {
+	margin: 10px auto 0;
+	width: 60px;
+	height: 60px;
+	background: url(img/file.png) no-repeat;
+	background-size: cover;
+}
+.file .check {
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: none;
+}
+.fileActive .check {
+	display: block;
+
+}
+.file span {
+	display: block;
+	font: 12px/20px "宋体",Arial;
+	text-align: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.file .text {
+	position: absolute;
+	left: 10px;
+	top: 80px;
+	width: 80px;
+	height: 20px;
+	box-sizing: border-box;
+	padding: 1px;
+	display: none;
+}
+</style>
+</head>
+<body>
+<section id="wrap">
+	<header>
+		<a href="javascript:;" class="add"></a>
+		<a href="javascript:;" class="remove"></a>
+	</header>
+	<div id="files">
+		<!--<div class="file">
+			<div class="ico"></div>
+			<input type="checkbox" class="check">
+			<span>新建文件夹</span>
+			<input type="text" class="text" >
+		</div>
+		<div class="file">
+			<div class="ico"></div>
+			<input type="checkbox" class="check">
+			<span>新建文件夹</span>
+			<input type="text" class="text" >
+		</div>
+		<div class="file">
+			<div class="ico"></div>
+			<input type="checkbox" class="check">
+			<span>新建文件夹</span>
+			<input type="text" class="text" >
+		</div>-->
+	</div>
+</section>	
+<script type="text/javascript">
+(function(){
+	var addBtn = document.querySelector('.add');
+	var files = document.querySelector('#files');
+	addBtn.onclick = function(){
+		var file = document.createElement("div");
+		var ico = document.createElement("div");
+		var check = document.createElement("input");
+		var span = document.createElement("span");
+		var text = document.createElement("input");
+		file.className = "file";
+		ico.className = "ico";
+		check.type = "checkbox";
+		check.className = "check";
+		span.innerHTML = "新建文件夹";
+		text.className = "text";
+		text.maxlength = 6;
+		text.type = "text";
+		file.appendChild(ico);
+		file.appendChild(check);
+		file.appendChild(span);
+		file.appendChild(text);
+		files.appendChild(file);
+
+		file.onmouseover = function(){
+			this.className  = "file fileActive";
+		}
+		file.onmouseout = function(){
+			if(!check.checked){
+				this.className  = "file";
+			}
+		}
+		span.onclick = function(){
+			text.style.display = "block";
+			text.value = span.innerHTML;
+			text.focus();
+		};
+		text.onblur = function(){
+			/*if(text.value.length > 7){
+				text.focus();
+				alert("文件夹名字不能超过7个字");
+				return;
+			}*/
+			if(text.value == ""){
+				text.style.display = "none";
+				return;
+			}
+			text.style.display = "none";
+			span.innerHTML = text.value;
+		};
+	};
+})();	
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+window.onload = function(){
+	var arr = []; // 0 - 100  10
+	var length = 100;
+	var int = 10;
+	var now = 0;
+	var timer = 0;
+	var sorLength = length/int;
+	for(var i = 0; i < length; i++){
+		arr.push(i);
+	}
+	timer = setInterval(function(){
+		if(now >= int){
+			clearInterval(timer);
+		} else {
+			randomNub();
+			now++;
+		}
+	},500);
+	function randomNub(){
+		arr.sort(function(){
+			return Math.random() - .5;
+		});
+		for(var i = 0; i < sorLength; i++){
+			document.body.innerHTML += arr.pop() + ",";
+		}
+		document.body.innerHTML += "<br/>";
+	}
+};
+</script>
+</head>
+<body>
+	
+</body>
+</html>

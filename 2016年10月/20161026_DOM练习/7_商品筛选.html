@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		mark {
+			margin: 0 5px;
+		}
+	</style>
+</head>
+<body>
+<section class="wrap">
+	<div id="selector">
+		你的选择:
+	</div>
+	<ul>
+		<li>
+			品牌：
+				<a href="javascript:;">北京陶然网瘾戒除</a>
+				<a href="javascript:;">山东戒网瘾学校</a>
+				<a href="javascript:;">戒网瘾新未来</a>
+		</li>
+		<li>
+			方法：
+				<a href="javascript:;">电击</a>
+				<a href="javascript:;">杨永信</a>
+		</li>
+		<li>
+			电力：
+				<a href="javascript:;">30v</a>
+				<a href="javascript:;">40v</a>
+				<a href="javascript:;">50v</a>
+				<a href="javascript:;">220v瞬间根治</a>
+		</li>
+	</ul>
+</section>
+<script type="text/javascript">
+(function(){
+	var ul = document.querySelector('ul');
+	var lis = ul.querySelectorAll('li');
+	var option = ul.querySelectorAll('a');
+	var selector = document.querySelector('#selector');
+	var arr = [];
+	for(var i = 0; i < lis.length; i++){
+		lis[i].index = i;
+	}
+	for(var i = 0; i < option.length; i++){
+		/*
+			替换问题:
+				1. 给mark加上pid的标示
+				2. 循环所有已经添加的选项，
+					如果 第i项pid和 this.pid一致 就替换
+					如果 没有选项一致就添加
+
+		*/
+
+		option[i].onclick = function(){
+			var pid = this.parentNode.index;
+			var mark = document.createElement("mark");
+			var a = document.createElement("a");
+			var isReplace = false;
+			a.href = "javascript:;";
+			a.innerHTML = "x";
+			a.onclick = function (){
+				selector.removeChild(mark);
+			};
+			mark.innerHTML = this.innerHTML;
+			mark.appendChild(a);
+			mark.pid = pid;
+
+			for(var i = 0 ; i < arr.length; i++){
+				if(arr[i].pid == pid){
+					isReplace = i;
+				}
+			}
+			console.log(isReplace === false);
+			if(isReplace === false){
+				arr.push(mark);
+			} else {
+				arr[isReplace] = mark;
+			}
+			console.log(arr,isReplace);
+			arr.sort(function(mark1,mark2){
+				return mark1.pid - mark2.pid;
+			});
+			selector.innerHTML = "你的选择:";
+			for(var i = 0; i < arr.length; i++){
+				selector.appendChild(arr[i]);
+			}
+		};
+	}
+})();
+</script>
+</body>
+</html>

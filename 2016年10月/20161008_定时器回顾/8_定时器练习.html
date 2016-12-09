@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box {
+			width: 400px;
+			height: 40px;
+			border: 1px solid #000;
+			margin: 70px auto 0;
+			position: relative;
+		}
+		#progress {
+			width: 0;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background: blue;
+		}
+		#nubs {
+			position: relative;
+		}
+		#nubs span {
+			float: left;
+			width: 40px;
+			height: 40px;
+			font: 20px/40px "宋体";
+			text-align: center;
+		}
+	</style>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script type="text/javascript">
+	//offsetLeft,offsetTop 元素如果有定位就是和定位父级之间的距离，如果没有定位就是和父级之间距离 
+		window.onload = function(){
+			var box = getId("box");
+			var nubs = getTag(box,"span");
+			var progress = getId("progress");
+			for(var i = 0; i<nubs.length; i++){
+				console.log(nubs[i].offsetLeft);
+			}
+		};
+	</script>
+</head>
+<body>
+<div id="box">
+	<div id="progress"></div>
+	<div id="nubs">
+		<span>+1</span>
+		<span>+1</span>
+		<span>+1</span>
+		<span>+1</span>
+		<span>+1</span>
+		<span>+1</span>
+		<span>+1</span>
+		<span>+1</span>
+		<span>+1</span>
+		<span>+1</span>
+	</div>
+</div>
+</body>
+</html>

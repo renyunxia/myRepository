@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+#box {
+	width: 100px;
+	height: 100px;
+	background: red;
+	position: absolute;
+	left: 0;
+	top: 0;
+	cursor: move;
+}
+</style>
+<script type="text/javascript" src="miaov.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var box = document.querySelector('#box');
+	var startMouseX = 0;
+	var startMouseY = 0; 
+	var startElX = 0;
+	var startElY = 0;
+	box.onmousedown = function(e){
+		startMouseX = e.clientX;//鼠标在可视区中的x坐标
+		startMouseY = e.clientY;//鼠标在可视区中的y坐标
+		startElX = css(box,"left");
+		startElY = css(box,"top");
+		box.onmousemove = function(e){
+			var disX = e.clientX - startMouseX;
+			var disY = e.clientY - startMouseY;
+			css(box,"left",startElX+disX);
+			css(box,"top",startElY+disY);
+		};
+		box.onmouseup = function(){
+			box.onmousemove = null;
+			box.onmouseup = null;
+		}
+	};
+};
+</script>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	#wrap{
+		width: 500px;
+		height: 300px;
+		margin: 30px auto 0;
+		border: 5px #eee solid;
+		position: relative;
+		overflow: hidden;
+	}
+	#wrap ul{
+		height: 300px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		/*-webkit-transition:  .5s;
+		-moz-transition:  .5s;
+		-ms-transition:  .5s;
+		-o-transition:  .5s;
+		transition:  .5s;
+	    
+		-webkit-transition-delay:  .5s;
+		-moz-transition-delay:  .5s;
+		-ms-transition-delay:  .5s;
+		-o-transition-delay:  .5s;
+		transition-delay: .5s;*/
+	}
+	#wrap li{
+		position: absolute;
+	}
+	#wrap img{
+		width: 500px;
+		height: 300px;
+	}
+	#wrap .box{
+		width: 500px;
+		height: 80px;
+		position:absolute;
+		background-color: rgba(0,0,0,.6);
+		bottom: -80px;
+		color: #fff;
+		/*-webkit-transition: height .5s;
+		-moz-transition: height .5s;
+		-ms-transition: height .5s;
+		-o-transition: height .5s;
+		transition: height .5s;*/
+	}
+	#wrap h3{
+		font: 16px/30px "微软雅黑";
+		margin: 0 20px;
+	}
+	#wrap p{
+		font: 12px/24px "微软雅黑";
+		text-indent: 2em;
+		margin: 0 20px;
+	}
+	</style>
+	<script type="text/javascript" src="MTween.js"></script>
+	<script>
+	window.onload = function(){
+		var wrap = document.getElementById('wrap');
+		var list = document.querySelector('ul');
+		var li = list.querySelectorAll('li');
+		console.log(li);
+		// var box = list.querySelectorAll('div')[0];
+
+ //list的宽度等于li的个数成语100%
+		// console.log(wrap,lis,li,imgs,box);
+		var imgW = parseFloat(css(li[0],'width')); //图片宽度等于计算后的li宽度
+		console.log(imgW)
+		var timer = 0;
+		var now = 0;
+		var taeget = 80;
+		for(var i = 0;i < li.length;i++){
+			li[i].style.left = imgW*i + "px";
+		}
+		// next();
+		setInterval(next,3000);
+		wrap.onmouseover = function(){
+			clearInterval(timer);
+		}
+		wrap.onmouseout = function(){
+			timer = setInterval(next,3000);
+		}
+		function next(){
+	 		now++;  //当前++
+	 		if(now > li.length-1){
+	 			now = 0;     //如果now加到最后一张就返回第一张继续循环
+	 		}
+	 		tab();
+	 	}
+		function tab(){
+			var box = getTag(li[now],"div")[0];
+			mTween(list,{left:-imgW*now},500,"bounceOut");
+			// setTimeout(function(){
+				mTween(box,{bottom:0},400,"bounceOut");
+			// })
+			setTimeout(function(){
+				mTween(box,{bottom:-80},500,"bounceOut");
+			},600)
+			
+			/*setTimeout(
+				function(){
+					mTween(box,{bottom:-80},400,"bounceOut")
+				},2600
+			)*/
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<ul>
+			<li>
+				<img src="images/img1.gif" alt="">
+				<div class="box">
+					<h3>Tab1</h3>
+					<p>11111111111111111111111111111</p>
+				</div>
+			</li>
+			<li>
+				<img src="images/img2.gif" alt="">
+				<div class="box">
+					<h3>Tab2</h3>
+					<p>22222222222222222222222222222222222222222222222222222222222222</p>
+				</div>
+			</li>
+			<li>
+				<img src="images/img3.gif" alt="">
+				<div class="box">
+					<h3>Tab3</h3>
+					<p>333333333333333333333333333333333333333</p>
+				</div>
+			</li>
+			<li>
+				<img src="images/img4.gif" alt="">
+				<div class="box">
+					<h3>Tab4</h3>
+					<p>44444444444444444444444444444444444444444444444444</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

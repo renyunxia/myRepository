@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>利用JS中split方法实现彩色文字背景效果实例</title>
+<style>
+div { width:300px; height:200px; border:1px solid #333; background:#fff; padding:20px; line-height:40px; }
+span { padding:5px 15px; font-family:微软雅黑; }
+</style>
+<script>
+window.onload = function(){
+	 var oDiv=document.getElementById('div1'); 
+	 var aInp=document.getElementsByTagName('input');
+	 var arrColor = ['#f00','#ff0','#f0f','#0ff'];
+	  
+	 aInp[1].onclick=function(){
+		var str = aInp[0].value;
+		var arr = str.split('');
+	  
+		for(var i=0; i<arr.length; i++ ){
+			arr[i]='<span style="background:'+arrColor[i%arrColor.length]+'">'+arr[i]+'</span>';
+		}
+		oDiv.innerHTML += arr.join(''); 
+	}
+}
+</script>
+</head>
+ 
+<body>
+<div id="div1">
+  
+</div>
+<input type="text" />
+<input type="button" value="按钮" />
+</body>
+</html>

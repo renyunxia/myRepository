@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<!--
+鼠标移入加各行变色的思路
+1.获取li
+2.设置开关为true，
+3.for循环 
+4.if判断 为真时变色，取反，为假，变色
+
+
+
+-->
+<script type="text/javascript">
+window.onload = function() {
+	var li = document.getElementsByTagName('li');
+	for(var i = 0; i < li.length; i++){
+		if(i%2) {
+			li[i].style.background = "red";
+		} else {
+			li[i].style.background = "blue";
+		}
+	}
+};
+// 在判断中 0 代表false 除0以外的任何数都代表true
+</script>
+<div id="wrap">
+	<ul>
+		<li><input type="checkbox"><span>私奔</span><span>汪峰</span></li>
+		<li><input type="checkbox"><span>私奔</span><span>汪峰</span></li>
+		<li><input type="checkbox"><span>私奔</span><span>汪峰</span></li>
+		<li><input type="checkbox"><span>私奔</span><span>汪峰</span></li>
+		<li><input type="checkbox"><span>私奔</span><span>汪峰</span></li>
+		<li><input type="checkbox"><span>私奔</span><span>汪峰</span></li>
+		<li><input type="checkbox"><span>私奔</span><span>汪峰</span></li>
+		<li><input type="checkbox"><span>私奔</span><span>汪峰</span></li>
+	</ul>
+	<div><input type="checkbox"><span>收藏</span><span>添加</span></div>
+</div>
+</body>
+</html>

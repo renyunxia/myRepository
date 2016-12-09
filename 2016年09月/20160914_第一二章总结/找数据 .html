@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function (){
+				var spans = document.querySelectorAll('span:nth-of-type(even)');
+				var btn = document.getElementById("btn");
+				//console.log(spans);
+				var arr = [ '100px', 'abc'-6, [], -98765, 34, -2, 0, '300', , function(){alert(1);}, null, document, [], true, '200px'-30,'23.45元', 5, Number('abc'), function(){ alert(3); }, 'xyz'-90 ];
+				var aa = [];
+				var n = 0;
+				var onOff = true;
+				var x = -Infinity;
+				btn.onclick = function (){
+					if(onOff){
+						for(var i=0; i<arr.length; i++){
+							if(typeof arr[i] === 'number' && !isNaN(arr[i])){
+								spans[0].innerHTML += arr[i] + '   ';
+							}
+							if(!isNaN(parseFloat(arr[i])) || (typeof Number(arr[i]) == 'number' && !isNaN(Number(arr[i])))){
+								if(typeof arr[i] === 'number'){
+									spans[1].innerHTML += arr[i] + ',';
+									aa[n] = arr[i];
+								}
+								if(typeof arr[i] === 'boolean'){
+									spans[1].innerHTML += arr[i] + ',';
+									aa[n] = Number(arr[i]);
+								}
+								if(typeof arr[i] === 'object' && arr[i] != null){
+									spans[1].innerHTML += '[]' + ',';
+									aa[n] = Number(arr[i]);
+								}
+								if(arr[i] == null){
+									spans[1].innerHTML += arr[i] + ',';
+									aa[n] = Number(arr[i]);
+								}
+								if(typeof arr[i] === 'string'){
+									spans[1].innerHTML += '\'' + arr[i] + '\'' + ',';
+									aa[n] = parseFloat(arr[i]);
+								}
+								n++;
+							}
+							if(arr[i] != arr[i]){
+								spans[3].innerHTML += i + '    ';
+							}
+						}
+						spans[1].innerHTML = spans[1].innerHTML.replace(/\,$/,'');
+						/*aa = aa.sort(function (a,b){
+							return b - a;
+						})*/
+
+						//spans[2].innerHTML = Math.max.apply(this,aa);
+						for(var i=0; i<aa.length; i++){
+							if(x < aa[i]){
+								x = aa[i]
+							}
+						}
+						spans[2].innerHTML = x;
+					}
+					onOff = false;
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<textarea style="font-size: 18px;" name="" rows="3" cols="120">var arr = [ '100px', 'abc'-6, [], -98765, 34, -2, 0, '300', , function(){alert(1);}, null, document, [], true, '200px'-30,'23.45元', 5, Number('abc'), function(){ alert(3); }, 'xyz'-90 ];</textarea>
+		<br />
+		<br />
+		<br />
+		<input type="button" id="btn" value="点击查找对应的值" style="background: cadetblue; border: none; height: 24px; text-align: center; line-height: 24px;" />
+		<br />
+		<br />
+		<span>所有的数字是:</span>
+		<span></span>
+		<br />
+		<br />
+		<span>可以转成数字的:</span>
+		<span></span>
+		<br />
+		<br />
+		<span>转成数字的最大值:</span>
+		<span></span>
+		<br />
+		<br />
+		<span>所有运算结果是NaN的位置:</span>
+		<span></span>
+	</body>
+</html>

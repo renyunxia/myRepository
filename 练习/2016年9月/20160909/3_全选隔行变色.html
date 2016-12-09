@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#wrap{
+		width: 200px;
+	}
+	ul{
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	label{
+		display: block;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var wrap = document.getElementById('wrap');
+		var li = wrap.getElementsByTagName('label');
+		console.log(li);
+		var check = document.getElementById('check');
+		var checks = wrap.getElementsByTagName('ul')[0].getElementsByTagName('input');
+		var colors = ["red","green"];
+		var oldColor = "";
+		for (var i = 0; i < li.length; i++) {
+			li[i].index = i;
+			li[i].style.background = colors[i%colors.length];
+			li[i].onmouseover = function(){
+				oldColor = this.style.background;
+				this.style.background = "yellow";
+			};
+			li[i].onmouseout = function(){
+				this.style.background = oldColor;
+			};
+			li[i].onclick = function(){
+				var isChecke = true;
+				for (var i = 0; i < checks.length; i++) {
+					if(checks[i].checked == false){
+						isChecke = false;
+					}
+				};
+				check.checked = isChecke;
+
+				if (checks[this.index].checked) {
+					this.style.background = "blue";
+				} else{
+					this.style.background = colors[this.index%2];
+				};
+				oldColor = this.style.background;
+			}
+		};
+		check.onclick = function(){
+			for (var i = 0; i < checks.length; i++) {
+				checks[i].checked = this.checked;
+				if (this.checked) {
+					li[i].style.background = "blue";
+				} else{
+					li[i].style.background = colors[i%2];
+				};
+			};
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+	<ul>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+	</ul>
+	<div><input type="checkbox" id="check"><span>收藏</span><span>添加</span></div>
+</div>
+</body>
+</html>

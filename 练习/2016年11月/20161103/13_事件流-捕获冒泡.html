@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	div{
+		padding: 100px;
+	}
+	#div1{
+		background: red;
+	}
+	#div2{
+		background: blue;
+	}
+	#div3{
+		background: green;
+	}
+	</style>
+	<script>
+	// true 捕获         false 冒泡
+	//先捕获再冒泡，在此过程中目标点不管目标点是true还是false都是按从上而下的代码顺序进行捕获至目标点，然后再冒泡，依然按代码从上而下的顺序进行冒泡
+	window.onload = function(){
+		var div1 = document.getElementById('div1');
+		var div2 = document.getElementById('div2');
+		var div3 = document.getElementById('div3');
+		var btn = document.querySelector('input');
+		div2.addEventListener('click',function(){
+			alert('我是蓝色的f');
+		});
+		div1.addEventListener('click',function(){
+			alert('我是红色的');
+		},true);
+		div2.addEventListener('click',function(){
+			alert('我是蓝色的ff');
+		});
+		div2.addEventListener('click',function(){
+			alert('我是蓝色的t');
+		},true);
+		div3.addEventListener('click',function(){
+			alert('我是绿色的f');
+		});                                       
+		div3.addEventListener('click',function(){
+			alert('我是绿色的t');
+		},true);
+		btn.addEventListener('click',function(){
+			alert('我是按钮f');
+		});
+		btn.addEventListener('click',function(){
+			alert('我是按钮t');
+		},true);
+		
+		//禁右键
+		// document.oncontextmenu = function(){
+		// 	return false;
+		// }
+	}
+	//点按钮 蓝f 蓝f 绿f 按钮f
+	//点div2 红 蓝f 蓝f 蓝t
+	// 红 蓝t 绿t 按t 按f 绿f 蓝f
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<div id="div2">
+			<div id="div3">
+				<input type="button" value="按钮">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

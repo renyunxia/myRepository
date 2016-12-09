@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	input{
+		width: 20px;
+		height: 20px;
+		text-align: center;
+	}
+	.active{
+		background: red;
+	}
+	strong{
+		display: none;
+	}
+	.show{
+		display: block;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var btn = document.querySelectorAll('input');
+		var strong = document.querySelectorAll('strong');
+		var now = 0;
+		for (var i = 0; i < btn.length; i++) {
+			if(btn[i].className == "active") {
+				now = i;
+			}
+			btn[i].index = i;
+			btn[i].onclick = function(){
+				btn[now].className = ''; 
+				strong[now].className = "";
+				this.className = 'active'; 
+				strong[this.index].className = "show";
+				now = this.index;
+			}
+		};
+	}
+	</script>
+</head>
+<body>
+	<input type="button" value="1" class="active">
+	<input type="button" value="2">
+	<input type="button" value="3">
+	<strong class="show">1</strong>
+	<strong>2</strong>
+	<strong>3</strong>
+</body>
+</html>

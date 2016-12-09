@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	/*
+		作用域：
+			作用范围
+		变量，函数	
+
+		全局作用域 ---- 不在任何函数中声明的变量和函数属于全局作用域，全局作用域的内容在任何作用域都可以访问。
+		局部作用域 ---- 在某个函数中的声明的变量和函数属于局部作用域，局部作用域的内容只能在局部作用域和子级作用域才能使用。
+	*/
+	 fn();
+	function fn(){
+		var momo = 1;
+
+		/*var fn1 = function(){
+
+		};*/
+
+		function fn1(){
+
+		}
+	}
+	// var a = 1;
+	// alert(momo);
+	console.log(fn1);
+	</script>
+</body>
+</html>

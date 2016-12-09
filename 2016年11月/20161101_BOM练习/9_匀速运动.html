@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+function css(el,attr,val) {
+	if(arguments.length < 3) {
+		var val  = 0;
+		if(el.currentStyle) {
+			val = el.currentStyle[attr];
+		} else {
+			val = getComputedStyle(el)[attr];
+		}
+		if(attr == "opacity") {
+			val*=100;
+		}
+		return parseFloat(val);
+	}
+	if(attr == "opacity") {
+		el.style.opacity = val/100;
+		el.style.filter = "alpha(opacity = "+val+")";
+	} else {
+		el.style[attr] = val + "px";
+	}
+}
+window.onload = function(){
+	var btn = document.querySelector('input');
+	var box = document.querySelector('#box');
+	btn.onclick = function(){
+		linearMove(box,"left",400,7);
+	};
+};
+function linearMove(el,attr,target,speed){
+	clearInterval(el.timer);
+	if(css(el,attr) < target){
+		speed = Math.abs(speed);
+	} else {
+		speed = -Math.abs(speed);
+	}
+	el.timer = setInterval(function(){
+		var now = css(el,attr);
+		if(Math.abs(target - now) <= Math.abs(speed)){
+			clearInterval(el.timer);
+			now = target;
+			css(el,attr,now);
+		} else {
+			now += speed;
+			css(el,attr,now);
+		}
+	},20);
+}
+</script>
+<style type="text/css">
+#box {
+	position: absolute;
+	left: 0px;
+	top: 100px;
+	width: 100px;
+	height: 100px;
+	background: red;
+}
+#line {
+	width: 1px;
+	height: 400px;
+	background: #000;
+	position: absolute;
+	left: 400px;
+	top: 0;
+}
+</style>
+</head>
+<body>
+<input type="button" value="跑!">
+<div id="box"></div>	
+<div id="line"></div>
+</body>
+</html>

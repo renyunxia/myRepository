@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	window.onload = function(){
+		var btn = document.getElementById("btn");
+		var list = document.getElementById("list");
+		btn.onclick = function(){
+			if(list.style.display == "block"){
+				list.style.display = "none";
+			}else{
+				list.style.display = "block";
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+	<input type="button" value="下拉菜单" id="btn">
+	<ul id="list" style="display:none;">
+		<li>选项1</li>
+		<li>选项2</li>
+		<li>选项3</li>
+		<li>选项4</li>
+		<li>选项5</li>
+	</ul>
+</body>
+</html>

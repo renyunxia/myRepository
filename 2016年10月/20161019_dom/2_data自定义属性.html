@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			var box = document.querySelector('div');
+			console.log(box.dataset.index);
+			console.log(box.dataset['index']);
+			console.log(box.getAttribute('data-index'));
+		};
+	</script>
+</head>
+<body>
+	<div data-index="0" data-src="哈哈哈" ></div>
+</body>
+</html>

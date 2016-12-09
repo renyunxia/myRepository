@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		ul, 
+		ol {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		img {
+			vertical-align: top;
+		}
+		#wrap {
+			width: 400px;
+			height: 200px;
+			border: 2px solid #000;
+			margin: 30px auto;
+			position: relative;
+			overflow: hidden;
+		}
+		#left {
+			float: left;
+			width: 98px;
+			border-right: 2px solid #000;
+		}
+		#imgs {
+			width: 200px;
+			position: absolute;
+			left: 100px;
+			top: 0;
+		}
+		#right{
+			float: right;
+			width: 98px;
+			border-left: 2px solid #000;
+		}
+		#right li,
+		#left li {
+			height: 48px;
+			border-bottom: 2px solid #000;
+			font: 16px/48px "宋体";
+			text-align: center;
+		}
+		#right .active,
+		#left .active {
+			background: #ccc;
+		}
+		#imgs img {
+			width: 200px;
+		}
+	</style>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			var wrap = document.getElementById("wrap");
+			var uls = wrap.getElementsByTagName("ol");
+			var imgs = document.getElementById("imgs");
+			var img = imgs.getElementsByTagName("img")[0];
+			var imgH = css(img,"height");
+			var navs = [];
+			var now = 0;
+			var timer = 0;
+			var dis = 1;
+			console.log(imgH);
+			for(var i = 0; i < uls.length; i++){
+				var lis = uls[i].getElementsByTagName("li");
+				for(var j = 0; j < lis.length; j++){
+					navs.push(lis[j]);
+				}
+			}
+			for(var i = 0; i < navs.length; i++){
+				if(navs[i].className == "active"){
+					now = i;
+				}
+				navs[i].index = i;
+				navs[i].onmouseover = function(){
+					for(var i = 0; i < navs.length; i++){
+						navs[i].className = "";
+					}
+					//imgs[this.index].className = "show";
+					//imgs.style.top = -this.index*imgH+"px";
+					mTween(imgs,{top:-this.index*imgH},500,"easeBoth");
+					this.className = "active";
+					now = this.index;
+				};
+			}
+			autoTab();
+			function autoTab(){
+				timer = setInterval(function(){
+					if(now == 0){
+						dis = 1;
+					}
+					if(now == navs.length-1){
+						dis = -1;
+					}
+					now += dis;
+					for(var i = 0; i < navs.length; i++){
+						navs[i].className = "";
+					}
+					navs[now].className = "active";
+					mTween(imgs,{top:-now*imgH},500,"easeBoth");
+					//imgs[now].className = "show";
+				},1000);
+			}
+		};
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<ol id="left">
+			<li class="active">选项一</li>
+			<li>选项二</li>
+			<li>选项三</li>
+			<li>选项四</li>
+		</ol>
+		<ul id="imgs">
+			<li><img src="img/1.jpg"></li>
+			<li><img src="img/2.jpg"></li>
+			<li><img src="img/3.jpg"></li>
+			<li><img src="img/4.jpg"></li>
+			<li><img src="img/5.jpg"></li>
+			<li><img src="img/6.jpg"></li>
+			<li><img src="img/7.jpg"></li>
+			<li><img src="img/8.jpg"></li>
+		</ul>
+		<ol id="right">
+			<li>选项五</li>
+			<li>选项六</li>
+			<li>选项七</li>
+			<li>选项八</li>
+		</ol>
+	</div>
+</body>
+</html>

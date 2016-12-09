@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+#div1{
+	width:100px;
+	height: 100px;
+	background: red;
+	position: absolute;
+	top:0;
+	left:0;
+}	
+</style>
+</head>
+<body>
+	<div id="div1">
+		dsadsadsadsadsadsadsfkldhfash
+	</div>
+	<script type="text/javascript">
+		/*
+			拖拽三大事件：
+				onmousedown（按下）,onmousemove（移动）,onmouseup（抬起）
+			
+			记得阻止默认行为。return false;
+		*/
+		var div = document.getElementById('div1');
+		div.onmousedown = function(ev){
+			var disX = ev.pageX - div.offsetLeft;
+			var disY = ev.pageY - div.offsetTop;
+			
+			document.onmousemove = function(ev){
+				div.style.left = ev.pageX - disX + 'px';
+				div.style.top = ev.pageY - disY + 'px';
+			}
+			
+			document.onmouseup = function(){
+				document.onmousemove = document.onmouseup = null; 
+			}
+			return false;
+		}
+		
+		
+		
+		
+		
+	</script>
+</body>
+</html>

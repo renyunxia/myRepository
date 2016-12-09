@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+#div {
+	width: 100px;
+	height: 100px;
+	background: red;
+	position: absolute;
+	left: 0;
+	top: 0;
+}	
+</style>
+</head>
+<body>
+	<div id="div"></div>
+<script type="text/javascript">
+var str = "";
+for(var i = 0; i < 100; i++){
+	str += "<p>"+i+"</p>"
+}
+document.body.innerHTML += str;
+(function(){
+	//可视区大小
+	//alert(window.innerWidth); 包含滚动条宽度
+	//alert(document.documentElement.clientWidth); 不包含滚动条宽度 
+	var div = document.getElementById('div');
+	var sTop = document.documentElement.scrollTop||document.body.scrollTop;
+	div.style.left = document.documentElement.clientWidth/2 - div.offsetWidth/2 + "px";
+	div.style.top = document.documentElement.clientHeight/2 - div.offsetWidth/2 + sTop + "px";
+	window.onscroll = function(){
+		//获取滚动条的高度（移动时）
+		// window.pageYOffset chrome和firefox及IE高版本
+		// document.body.scrollTop chrome
+		// document.documentElement.scrollTop IE和火狐
+		// window.scrollY   移动端
+		var top = ;
+		console.log(top);
+	};
+})();
+</script>
+</body>
+</html>

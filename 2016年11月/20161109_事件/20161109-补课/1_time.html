@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script>
+		//设定一个结束时间
+		var endTime = new Date();
+		//设定一个小时候结束
+		endTime.setTime(endTime.getTime() + 3600 * 1000)
+		//获取到当前刷新时候的时间
+		var showTime = getCurTime();
+		//获取当前时间距离1970年的秒数
+		function getCurTime() {
+			var curTime = new Date().getTime();
+			var retSecs = Math.round(curTime/1000);
+			return retSecs;
+		}
+
+		// function getCurTime() {
+		// 	var curTime = new Date().getTime();
+		// 	var retSecs = Math.round((endTime - curTime)/1000);
+		// 	return retSecs > 0 ? retSecs : 0;
+		// }
+		//更新当前时间
+		setInterval(function(){
+			update();
+		}, 1000);
+		//对比最新的时间和上一秒的时间哪个不一样，只需要对比秒数。
+		function update(){
+			var nowTime = getCurTime();
+			var nowHours = parseInt(nowTime/3600);
+			var nowMins = parseInt((nowTime - nowHours * 3600)/60);
+			var nowSecs = nowTime%60;
+
+			var showHours = parseInt(showTime/3600);
+			var showMins = parseInt((showTime - showHours * 3600)/60);
+			var showSecs = showTime%60;
+
+			if(showSecs != nowSecs){
+				showTime = nowTime;
+			}
+
+			console.log(nowSecs,showSecs);
+
+		}
+
+
+
+
+	</script>
+</body>
+</html>

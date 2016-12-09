@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+body{
+	height: 3000px;
+}
+#div1{
+	width: 100px;
+	height: 100px;
+	background: red;
+	position: absolute;
+	top:0;
+	left: 0;
+	cursor:move;
+}	
+
+</style>
+</head>
+<body>
+	<div id="div1">
+		
+	</div>
+<script type="text/javascript">
+	/*
+		event:
+			事件对象
+		当用户操作某个元素的时候，如果该元素有事件绑定函数，那么在这个函数中的
+		第一个形参*记录了用户操作时的细节信息*。
+		它是一个对象：
+			如：鼠标mouseEvent {}
+			
+		ev.clientY  可视区的Y轴坐标（注意：当页面的滚动高度发生变化的时候，这个值依然不变）
+		ev.pageY  页面的Y轴坐标（注意：当页面的滚动高度发生变化的时候，这个值会随着滚动的距离发生变化）
+		
+		
+	*/
+	var div = document.getElementById('div1');
+	
+	document.onmousemove = function(ev){
+		div.style.left = ev.clientX - div.clientWidth/2 + 'px';
+		//div.style.top = window.pageYOffset + ev.clientY - div.clientHeight/2 + 'px';
+		div.style.top = ev.pageY - div.clientHeight/2 + 'px';
+		//console.log(ev.clientX)
+	}
+	
+	document.onclick = function(ev){
+		console.log(ev.pageY)
+	}
+	
+	
+	
+</script>
+</body>
+</html>

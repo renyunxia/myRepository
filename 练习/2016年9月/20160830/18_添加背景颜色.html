@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	.red{
+		width: 300px;
+		background: red;
+		padding: 20px;
+		border: 10px #ccc solid;
+		color: yellow;
+	}
+	.yellow{
+		width: 500px;
+		background: yellow;
+		padding: 20px;
+		border: 20px #d9d9d9 solid;
+		color: red;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var oBtn1= document.getElementById('btn1');
+		var oBtn2= document.getElementById('btn2');
+		var oBtn3= document.getElementById('btn3');
+		var oBtn4= document.getElementById('btn4');
+		var oP= document.getElementById('p1');
+		var num = 15;
+		oBtn1.onclick = function(){
+			if( num > 12){
+				num --;
+				oP.style.fontSize = num + 'px';
+			}
+		}
+		oBtn2.onclick = function(){
+			// num = num + 1;
+			// num += 1;
+			if( num < 22){
+				num ++;
+				oP.style.fontSize = num + 'px';
+			}
+			// alert(num);
+		}
+
+		oBtn3.onclick = function(){
+			/*
+			oP.style.width = '300px';
+			oP.style.background = 'red';
+			oP.style.color = 'yellow';
+			oP.style.padding = '20px';
+			oP.style.border = '10px solid #ccc';
+			*/
+			oP.className = 'red';
+		}
+		oBtn4.onclick = function(){
+			oP.className = 'yellow';
+		}
+	}
+	</script>
+</head>
+<body>
+	<input id="btn1" type="button" value="-">
+	<input id="btn2" type="button" value="+">
+	<input id="btn3" type="button" value="红色">
+	<input id="btn4" type="button" value="黄色">
+	<p id="p1" style="font-size:14px;" class="">
+		奥迪公司打工工商局风格就是个爱过付款给你骨头肉就是加入apjgsrjgslgjaojs'pogjspoijgspdojg
+	</p>
+</body>
+</html>

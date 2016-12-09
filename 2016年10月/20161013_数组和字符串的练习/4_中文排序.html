@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		var arr = ["一","五","七","二","三","六","四"];
+		var arrIndex = {
+			一: 1,
+			二: 2,
+			三: 3,
+			四: 4,
+			五: 5,
+			六: 6,
+			七: 7
+		};
+		arrIndex["一"]
+		//console.log(arr[0],arrIndex["一"]);
+		//console.log(arrIndex[arr[0]]);
+		arr.sort(function(a,b){
+			//console.log(a,b);
+			return arrIndex[a] - arrIndex[b];
+		});
+		console.log(arr);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

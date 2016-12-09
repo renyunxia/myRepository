@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body,div,ul,li,a,input{
+		margin: 0;
+		padding: 0;
+	}
+	#wrap{
+		width: 100%;
+		position: relative;
+	}
+	.header{
+		height: 80px;
+		border-bottom: 1px #999 solid;
+		line-height: 80px;
+	}
+	.header a{
+		width: 120px;
+		height: 22px;
+		text-align: center;
+		display: block;
+		text-decoration: none;
+	}
+	.header .add{
+		float: left;
+	}
+	.header .delt{
+		float: right;
+	}
+	.list{
+		width: 100%;
+		list-style: none;
+		position: absolute;
+		top: 81px;
+		left: 0;
+	}
+	.list li{
+		width: 75px;
+		height: 86px;
+		padding: 15px;
+		background-image: url(img/icon-file.png);
+		background-repeat: no-repeat;
+		background-position: center center;
+		position: relative;
+		display: inline-block;
+		margin: 3px;
+		border: 1px solid #fff;
+	}
+	.list .select{
+		width: 19px;
+		height: 19px;
+		display: block;
+		position: absolute;
+		right: 3px;
+		top: 3px;
+		display: none;
+	}
+	.list input[type=checkbox]{
+		opacity: 0;
+		z-index: 10;
+		display: block;
+	}
+	.active{
+		background-color: #f1f5fa;
+		border: 1px solid #dae4f0 !important;
+	}
+	.active .select1{
+		display: block;
+		background: url(img/icon-active1.png);
+	}
+	.active .select2{
+		display: block;
+		background: url(img/icon-active3.png);
+	}
+	.list .text,.list span{
+	    width: 90%;
+	    height: 14px;
+	    position: absolute;
+	    bottom: 5px;
+	    left: 5px;
+	    font: 12px/14px "宋体";
+	    text-align: center;
+	}
+	.list .text{
+		display: none;
+	}
+	.list span{
+		text-align: center;
+	}
+	</style>
+
+</head>
+<body>
+	<div id="wrap">
+		<div class="header">
+			<a href="javascript:;" class="add">创建文件夹</a>
+			<a href="javascript:;" class="delt">移除文件夹</a>
+		</div>
+		<ul class="list">
+			<!-- <li class="active">
+				<input type="checkbox" name="checkbox" id="checkbox" class="select"/>
+				<b class="select"></b>
+				<span>新建文件夹</span>
+				<input type="text" class="text">
+			</li>
+			<li>
+				<input type="checkbox" name="checkbox" id="checkbox" class="select"/>
+				<b class="select"></b>
+				<input type="text" class="text">
+				<span>新建文件夹</span>
+			</li> -->
+		</ul>
+	</div>
+</body>
+<script>
+(function(){
+	var add = document.querySelector('.add');
+	var delt = document.querySelector('.delt');
+	var list = document.querySelector('.list');
+	var arr = [];
+	add.onclick = function(){
+		var li = document.createElement('li');
+		var select = document.createElement('b');
+		var check = document.createElement('input');
+		var text = document.createElement('input');
+		var span = document.createElement('span');
+		select.className = "select";
+		check.className = "select";
+		check.type = "checkbox";
+		text.className = "text";
+		text.type = "text";
+		span.innerHTML = "新建文件夹";
+	
+		//鼠标移入选中
+		li.onmouseover = function(){
+			if(check.checked == true){
+				// this.className = "";
+				select.className = "select select2";
+			}else{
+				select.className = "select select1";
+			}
+			this.className = "active";
+		}
+		li.onmouseout = function(){
+			if(check.checked == false){
+				this.className = "";
+			}else{
+				select.className = "select select2";
+			}
+		}
+
+		//修改文件夹名称
+		span.onclick = function(){
+			this.style.display = "none";
+			text.style.display = "block";
+			text.value = this.innerHTML;
+			text.focus();
+		}
+		text.onblur = function(){
+			if(text.value.length > 7){
+				alert("文件夹名字不能超过7个字");
+				text.focus();
+				return;
+			}
+			if(text.value == ""){
+				span.style.display = "block";
+				text.value = span.innerHTML;
+			}
+			span.innerHTML = text.value;
+			text.style.display = "none";
+			span.style.display = "block";
+		}
+		li.appendChild(check);
+		li.appendChild(select);
+		li.appendChild(text);
+		li.appendChild(span);
+		list.appendChild(li);
+	}
+
+	//删除文件夹
+	delt.onclick = function(){
+		var lis = list.children;
+		for (var i = 0; i < lis.length; i++) {
+			if(lis[i].className == "active"){
+				list.removeChild(lis[i]);
+				i--;
+			}
+		};
+	}
+})();
+</script>
+</html>

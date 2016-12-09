@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	#box{
+		border:3px #000 solid;
+		width:100px;
+		height:100px;
+		margin:20px 10px;
+	}
+	.box{
+		border:3px #000 solid;
+		width:100px;
+		height:100px;
+		margin:20px 10px;
+	}
+	#style-box{
+		width: 320px;
+		background:#999;
+		padding:15px;
+	    position: absolute;
+	    left: 35%;
+	    top: 10%; 
+		display: none;
+	}
+	#style-btn{
+		width:70px;
+		height:30px;
+		color:#fff;
+		background:red;
+		border:none;
+	}
+	input{
+		margin: 5px;
+		border: none;
+	}
+	#red{
+		background:#f95630;
+		color: #fff;
+	}
+	#red:hover{
+		background:#fa0505;
+	}
+	#yellow{
+		background: #f1e159;
+		color: #fff;
+	}
+	#yellow:hover{
+		background:#fdfa03;
+	}
+	#blue{
+		background: #65acd0;
+		color: #fff;
+	}
+	#blue:hover{
+		background:#30bbfb;
+	}
+	ul input{
+		background: #ececec;
+		width:30px;
+		height: 30px;
+		color: #666;
+	}
+	ul input:hover{
+		background: #fac74d;
+	}
+	.bottom{
+		text-align: center;
+		padding: 10px 0;
+	}
+	.bottom input{
+		background: #33357c;
+		color:#fff;
+		width: 50px;
+		height: 30px;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var oBtn1 = document.getElementById("style-btn");
+		var oBtn2 = document.getElementById("hf");
+		var oBtn3 = document.getElementById("qd");
+		var oBox1 = document.getElementById("box");
+		var oBox2 = document.getElementById("style-box");
+		var oRed = document.getElementById("red");
+		var oYellow = document.getElementById("yellow");
+		var oBlue = document.getElementById("blue");
+		var oWto = document.getElementById("w-200");
+		var oWth = document.getElementById("w-300");
+		var oWfr = document.getElementById("w-400");
+		var oHto = document.getElementById("h-200");
+		var oHth = document.getElementById("h-300");
+		var oHfr = document.getElementById("h-400");
+		oBtn1.onclick = function(){
+			oBox2.style.display = 'block';
+		}
+		oRed.onclick = function(){
+			oBox1.style.background = '#f95630';
+		}
+		oYellow.onclick = function(){
+			oBox1.style.background = '#f1e159';
+		}
+		oBlue.onclick = function(){
+			oBox1.style.background = '#65acd0';
+		}
+		oWto.onclick = function(){
+			oBox1.style.width = '200px';
+		}
+		oWth.onclick = function(){
+			oBox1.style.width = '300px';
+		}
+		oWfr.onclick = function(){
+			oBox1.style.width = '400px';
+		}
+		oHto.onclick = function(){
+			oBox1.style.height = '200px';
+		}
+		oHth.onclick = function(){
+			oBox1.style.height = '300px';
+		}
+		oHfr.onclick = function(){
+			oBox1.style.height = '400px';
+		}
+		oBtn2.onclick = function(){
+			oBox1.style="none";
+		}
+		oBtn3.onclick = function(){
+			oBox2.style.display = 'none';
+		}
+
+	}
+	</script>
+</head>
+<body>
+	<h2>请为下面的div设置样式：<input type="button" value="点击设置" id="style-btn"></h2>
+	<div class="box" id="box">
+	</div>
+	<div id="style-box">
+		<div style="background:#fff; width:300px; height:170px; padding:10px;">
+			<ul>
+				<li> 请选择背景色：
+					<input type="button" value="红" id="red" >
+					<input type="button" value="黄" id="yellow">
+					<input type="button" value="蓝" id="blue">
+				</li>
+				<li>请选择宽(px)：
+					<input type="button" value="200" id="w-200">
+					<input type="button" value="300" id="w-300">
+					<input type="button" value="400" id="w-400">
+				</li>
+				<li>请选择高(px)：
+					<input type="button" value="200" id="h-200">
+					<input type="button" value="300" id="h-300">
+					<input type="button" value="400" id="h-400">
+				</li>
+			</ul>
+			<div class="bottom">
+				<input type="button" value="恢复" id="hf"><input type="button" value="确定" id="qd">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

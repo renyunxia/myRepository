@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body,p{
+		margin: 0;
+		padding: 0;
+	}
+	ul{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	input,textarea{
+		border: 1px solid #f7b619;
+		padding: 0;
+		margin: 0;
+		display: block;
+		outline: none;
+	}
+	textarea{
+		width: ;
+		resize: none;
+		overflow: hidden;
+	}
+	#wrap{
+		width: 400px;
+		padding: 10px;
+		background: #fada85;
+		border: 1px solid #f7b619;
+		margin: 30px auto;
+		font: 16px/30px "宋体";
+	}
+	#message input,#message textarea{
+		width: 100%;
+		height: 30px;
+		padding: 2px 5px;
+		box-sizing:border-box;
+		background: #fff;
+	}
+	#message textarea{
+		height: 90px;
+		margin: 10px 0;
+	}
+	.messageList{
+		margin-top: 10px;
+		background: #ccc;
+	}
+	.messageHeader{
+		margin-top: 10px;
+		background: #eae0c7;
+		padding: 0 5px;
+	}
+	.list li{
+		background: #fcfcfc;
+		padding: 5px;
+		border-bottom: 1px solid #f7b619;
+		font-size: 12px;
+	}
+	.list header{
+		background: #fefefe;
+		padding: 0 5px;
+		height: 30px;
+	}
+	.list span{
+		float: left;
+	}
+	.list time{
+		float: right;
+	}
+	.list p{
+		padding: 5px;
+		line-height: 22px;
+	}
+	#info{
+		background: #fefefe;
+		font: 20px/100px "宋体";
+		text-align: center;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var subBtn = document.querySelector('#message input[type="button"]');
+		var textName = document.querySelector('#message input[type="text"]');
+		var textMessage = document.querySelector('#message textarea');
+		var list = document.querySelector('.list');
+		var info = document.querySelector('#info');
+		var lis = list.children;
+		subBtn.onclick = function(){
+			if(!textName.value || !textMessage.value){
+				alert("请输入完整信息");
+				return;
+			}
+			var li = document.createElement('li');  //创建元素
+			var header = document.createElement('header');
+			var span = document.createElement('span');
+			var time = document.createElement('time');
+			var p = document.createElement('p');
+			span.innerHTML = textName.value;
+			time.innerHTML = getTime();
+			p.innerHTML = textMessage.value;
+			header.appendChild(span);  //父级下添加元素
+			header.appendChild(time);
+			li.appendChild(header);     //在子级后添加，避免重新渲染
+			// list.appendChild(li);
+			li.appendChild(p); //如果元素中需要添加内容，最好是在把元素放入文档之前，把内容添加好
+			if(lis.length>0){
+				list.insertBefore(li,lis[0]);  //在一个节点前插入一个指定的节点  把节点li 放在lis的第一位
+			}else{
+				list.appendChild(li);
+				list.parentNode.removeChild(info);    //删除父级下元素
+			}
+			textName.value = "";
+			textMessage.value = "";
+		}
+	}
+	function getTime(){
+		var nowDate = new Date();
+		var year = nowDate.getFullYear();
+		var month = toDB(nowDate.getMonth()+1);
+		var day = toDB(nowDate.getDate());
+		var hours = toDB(nowDate.getHours());
+		var minutes = toDB(nowDate.getMinutes());
+		// var seconds = toDB(nowDate.getSeconds());
+		return year+'-'+month+'-'+day+' '+hours+':'+minutes
+		// var strTime = year + month + day + hours + minutes + seconds;
+	}
+	function toDB(n){
+		return n<10 ? '0' + n : '' + n;
+	}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<div id="message">
+			<input type="text" placeholder="请输入您的名字">
+			<textarea placeholder="请输入您的留言内容"></textarea>
+			<input type="button" value="提交留言">
+		</div>
+		<div id="messageList">
+			<header class="messageHeader">显示留言</header>
+			<div id="info">-抢沙发-</div>
+			<ul class="list">
+				<!-- <li>
+					<header>
+						<span>asf </span>
+						<time>201-</time>
+					</header>
+					<p>agf 地方是打发是打发割发代首</p>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		html {
+			height: 100%;
+		}
+		body {
+			margin: 0;
+			height: 100%;
+			background: url(images/bg.png) no-repeat center center #000;
+		}
+		#box {
+			width: 520px;
+			height: 520px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin: -260px 0 0 -260px;
+			text-align: center;
+			line-height: 100px;
+		}
+		#title {
+			display: block;
+			margin: 20px auto;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var imgs = document.getElementsByClassName("date");
+			var week = document.getElementsByClassName("week")[0];
+			var weekImg = ["seven","one","two","three","four","five","six"];
+			setTime();
+			setInterval(setTime,1000);
+			function setTime(){
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = toDB(date.getMonth() + 1);
+				var date2 = toDB(date.getDate());
+				var hours = toDB(date.getHours());
+				var minutes = toDB(date.getMinutes());
+				var seconds = toDB(date.getSeconds());
+				var time = year+month+date2+hours+minutes+seconds;
+				var day = date.getDay();
+				//console.log(time);
+				for(var i = 0; i < time.length; i++){
+					imgs[i].src = "images/"+time[i]+".png";
+				}
+				week.src = "images/"+weekImg[day]+".png"
+			} 
+			function toDB(nub){
+				return nub < 10?"0"+nub:""+nub;
+			}
+		};
+	</script>
+</head>
+<body>
+	<div id="box">
+		<img src="images/title.png" id="title">
+        <img src="images/2.png" class="date" />
+        <img src="images/0.png" class="date" />
+        <img src="images/1.png" class="date"/>
+        <img src="images/6.png" class="date" />
+        <img src="images/year.png" />
+        <img src="images/0.png"  class="date"/>
+        <img src="images/9.png" class="date" />
+        <img src="images/month.png" />
+        <img src="images/2.png" class="date" />
+        <img src="images/9.png"  class="date"/>
+        <img src="images/seven.png" />
+        <br />
+        <img src="images/0.png" class="date" />
+        <img src="images/0.png"  class="date"/>
+        <img src="images/sign.png" />
+        <img src="images/0.png" class="date" />
+        <img src="images/0.png" class="date" />
+        <img src="images/sign.png" />
+        <img src="images/0.png" class="date" />
+        <img src="images/0.png" class="date"/>
+        <br />
+        <img src="images/week.png" />
+        <img src="images/seven.png" class="week" />
+	</div>
+</body>
+</html>

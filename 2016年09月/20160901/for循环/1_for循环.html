@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script>
+		window.onload = function() {
+			//var input = document.getElementsByTagName("input");
+			var box = document.getElementById("box");
+			var input = box.getElementsByTagName("input");
+			//input.style.background = "red"; js中不能直接操作一组元素;
+			input[0].style.background = "red";
+			input[1].style.background = "red";
+			input[2].style.background = "red";
+			input[3].style.background = "red";
+			/*
+			 	document.getElementsByTagName("input");
+			 	在document中，通过标签名字来获取一组元素
+			 	
+			 	1.在js中一组元素是不能直接操作的
+			 	2.一组元素的话，就会有下标和length这两个属性
+			 	3.如果同时操作一组元素的话，用循环来操作
+			*/
+		};
+	</script>
+</head>
+<body>
+<div id="box">
+	<input type="button" value="按钮1" />
+	<input type="button" value="按钮2" />
+	<input type="button" value="按钮3" />
+	<input type="button" value="按钮4" />
+</div>
+</body>
+</html>

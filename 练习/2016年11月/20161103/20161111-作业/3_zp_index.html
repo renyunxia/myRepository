@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>招聘</title>
+    <link rel="stylesheet" href="css/zp_index.css">
+	<script type="text/javascript" src="js/data.js"></script>
+</head>
+<body>
+	<div class="wrap">
+        <div class="left">
+            <h2>招贤纳士</h2>
+            <nav class="nav">
+                <!-- <span class="nav_i active">社会招聘</span>
+				<span class="nav_i">校园招聘</span> -->
+            </nav>
+        </div>
+        <div class="right">
+            <div class="info"><img src="img/shzp.gif" alt=""></div>
+            <div class="list">
+                <!-- <div class="list_i">
+                    <div class="head">
+                        <span>
+							<a href="">★ 职位需求：测试工程师【社会招聘】</a>
+						</span>
+                        <span>需求人数：3名</span>
+                        <span>2013-7-12</span>
+                    </div>
+                    <p class="content">
+                        1.计算机或相关专业本科以上学历；2.从事软件测试工作3年及以上；3.具备良好的沟通能力和快速学习能力；4.精通测试策略和方法、测试用例设计；5.熟悉DB2、AIX等平台的基本操作；6.具备2年以上金...[<a href="">查看详情</a>]
+                    </p>
+                </div> -->
+            </div>
+            <div class="page">
+                <a href="javascript:;" class="prev">< prev</a>
+                <nav class="pages">
+                    <!-- <a href="" class="active">1</a>
+                    <a href="">2</a>
+                    <a href="">3</a> -->
+                </nav>
+                <a href="javascript:;" class="next">next ></a>
+            </div>
+        </div>
+    </div>
+	<script>
+	(function() {
+        //------------------------------------------------
+        var search = window.location.search.substr(1);
+        var lx = getSearchValue('s') || 'sh';
+        window.location.hash = ``;
+        var hash = window.location.hash.substr(1).split('=')[1] || 1;
+        //------------------------------------------------
+        leftList();
+        rightImg();
+        rightList(hash);
+        rightPages();
+        //------------------------------------------------
+        //左侧列表
+        function leftList() {
+            var leftList = document.querySelector('.left .nav');
+            var childs = leftList.children;
+
+            aData.list.forEach((item, i) => {
+                var span = document.createElement('span');
+                span.className = 'nav_i';
+                span.innerHTML = item.text;
+                span.onclick = function() {
+                    window.location.search = `s=${item.lx}`;
+                };
+                leftList.appendChild(span);
+            });
+
+            if (search) {
+                aData.list.forEach((item, i) => {
+                    if (getSearchValue('s') == item.lx) {
+                        childs[i].className = 'nav_i active';
+                    }
+                });
+            } else {
+                childs[0].className = 'nav_i active';
+            }
+        }
+        
+        //右侧内容
+        function rightImg(){
+        	var img = document.querySelector('.info img');
+            img.src = aData[lx].img;
+        }
+
+        function rightList(num) {
+        	console.log(num);
+        	var list = document.querySelector('.list');
+        	var str = '';
+        	// 1  0 2
+        	// 2  2 4
+        	// 3  4 6
+        	// 4  6 8
+            for (var i = 2*num - 2; i < 2 * num; i++) {
+                var data = aData[lx].text[i];
+                console.log(data);
+                if(data){
+	                str += `<div class="list_i">
+			                    <div class="head">
+			                        <span>
+										<a href="">★ 职位需求：${data.zw}</a>
+									</span>
+			                        <span>需求人数：${data.rs}名</span>
+			                        <span>${aData.date(data.sj, 1)}</span>
+			                    </div>
+			                    <p class="content">
+			                        ${data.info[0].l.join('')}...[<a href="3_zp_list.html?s=${lx}#page=${i+1}">查看详情</a>]
+			                    </p>
+			                </div>`;
+	                }
+            }
+
+            list.innerHTML = str;
+        }
+
+        function rightPages(){
+        	var pages = document.querySelector('.pages');
+        	var childs = pages.children;
+        	var n = Math.ceil(aData[lx].text.length/2);
+        	for(var i=0; i<n; i++){
+        		var aA = document.createElement('a');
+        		aA.innerHTML = i + 1;
+        		aA.href = `#p=${i+1}`;
+        		pages.appendChild(aA);
+        	}
+        	childs[hash - 1].className = 'active'
+        	window.onhashchange = function(){
+	    		hash = window.location.hash.substr(1).split('=')[1] || 1;
+	    		for(var i=0; i<childs.length; i++){
+	    			childs[i].className = '';
+	    		}
+	    		childs[hash - 1].className = 'active'
+	    		rightList(hash)
+	    	};
+        }
+
+        // 获取search列表的值
+        function getSearchValue(key) {
+            if (!search) {
+                console.log('aaa');
+                return false;
+            }
+            if (search.indexOf('&') != -1) {
+                var arr = search.split('&');
+                arr.forEach((item, i) => {
+                    var arr = item.split('=');
+                    if (arr[0] == key) {
+                        return arr[1];
+                    }
+                });
+            } else {
+                var arr = search.split('=');
+                if (arr[0] == key) {
+                    return arr[1];
+                }
+            }
+            return false;
+        }
+    })()
+	</script>
+</body>
+</html>

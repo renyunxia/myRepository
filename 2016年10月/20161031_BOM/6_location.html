@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+window.onload = function(){
+	var btns = document.querySelectorAll('input');
+	btns[0].onclick = function(){
+		//window.location.href = "http://www.baidu.com";
+		console.log(window.location.protocol);	
+	};
+	//hash 哈希
+	//host  主机名称和端口号
+	//search 提交信息
+	//hostname 主机名称
+	//href 地址，读写属性
+	//origin
+	//pathname
+};
+</script>
+</head>
+<body>
+	<input type="button" value="百度">
+	<input type="button" value="腾讯">
+	<form action="3_location.html">
+		<input type="text" name="text">
+		<input type="submit" name="">
+	</form>
+</body>
+</html>

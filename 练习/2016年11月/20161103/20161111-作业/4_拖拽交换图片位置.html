@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#wrap{
+		width: 820px;
+		height: 340px;
+		padding: 20px;
+		background: #ccc;
+		margin: 10px auto;
+		text-align: center;
+	}
+	#list{
+		width: 820px;
+		height: 340px;
+		position: relative;
+	}
+	#list li{
+		width: 194px;
+		padding: 3px;
+		height: 144px;
+		list-style: none;
+		text-align: center;
+		border: 1px #fff solid;
+		background: #fff;
+		float: left;
+	}
+	#list img{
+		width: 194px;
+		height: 144px;
+		display: block;
+	}
+	#list li.border{
+		padding: 2px;
+		background: #fff;
+		border: 1px red dashed;
+		opacity: .5;
+	}
+	</style>
+	<script type="text/javascript" src="js/miaov.js"></script>
+</head>
+<body>
+	<div id="wrap">
+		<!-- <input type="button" value="从大到小"> -->
+		<input type="button" value="随机排序">
+		<ul id="list">
+			<li>
+				<img src="images/img4.gif">
+				<p>图片1</p>
+			</li>
+		</ul>
+	</div>
+	<script>
+	(function(){
+		var date = [
+			 'images/img1.gif',
+			'images/img2.gif',
+			'images/img3.gif',
+			'images/img4.gif',
+			'images/img5.gif',
+			'images/img6.gif',
+			'images/img7.gif',
+			'images/img8.gif'
+		];
+		var dateIndex = {
+			'images/img1.gif':1,
+			'images/img2.gif':2,
+			'images/img3.gif':3,
+			'images/img4.gif':4,
+			'images/img5.gif':5,
+			'images/img6.gif':6,
+			'images/img7.gif':7,
+			'images/img8.gif':8
+		}
+		this.aPos = [];	//存放li的原位置信息
+		var list = document.getElementById('list');
+		var btn = document.querySelectorAll('input');
+		
+		//初始化
+		creatE();
+				
+
+		//获取元素位置函数声明
+		function getPos(obj) {
+			var iTop = obj.offsetTop;
+			var iLeft = obj.offsetLeft;
+			return {top:iTop, left:iLeft}	
+		};
+
+		//初始化函数声明
+		function creatE(){
+			var listInner = '';
+			for (var i = 0; i < date.length; i++) {
+				listInner += '<li><img src='+date[i]+'></li>'
+			};
+			list.innerHTML = listInner;
+			var li = document.querySelectorAll('li');
+			for(var i = 0; i<li.length; i++){
+				li[i].style.top = li[i].offsetTop + "px";
+				li[i].style.left = li[i].offsetLeft + "px";
+				//保存li[i]的原位置信息
+				this.aPos.push({left:getPos(li[i]).left, top:getPos(li[i]).top});
+			}
+			for(var i = 0; i<li.length; i++){
+				li[i].style.position = "absolute";
+			}
+		}
+
+		//随机排序事件
+		btn[0].onclick = function(){
+			randomOrder();
+		}
+
+		//针对每个li调用监听事件
+		var li = document.querySelectorAll('li');
+		for(var i=0; i< li.length; i++){
+			li[i].index = i;
+			Drag(li[i]);//监听事件函数调用
+		}
+
+		//监听事件函数声明
+		function Drag(obj){
+			var oThis = this;
+
+			obj.addEventListener('mousedown',fnDown);
+			obj.style.cursor = 'move';
+
+            //鼠标点击按下事件
+			function fnDown(ev){
+				// console.log("=============================");
+				// console.log("当前点击li-index:", obj.index);
+				var disX = ev.pageX - this.offsetLeft;
+				var disY = ev.pageY - this.offsetTop;
+				var near = null;
+				document.addEventListener('mousemove',fnMove);
+				document.addEventListener('mouseup',fnUp);
+				
+				//鼠标点击移动事件
+				function fnMove(ev){
+					var l1 = ev.pageX - disX;
+					var t1 = ev.pageY - disY;
+
+					var maxL = Math.max(oThis.document.documentElement.clientWidth,oThis.document.body.scrollWidth) - obj.offsetWidth;
+					var maxT = Math.max(oThis.document.documentElement.clientHeight,oThis.document.body.scrollWidth) - obj.offsetHeight;
+					if(l1 < 0){
+						li = 0;
+					}
+					if(t1 < 0){
+						t1 = 0;
+					}
+					if(l1 > maxL){
+						l1 = maxL;
+					}
+					if(t1 > maxT){
+						t1 = maxT;
+					}
+					
+					obj.style.left = l1 + 'px';
+					obj.style.top = t1 + 'px';
+					obj.style.zIndex = 1;
+
+					//碰撞检测：找到离当前点击li最近的碰撞li，返回li对象
+					near = findNearest(obj);
+
+					//清空所有li属性，并设置碰撞li的border属性
+					for (var i = 0; i < li.length; i++) {
+						li[i].className = '';
+					};
+					if(near){
+						near.className = 'border';
+					}
+					return false;
+				}
+
+				//鼠标点击弹起事件
+				function fnUp(){
+					clearInterval(obj.timer);
+					document.removeEventListener('mousemove',fnMove);
+					document.removeEventListener('mouseup',fnUp);
+					if (near)
+					{
+						// console.log("第1步：点击li与碰撞li的index交换");
+						var tmpArray = [obj.index, near.index];
+						// console.log("	交换前：点击li-index[",obj.index,"], 碰撞li-index[",near.index,"]");
+						near.index = tmpArray[0];
+						obj.index = tmpArray[1];
+
+						// console.log("	交换后：点击li-index[",obj.index,"], 碰撞li-index[",near.index,"]");
+						near.style.zIndex = oThis.zIndex++;
+
+						// console.log("第2步：移动点击li到碰撞li的位置");
+						doMove(obj, oThis.aPos[obj.index]);
+
+						// console.log("第3步：移动碰撞li到点击li的位置");
+						doMove(near, oThis.aPos[near.index]);					
+						near.className = "";
+					}
+					else
+					{
+						//如果未检测到碰撞li，则点击li回到原位置
+						doMove(obj, oThis.aPos[obj.index]);	
+					}
+				}	
+				clearInterval(obj.timer);			
+				ev.preventDefault();
+			}
+		}
+		function doMove(obj, iTarget, callback){
+			var oThis = this;
+			obj.timer = setInterval(function ()
+			{
+				var iCurL = getPos(obj).left;
+				var iCurT = getPos(obj).top;
+				var iSpeedL = (iTarget.left - iCurL) / 5;
+				var iSpeedT = (iTarget.top - iCurT) / 5;
+				// console.log("	移动li的left:", iCurL, " top:", iCurT, "到left:", iTarget.left, " top:", iTarget.top);
+				
+				iSpeedL = iSpeedL > 0 ? Math.ceil(iSpeedL) : Math.floor(iSpeedL);
+				iSpeedT = iSpeedT > 0 ? Math.ceil(iSpeedT) : Math.floor(iSpeedT);
+				if (iCurL == iTarget.left && iCurT == iTarget.top){
+					clearInterval(obj.timer);
+					callback && callback();
+				}else{
+					obj.style.left = iCurL + iSpeedL + "px";
+					obj.style.top = iCurT + iSpeedT + "px";
+				}
+			}, 30)
+		}
+		function findNearest (obj){
+			var aDistance = [];
+			var i = 0;
+			for (i = 0; i < li.length; i++){
+				if(li[i] == obj)
+					aDistance[i] = Number.MAX_VALUE;
+				else
+					aDistance[i] = getDistance(obj, li[i]);
+			}
+			
+			var minNum = Number.MAX_VALUE;
+			var minIndex = -1;
+			for (i = 0; i < aDistance.length; i++)
+			{
+				if(aDistance[i] < minNum){
+					minNum = aDistance[i];
+					minIndex = i;
+				}
+			}
+			return isButt(obj, li[minIndex]) ? li[minIndex] : null;
+		}
+		function getDistance(obj1, obj2){
+			var a = (obj1.offsetLeft + obj1.offsetWidth / 2) - (obj2.offsetLeft + obj2.offsetWidth / 2);
+			var b = (obj1.offsetTop + obj1.offsetTop / 2) - (obj2.offsetTop + obj2.offsetTop / 2);
+			return Math.sqrt(a * a + b * b)
+			console.log(a,b)
+		}
+		function isButt(obj1, obj2){
+			var l1 = obj1.offsetLeft;
+			var t1 = obj1.offsetTop;
+			var r1 = l1 + obj1.offsetWidth;
+			var b1 = t1 + obj1.offsetHeight;
+			
+			var l2 = obj2.offsetLeft;
+			var t2 = obj2.offsetTop;
+			var r2 = l2 + obj2.offsetWidth;
+			var b2 = t2 + obj2.offsetHeight;
+			
+			return !(r1 < l2 || b1 < t2 || r2 < l1 || b2 < t1)
+		}
+		function randomOrder(){
+			var oThis = this;
+			this.aPos.sort(function () {return Math.random() > 0.5 ? 1 : -1});
+			for (var i = 0; i < li.length; i++)
+			{
+				li[i].index = i;
+				doMove(li[i], aPos[i])
+			}
+		}
+	})();
+	</script>
+</body>
+</html>

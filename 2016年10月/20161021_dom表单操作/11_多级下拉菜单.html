@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+	body,
+	p {
+		margin: 0;
+	}
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	#nav {
+		width: 360px;
+		margin: 30px auto;
+		padding: 5px 10px;
+		border: 2px solid #999;
+		background: #f1f1f1;
+		height: 30px;
+	}
+	.list li {
+		float: left;
+		width: 120px;
+		position: relative;
+	}
+	.list p {
+		padding: 2px 2px 0;
+		font: 14px/28px "宋体";
+		text-align: center;
+	}
+	.list .active p{
+		border: 2px solid #666;
+		background: #ddd;
+		border-bottom: none;
+		position: relative;
+		z-index: 2;
+		padding: 0;
+	}
+	.list2 {
+		position: absolute;
+		left: 0;
+		top: 28px;
+		width: 140px;
+		background: #ddd;
+		border: 2px solid #666;
+		z-index: 1;
+		display: none;
+		padding: 5px 3px;
+	}
+	.list .active .list2 {
+		display: block;
+	}
+	.list2 li {
+		width: 140px;
+		border-bottom: 1px solid #000;
+	}
+	.list .list2 p {
+		border: none;
+		background: none;
+		text-align: left;
+		text-indent: 10px;
+		font: 12px/26px "宋体";
+		padding: 1px;
+		padding-right: 0;
+	}
+	.list2 .active p{
+		width: 130px;
+		border: 1px solid red;
+		border-right: none;
+		background: #fff;
+		position: relative;
+		z-index: 2;
+		padding: 0;
+	}
+	.list3 {
+		width: 140px;
+		position: absolute;
+		left: 130px;
+		top: 0;
+		z-index: 1;
+		padding: 5px 3px;
+		border: 1px solid red;
+		background: #fff;
+		display:  none;
+	}
+	.list2 .list3 p{
+		background: none;
+		border: none;
+	}
+	.list2 .active .list3 {
+		display: block;
+	}
+	.list3 .active p {
+		color: red;
+	}
+</style>
+<script type="text/javascript" src="data.js"></script>
+<script type="text/javascript">
+setLayout(data.list);
+function setLayout(data){
+	var ul = document.createElement("ul");
+	for(var s in data){
+		var li = document.createElement("li");
+		var p = document.createElement("p");
+		p.innerHTML = data[s].name;
+		if(data[s].list){
+			setLayout(data[s].list);
+		}
+		ul.appendChild(li);
+	}
+	return ul;
+}
+window.onload = function(){
+	var li = document.querySelectorAll('li');
+	for(var i = 0; i < li.length; i++){
+		li[i].onmouseover = function(){
+			this.className = "active";
+		};
+		li[i].onmouseout = function(){
+			this.className = "";
+		};
+	}
+};
+</script>
+</head>
+<body>
+<nav id="nav">
+
+</nav>
+</body>
+</html>

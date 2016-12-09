@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	ul{
+		list-style: none;
+		width: 240px;
+		height: 240px;
+		margin: 40px auto;
+	}
+	li{
+		width: 24px;
+		height: 24px;
+		float: left;
+		background: url(images/6.jpg) no-repeat;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var list = document.getElementById('list');
+		var oFrag = document.createDocumentFragment('li');  //图片碎片
+		var liW = 24;
+		var liH = 24;
+		for (var i = 0; i < 100; i++) {
+			var li = document.createElement('li');
+			li.cells = i%10;   //每行里面的第几个格
+			li.rows = parseInt(i/10);   //每列里面的第几个格
+			li.style.backgroundPosition = '-' + li.cells*liW + 'px -' + (li.rows*liH) + 'px';
+			oFrag.appendChild(li);
+		};
+		list.appendChild(oFrag);
+	}
+	</script>
+</head>
+<body>
+	<ul id="list"></ul>
+</body>
+</html>

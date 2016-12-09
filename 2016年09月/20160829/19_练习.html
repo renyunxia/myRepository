@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+	<style type="text/css">
+		#box {
+			width: 100px;
+			height: 100px;
+			border: 10px solid #000;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			var box = document.getElementById('box');
+			var attr = document.getElementById('attr');
+			var val = document.getElementById('val');
+			var btn = document.getElementById('btn');
+			btn.onclick = function() {
+				var name = attr.value;
+				var style = val.value;
+				//alert(name);
+				//alert(style);
+				box.style[name] = style;
+				//box.style[attr.value] = ;
+			};
+			/*
+				btn点击的时候，拿到 attr的value 和 val的value值
+				然后修改box的样式
+				box.style[attr的value] = val[value];
+				
+				1. 获取元素
+				2. 添加事件
+				3. 要做的事情
+					1） 分别获取到两个输入里 输入的内容
+					2)  修改样式 el.style["样式名"] = "样式值";
+					3)   el.style[第一个input的.value值] = 第二个input的.value值;
+
+			*/
+		};
+	</script>
+</head>
+<body>
+	请输入要修改的样式：<input type="text" id="attr" > <br />
+	请输入样式的值：<input type="text" id="val" > <br />
+	<input type="button" value="确定" id="btn">
+	<div id="box"></div>
+</body>
+</html>

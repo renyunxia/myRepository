@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+function create(parent){
+	var ul = document.createElement("ul");
+	for(var i = 0; i < 5; i++){
+		var li = document.createElement("li");
+		li.innerHTML = i;
+		ul.appendChild(li);
+	}
+	parent.appendChild(ul);
+}
+window.onload = function(){
+	var nav = document.querySelector('nav');
+	create(nav);
+};
+</script>
+</head>
+<body>
+	<nav id="nav"></nav>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+	#div1 {
+		width: 100px;
+		height: 100px;
+		border: 2px solid #000;
+	}
+	#div2 {
+		width: 200px;
+		height: 100px;
+		border: 2px solid red;
+	}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var div1 = document.querySelector('#div1');
+	for(var i = 0; i < div1.children.length; i++){
+		div1.children[i].onclick = function(){
+			//parentNode.replaceChild(newChild,oldChild);替换节点
+			var strong = document.createElement("strong");
+			strong.innerHTML = this.innerHTML;
+			div1.replaceChild(strong,this);
+		};
+	}
+};
+</script>
+</head>
+<body>
+<div id="div1">
+	<span>span1</span>
+	<span>span2</span>
+	<span>span3</span>
+</div>
+<div id="div2">
+	<a href="#">a1</a>
+	<a href="#">a2</a>
+	<a href="#">a3</a>
+</div>
+</body>
+</html>

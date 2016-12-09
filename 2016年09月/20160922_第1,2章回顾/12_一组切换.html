@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		img {
+			display: block;
+			width: 700px;
+			height: 400px;
+		}
+		#wrap {
+		    border: 5px solid #E7E7E7;
+		    height: 400px;
+		    width: 800px;
+		    overflow: hidden;
+		    margin: 0 auto;
+		    position: relative;
+		}
+		#navs {
+			width: 100px;
+		}
+		#navs a {
+			display: block;
+			width: 100px;
+			line-height: 99px;
+		    text-align: center;
+		    background-color: #000;
+		    border-bottom: 1px solid #E7E7E7;
+		    text-decoration:  none;
+		    color: #fff;
+		}
+		#navs .active {
+			background: #f60;
+		}
+		#cons {
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 700px;
+			transition: .5s;
+		}
+		.box {
+			width: 700px;
+			height: 400px;
+			overflow: hidden;
+			position: relative;
+		}
+		.list {
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		.list li  {
+			float: left;
+		}
+		.box nav {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			display: table;
+		}
+		.box nav a {
+			display: table-cell;
+			font: 14px/30px "宋体";
+			text-align: center;
+			text-decoration: none;
+			color: #fff;
+			box-sizing: border-box;
+			background: rgba(0,0,0,.4);
+		}
+		.box nav .active {
+			background: rgba(255,255,255,.6);
+			color: #000;
+		}
+	</style>
+	<script type="text/javascript">
+		function css(el,attr){
+			if(el.currentStyle) {
+				return el.currentStyle[attr];	
+			} else {
+				return getComputedStyle(el)[attr];
+			}
+		}
+		function getId(name){
+			return document.getElementById(name);
+		}
+		function getTag(parent,tag){
+			return parent.getElementsByTagName(tag);
+		}
+		function getClass(parent,name){
+			return parent.getElementsByTagName(name);
+		}
+		window.onload = function() {
+			var navs = getId("navs");
+			var navas = getTag(navs,"a");
+			var cons = getId("cons");
+			var conH = parseFloat(css(navs,"height"));
+			for(var i = 0; i < navas.length; i++) {
+				navas[i].index = i;
+				navas[i].onmouseover = function() {
+					for(var i = 0; i < navas.length; i++) {
+						navas[i].className = "";
+					}
+					this.className = "active";
+					cons.style.top = -conH*this.index + "px";
+				};
+			}
+		};
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<nav id="navs">
+			<a href="javascript:;" class="active">暖色调</a>
+			<a href="javascript:;">金色夕阳</a>
+			<a href="javascript:;">灰色格调</a>
+			<a href="javascript:;">baby</a>
+		</nav>
+		<div id="cons">
+			<div class="box">
+				<ul class="list">
+					<li>
+						<a href="#">
+							<img src="images/img1.gif">
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/img2.gif">
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/img3.gif">
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/img4.gif">
+						</a>
+					</li>
+				</ul>
+				<nav>
+					<a href="#" class="active">暖色键盘</a>
+					<a href="#">惬意时光</a>
+					<a href="#">午后</a>
+					<a href="#">一杯苦咖啡</a>
+				</nav>
+			</div>
+			<div class="box">
+				<ul class="list">
+					<li>
+						<a href="#">
+							<img src="images/img5.gif">
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/img6.gif">
+						</a>
+					</li>
+				</ul>
+				<nav>
+					<a href="#" class="active">街边夕阳</a>
+					<a href="#">金色稻草</a>
+				</nav>
+			</div>
+			<div class="box">
+				<ul class="list">
+					<li>
+						<a href="#">
+							<img src="images/img7.gif">
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/img8.gif">
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/img9.gif">
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/img10.gif">
+						</a>
+					</li>
+				</ul>
+				<nav>
+					<a href="#" class="active">灰色通讯</a>
+					<a href="#">咖啡'配'饼干</a>
+					<a href="#">孤单键盘</a>
+					<a href="#">枯树</a>
+				</nav>
+			</div>
+			<div class="box">
+				<ul class="list">
+					<li>
+						<a href="#">
+							<img src="images/img11.gif">
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/img12.gif">
+						</a>
+					</li>
+				</ul>
+				<nav>
+					<a href="#" class="active">baby素材一</a>
+					<a href="#">baby素材二</a>
+				</nav>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

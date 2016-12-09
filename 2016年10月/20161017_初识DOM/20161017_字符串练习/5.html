@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#wrap {
+			width: 440px;
+			border: 2px solid #000;
+			height: 110px;
+			position: relative;
+			margin: 40px auto;
+		}
+		#wrap input{
+			position: absolute;
+			top: 40px;
+			width: 30px;
+			height: 30px;
+
+		}
+		#wrap input:nth-of-type(1){
+			left: -40px;
+		}
+		#wrap input:nth-of-type(2){
+			right: -40px;
+		}
+		#wrap img {
+			float: left;
+			width: 100px;
+			margin: 5px;
+		}
+	</style>
+	<script type="text/javascript">
+		//var arr = [0,1,2,3];
+		//console.log(arr.push(arr.shift()));
+		//console.log(arr.unshift(arr.pop()));
+		//console.log(arr);
+		window.onload = function(){
+			var wrap = document.querySelector('#wrap');
+			var prev = wrap.children[0];
+			var next = wrap.children[1];
+			var imgs = wrap.getElementsByTagName('img');
+			var arr = [];
+			for(var i = 0; i < imgs.length; i++){
+				arr[i] = imgs[i].offsetLeft;
+				imgs[i].style.left = imgs[i].offsetLeft + "px";
+				imgs[i].style.top = imgs[i].offsetTop + "px";
+			}
+			for(var i = 0; i < imgs.length; i++){
+				imgs[i].style.position = "absolute";
+				imgs[i].style.margin = 0;
+			}
+			//console.log(arr);
+			prev.onclick = function(){
+				arr.push(arr.shift());
+				//console.log(arr);
+				// i = 0
+				for(var i = 0; i < arr.length; i++){
+					imgs[i].style.left = arr[i] + "px";
+				}
+			};
+			next.onclick = function(){
+				arr.unshift(arr.pop());
+				//console.log(arr);
+				// i = 0
+				for(var i = 0; i < arr.length; i++){
+					imgs[i].style.left = arr[i] + "px";
+				}
+			};
+		};
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<input type="button" value="<">
+		<input type="button" value=">">
+		<img src="img/1.jpg" />
+		<img src="img/2.jpg" />
+		<img src="img/3.jpg" />
+		<img src="img/4.jpg" />
+	</div>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	#box{
+		width: 405px;
+		height: 280px;
+		margin: 30px auto;
+		position: relative;
+		overflow: hidden;
+		border: 5px #000 solid;
+	}
+	#navs{
+		width: 100%;
+		height: 30px;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		background: rgba(0,0,0,.6);
+		text-align: center;
+	}
+	#navs a{
+		width: 50px;
+		font: 14px/30px "微软雅黑";
+		background: #fff;
+		color: orange;
+		text-decoration: none;
+		text-align: center;
+		/*float: left;*/
+		border-radius: 50%;
+		padding: 0 5px;
+	}
+	#navs .active{
+		color: #fff;
+		background-color: orange;
+	}
+	.list{
+		width: 400%;
+		height: 280px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		-webkit-transform: .5;
+		-moz-transform: .5;
+		-ms-transform: .5;
+		-o-transform: .5;
+		transform: .5;
+	}
+	.list li{
+		float: left;
+	}
+	img{
+		display: block;
+		width: 405px;
+		height: 280px;
+	}
+	#box input{
+		width: 40px;
+		height: 40px;
+		background-color: rgba(0,0,0,.6);
+		text-align: center;
+		color: #fff;
+		font: 18px/40px "微软雅黑"; 
+		position: absolute;
+		top:120px;
+		border: none;
+		cursor: pointer;
+		outline: none;
+	}
+	#prev{
+		left: 0;
+		border-radius: 0 8px 8px 0;
+	}
+	#next{	
+		right: 0;
+		border-radius: 8px 0 0 8px;
+	}
+	</style>
+	<script>
+	function css(el,attr){
+		if(el.currentStyle) {
+			return el.currentStyle[attr];	
+		}
+		return getComputedStyle(el)[attr];
+	}
+	window.onload = function(){
+		var box = document.getElementById('box');
+		var list = document.querySelector('ul');
+		var li = list.querySelectorAll('li');
+		var navs = document.querySelectorAll('a');
+		var btn = document.querySelectorAll('input');
+		// console.log(box,list,li,navs,btn);
+		var imgW = parseFloat(css(li[0],'width'));   //计算li宽度
+		var now = 0;
+		var timer = 0;  //定时器编号
+		for (var i = 0; i < navs.length; i++) {
+			navs[i].index = i;
+			navs[i].onmouseover = function(){
+				for (var i = 0; i < navs.length; i++) {
+					navs[i].className = "";
+				};
+				navs[this.index].className = "active";
+				// mTween(list,'left',-imgW*this.index,800,'easeBoth');
+				list.style.left = -imgW*this.index + 'px';
+			}
+		};
+		btn[0].onclick = function(){   //鼠标点击--
+			now--;
+			if(now < 0){
+				now = navs.length-1;  //减到第一张返回到最后一张
+			}
+			tab();   //调用图片自增函数
+		}
+		btn[1].onclick = function(){  //鼠标点击++
+			now++;
+			if(now > navs.length-1){  //加到最后一张返回0第一张
+				now = 0;
+			}
+			tab();  //调用图片自增函数
+		}
+		box.onmouseover = function(){  //鼠标移入box区域停止计时器
+			clearInterval(timer);
+			console.log("停止");
+		}
+		box.onmouseout = function(){   //鼠标移出box区级计时器继续
+			clearInterval(timer);
+			timer = setInterval(function(){   
+				console.log("继续");
+				now++;
+				if(now > navs.length-1){
+					now = 0;
+				}
+				tab();
+			},2000)
+		}
+		clearInterval(timer);
+		timer = setInterval(function(){
+			now++;
+			if(now > navs.length-1){
+				now = 0;
+			}
+			tab();    //调用图片自增函数
+		},2000)
+		function tab(){     //图片自增公共部分拿出来定义一个tab函数
+			for (var i = 0; i < navs.length; i++) {
+				navs[i].index = now;       //索引
+				for (var i = 0; i < navs.length; i++) {
+					navs[i].className = "";
+				};
+				navs[now].className = "active";
+				// mTween(list,'left',-imgW*now,800,'easeBoth');
+				list.style.left = -imgW*now + 'px';
+			};
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<ul class="list" style="left:0">
+			<li><img src="images/img5.gif"></li>
+			<li><img src="images/img6.gif"></li>
+			<li><img src="images/img7.gif"></li>
+			<li><img src="images/img8.gif"></li>
+		</ul>
+		<nav id="navs">
+			<a href="javascript:;" class="active">1</a>
+			<a href="javascript:;">2</a>
+			<a href="javascript:;">3</a>
+			<a href="javascript:;">4</a>
+		</nav>
+		<input id="prev" type="button" value="<">
+		<input id="next" type="button" value=">">
+	</div>
+</body>
+</html>

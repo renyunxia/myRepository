@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+	<style type="text/css">
+		#box {
+			width: 100px;
+			height: 100px;
+			border: 10px solid #000;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			var box = document.getElementById('box');
+			var attr = document.getElementById('attr');
+			var val = document.getElementById('val');
+			var btn = document.getElementById('btn');
+			/*
+				属性的写操作
+				= 赋值
+				var 左侧 = 右侧;
+				把等号右侧的值赋给左侧
+				attr.value = "width";
+				val.value = "300px";
+			
+			box.style.width = "300px";
+			box["style"]["width"] = "300px";
+			var attr = "height";
+			var val = "300px";
+			box.style[attr] = val;
+			btn.onclick = function() {
+				var 样式 = "height";
+				var 值 = "300px";
+				box.style[样式] = 值;
+			};
+			
+			btn.onclick = function() {
+				//attr.value 得到的结果也是一个字符串
+				var name = attr.value;
+				var style = val.value;
+				box.style[name] = style;
+			};
+			*/
+			btn.onclick = function() {
+				box.style[attr.value] = val.value;
+				attr.value = "";
+				val.value = "";
+			};
+		};
+	</script>
+</head>
+<body>
+	请输入要修改的样式：<input type="text" id="attr"> <br />
+	请输入样式的值：<input type="text" id="val" > <br />
+	<input type="button" value="确定" id="btn">
+	<div id="box"></div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body {
+	background: #ccc;
+	margin: 0;
+}
+#c {
+	display: block;
+	margin: 50px auto;
+	background: #fff;
+}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var c = document.querySelector('canvas');
+	var cxt = c.getContext("2d");
+	var img = new Image();
+	img.src = "img.jpg"; 
+	img.onload = function(){
+		c.width = img.width;
+		c.height = img.height;
+		cxt.drawImage(img,0,0,c.width,c.height);
+		var data = cxt.getImageData(0,0,c.width,c.height);
+		cxt.clearRect(0,0,c.width,c.height);
+		var newData = cxt.createImageData(data.width,data.height);
+		var arrIndex = [];
+		for(var i = 0; i < data.width*data.height; i++){
+			arrIndex.push(i);
+		}
+		var int = 50;
+		var now = 0;
+		var sortLength = Math.ceil(arrIndex.length/int);
+		var timer = 0;
+		/*console.time(1);
+		arrIndex.sort(function(){
+			return Math.random() - .5;
+		});
+		console.timeEnd(1);
+		*/
+		console.time(1);
+		var work = new Worker("work.js");
+		work.postMessage(arrIndex);
+		work.onmessage = function(e){
+			arrIndex = e.data;
+			console.timeEnd(1);
+			timer = setInterval(function(){
+				if(now >=int){
+					clearInterval(timer);
+				} else {
+					randomNub();
+				}
+				now++;
+			},30);
+		};
+		function randomNub(){
+			for(var i = 0; i < sortLength; i++){
+				var index = arrIndex.pop();
+				var x = index%data.width;
+				var y = Math.ceil(index/data.width);
+				var colors = getData(data,x,y);
+				setData(newData,x,y,colors);
+			}
+			cxt.putImageData(newData,0,0);
+		}	
+	};	
+};
+function getData(data,x,y){
+	var ceils = data.width;
+	var colos = [];
+	var index = ceils*y+x;
+	colos[0] = data.data[index*4];
+	colos[1] = data.data[index*4+1];
+	colos[2] = data.data[index*4+2];
+	colos[3] = data.data[index*4+3];
+	return colos;
+}
+function setData(data,x,y,colos){
+	var ceils = data.width;
+	var index = ceils*y+x;
+	data.data[index*4] = colos[0];
+	data.data[index*4+1] = colos[1];
+	data.data[index*4+2] = colos[2];
+	data.data[index*4+3] = colos[3];
+	return data;
+}
+</script>
+</head>
+<body>
+<canvas id="c" width="500" height="400"></canvas>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		#wrap {
+			width: 200px;
+		}
+		label {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+<!--
+鼠标移入加各行变色的思路
+1.获取li
+2.设置开关为true，
+3.for循环 
+4.if判断 为真时变色，取反，为假，变色
+-->
+<script type="text/javascript">
+window.onload = function() {
+	var wrap = document.getElementById('wrap');
+	var li = wrap.getElementsByTagName('label');
+	var check = document.getElementById('check');
+	var checks = wrap.getElementsByTagName('ul')[0].getElementsByTagName('input');
+	var colors = ["red","green"];
+	var oldColor = "";
+	for(var i = 0; i < li.length; i++){
+		li[i].index = i;
+		li[i].style.background = colors[i%colors.length];
+		li[i].onmouseover = function() {
+			oldColor = this.style.background;
+			this.style.background = "yellow";
+		};
+		li[i].onmouseout = function() {
+			this.style.background = oldColor;
+		};
+		li[i].onclick = function() {
+			var isChecked = true;
+			for(var i = 0; i < checks.length; i++) {
+				if(checks[i].checked == false) {
+					isChecked = false;
+				}
+			}
+			check.checked = isChecked;
+
+			if(checks[this.index].checked) {
+				this.style.background = "blue";
+			} else {
+				this.style.background = colors[this.index%2];
+			}
+			oldColor = this.style.background;
+		};
+	}
+	check.onclick = function() {
+		for(var i = 0; i < checks.length; i++) {
+			checks[i].checked = this.checked;
+			if(this.checked) {
+				li[i].style.background = "blue";
+			} else {
+				li[i].style.background = colors[i%2];
+			}
+		}
+	};
+};
+/*
+	点击 check
+		1) check 是选中的 就把所有 复选框都选中，把对应的label变成蓝色
+		2) check 不是选中的 就把所有复选框取消选中,把对应的lable根据奇偶行还原颜色
+	点击label：
+		1)找到对应input
+		2) input是选中,给label 变成蓝色
+		3) input不是选中,把label 根据奇偶 还原成 原来的颜色
+		4) 找到所有input 如果每一个input 都选中了，就选中 check，如果有1个input没有选中，就不选中check	
+*/
+</script>
+<div id="wrap">
+	<ul>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+	</ul>
+	<div><input type="checkbox" id="check"><span>收藏</span><span>添加</span></div>
+</div>
+</body>
+</html>

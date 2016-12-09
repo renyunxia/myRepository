@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+	<style type="text/css">
+		#box1 {
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+	<script type="text/javascript">
+		/*
+			属性操作的第一种方法： "."
+			属性操作的第二种方法: "[]"
+				注意第二种方法接受的是一个字符串
+			在js中一对引号包起来的字符 都叫做字符串	
+		*/
+		window.onload = function(){
+			var box1 = document.getElementById('box1');
+			//box1.style.width = "300px";
+			box1["className"] = "show"; 
+		};
+	</script>
+</head>
+<body>
+	<div id="box1" style="width:200px;"><span>哈哈哈</span>今天的天气啊 <a href="#">不错</a></div>
+</body>
+</html>

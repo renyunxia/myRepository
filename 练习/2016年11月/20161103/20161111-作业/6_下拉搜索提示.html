@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        input{
+            width: 100%;
+            height: 30px;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            display: none;
+        }
+        li{
+            list-style: none;
+            background-color: #009999;
+            margin-top: 3px;
+            line-height: 30px;
+            width: 100%;
+            color: #fff;
+        }
+        a{
+            text-decoration: none;
+            color:white;
+            display: block;
+            width: 100%;
+        }
+        li:hover,.hover{
+            background-color: #00FF99;
+        }
+        #box{
+            width: 500px;
+            margin: 100px auto 0;
+        }
+        .select{
+            background-color: #60625b;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="text" id="s"/>
+    <ul id="list">
+        <li>《第七个读者》</li>
+        <li>《 心理罪 画像》</li>
+        <li>《 心理罪 教化场》</li>
+        <li>《 心理罪 暗河》</li>
+        <li>《 心理罪 城市之光》</li>
+        <li>《地球往事》</li>
+        <li>《黑暗森林》</li>
+        <li>《死神永生》</li>
+        <li>《乡村教师》</li>
+        <li>《地球大炮》</li>
+    </ul>
+</div>
+<script>
+    (function(){
+        var wrap = document.getElementById('wrap');
+        var input = document.querySelector('input');
+        var list = document.getElementById('list');
+        var lis = list.children;
+        var now = 0;
+        input.onfocus = function(){
+            list.style.display = 'block';
+        }
+        // var isOnKey = false;
+
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].index = i;
+            // lis[i].onmouseover = function(){
+            //     this.className = 'hover';
+            // }
+            lis[i].onclick = function(){
+                this.className = 'select';
+                input.value = this.innerHTML; 
+                list.style.display = 'none';
+            }
+            // lis[i].onmouseout = function() {
+            //     this.className = '';
+            // };
+        };
+        document.onkeydown = function(ev){
+            var code = ev.keyCode;
+            if(ev.keyCode == 40){
+                now++;
+                if(now >= lis.length){
+                    now = 0;
+                    lis[lis.length-1].className = '';
+                }
+                lis[now].className = 'hover';
+                if(now != 0){
+                    lis[now-1].className = '';
+                }
+            }
+            if(ev.ctrlKey){
+                for (var i = 0; i < lis.length; i++) {
+                    lis[i].onclick = function(){
+                        this.className = 'hover';
+                        input.value += this.innerHTML; 
+                    }
+                    // lis[i].onmouseover = function(){
+                    // }
+                    // lis[i].onmouseout = function(){ 
+                    // }
+                };
+            }
+            if(ev.keyCode == 13){
+                input.value = lis[now].innerHTML;
+                lis[now].className = 'select';
+                // lis[now].onmouseover = function(){
+                // }
+                // lis[now].onmouseout = function(){ 
+                // }
+            }
+            if(ev.ctrlKey && ev.keyCode == 13){
+                for (var i = 0; i < lis.length; i++) {
+                    lis[i].onclick = function(){
+                        this.className = 'select';
+                        input.value += this.innerHTML; 
+                    }
+                    // lis[i].onmouseover = function(){
+                    // }
+                    // lis[i].onmouseout = function(){ 
+                    // }
+                };
+            }
+        }
+    })();
+</script>
+</body>
+</html>

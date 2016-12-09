@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body {
+	margin: 0;
+} 
+p {
+	margin: 0;
+	line-height: 30px;
+}
+#wrap {
+	width: 960px;
+	margin: 0 auto;
+}
+#leftBanner {
+	position: absolute;
+	width: 100px;
+	height: 300px;
+	background: red;
+}
+#rightBanner {
+	position: absolute;
+	width: 100px;
+	height: 300px;
+	background: green;
+}
+#backBtn {
+	position: fixed;
+	width: 30px;
+	height: 30px;
+	background: yellow;
+	right: 10px;
+	bottom: 10px;
+	display: none;
+}
+</style>	
+<script type="text/javascript">
+window.onload = function(){
+	var left = document.querySelector('#leftBanner');
+	var right = document.querySelector('#rightBanner');
+	var top = (window.innerHeight - left.offsetHeight)/2;
+	var backBtn = document.querySelector('#backBtn');
+	left.style.top = right.style.top = top + "px";
+	left.style.left = 20 + "px";
+	/*console.log(document.body.scrollHeight,document.body.offsetHeight,document.documentElement.clientHeight,window.innerHeight);
+	console.log(document.body.scrollWidth,document.body.offsetWidth,document.documentElement.clientWidth,window.innerWidth);*/
+	right.style.left = document.documentElement.clientWidth - right.offsetWidth - 20 + "px";
+	window.onscroll = function(){
+		//if(window.pageYoffset)获取滚动条
+		/*console.log(window.pageYOffset ,document.body.scrollTop,document.documentElement.scrollTop,window.scrollY移动端);*/
+		if(window.pageYOffset >= top){
+			right.style.position = left.style.position = "fixed";
+			right.style.top = left.style.top = 0;
+			backBtn.style.display = "block";
+		} else {
+			right.style.position = left.style.position = "absolute";
+			right.style.top = left.style.top = top + "px";
+			backBtn.style.display = "none";
+		}
+	};
+	//window.onresize 窗口大小发生变化
+	window.onresize = function(){
+		right.style.left = document.documentElement.clientWidth - right.offsetWidth - 20 + "px";
+	};
+	backBtn.onclick = function(){
+		window.scrollTo(0,0);
+	};
+};
+</script>
+</head>
+<body>
+<div id="leftBanner"></div>
+<div id="rightBanner"></div>
+<div id="backBtn"></div>
+<div id="wrap"></div>
+<script type="text/javascript">
+var str = "";
+for(var i = 0; i < 100; i++){
+	str += "<p>页面内容"+i+"行</p>"
+}
+wrap.innerHTML += str;
+</script>
+</body>
+</html>

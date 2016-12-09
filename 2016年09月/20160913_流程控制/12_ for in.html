@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			var div = document.getElementById("div");
+			// for in 遍历循环 对象的所有属性
+			//alert("className" in div);
+			for(var s in div){
+				console.log(s,div[s]); //s会依次变成 对象的属性名 s的类型是个字符串
+				
+			}
+		};
+	</script>
+</head>
+<body>
+<div id="div"></div>
+</body>
+</html>

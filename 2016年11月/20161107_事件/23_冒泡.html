@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+	#box {
+		width: 100px;
+		height: 100px;
+		background: blue;
+		position: relative;
+	}
+	#box span {
+		width: 50px;
+		height: 50px;
+		background: yellow;
+		position: absolute;
+		right: -100px;
+		top: 0;
+	}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var box = document.querySelector('#box');
+	var span = document.querySelector('span');
+	//阻止冒泡 
+	box.onclick = function(){
+		console.log(1);
+		box.style.background = "red";
+	};
+	span.onclick = function(e){
+		e.cancelBubble = true;//取消冒泡
+		//e.stopPropagation(); 取消冒泡 标准浏览器识别
+		console.log(2);
+		box.style.background = "yellow";
+		console.log(e);
+	};
+};
+</script>
+</head>
+<body>
+	<div id="box">
+		<span></span>
+	</div>
+</body>
+</html>

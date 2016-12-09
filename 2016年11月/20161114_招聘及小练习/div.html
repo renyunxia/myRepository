@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>div</title>
+	<style>
+		div {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100px;
+			height: 100px;
+			background: goldenrod;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<script>
+		var box = document.querySelector('.box');
+
+		var dir = {
+			l:false,
+			r:false,
+			t:false,
+			b:false
+		};
+
+		setInterval(function(){
+			if(dir.l){
+				box.style.left = box.offsetLeft - 5 + 'px';
+			}
+			if(dir.t){
+				box.style.top = box.offsetTop - 5 + 'px';
+			}
+			if(dir.r){
+				box.style.left = box.offsetLeft + 5 + 'px';
+			}
+			if(dir.b){
+				box.style.top = box.offsetTop + 5 + 'px';
+			}
+		}, 20);
+
+		document.onkeydown = function(e){
+			e.preventDefault();
+			var key = e.keyCode;
+			switch(key){
+				case 37:
+					dir.l = true;break;
+				case 38:
+					dir.t = true;break;
+				case 39:
+					dir.r = true;break;
+				case 40:
+					dir.b = true;break;
+			}
+		};
+
+		document.onkeyup = function(e){
+			e.preventDefault();
+			var key = e.keyCode;
+			switch(key){
+				case 37:
+					dir.l = false;break;
+				case 38:
+					dir.t = false;break;
+				case 39:
+					dir.r = false;break;
+				case 40:
+					dir.b = false;break;
+			}
+		};
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>

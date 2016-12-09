@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title></title>
+<style>
+ul,li {
+	margin: 0;
+	list-style: none;
+}
+</style>
+</head>
+<body>
+<ul>
+<li>
+	<input type="button" value="-" class="down"/>
+	<em>0</em>
+	<input type="button" value="+" class="up"/>
+	单价<span class="tatle1"> 12.5 </span>元小计：
+	<span class="tatle">0</span>元
+</li>
+<li>
+	<input type="button" value="-" class="down"/>
+	<em>0</em>
+	<input type="button" value="+" class="up"/>
+	单价<span class="tatle1">10.5</span>元小计：
+	<span class="tatle">0</span>元
+</li>
+<li>
+	<input type="button" value="-" class="down"/>
+	<em>0</em>
+	<input type="button" value="+" class="up"/>
+	单价<span class="tatle1">8.5</span>元小计：
+	<span class="tatle">0</span>元
+</li>
+<li>
+	<input type="button" value="-" class="down"/>
+	<em>0</em>
+	<input type="button" value="+" class="up"/>
+	单价<span class="tatle1">8</span>元小计：
+	<span class="tatle">0</span>元
+</li>
+<li>
+	<input type="button" value="-" class="down"/>
+	<em>0</em>
+	<input type="button" value="+" class="up"/>
+	单价<span class="tatle1">14.5</span>元小计：
+	<span class="tatle">0</span>元
+</li>
+</ul>
+商品合计共：
+	<span id="how">0</span>件，共花费了：
+	<span id="money">0</span>元<br/>其中最贵的商品单价是：
+	<span id="most">0</span>元
+<script>
+(function (){
+	var li = document.querySelectorAll("li");
+	/*setEv(0);
+	setEv(1);
+	setEv(2);
+	setEv(3);
+	setEv(4);*/
+	for(var i = 0; i < li.length; i++) {
+		setEv(i);
+	}
+	function setEv(index) {
+		var btns = li[index].querySelectorAll("input");
+		var em = li[index].querySelector("em");
+		var nub = parseInt(em.innerHTML);
+		var span =  li[index].querySelectorAll("span");
+		var price = parseFloat(span[0].innerHTML);
+		btns[0].onclick = function() {
+			nub--;
+			if(nub < 0) {
+				nub = 0;
+			}
+			em.innerHTML = nub;	
+			span[1].innerHTML = nub * price;
+			getSum();
+		};
+		btns[1].onclick = function() {
+			nub++;
+			em.innerHTML = nub;	
+			span[1].innerHTML = nub * price;
+			getSum();
+		};
+	}
+	function getSum() {
+		var how = document.querySelector("#how");
+		var money = document.querySelector("#money");
+		var nub = 0;
+		var price = 0;
+		var maxPrice = 0;
+		var most = document.querySelector("#most");
+		for(var i = 0; i < li.length; i++) {
+			var em = parseInt(li[i].querySelector("em").innerHTML);
+			var span = li[i].querySelectorAll("span");
+			nub += em;
+			price += parseFloat(span[1].innerHTML);
+			if(em > 0) {
+				maxPrice = Math.max(parseFloat(span[0].innerHTML),maxPrice)
+			}
+		}
+		how.innerHTML = nub;
+		money.innerHTML = price;
+		most.innerHTML = maxPrice;
+	}
+})();
+</script>
+</body>
+</html>

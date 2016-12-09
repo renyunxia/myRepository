@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <script src="digit.js"></script>
+    <script>
+    var canvas = document.getElementById('canvas');
+    canvas.style.border = '2px solid red'
+    var cxt = canvas.getContext('2d');
+
+    //-----------------------------------
+
+    var L = 0,
+        T = 0,
+        r = 10;
+
+    drawDigit(L, T, 5, cxt)
+
+    //----------------------------------
+    //绘制数字
+    function drawDigit(x, y, num, cxt) {
+        cxt.fillStyle = '#f88';
+        for (var i = 0; i < digit[num].length; i++) {
+            for (var j = 0; j < digit[num][i].length; j++) {
+                if (digit[num][i][j] == 1) {
+                    cxt.beginPath();
+                    cxt.arc(x + (r + 1) + j * 2 * (r + 1), y + (r + 1) + i * 2 * (r + 1), r, 0, Math.PI * 2);
+                    cxt.fill();
+                }
+            }
+        }
+    }
+    </script>
+</body>
+
+</html>

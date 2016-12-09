@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#wrap{
+		width: 220px;
+		padding: 15px;
+		margin: 20px auto;
+	}
+	h2{
+		font: 18px/30px "微软雅黑";
+		color: #000000;
+	}
+	#wrap div,input{
+		width: 60px;
+		height: 26px;
+		/*float: left;*/
+		display: inline-block;
+		border: 1px #999999 solid;
+		text-align: center;
+		font: 14px/24px "微软雅黑";
+		position: relative;
+		background: #fff;
+	}
+	 input{
+		border: none;
+		outline: none;
+		/*padding: 2px 10px;*/
+	}
+	.active{
+		border: 1px #e4393c solid !important;
+	}
+	.active span{
+		display: block;
+	}
+	span{
+		width: 16px;
+		height: 18px;
+		display: none;
+		position: absolute;
+		right: -1px;
+		bottom: -3px;
+		background: url(img/15_03.png) no-repeat;
+	}
+</style>
+<script>
+	window.onload = function(){
+		var divs = document.querySelectorAll("#wrap div");
+//				var index = 0;
+		for(var i=0; i<divs.length; i++){
+			divs[i].onclick=function(){
+				for(var i=0; i<divs.length; i++){
+//							index=i;
+				divs[i].className="";
+				this.className="active";
+			    }
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<div id="wrap">
+		<h2>模拟单选</h2>
+		<div class="active">
+			<input type="button" value="男">
+		    <span></span>
+		</div>
+		<div>
+			<input type="button" value="女"/>
+		    <span></span>
+		</div>
+		<div>
+			<input type="button" value="保密"/>
+		    <span></span>
+		</div>
+	</div>
+</body>
+</html>

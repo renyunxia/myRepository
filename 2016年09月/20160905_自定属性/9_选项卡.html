@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.wrap {
+			width: 300px;
+			border: 1px solid #000;
+			margin: 30px auto;
+		}
+		#nav {
+			height: 32px;
+		}
+		#nav a {
+			float: left;
+			width: 98px;
+			font: 14px/30px "宋体";
+			text-align: center;
+			text-decoration: none;
+			color: #000;
+			background: #ccc;
+			border: 1px solid #000;
+		}
+		#nav .active {
+			background: #000;
+			color: #fff;
+		}
+		.wrap div {
+			height: 200px;
+			background: #000;
+			border: 1px solid #fff;
+			text-align: center;
+			font:  80px/200px "宋体";
+			color: #fff;
+			display: none;
+		}
+		.wrap .show {
+			display: block;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			var navs = document.querySelectorAll("#nav a");
+			for(var i = 0; i < navs.length; i++) {
+				navs[i].onmouseover = function() {
+					console.log(this.id)
+					for(var i = 0; i < navs.length; i++) {	
+						navs[i].className = "";
+					}
+					// 清除所有的navs的class
+					this.className = "active";
+				};
+			}
+		};
+	</script>
+</head>
+<body>
+<section class="wrap">
+	<nav id="nav">
+		<a href="#" id="0" class="active">选项1</a>
+		<a href="#" id="1">选项2</a>
+		<a href="#" id="2">选项3</a>
+	</nav>
+	<div class="show">1</div>
+	<div>2</div>
+	<div>3</div>
+</section>
+</body>
+</html>

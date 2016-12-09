@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	section,header,nav,a,span,div{
+		margin: 0;
+		padding: 0;
+		font-size: 12px;
+	}
+	section{
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+	header,nav{
+		height: 34px;
+		background: rgba(0,0,0,.1);
+		border-bottom: 1px #999 solid;
+		border-radius: 10px 10px 0 0;
+	}
+	a{
+		display: block;
+		width: 120px;
+		height: 24px;
+		float: left;
+		color: #333;
+		line-height: 24px;
+		position: relative;
+		border-radius: 15px 15px 0 0;
+		background: rgba(0,0,0,.2);
+		margin: 10px 0 0 5px;
+		padding: 0 10px;
+		text-decoration: none;
+
+	}
+	a.active{
+		background: #fff;
+	}
+	.close{
+		width: 20px;
+		height: 20px;
+		display: block;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		color: #999;
+		font: 14px/24px "微软雅黑";
+		cursor: pointer;
+	}
+	.add{
+		height: 0;
+	    padding: 8px 15px;
+	    width: auto;
+	    margin-top: 14px;
+	    /* margin-left: -5px; */
+	    z-index: 1;
+	    border-radius: 1px 5px 1px 5px;
+	}
+	#con{
+		height: 100%;
+		position: absolute;
+		top: 35px;
+		padding: 10px;
+		box-sizing:border-box;
+	}
+	#con div{
+		display: none;
+	}
+	#con .show{
+		display: block;
+	}
+	</style>
+	<script>
+		var data = [
+			{
+				title:"我是第一个选项",
+				cons:"我是第一块内容"
+			},
+			{
+				title:"我是第二个选项",
+				cons:"我是第二块内容"
+			},
+			{
+				title:"我是第三个选项",
+				cons:"我是第三块内容"
+			},
+			{
+				title:"我是第四个选项",
+				cons:"我是第四块内容"
+			}
+		]
+		window.onload = function(){
+			var nav = document.querySelector('nav');
+			var con = document.getElementById('con')
+			var add = document.querySelector('.add');
+			var n = 0;
+			creat();
+			add.onclick = function(){
+				n++;
+				creat();
+				if(n > data.length-1){
+			 		add.style.display = "none";
+			 	}
+			}
+			function creat(n){
+				// clear();
+				var title = document.createElement('a');
+				title.href = "javascript:;";
+				var close = document.createElement('span');
+				var cons = document.createElement('div');
+				close.className = "close";
+				title.className = "active";
+				cons.className = "show";
+				title.appendChild(close);
+			 	nav.appendChild(title);
+			 	con.appendChild(cons);
+			 	close.innerHTML = 'x';
+			 	var close = close.innerHTML;
+			 	title.innerHTML += data[n].title;
+			 	cons.innerHTML = data[n].cons;
+			}
+			function clear(){
+				var navs = nav.children[0];
+				var consCld = con.children;
+				for(i=0; i < navs.length; i++){
+					navs[i].className = "";
+					consCld[i].className="";
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<section>
+		<header>
+			<nav>
+				<!-- <a href="javascript:;" class="active">
+					<span class="close">x</span>
+				</a> -->
+				<!-- <a href="javascript:;" class="add"></a> -->
+			</nav>
+		</header>
+		<div id="con">
+			<div class="show"></div>
+			<!-- <div>内容二</div> -->
+		</div>
+	</section>
+</body>
+</html>

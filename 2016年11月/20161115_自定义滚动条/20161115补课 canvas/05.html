@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		canvas {
+			margin: 0 auto;
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var cxt = canvas.getContext('2d');
+
+		var W = canvas.width, H = canvas.height;
+
+		var R = H * 0.45;
+
+		var p = [];
+
+		var offset = 20;
+
+		for(var i=0; i<=360; i+=5){
+			p.push([Math.cos(i*Math.PI/180)*R,Math.sin(i*Math.PI/180)*R])
+		}
+
+		// console.log(p);
+		
+		function drawHeart(x1,x2){
+		 	cxt.save();
+
+		 	cxt.translate(W/2,H/2);
+		 	cxt.rotate(Math.PI/2);
+		 	cxt.lineWidth = 1.2;
+		 	cxt.strokeStyle = '#F9202E';
+		 	cxt.setLineDash([x1,x2]);
+
+		 	cxt.beginPath();
+
+		 	for(var i=0; i<=18; i++){
+		 		cxt.moveTo(p[i][0], p[i][1]);
+		 		cxt.lineTo(p[i + 18][0], p[i + 18][1])
+		 	}
+
+		 	for(var i=36; i<=54; i++){
+		 		cxt.moveTo(p[i][0], p[i][1]);
+		 		cxt.lineTo(p[i + 18][0], p[i + 18][1])
+		 	}
+
+		 	offset = 20;
+
+		 	for(var i=18; i<36; i++){
+		 		cxt.moveTo(p[i][0], p[i][1]);
+		 		cxt.lineTo(p[i + offset][0], p[i + offset][1]);
+		 		offset++;
+		 	}
+
+		 	offset = 20;
+
+		 	for(var i=54; i>36; i--){
+		 		cxt.moveTo(p[i][0], p[i][1]);
+		 		cxt.lineTo(p[i - offset][0], p[i - offset][1]);
+		 		offset++;
+		 	}
+
+
+		 	cxt.stroke();
+		 	cxt.restore();
+		 } 
+		
+		//drawHeart()
+
+		var len = 100;
+
+		function update(){
+			if(len < 750) len += 1;
+			cxt.clearRect(0, 0, W, H);
+			drawHeart(len,100);
+
+			window.requestAnimationFrame(update);
+		}
+
+		update();
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>

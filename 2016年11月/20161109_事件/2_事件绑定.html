@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+		事件绑定：
+			obj.addEventListener(事件名[不带on],事件绑定函数,是否捕获[默认为不捕获：false])
+			
+			注意：
+				如果绑定的函数名一样，那么同样会被覆盖，否则绑定几次就执行几次事件绑定函数。
+			
+	*/
+	
+	function fn1(){
+		alert(this);
+	}
+	
+	function fn2(){
+		alert(this);
+	}
+//	document.onclick = function(){
+//		alert(2);
+//	}
+	document.onclick = fn1;//1
+	document.addEventListener('click',fn1,false);//2
+	document.addEventListener('click',fn2,false);//3
+</script>
+</body>
+</html>

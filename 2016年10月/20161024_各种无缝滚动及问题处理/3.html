@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">	
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.wrap {
+	width: 240px;
+	margin: 40px auto;
+}
+nav {
+	text-align: center;
+	margin: 10px 0;
+}
+#imgs {
+	position: relative;
+	height: 240px;
+	overflow: hidden;
+}
+#list {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 200%;
+}
+#list li {
+	float: left;
+}
+.active {
+	background: #333;
+	color: #fff;
+}
+</style>
+<script type="text/javascript" src="miaov.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var wrap = document.querySelector('.wrap');
+	var navs = wrap.querySelectorAll('nav');
+	var prev = navs[0].children[0];
+	var next = navs[0].children[1];
+	var nav = navs[1].children;
+	var list = document.querySelector('#list');
+	var lis = list.children;
+	var imgW = css(wrap,"width");
+	var now = 0;
+	var imgs = [
+		"img/1.jpg", 
+		"img/2.jpg", 
+		"img/3.jpg", 
+		"img/4.jpg", 
+		"img/5.jpg"
+	];
+	for(var i = 0; i < nav.length; i++){
+		if(nav[i].className == "active"){
+			now = i;
+		}
+		nav[i].index = i;
+		nav[i].onmouseover = function(){
+			var next = this.index;
+			if(next > now){
+				css(list,"left",0);
+				lis[0].children[0].src =  imgs[now];
+				lis[1].children[0].src =  imgs[next];
+				mTween(list,{left:-imgW},2000,"easeBoth");
+			} else {
+				css(list,"left",-imgW);
+				lis[1].children[0].src =  imgs[now];
+				lis[0].children[0].src =  imgs[next];
+				mTween(list,{left:0},2000,"easeBoth");
+			}
+			nav[now].className = "";
+			nav[next].className = "active";
+			now = next;
+		};
+	}
+	next.onclick = function(){
+		var next = now + 1;
+		if(next >= imgs.length){
+			next = 0;
+		}
+		css(list,"left",0);
+		lis[0].children[0].src =  imgs[now];
+		lis[1].children[0].src =  imgs[next];
+		mTween(list,{left:-imgW},2000,"easeBoth");
+		nav[now].className = "";
+		nav[next].className = "active";
+		now = next;
+	};
+	prev.onclick = function(){
+		var next = now - 1;
+		if(next < 0){
+			next = imgs.length - 1;
+		}
+		css(list,"left",-imgW);
+		lis[1].children[0].src =  imgs[now];
+		lis[0].children[0].src =  imgs[next];
+		mTween(list,{left:0},2000,"easeBoth");
+		nav[now].className = "";
+		nav[next].className = "active";
+		now = next;
+	};
+};
+</script>
+</head>
+<body>
+<div class="wrap">
+	<nav>
+		<input type="button" value="上一张">
+		<input type="button" value="下一张">
+	</nav>
+	<div id="imgs">
+		<ul id="list">
+			<li><img src="img/1.jpg"></li>
+			<li><img src="img/2.jpg"></li>
+		</ul>
+	</div>
+	<nav>
+		<input type="button" value="0" class="active">
+		<input type="button" value="1">
+		<input type="button" value="2">
+		<input type="button" value="3">
+		<input type="button" value="4">
+	</nav>
+</div>
+</body>
+</html>

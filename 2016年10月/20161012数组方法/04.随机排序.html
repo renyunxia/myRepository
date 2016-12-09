@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>forEach</title>
+</head>
+<style>
+	.wrap {
+		width: 570px;
+		height: 280px;
+		border: 2px solid #000;
+		position: relative;
+		padding: 10px;
+		overflow: hidden;
+	}
+	.wrap div {
+		width: 120px;
+		height: 120px;
+		background: #FEB13A;
+		float: left;
+		margin: 10px;
+		text-align: center;
+		font: 80px/120px '宋体';
+	}
+</style>
+<script src="tools.js"></script>
+<script>
+	window.onload = function(){
+		var arr = [];
+
+		M('.box').forEach(function(item){
+			arr.push([item.offsetLeft,item.offsetTop]);
+		});
+
+
+		M('.box').forEach(function(item,i){
+			item.style.margin = '0';
+			item.style.position = 'absolute';
+			item.style.left = arr[i][0] + 'px';
+			item.style.top = arr[i][1] + 'px';
+		});
+
+		document.onclick = function(){
+			arr.sort(function(){
+				return 0.5 - Math.random();
+			});
+			M('.box').forEach(function(item,i){
+				mTween(item,{
+					left:arr[i][0],
+					top:arr[i][1]
+				})
+			});
+		}
+
+
+
+		function M(sele) {
+			var first = sele.substr(0,1);
+			var isArr = sele.split(' ');
+			if(first === '#' && isArr.length == 1){
+				return document.getElementById(sele.substr(1));
+			}else{
+				var arr = Array.from(document.querySelectorAll(sele));
+				return arr.length == 1 ? arr[0] : arr;
+			}
+		}
+
+	};
+</script>
+<body>
+	<div class="wrap" id="wrap">
+		<div class="box">1</div>
+		<div class="box">2</div>
+		<div class="box">3</div>
+		<div class="box">4</div>
+		<div class="box">5</div>
+		<div class="box">6</div>
+		<div class="box">7</div>
+		<div class="box">8</div>
+	</div>
+</body>
+</html>

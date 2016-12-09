@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+		parseInt 转换为整数
+		parseInt(要转换的内容) 返回值 转换之后的结果 
+		总左向右 一位一位，如果碰到了非数字 就把之前的内容返回来
+
+		问题：
+			parseInt()默认会根据前缀自动选择进制 
+				0X -- 16进制 
+
+				0 - f(0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f)
+			parseInt(要转换的内容,进制)	
+
+	*/
+	//var nub = "12.51";
+	var nub = "08";
+	alert(parseInt(nub,10));
+</script>	
+</body>
+</html>

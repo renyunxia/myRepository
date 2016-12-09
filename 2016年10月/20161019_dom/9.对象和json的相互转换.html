@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+//标准中规定 在{}的时候，属性的名字也得用引号包起来
+var obj = {
+	name:"付强",
+	object: null,
+	age: 28
+};
+var arr = ["付强",null];
+
+var json = '{"name":"付强","object": null,"age": 28}';
+var json2 = '["付强",null]';
+// json是一种类似JS中的对象格式的字符串
+//console.log(json['name']);
+//JSON.parse(JSONString) json转换成对象
+// 注意 json的属性名 必须要加引号，否则转换的时候会出错
+//console.log(JSON.parse(json));
+var obj2 = JSON.parse(json2);
+console.log(obj2);
+//JSON.stringify(object) 对象转换成json
+console.log(JSON.stringify(obj));
+</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		var data = [
+			{
+				url: "img/1.jpg",
+				text: "1-自由"
+			},
+			{
+				url: "img/2.jpg",
+				text: "2-林荫"
+			},
+			{
+				url: "img/3.jpg",
+				text: "3-碧水"
+			},
+			{
+				url: "img/4.jpg",
+				text: "4-碧水"
+			},
+			{
+				url: "img/5.jpg",
+				text: "5-碧水"
+			},
+			{
+				url: "img/6.jpg",
+				text: "6-碧水"
+			},
+			{
+				url: "img/7.jpg",
+				text: "7-碧水"
+			},{
+				url: "img/8.jpg",
+				text: "8-碧水"
+			}
+		];
+		window.onload = function(){
+			var list = document.getElementById("list");
+			var btn = document.querySelectorAll('input');
+			var listInner = '';
+			for(var i = 0; i < data.length; i++){
+				
+				listInner += '<li><img src="'+data[i].url+'"><p>'+data[i].text+'</p></li>';
+			}
+			list.innerHTML = listInner;
+			btn[0].onclick = function(){
+				listInner = '';
+				data.sort(function(a,b){
+					return  parseInt(b.text) - parseInt(a.text);
+				});
+				for(var i = 0; i < data.length; i++){
+					listInner += '<li><img src="'+data[i].url+'"><p>'+data[i].text+'</p></li>';
+				}
+				list.innerHTML = listInner;	
+			};
+			btn[1].onclick = function(){
+				listInner = '';
+				data.sort(function(){
+					return  Math.random() - .5;
+				});
+				for(var i = 0; i < data.length; i++){
+					listInner += '<li><img src="'+data[i].url+'"><p>'+data[i].text+'</p></li>';
+				}
+				list.innerHTML = listInner;	
+			};
+		};
+	</script>
+	<style type="text/css">
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		p {
+			margin: 0;
+		}
+		img {
+			vertical-align: top;
+		}
+		#wrap {
+			width: 400px;
+			margin: 30px auto;
+			text-align: center;
+		}
+		#list li {
+			width: 100px;
+			float: left;
+		}
+		#list img {
+			width: 100px;
+		}
+	</style>
+</head>
+<body>
+<div id="wrap">
+	<input type="button" value="从大到小" />
+	<input type="button" value="随机排序" />
+	<ul id="list">
+
+	</ul>
+</div>
+</body>
+</html>

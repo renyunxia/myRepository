@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#wrap,#wrap2 {
+			width: 300px;
+			border: 1px solid green;
+			margin: 30px auto;
+		}
+		#nav {
+			height: 32px;
+		}
+		#nav a {
+			float: left;
+			width: 98px;
+			font: 14px/30px "宋体";
+			text-align: center;
+			text-decoration: none;
+			color: #000;
+			background: pink;
+			border: 1px solid green;
+		}
+		#nav .active {
+			background: green;
+			color: #fff;
+		}
+		#wrap div,#wrap2 div {
+			height: 200px;
+			/*background: #000;*/
+			border: 1px solid #fff;
+			text-align: center;
+			font:  80px/200px "宋体";
+			color: #000;
+			display: none;
+		}
+		#wrap .show,#wrap2 .show {
+			display: block;
+		}
+		.btn_box{
+			width: 420px;
+			margin: 30px auto;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<section id="wrap">
+		<nav id="nav">
+			<a href="#" class="active">选项1</a>
+			<a href="#">选项2</a>
+			<a href="#">选项3</a>
+		</nav>
+		<div class="show">1</div>
+		<div>2</div>
+		<div>3</div>
+	</section>
+	<section id="wrap2">
+		<nav id="nav">
+			<a href="#" class="active">选项1</a>
+			<a href="#">选项2</a>
+			<a href="#">选项3</a>
+		</nav>
+		<div class="show">1</div>
+		<div>2</div>
+		<div>3</div>
+	</section>
+	<section class="btn_box">
+		<input type="button" value="1播2停">
+		<input type="button" value="2播1停">
+		<input type="button" value="两个都停止">
+		<input type="button" value="两个再次播">
+		<input type="button" value="两个动作相反">
+	</section>
+	
+	<script>
+	/*
+		1.自动播放  (OK)
+		2.第一个播放，第二个不走 ()
+		3.点击btn1的时候，让第二个走，第一个停
+		4.点击btn2的时候，2个都停
+		5.点击btn3的时候，2个都走
+		6.反向走（走的停，停的走） 
+	*/
+	function Tab(id){
+		//this指Tab
+		this.wrap = document.getElementById(id);
+		this.nav = this.wrap.children[0];
+		this.as = this.nav.getElementsByTagName('a');
+		this.divs = this.wrap.getElementsByTagName('div');
+		this.timer = null;
+		this.num = 0;
+		this.init();
+	}
+
+	// Tab.prototype.init = function(){
+	// 	var _this = this; //Tab
+	// 	for (var i = 0; i < this.as.length; i++) {
+	// 		this.as[i].index = i;
+	// 		this.as[i].onclick = function(){
+	// 			_this.num = this.as[i].index;
+	// 			_this.change(this);  //this.点击的as
+	// 		}
+	// 	}
+	// }
+
+	Tab.prototype.init = function(){
+		var _this = this; //Tab
+		for (var i = 0; i < this.as.length; i++) {
+			(function(index){
+				_this.as[index].onclick = function(){
+					_this.num = index;
+					_this.change(index);
+				}
+			})(i);
+		}
+	}
+
+	Tab.prototype.change = function(index){
+		for (var i = 0; i < this.as.length; i++) {
+			this.as[i].className = '';
+			this.divs[i].className = '';
+		};
+		this.as[index].className = 'active';
+		this.divs[index].className = 'show';
+	}
+
+	Tab.prototype.autoPlay = function(){
+		var _this = this;
+		clearInterval(this.timer);
+		this.timer = setInterval(function(){
+			_this.num++;
+			if(_this.num >= _this.as.length){
+				_this.num = 0;
+			}
+			_this.change(_this.num);
+		},1000)
+	}
+
+	Tab.prototype.stop = function(){
+		clearInterval(this.timer);
+		this.timer = null;
+	}
+
+	Tab.prototype.fanx = function(){
+		return !!this.timer;
+	}
+	var t1 = new Tab('wrap');
+	var t2 = new Tab('wrap2');
+	t1.autoPlay();
+	t2.autoPlay();
+
+	var btnBox = document.querySelector('.btn_box');
+	var btn = btnBox.getElementsByTagName('input');
+
+	btn[0].onclick = function(){
+		t2.stop();
+	}
+	btn[1].onclick = function(){
+		t1.stop();
+		t2.autoPlay();
+	}
+	btn[2].onclick = function(){
+		t1.stop();
+		t2.stop();
+	}
+	btn[3].onclick = function(){
+		t1.autoPlay();
+		t2.autoPlay();
+	}
+	btn[4].onclick = function(){
+		if(t1.fanx()){
+			t1.stop();
+		}else{
+			t1.autoPlay();
+		}
+		if(t2.fanx()){
+			t2.stop();
+		}else{
+			t2.autoPlay();
+		}
+	}
+	</script>
+</body>
+</html>

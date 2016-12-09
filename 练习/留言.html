@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	#wrap{
+		width: 300px;
+		height: 500px;
+		margin: 20px;
+		padding: 15px;
+	}
+	h2{
+		font: 16px/34px "宋体";
+		border-bottom: 1px #ccc solid;
+	}
+	#message{
+		padding: 10px;
+		height: auto;
+		border-bottom: 1px #ccc solid;
+	}
+	#message li{
+		line-height: 26px;
+		padding: 0 5px;
+		margin: 5px 0;
+	}
+	h3{
+		font: 14px "宋体";
+		padding: 10px 0;
+	}
+	textarea{
+		padding: 5px;
+		line-height: 22px;
+		margin: 5px 0;
+	}
+	#btn{
+		width: 100%;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var message = document.getElementById('mrssage');
+		var text = document.getElementById('text');
+		var btn = document.getElementById('btn');
+		btn.onclick = function(){
+			if(text.value == ""){
+				alert('请输入内容');
+			}else{
+				message.innerHTML = '<li>' + text.value + '</li>'
+			}
+			text.value = "";
+		}
+	}
+	</script>
+</head>
+<body>
+	<section id="wrap">
+		<h2>留言板</h2>
+		<div id="message">
+			<ul>
+				<li>asdvfdf </li>
+			</ul>
+		</div>
+		<h3>请输入留言内容</h3>
+		<textarea name="" id="" cols="39" rows="2" id="text"></textarea>
+		<input type="button" value="发表留言" id="btn">
+	</section>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+	window.onload = function(){
+		var form = document.getElementsByTagName('form')[0];
+		var input = document.getElementsByTagName('input');
+		form.onsubmit = function(){
+			if(input[0].value == ""){
+				alert("请输入内容");
+				input[0].focus();
+				return false;
+			}
+			if(input[1].value == ""){
+				alert("请输入密码");
+				input[1].focus();
+				return false;
+			}
+		};
+	};
+	</script>
+</head>
+<body>
+<form action="http://www.baidu.com">
+	<input type="text" name="" placeholder="请输入用户名">
+	<input type="password" name="" placeholder="请输入密码">
+	<input type="submit" value="提交">
+</form>
+</body>
+</html>

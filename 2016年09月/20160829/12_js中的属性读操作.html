@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+	<style type="text/css">
+		#box {
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+	<script type="text/javascript">
+		/*
+			属性操作第一种方法:"."
+		*/
+		window.onload = function(){
+			var box = document.getElementById('box');
+			var img = document.getElementById('img');
+			var a = document.getElementById('a');
+			box.onclick = function() {
+				alert("今天留作业吗");
+			};
+			//alert(box.id); 获取元素id值	
+			//alert(box.className); 获取元素class值
+			//alert(box.tagName); 获取元素的标签名
+			//alert(box.onclick);
+			//alert(img.src); href和src获取到的都是绝对路径
+			//alert(a.href);
+		};
+	</script>
+</head>
+<body>
+	<div id="box" class="div1"></div>
+	<img src="img.jpg" id="img">
+	<a href="8_函数.html" id="a">跳转</a>
+</body>
+</html>

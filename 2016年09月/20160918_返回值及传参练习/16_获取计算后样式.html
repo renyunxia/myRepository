@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box {
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+		/*
+			计算后样式，当前元素显示出来的样式
+		*/
+	</style>
+	<script type="text/javascript">
+		function $(id){
+			return document.getElementById(id);
+		}
+		window.onload = function() {
+			var box = $("box");
+			alert(box.currentStyle);
+			if(box.currentStyle) {
+				alert("这是识别 currentStyle的浏览器");
+			} else {
+				alert("这是不识别 currentStyle的浏览器");
+			}
+			//alert(getComputedStyle(box)["backgroundColor"]);
+			/*
+				getComputedStyle(要获取样式的元素)["样式名"];
+				1. 颜色值 拿到的是 rgb样式
+				2. getComputedStyle只能获取 不能设置
+				3. IE6.7.8不支持 getComputedStyle
+
+				要获取样式的元素.currentStyle["样式名"];
+				1. 不能获取复合样式
+				2. 只兼容IE8包含IE8之前的IE浏览器
+
+
+				box.currentStyle 在IE下可以获取到一个对象 在标准下 是undefined
+			*/
+		};
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>

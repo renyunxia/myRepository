@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#wrap{
+			width: 820px;
+			height: 340px;
+			padding: 20px;
+			background: #ccc;
+			margin: 10px auto;
+			text-align: center;
+		}
+		#list{
+			width: 820px;
+			height: 340px;
+			position: relative;
+		}
+		#list li{
+			width: 200px;
+			height: 150px;
+			list-style: none;
+			text-align: center;
+			border: 2px #fff solid;
+			float: left;
+		}
+		#list img{
+			width: 200px;
+			height: 150px;
+			display: block;
+			/*position: absolute;
+			left: 0;
+			right: 0;*/
+		}
+		#list p{
+			font: 14px/30px "宋体";
+			width: 100%;
+			background: #fff;
+		}
+	</style>
+	<script type="text/javascript" src="js/miaov.js"></script>
+</head>
+<body>
+	<div id="wrap">
+		<!-- <input type="button" value="从大到小"> -->
+		<input type="button" value="随机排序">
+		<ul id="list">
+			<!-- <li>
+				<img src="images/img4.gif">
+				<p>图片1</p>
+			</li> -->
+		</ul>
+	</div>
+	<script>
+	(function(){
+		var date = [
+			 'images/img1.gif',
+			'images/img2.gif',
+			'images/img3.gif',
+			'images/img4.gif',
+			'images/img5.gif',
+			'images/img6.gif',
+			'images/img7.gif',
+			'images/img8.gif'
+		];
+		var dateIndex = {
+			'images/img1.gif':1,
+			'images/img2.gif':2,
+			'images/img3.gif':3,
+			'images/img4.gif':4,
+			'images/img5.gif':5,
+			'images/img6.gif':6,
+			'images/img7.gif':7,
+			'images/img8.gif':8
+		}
+		var list = document.getElementById('list');
+		var btn = document.querySelectorAll('input');
+		var lis = list.children
+		var aPos = [];
+		var zIndex = 1;
+		
+		creatE();
+		
+		function creatE(){
+			var listInner = '';
+			for (var i = 0; i < date.length; i++) {
+				listInner += '<li><img src='+date[i]+'></li>'
+			};
+			list.innerHTML = listInner;
+			for(var i = 0; i<lis.length; i++){
+				aPos[i] = {
+					left:lis[i].offsetLeft,
+					top:lis[i].offsetTop
+				}
+				lis[i].style.top = lis[i].offsetTop + "px";
+				lis[i].style.left = lis[i].offsetLeft + "px";
+				lis[i].style.zIndex = 1;
+			}
+			for(var i = 0; i<lis.length; i++){
+				lis[i].style.position = "absolute";
+				lis[i].index = i;
+				Drag(lis[i]);
+			}
+		}
+		
+
+		//随机切换
+		btn[0].addEventListener('click',clickFn);
+		function clickFn(){
+			aPos.sort(function (a,b){
+				return Math.random() - .5;
+			});
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].style.transition = '.5';
+				lis[i].style.left = aPos[i].left + 'px';
+				lis[i].style.top = aPos[i].top + 'px';
+				//随机之后，将所有的index重置。不然会错位
+				lis[i].index = i;
+			};
+		}
+		
+
+		function Drag(obj){
+			var disX = 0;
+			var disY = 0;
+			var objIndex = null;
+
+			obj.addEventListener('mousedown',fnDown);
+			function fnDown(ev){
+				//当点击的时候，把所有的transition清掉
+				for (var i = 0; i < lis.length; i++) {
+					lis[i].style.transition = '';
+				};
+				//当按下当前这个li的时候，将zIndex++，再把这个值赋值给当前这个li保证每次zIndex都是最大的
+				obj.style.zIndex = ++zIndex;
+
+				disX = ev.pageX - obj.offsetLeft;
+				disY = ev.pageY - obj.offsetTop;
+
+				document.addEventListener('mousemove',fnMove);
+				document.addEventListener('mouseup',fnUp);
+
+				ev.preventDefault();
+
+				function fnMove(ev){
+					obj.style.left = ev.pageX - disX + 'px';
+					obj.style.top = ev.pageY - disY + 'px';
+
+					var minObj = minFn(obj);
+
+					if(minObj && obj != minObj){
+						//把当前拖拽的这个元素和被碰撞的元素加上transition
+						minObj.style.transition = '.5s';
+
+						//互换位置
+						obj.style.left = aPos[minObj.index].left + 'px';
+						minObj.style.left = aPos[obj.index].left + 'px';
+						obj.style.top = aPos[minObj.index].top + 'px';
+						minObj.style.top = aPos[obj.index].top + 'px';
+
+						//交换完位置之后还要把索引值调换
+						var newIndex = minObj.index;
+						minObj.index = obj.index;
+						obj.index = newIndex;
+
+						//当运动结束之后，把被碰撞的元素class名清空
+						minObj.timer = setTimeout(function(){
+							minObj.className = '';
+							clearTimeout(minObj.timer);
+						},501);
+					}
+				}
+				function fnUp(){
+					//Up的时候要交换位置。
+					//如果有最近的
+					if(objIndex){
+
+					}else{
+						obj.style.transition = '.5s';
+						obj.style.left = aPos[obj.index].left + 'px';
+						obj.style.top = aPos[obj.index].top + 'px';
+					}
+					document.removeEventListener('mousemove',fnMove);
+					document.removeEventListener('mouseup',fnUp);
+				}
+			}
+			function minFn(obj){
+				var max = Infinity;
+				var objIndex = -1;
+				for (var i = 0; i < lis.length; i++) {
+					if(duang(obj,lis[i])){
+						var a = aPos[lis[i].index].left - obj.offsetLeft;
+						var b = aPos[lis[i].index].top - obj.offsetTop;
+						var sqrt = Math.sqrt(Math.pow(a,2)+Math.pow(b,2));
+						if(max > sqrt){
+							max = sqrt;
+							objIndex = i;
+						}
+					}
+				}
+				if(objIndex == -1){
+					return null;
+				}else{
+					return lis[objIndex];
+				}
+			}	
+			function duang(obj,obj2){
+				var l1 = obj.offsetLeft;
+				var t1 = obj.offsetTop;
+				var r1 = l1 + obj.offsetWidth;
+				var b1 = t1 + obj.offsetHeight;
+				
+				var l2 = obj2.offsetLeft;
+				var t2 = obj2.offsetTop;
+				var r2 = l2 + obj2.offsetWidth;
+				var b2 = t2 + obj2.offsetHeight;
+				
+				if(r1 < l2 || t1 > b2 || l1 > r2 || b1 < t2){
+					return false;
+				}else{
+					return true;
+				}
+			}
+		}
+	})();
+	</script>
+</body>
+</html>

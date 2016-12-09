@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	ul{
+		list-style: none;
+		padding: 0;
+		width: 200px;
+		margin: 10px;
+	}
+	ul li{height: 30px; line-height: 26px;padding: 0 15px; background: #ccc; color: #fff;}
+	.side{background: orange;}
+	.near{background: pink; color: #fff;}
+	.none{background: red; color: #fff;}
+	.focus{background: green;}
+	</style>
+	<script>
+	window.onload = function(){
+		var ul1 = document.getElementById('ul1');
+		var lis = ul1.children;
+		first = ul1.firstElementChild;
+		last = ul1.lastElementChild;
+
+		for (var i = 0; i < lis.length; i++) {
+			lis[i].onmouseover = function(){
+				if(this == first || this == last){
+					this.className = "side";
+				}else{
+					this.className = "focus"
+					this.previousElementSibling.className = "near";
+					this.nextElementSibling.className = "near";
+					first.className = "none";
+					last.className = "none";
+				}
+			}
+			lis[i].onmouseout = function(){
+				for (var i = 0; i < lis.length; i++) {
+					lis[i].className = "";
+				};
+				first.className = "none";
+				last.className = "none";
+			}
+		};
+	}
+	</script>
+</head>
+<body>
+	<ul id="ul1">
+		<li class="none">1111</li>
+		<li>2222</li>
+		<li>3333</li>
+		<li>4444</li>
+		<li>5555</li>
+		<li>6666</li>
+		<li>7777</li>
+		<li class="none">8888</li>
+	</ul>
+</body>
+</html>

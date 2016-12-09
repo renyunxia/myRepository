@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	html{
+		height: 100%;
+	}
+	body{
+		margin: 0;
+		height: 100%;
+		background: url(images/bg.png) no-repeat center center #000;
+	}
+	#box{
+		width: 520px;
+		height: 520px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin: -260px 0 0 -260px;
+		text-align: center;
+		line-height: 150px;
+	}
+	#title{
+		display: block;
+		margin: 20px auto;
+	}
+	img{
+		vertical-align: middle;
+	}
+	.date{
+		width: 25px;
+		height: 37px;
+	}
+	#week{
+		width: 38px;
+		height: 36px;
+	}
+	</style>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script>
+	window.onload = function(){
+		var imgs = document.getElementsByClassName('date');
+		var week = document.getElementById('week');
+		var weekImg = ["seven","one","two","three","four","five","six"];
+		for (var i = 0; i < imgs.length; i++) {   
+			imgs[i].nowImg = 0;  //自定义
+		};
+		week.nowWeek = null;  //自定义
+		setInterval( myTime, 1000 );
+		myTime();
+		function myTime(){
+			var date = new Date();
+			var year = toTwo(date.getFullYear());    //0获取年份
+			var month = toTwo(date.getMonth()+1);    //0获取月份
+			var date2 = toTwo(date.getDate());       //0获取日期
+			var hours = toTwo(date.getHours());      //0获取小时
+			var minutes = toTwo(date.getMinutes());  //0获取分份
+			var seconds = toTwo(date.getSeconds());  //获取秒份
+			var day = date.getDay();  //获取一周内的第几天
+			var time = year+month+date2+hours+minutes+seconds; //时间等于上面获取的时间拼接
+			for (var i = 0; i < time.length; i++) {
+				if(imgs[i].nowImg != time[i]){   //判断图片0是否为当前时间
+					imgs[i].nowImg = time[i];  //如果为true，当前当前时间就等于对应图片
+					toMove(imgs[i],'images/' + time[i] + '.png')  //当前时间下的图片高度发生变化
+				}
+			};
+
+			if( week.nowWeek != day ){  //判断null不等于day
+				 week.nowWeek = day;    //如果为true就等于当前时间
+				toMove(week,'images/' +  weekImg[day] + '.png')
+			}
+			// week.src =  'images/' + weekImg[day] + '.png';
+		}
+		function toMove(imgs,attr) {  //元素  样式
+			mTween(imgs,{height:0},300,"linear",function(){
+				imgs.src = attr;   //改变图片路径
+				mTween(imgs,{height:37},300,"linear")
+			})
+		}
+		function toTwo(n){
+			return n < 10 ? '0' + n : '' + n; //n小于10就等于0+n否则就等于''+n
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<img src="images/title.png" id="title"/>
+		<img src="images/0.png" class="date"/>
+		<img src="images/0.png" class="date"/>
+		<img src="images/0.png" class="date"/>
+		<img src="images/0.png" class="date"/>
+		<img src="images/year.png"/>
+		<img src="images/0.png" class="date"/>
+		<img src="images/0.png" class="date"/>
+		<img src="images/month.png"/>
+		<img src="images/0.png" class="date"/>
+		<img src="images/0.png" class="date"/>
+		<img src="images/seven.png"/>
+		<br />
+		<img src="images/0.png" class="date"/>
+		<img src="images/0.png" class="date"/>
+		<img src="images/sign.png"/>
+		<img src="images/0.png" class="date"/>
+		<img src="images/0.png" class="date"/>
+		<img src="images/sign.png"/>
+		<img src="images/0.png" class="date"/>
+		<img src="images/0.png" class="date"/>
+		<br />
+		<img src="images/week.png" />
+		<img src="images/sign.png" class="date"/>
+		<img src="images/0.png" id="week"/>
+	</div>
+</body>
+</html>

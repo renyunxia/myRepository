@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.active{
+			background: red;
+		}
+		strong {
+			display: none;
+			font-size: 50px;
+		}
+		.show {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<input type="button" value="1" class="active">
+	<input type="button" value="2">
+	<input type="button" value="3">
+	<strong class="show">1</strong>
+	<strong>2</strong>
+	<strong>3</strong>
+	<script type="text/javascript">
+		var input = document.querySelectorAll('input');
+		var strong = document.querySelectorAll('strong');
+		for(var i = 0; i < input.length; i++){
+			input[i].onclick = function(){
+				for(var i = 0; i < input.length; i++){
+					if(input[i] == this){
+						input[i].className = "active";
+						strong[i].className = "show";
+					} else {
+						input[i].className = "";
+						strong[i].className = "";
+					}
+				}
+			};
+		}
+	</script>
+</body>
+</html>

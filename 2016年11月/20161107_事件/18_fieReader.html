@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+window.onload = function(){
+	var file = document.querySelector('input');
+	var c = document.createElement("canvas");
+	var cxt = c.getContext("2d");
+	file.onchange = function(e){
+		//console.log(e);
+		var src = e.target.files; 
+		var reader = new FileReader();
+		reader.onload = function(e){ //文件读取完成
+			console.log(e.target.result);//读取后的base64编码
+			var img = new Image();
+			img.src = e.target.result;
+			img.onload = function(){
+				c.width = img.width;
+				c.height = img.height;
+				cxt.drawImage(img,0,0,c.width,c.height);
+				document.body.appendChild(c);
+				console.log(c.toDataURL("image/png"));
+
+			};
+		};
+		reader.readAsDataURL(src[0]); //读取文件base64编码
+	};
+};
+</script>
+</head>
+<body>
+<input type="file" accept="image/*">
+</body>
+</html>

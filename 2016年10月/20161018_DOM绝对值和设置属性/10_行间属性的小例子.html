@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" id="btn" value="点击显示" />
+	<img _src="作业/作业需求.gif" id="img"/>
+<script type="text/javascript">
+	/*
+		div.index = 1;
+		div['index'] = 1;
+		obj.setAttribute(key,value) 设置属性（并且是显示在页面中的）:在行间加了一个自定义属性。
+		
+		obj.getAttribute(key) 获取行间属性，包括src路径。
+		
+		obj.removeAttribute(key)  删除行间的属性
+		
+	*/
+	var btn = document.getElementById('btn');
+	var img = document.getElementById('img');
+	
+	btn.onclick = function(){
+		img.src = img.getAttribute('_src');
+		img.removeAttribute('_src');
+	}
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	ul{
+		padding: 0;
+	}
+	li{list-style: none;}
+	</style>
+	<script>
+	window.onload = function(){
+		var lis = document.querySelectorAll('#list li'); //获取list 下所有的li标签
+		var ems = document.querySelectorAll('#list em'); //获取list 下所有的em标签
+		var sum = document.querySelectorAll('#list span:nth-of-type(odd)'); //获取list 下所有的偶数span标签
+		var total = document.querySelectorAll('#list span:nth-of-type(even)'); //获取list 下所有的奇数span标签
+		var infos = document.querySelectorAll('.info span'); //获取class.info 下所有的span标签
+
+		for (var i = 0; i < lis.length; i++) {
+			price(lis[i]);  //调用price函数，第i个li当作参数传到price里 
+		};
+		function price(ele){  //函数(形参)
+			var btns = ele.getElementsByTagName('button'), //获取lis里面button标签
+			    num = ele.getElementsByTagName('em')[0],   //获取lis里面第一个em标签
+			    spans = ele.getElementsByTagName('span');  //获取lis里面所有的span标签
+
+		    btns[0].onclick = function(){  //点击第一个btns按钮
+		    	var c = num.innerHTML*1;   //定义变量c等于num，*1是把字符串转成数字类型
+		    	var per = parseFloat( spans[0].innerHTML); //把li里面的第0个spans转换成数字类型
+		    	// c = c < 0 ? --c : 0;
+		    	c--;           //
+		    	if(c < 0){
+					c = 0;     //判断c--，小于0，就等于0，
+				}              //
+		    	num.innerHTML = c; //num等于c的值
+		    	spans[1].innerHTML = c * per;  //li里面的合计也就是第1个spans的值等于数量*单价
+		    	addInfo();  //调用addInfo函数
+		    }
+
+		    btns[1].onclick = function(){
+		    	var c = num.innerHTML*1;
+		    	var per = parseFloat( spans[0].innerHTML);
+		    	c ++;
+		    	num.innerHTML = c;
+		    	spans[1].innerHTML = c * per + '元';
+		    	addInfo();
+		    }
+		}
+		function addInfo(){
+			var a = 0;   //商品合计
+			var b = 0;   //商品总价
+			var c = 0;   //商品最贵
+			for (var i = 0; i < ems.length; i++) {       //循环ems
+				a += parseInt(ems[i].innerHTML);                 //商品合计=ems依次循环相加并转换成整数类型
+				b += parseFloat(total[i].innerHTML);     //商品总价等于total依次循环相加并转换成数字类型
+				if(c < parseFloat(total[i].innerHTML)){  //商品最贵的c小于total总价那就等于这个值，依次循环保留最大的
+					c = parseFloat(total[i].innerHTML);  //
+				}
+			};
+			infos[0].innerHTML = a;
+			infos[1].innerHTML = b;
+			infos[2].innerHTML = c;
+		}
+	}
+	</script>
+</head>
+<body>
+	<ul id="list">
+		<li>
+			<button>-</button>
+			<em>0</em>
+			<button>+</button>
+			单价：<span>12.5元</span>
+			小计：<span>0元</span>
+		</li>
+		<li>
+			<button>-</button>
+			<em>0</em>
+			<button>+</button>
+			单价：<span>12.5元</span>
+			小计：<span>0元</span>
+		</li>
+		<li>
+			<button>-</button>
+			<em>0</em>
+			<button>+</button>
+			单价：<span>12.5元</span>
+			小计：<span>0元</span>
+		</li>
+		<li>
+			<button>-</button>
+			<em>0</em>
+			<button>+</button>
+			单价：<span>12.5元</span>
+			小计：<span>0元</span>
+		</li>
+	</ul>
+	<div class="info">
+		商品合计：<span>0</span> 件<br>
+		商品总计：<span>0</span> 元<br>
+		最贵的：<span>0</span> 元<br>
+	</div>
+</body>
+</html>

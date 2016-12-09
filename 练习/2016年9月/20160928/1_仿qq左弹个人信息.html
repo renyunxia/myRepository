@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.box{
+		width: 300px;
+		height: 500px;
+		background: #ccc;
+		border: 2px #000 solid;
+		margin: 20px 10px 0 0;
+		float: right;
+		position: relative;
+	}
+	.name{
+		width: 50px;
+		height: 50px;
+		background: red;
+		margin: 30px 0 10px 15px;
+		position: relative;
+	}
+	.detail{
+		width: 200px;
+		height: 300px;
+		position: absolute;
+		background: blue;
+		left: -205px;
+		top: 0;
+		display: none;
+	}
+	</style>
+	<script type="text/javascript" src="MTween.js"></script>
+	<script>
+	window.onload = function(){
+		var name = document.getElementsByClassName("name")[0];
+		var details = document.getElementsByClassName("detail")[0];
+		var timer = 0;
+		details.onmouseover = name.onmouseover = function(){
+			clearTimeout(timer);
+			setTimeout(
+				function() {
+					details.style.display = "block";
+				},500
+			)
+		}
+		details.onmouseout = name.onmouseout = function(){
+			clearTimeout(timer);
+			setTimeout(
+				function() {
+					details.style.display = "none";
+				},500
+			)
+		}
+	}
+	</script>
+</head>
+<body>
+	<div class="box">
+		<div class="name"></div>
+		<div class="detail"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<!--
+鼠标移入加各行变色的思路
+1.获取li
+2.设置开关为true，
+3.for循环 
+4.if判断 为真时变色，取反，为假，变色
+-->
+<script type="text/javascript">
+window.onload = function() {
+	var wrap = document.getElementById('wrap');
+	var li = wrap.getElementsByTagName('li');
+	var check = document.getElementById('check');
+	var checks = wrap.getElementsByTagName('ul')[0].getElementsByTagName('input');
+	var colors = ["red","green","blue"];
+	var oldColor = "";
+	for(var i = 0; i < li.length; i++){
+		li[i].style.background = colors[i%colors.length];
+		li[i].onmouseover = function() {
+			oldColor = this.style.background;
+			this.style.background = "yellow";
+		};
+		li[i].onmouseout = function() {
+			this.style.background = oldColor;
+		};
+	}
+	check.onclick = function() {
+		for(var i = 0; i < checks.length; i++) {
+			checks[i].checked = this.checked;
+		}
+	};
+	for(var i = 0; i < checks.length; i++) {
+		checks[i].onclick = function() {
+			var isChecked = true;
+			for(var i = 0; i < checks.length; i++) {
+				if(checks[i].checked == false) {
+					isChecked = false;
+				}
+			}
+			check.checked = isChecked;
+		};
+	}
+};
+</script>
+<div id="wrap">
+	<ul>
+		<li><input type="checkbox"><span>私奔</span><span>汪峰</span></li>
+		<li><input type="checkbox"><span>私奔</span><span>汪峰</span></li>
+		<li><input type="checkbox"><span>私奔</span><span>汪峰</span></li>
+		<li><input type="checkbox"><span>私奔</span><span>汪峰</span></li>
+		<li><input type="checkbox"><span>私奔</span><span>汪峰</span></li>
+		<li><input type="checkbox"><span>私奔</span><span>汪峰</span></li>
+		<li><input type="checkbox"><span>私奔</span><span>汪峰</span></li>
+		<li><input type="checkbox"><span>私奔</span><span>汪峰</span></li>
+	</ul>
+	<div><input type="checkbox" id="check"><span>收藏</span><span>添加</span></div>
+</div>
+</body>
+</html>

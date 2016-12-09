@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#wrap {
+			width: 500px;
+			height: 240px;
+			position: relative;
+			margin: 60px auto 0;
+		}
+		#wrap img {
+			position: absolute;
+		}
+		#wrap img:nth-of-type(1) {
+			left: 0;
+			top: 30px;
+			width: 180px;
+			z-index: 1;
+			opacity: .6;
+		}
+		#wrap img:nth-of-type(2) {
+			left: 130px;
+			top: 0px;
+			width: 240px;
+			z-index: 2;
+		}
+		#wrap img:nth-of-type(3) {
+			left: 320px;
+			top: 30px;
+			width: 180px;
+			z-index: 1;
+			opacity: .6;
+		}
+		#wrap input{
+			position: absolute;
+			top: 105px;
+			width: 30px;
+			height: 30px;
+		}
+		#wrap input:nth-of-type(1){
+			left: -40px;
+		}
+		#wrap input:nth-of-type(2){
+			right: -40px;
+		}
+	</style>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			var wrap = document.querySelector('#wrap');
+			var btn = wrap.getElementsByTagName('input');
+			var imgs = wrap.getElementsByTagName('img');
+			var arr = [];
+			for(var i = 0; i < imgs.length; i++){
+				var obj = {};
+				obj.left = css(imgs[i],"left");
+				obj.top = css(imgs[i],"top");
+				obj.width = css(imgs[i],"width");
+				obj.opacity = css(imgs[i],"opacity");
+				obj.zIndex = css(imgs[i],"zIndex");
+				arr.push(obj);
+			}
+			console.log(arr);
+			btn[0].onclick = function(){
+				arr.push(arr.shift());
+				setStyle();
+			};
+			btn[1].onclick = function(){
+				arr.unshift(arr.pop());
+				setStyle();
+			};
+			function setStyle(){
+				for(var i = 0; i < imgs.length; i++){
+					css(imgs[i],"left",arr[i].left);
+					css(imgs[i],"top",arr[i].top);
+					css(imgs[i],"width",arr[i].width);
+					css(imgs[i],"opacity",arr[i].opacity);
+					//css(,"zIndex",arr[i].zIndex);
+					imgs[i].style.zIndex = arr[i].zIndex;
+				}
+			}
+		};
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<input type="button" value="<">
+		<input type="button" value=">">
+		<img src="img/1.jpg">
+		<img src="img/2.jpg">
+		<img src="img/3.jpg">
+	</div>
+</body>
+</html>

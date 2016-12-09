@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	#wrap{
+		width: 500px;
+		height: 300px;
+		margin: 30px auto 0;
+		border: 5px #eee solid;
+		position: relative;
+		overflow: hidden;
+	}
+	#wrap ul{
+		height: 300px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		-webkit-transform: .5;
+		-moz-transform: .5;
+		-ms-transform: .5;
+		-o-transform: .5;
+		transform: .5;
+	}
+	#wrap li{
+		float: left;
+	}
+	#wrap img{
+		width: 500px;
+		height: 300px;
+	}
+	#wrap .box{
+		width: 500px;
+		height: 0;
+		position: absolute;
+		background-color: rgba(0,0,0,.6);
+		bottom: 0;
+		color: #fff;
+	}
+	#wrap h3{
+		font: 16px/30px "微软雅黑";
+		margin: 0 20px;
+	}
+	#wrap p{
+		font: 12px/24px "微软雅黑";
+		text-indent: 2em;
+		margin: 0 20px;
+	}
+	</style>
+	<script>
+	function css(el,attr){
+		if(el.currentStyle) {
+			return el.currentStyle[attr];	
+		}
+		return getComputedStyle(el)[attr];
+	}
+	window.onload = function(){
+		var wrap = document.getElementById('wrap');
+		var lis = document.querySelector('ul');
+		var li = lis.querySelectorAll('li');
+		// var imgs = lis.querySelector('img');
+		var box = lis.querySelector('div');
+		lis.style.width = li.length + "00%";  //list的宽度等于li的个数成语100%
+		// console.log(wrap,lis,li,imgs,box);
+		var imgW = parseFloat(css(li[0],'width')); //图片宽度等于计算后的li宽度
+		var timer = 0;
+		var timer2 = 0;
+		var now = 0;
+		var taeget = 80;
+		clearInterval(timer);  //清除计时器
+		timer = setInterval(   //计时器开始
+			function(){
+				console.log("该出现了");
+				now++;  //当前++
+				if(now > li.length-1){
+					now = 0;     //如果now加到最后一张就返回第一张继续循环
+				}
+				for (var i = 0; i < li.length; i++) {
+					// li[i].index = now;
+					for (var i = 0; i < li.length; i++) {
+						lis.style.left = -imgW*now + 'px';  //lis的left值等于宽度乘以当前的个数
+					};
+				};
+			},4000  //展示4秒
+		)
+		// for (var i = 0; i < box.length; i++) {
+		// 	box[i].index = i;
+		// 	// console.log(box[i]);
+			
+		// };
+		// clearInterval(timer2);  //清除第二个计时器
+		// setTimeout(   //文字说明box出现前的延时
+		// 	function(){
+		// 		timer2 = setInterval(  //box自动展开计时器
+		// 			function(){
+		// 				for (var i = 0; i < box.length; i++) {
+		// 				};
+		// 				console.log("第二个该出现了");
+		// 				var height = parseFloat(css(box[i],"height"));  //height等于box计算之后的值
+		// 				if(height >= taeget){     //如果height大于等于taeget(80)时
+		// 					clearTimeout(timer2); //清除延时
+		// 					setTimeout(function(){  //box展开后延时2秒
+		// 						timer2 = setInterval(  //box自动收缩计时器0.002秒
+		// 							function(){
+		// 								var height = parseFloat(css(box,'height')); //height等于box计算之后的值
+		// 								console.log("该回去了");
+		// 								if(taeget = 0){  //如果taeget值等于0时
+		// 									clearInterval(timer2);  //清除计时器
+		// 								}else{
+		// 									box.style.height = height - 5 + 'px';   //否则box的高度就等于计算后的height-5
+		// 								}
+		// 							},20
+		// 						)
+		// 					},2000)    //box展开后延时2秒
+		// 				}else{
+		// 					box.style.height = height + 5 + 'px';  //否则box的高度就等于计算后的height+5
+		// 				}
+		// 			},20  //0.002秒的速度展开
+		// 		)
+		// 	},500  //文字说明出现前延时0.5秒
+		// )
+	}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<ul>
+			<li>
+				<img src="images/img1.gif" alt="">
+				<div class="box">
+					<h3>Tab1</h3>
+					<p>11111111111111111111111111111</p>
+				</box>
+			</li>
+			<li>
+				<img src="images/img2.gif" alt="">
+				<div class="box">
+					<h3>Tab2</h3>
+					<p>22222222222222222222222222222222222222222222222222222222222222</p>
+				</box>
+			</li>
+			<li>
+				<img src="images/img3.gif" alt="">
+				<div class="box">
+					<h3>Tab3</h3>
+					<p>333333333333333333333333333333333333333</p>
+				</box>
+			</li>
+			<li>
+				<img src="images/img4.gif" alt="">
+				<div class="box">
+					<h3>Tab4</h3>
+					<p>44444444444444444444444444444444444444444444444444</p>
+				</box>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

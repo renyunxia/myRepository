@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#wrap{
+		width: 840px;
+		height: 400px;
+		padding: 20px;
+		background: #ccc;
+		margin: 10px auto;
+		text-align: center;
+	}
+	#list{
+		padding-top: 10px;
+		position: relative;
+	}
+	#list li{
+		width: 200px;
+		height: 180px;
+		list-style: none;
+		text-align: center;
+		/*position: absolute;*/
+		border: 2px #fff solid;
+		float: left;
+	}
+	#list img{
+		width: 200px;
+		height: 150px;
+		display: block;
+	}
+	#list p{
+		font: 14px/30px "宋体";
+		width: 100%;
+		background: #fff;
+	}
+	</style>
+	<script>
+	window.onload = function () {
+		var date = [
+			{
+				url:'images/img1.gif',
+				text:'1图片1'
+			},
+			{
+				url:'images/img2.gif',
+				text:'2图片2'
+			},
+			{
+				url:'images/img3.gif',
+				text:'3图片3'
+			},
+			{
+				url:'images/img4.gif',
+				text:'4图片4'
+			},
+			{
+				url:'images/img5.gif',
+				text:'5图片5'
+			},
+			{
+				url:'images/img6.gif',
+				text:'6图片6'
+			},
+			{
+				url:'images/img7.gif',
+				text:'7图片7'
+			},
+			{
+				url:'images/img8.gif',
+				text:'8图片8'
+			}
+		];
+		var list = document.getElementById('list');
+		var btn = document.querySelectorAll('input');
+		var listInner = '';
+		// var arr = ["一","二","三","四","五"];
+		for (var i = 0; i < date.length; i++) {
+			listInner += '<li><img src='+date[i].url+'><p>'+date[i].text+'</p></li>'
+		};
+		
+		list.innerHTML = listInner;
+		btn[0].onclick = function(){
+			var listInner = '';
+			date.sort(function(a,b){
+				return parseInt(b.text) - parseInt(a.text)
+			})
+			for (var i = 0; i < date.length; i++) {
+				listInner += '<li><img src='+date[i].url+'><p>'+date[i].text+'</p></li>'
+			};
+			list.innerHTML = listInner;
+		}
+		btn[1].onclick = function(){
+			var listInner = '';
+			date.sort(function (){
+				return Math.random() - .5;
+			})
+			for (var i = 0; i < date.length; i++) {
+				listInner += '<li><img src='+date[i].url+'><p>'+date[i].text+'</p></li>'
+			};
+			
+			list.innerHTML = listInner;
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<input type="button" value="从大到小">
+		<input type="button" value="随机排序">
+		<ul id="list">
+			<li>
+				<img src="images/img4.gif">
+				<p>图片1</p>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

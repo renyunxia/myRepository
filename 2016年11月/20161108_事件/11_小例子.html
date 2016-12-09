@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<input type="text" name="" id="txt" value="" />
+<select name="" id="sele">
+	<option value="0">Enter</option>
+	<option value="1">ctrl+Enter</option>
+	<option value="2">ctrl+shift+alt+Enter</option>
+</select>
+<ul id="ul">
+	
+</ul>
+
+<script type="text/javascript">
+	
+	var txt = document.getElementById('txt');
+	var sele = document.getElementById('sele');
+	var ul = document.getElementById('ul');
+	
+	txt.onkeydown = function(ev){
+		var val = txt.value;
+		if(sele.value=='0' && ev.keyCode == 13 && !ev.ctrlKey && !ev.altKey && !ev.shiftKey){
+			fn1(val);
+		}else if(sele.value=='1' && ev.keyCode == 13 && ev.ctrlKey && !ev.altKey && !ev.shiftKey){
+			fn1(val);
+		}else if(sele.value=='2' && ev.keyCode == 13 && ev.ctrlKey && ev.altKey && ev.shiftKey){
+			fn1(val);
+		}
+	}
+	
+	function fn1(val){
+		var li = document.createElement('li');
+		li.innerHTML = val;
+		ul.appendChild(li);
+		txt.value = '';
+	}
+	
+	
+</script>
+</body>
+</html>

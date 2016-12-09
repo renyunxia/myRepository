@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	window.onload = function (){
+		var input = document.getElementsByTagName('input');
+		var sel = document.querySelector('select');
+		input[2].onclick = function (){
+			var val1 = Number(input[0].value);
+			var val2 = Number(input[1].value);
+			if(sel.value == "+") {
+				input[3].value = val1 + val2;	
+			} else if(sel.value == "-") {
+				input[3].value = val1 - val2;
+			} else if(sel.value == "*") {
+				input[3].value = val1 * val2;
+			} else if(sel.value == "/") {
+				input[3].value = val1 / val2;
+			} else { 
+				input[3].value = val1 % val2;
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+	<input type="text">
+	<select>
+		<option>+</option>
+		<option>-</option>
+		<option>*</option>
+		<option>/</option>
+		<option>%</option>
+	</select>
+	<input type="text">
+	<input type="button" value="=">
+	<input type="text">
+</body>
+</html>

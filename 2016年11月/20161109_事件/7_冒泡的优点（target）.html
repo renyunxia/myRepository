@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+ul{
+	width:300px;
+	/*height: 100px;*/
+	border: 1px solid #000;
+	overflow: hidden;
+}
+
+li{
+	width:50px;
+	height: 50px;
+	border: 1px solid #000;
+	float: left;
+	margin: 5px;
+}
+</style>
+</head>
+<body>
+	<ul id="ul1">
+		<li>
+			<!--<div>
+				<ul>
+					<li style="background: red;">000</li>
+				</ul>
+			</div>-->
+		</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+	<div></div>
+<script type="text/javascript">
+	/*
+		ev.target:(事件监听、事件委托)
+			事件源：触发事件的源头
+			
+			注意：
+				监听事件源只能监听父级中的子级，父级的兄弟元素是监听不到父级的子元素的。
+		
+	*/
+	var ul1 = document.getElementById('ul1');
+	var lis = ul1.children;
+//	ul1.onclick = function(ev){
+//		console.log(ev.target);
+//		ul1.style.background = 'greenyellow';
+//	}
+	
+//	for(var i=0;i<lis.length;i++){
+//		lis[i].onclick = function(){
+//			this.style.background = 'greenyellow';
+//		}
+//	}
+	
+	var old = null;
+	ul1.onclick = function(ev){
+		//console.log(ev.target.nodeType);
+		if(ev.target.tagName == 'LI'){
+			if(old){
+				old.style.background = '';
+			}
+			ev.target.style.background = 'greenyellow';
+			old = ev.target;
+		}else{
+			ev.target.style.background = 'red';
+		}
+	}
+
+//	ul1.onclick = function(ev){
+//		//console.log(ev.target.nodeType);
+//		if(ev.target.tagName == 'LI' && ev.target.innerHTML == '000'){
+//			ev.target.style.display = 'none';
+//		}
+//	}
+	
+	
+	
+</script>
+</body>
+</html>

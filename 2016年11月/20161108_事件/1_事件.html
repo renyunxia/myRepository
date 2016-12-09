@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+#div1{
+	width: 100px;
+	height: 100px;
+	background: red;
+}	
+</style>
+</head>
+<body>
+	<div id="div1"></div>
+<script type="text/javascript">
+	/*
+		事件：
+			在用户操作页面的时候，用户为被监听者，浏览器为监听者来监听用户的操作行为
+			一旦用户触发了某个行为（click,mousever。。。）,浏览器会去查看触发的这个
+			行为有没有事件绑定函数，如果有执行，否则结果什么都没发生。
+	*/
+	var div = document.getElementById('div1');
+	
+	div.onclick = function(){
+		alert(1);
+	}
+	console.dir(div);
+</script>
+</body>
+</html>

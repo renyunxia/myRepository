@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			var input = document.querySelectorAll("input");
+			var sel = document.querySelector("select");
+			var nub = 1;
+			input[2].onclick = function() {
+				var val1 = Number(input[0].value);
+				var val2 = Number(input[1].value);
+				/*if(sel.value == "+") {
+					input[3].value = val1 + val2;	
+				} else if(sel.value == "-") {
+					input[3].value = val1 - val2;
+				} else if(sel.value == "*") {
+					input[3].value = val1 * val2;
+				} else if(sel.value == "/") {
+					input[3].value = val1 / val2;
+				} else { 
+					input[3].value = val1 % val2;
+				}*/
+				switch(sel.value) {
+					case "+":
+						input[3].value = val1 + val2;
+						break;
+					case "-":
+						input[3].value = val1 - val2;
+						break;
+					case "*":
+						input[3].value = val1 * val2;
+						break;
+					case "/":
+						input[3].value = val1 / val2;
+						break;			
+					default: 
+						input[3].value = val1 % val2;	
+
+				}
+			};
+			/*
+				点击第2个input时：
+					1. 拿到 input[0]和input[1]的val
+					2. 把val转换成数字
+					3. 拿到sel的value
+					4. 判断 value == "+",把val值相加
+					5. 判断 value == "-",把val值相减
+					6. 判断 value == "*",把val值相乘
+					7. 判断 value == "/",把val值相除
+					8. 把计算结果 赋给input[3]的val
+			*/
+		};
+	</script>
+</head>
+<body>
+<!--
+	正数/0 == Infinity 正无穷
+	负数/0 == -Infinity 正无穷
+	0/0  == NaN
+-->	
+<input type="text">
+<select>
+	<option>+</option>
+	<option>-</option>
+	<option>*</option>
+	<option>/</option>
+	<option>%</option>
+</select> 
+<input type="text">
+<input type="button" value="=">
+<input type="text" name="">	
+</body>
+</html>

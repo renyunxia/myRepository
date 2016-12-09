@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--
+			1.需要两个按钮、两组图片
+			2.每组图片切换有标题和计数
+			3.点击单组图片可以循环切换，也可以两组同时循环切换
+			
+			1.获取元素
+			
+		-->
+		<style>
+			#wrap{
+				width: 600px;
+				margin: 20px;
+				padding: 15px;
+				border: 1px #000 solid;
+			}
+			input{
+				margin-bottom: 10px;
+			}
+			.clear{
+				zoom: 1;
+			}
+			.clear:after{
+				content: "";
+				display: block;
+				clear: both;
+			}
+			#left{
+				float: left;
+				width: 300px;
+				padding: 15px;
+				border: 1px #ccc solid;
+			}
+			#left img{
+				width: 300px;
+				height: 220px;
+				cursor: pointer;
+			}
+			#right{
+				float: right;
+				width: 220px;
+				padding: 15px;
+				border: 1px #ccc solid;
+			}
+			#right img{
+				width: 220px;
+				height: 220px;
+				cursor: pointer;
+			}
+			.text{
+				text-align: center;
+				font: 14px/28px "宋体";
+			}
+			.page{
+				font: 12px/20px "宋体";
+			}
+		</style>
+		<script>
+		var url1 = [
+			"images/img1.jpg",
+			"images/img2.jpg",
+			"images/img3.jpg",
+			"images/img4.jpg"
+		]
+		var url2 = [
+			"images/img1.jpg",
+			"images/img2.jpg",
+			"images/img3.jpg",
+			"images/img4.jpg"
+		]
+		var text = [
+			"第一组第1张",
+			"第一组第2张",
+			"第一组第3张",
+			"第一组第4张"
+		]
+		var text2 = [
+			"第二组第1张",
+			"第二组第2张",
+			"第二组第3张",
+			"第二组第4张"
+		]
+		window.onload = function(){
+			var btn = document.querySelectorAll("#wrap>input");
+			var img1 = document.querySelector(".left img");
+			var img2 = document.querySelector(".right img");
+			var text1 = document.querySelector(".left p");
+			var text2 = document.querySelector(".right p");
+			var page1 = document.querySelector(".left span");
+			var page2 = document.querySelector(".right span");
+			var now = 0;
+			var now2 = 0;
+			img1.src = url1[now];
+			text1.innerHTML = text1[now];
+			page1.innerHTML = now + 1 + "/" + url1.length;
+			img2.src = url2[now];
+			text2.innerHTML = text2[now];
+			page2.innerHTML = now + 1 + "/" + url2.length;
+
+			Oimg.onclick = function(){
+				num--;
+				if(num < 0){
+				num = arr.length-1;
+			}
+			Oimg.src = arr[num];
+			Otext.innerHTML = arrOtext[num];
+			Opage.innerHTML = num + 1 + "/" + arr.length;
+			}
+			
+			}
+		}
+		</script>
+	</head>
+	<body>
+		<div id="wrap">
+			<input type="button" value="上一组" id="prev"/>
+			<input type="button" value="下一组" id="next"/>
+			<div class="clear"></div>
+			<div id="left">
+				<img src="images/img1.jpg" alt="" id="img" />
+				<p class="text">加载中</p>
+				<span class="page"></span>
+			</div>
+			<div id="right">
+				<img src="images/img2.jpg" alt="" id="img" />
+				<p class="text">加载中</p>
+				<span class="page"></span>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.active {
+			background: red;
+		}
+	</style>
+	<script type="text/javascript">
+		/*
+			点那个选项，那个选项就选中，其他的选项就不选中
+			1. 获取所有的选项
+			2. 给所有选项都加一个点击事件 --- for
+			3. 点选项之后：
+				1）清除选中的按钮的样式
+						第一种思路:
+							清楚所有的选项的选中状态
+
+						第二种思路:
+							记录当前选中的是第几个
+								1.需要有个东西 来记录
+								2. 需要知道当前是第几个
+							清除选中的
+				2) 给当前选中的元素添加选中状态
+		*/
+		window.onload = function() {
+			var btns = document.getElementsByTagName('input');
+			var now = 0; //记录当前选中是第几个
+			for(var i = 0; i < btns.length; i++) {
+				btns[i].index = i;
+				btns[i].onclick = function() {
+					btns[now].className = "";
+					this.className = "active";
+					now = this.index;
+				};
+			}
+		};
+	</script>
+</head>
+<body>
+<input type="button" value="" class="active" >	
+<input type="button" value="" >	
+<input type="button" value="" >	
+<input type="button" value="" >	
+<input type="button" value="" >
+<input type="button" value="" >	
+<input type="button" value="" >
+</body>
+</html>

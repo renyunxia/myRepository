@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+		事件绑定：
+			obj.addEventListener(事件名[不带on],事件绑定函数,是否捕获[默认为不捕获：false])
+			
+			注意：
+				如果绑定的函数名一样，那么同样会被覆盖，否则绑定几次就执行几次事件绑定函数。
+				
+		
+		事件解除：
+			传统的事件解除，将某个元素的事件赋值为null即可。
+			
+			事件绑定解除：
+				如果要解除事件绑定的函数，那么在绑定的时候
+				*第二个参数必须为函数名*
+				解除：
+					obj.removeEventListener(要解除哪个事件,哪个函数,是否捕获[默认为不捕获false]);
+			
+		
+			
+	*/
+	
+//	function fn1(){
+//		alert(this);
+//		document.onclick = null;
+//	}
+	//document.onclick = fn1;//1
+	
+	function fn2(){
+		alert(this);
+		document.removeEventListener('click',fn2,false);
+	}
+	
+	function fn3(){
+		alert(123);
+		document.removeEventListener('mousedown',fn3);
+	}
+	document.addEventListener('click',fn2,false);//2
+	document.addEventListener('mousedown',fn3);
+	
+	
+</script>
+</body>
+</html>

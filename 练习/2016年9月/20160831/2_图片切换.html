@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#box{
+		background: #fff;
+		width: 270px;
+		height: 350px;
+		padding: 10px;
+		border: 1px #000 solid;
+		margin: 20px auto;
+	}
+	.top{
+		text-align: center;
+		font-size: 12px;
+		line-height: 24px;
+	}
+	#img_box{
+		width: 240px;
+		height: 240px;
+		padding: 8px;
+		background: #999;
+		margin: 10px auto;
+		position: relative;
+	}
+	#img_box img{
+		width: 240px;
+		height: 240px;
+	}
+	.text_top,.text_bottom{
+		background: #000;
+		opacity: 0.8;
+		filter: alpha(opacity=80);
+		line-height: 26px;
+		text-align: center;
+		color: #fff;
+		position: absolute;
+		left: 0;
+		right: 0;
+	}
+	.text_top{
+		top: 8px;
+	    margin: 0 8px;
+	}
+	.tab_left,.tab_right{
+		width: 30px;
+		height: 30px;
+		background: #999;
+		opacity: 0.8;
+		filter: alpha(opacity=80);
+		color: #333;
+		position:absolute;
+		top: 115px;
+		text-align: center;
+		line-height: 30px;
+		text-decoration: none;
+	}
+	.tab_left{
+		left: 10px;
+	}
+	.tab_left:hover,.tab_right:hover{
+		opacity: 0.6;
+		filter: alpha(opacity=60);
+	}
+	.tab_right{
+		right: 10px;
+	}
+	.text_bottom{
+		font-size: 14px;
+		bottom: 8px;
+		margin: 0 8px;
+		font-weight:600; 
+	}
+	</style>
+	<script>
+	var arrUrl = [
+		"images/img1.jpg",
+		"images/img2.jpg",
+		"images/img3.jpg",
+		"images/img4.jpg"
+	];
+	var arrText = [
+		"文字一",
+		"文字二",
+		"文字三",
+		"文字四"
+	]
+	window.onload = function(){
+		var prev = document.getElementById("prev");
+		var next = document.getElementById("next");
+		var tp = document.getElementById("tp");
+		var page = document.getElementById("page");
+		var img = document.getElementById("img");
+		var btn = document.getElementsByTagName("input");
+		var nub = 0;
+		var onOff = true;
+
+		btn[0].onclick = function(){
+			onOff = true;
+			 document.getElementById("loop")[0].innerHTML ="图片只能到最后一张或只能到第一张切换";
+		}
+		btn[1].onclick = function(){
+			onOff = false;
+			 document.getElementById("order")[0].innerHTML ="图片可从最后一张跳转到第一张循环切换";
+		}
+
+		// 初始化
+		function fnTab(){
+			tp.innerHTML = arrText[nub];
+			page.innerHTML = nub+1 + "/" + arrText.length;
+			img.src = arrUrl[nub];
+		}
+		fnTab();
+
+		prev.onclick = function(){
+			nub--;
+			if(nub<0){
+				nub=0;
+				alert("已经是第一张啦")
+			}
+			img.src = arrUrl[nub];
+			fnTab();
+		}
+		next.onclick = function(){
+			nub++;
+			if(nub>arrUrl.length-1){
+				nub=arrUrl.length-1;
+				alert("到最后一张啦");
+			}
+			img.src = arrUrl[nub];
+			fnTab();
+		}
+		
+	}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div class="top">
+			<input type="button" value="循环切换" id="loop">
+			<input type="button" value="顺序切换" id="order">
+			<p>图片只能到最后一张或只能到第一张切换</p>
+			<!-- <p>图片可从最后一张跳转到第一张循环切换</p> -->
+		</div>
+		<div id="img_box">
+			<img src="images/img1.jpg" alt="" id="img">
+			<div class="text_top"><span id="page">1</span></div>
+			<a href="javascript:;" class="tab_left" id="prev"> < </a>
+			<a href="javascript:;" class="tab_right" id="next"> > </a>
+			<div class="text_bottom" id="tp">文字一</div>
+		</div>
+	</div>
+</body>
+</html>

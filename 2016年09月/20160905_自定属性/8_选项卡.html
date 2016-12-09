@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.wrap {
+			width: 300px;
+			border: 1px solid #000;
+			margin: 30px auto;
+		}
+		#nav {
+			height: 32px;
+		}
+		#nav a {
+			float: left;
+			width: 98px;
+			font: 14px/30px "宋体";
+			text-align: center;
+			text-decoration: none;
+			color: #000;
+			background: #ccc;
+			border: 1px solid #000;
+		}
+		#nav .active {
+			background: #000;
+			color: #fff;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			/*var navs = document.querySelectorAll("#nav a");
+			var nav = document.querySelector("#nav a");
+			console.log(navs);
+			console.log(nav);
+			*/
+			var navs = document.querySelectorAll("#nav a");
+			for(var i = 0; i < navs.length; i++) {
+				navs[i].onmouseover = function() {
+					for(var i = 0; i < navs.length; i++) {	
+						navs[i].className = "";
+					}
+					// 清除所有的navs的class
+					this.className = "active";
+				};
+			}
+		};
+		/*
+			document.querySelectorAll();
+			document.querySelector();
+			接收的参数是一个css 选择器
+			document.querySelectorAll() 获取一组元素
+			document.querySelector(); 只获取1个，如果css选择器是 获取到的是一组元素，那就只获取第0个
+
+		*/
+	</script>
+</head>
+<body>
+<section class="wrap">
+	<nav id="nav">
+		<a href="#" class="active">选项1</a>
+		<a href="#">选项2</a>
+		<a href="#">选项3</a>
+	</nav>
+</section>
+</body>
+</html>

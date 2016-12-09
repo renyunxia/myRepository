@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box {
+			width: 100px;
+			height: 100px;
+			background: red;
+			padding: 10px;
+			border: 10px solid #000;
+			margin: 20px;
+		}
+	</style>
+</head>
+<body>
+关于元素的尺寸的获取：
+	1. getComputedStyle 获取元素的计算后样式 可以直接获取元素的内容宽度，padding和margin等具体值
+	2. offsetWidth/offsetHeight 获取元素的可视宽/高
+	3. offsetLeft/offsetTop 获取的是元素距离定位父级的left或top值
+	4. clientWidth/clientHeight 获取元素的可视宽/高 - 边框
+	5. clientLeft/clientTop 获取元素的左边框宽度和上边框宽度
+	6. getBoundingClientRect() 
+		width height/ 获取元素的可视宽/高 
+		left  top / 相对于可视区的绝对坐标
+------------------------------------------------------
+	7. 可视区大小
+		window.innerWidth(包含滚动条宽度)/window.innerHeight
+		document.documentElement.clientWidth(不包含滚动条宽度)/document.documentElement.clientHeight
+	8. 获取滚动距离
+		window.pageYOffset / window.pageXOffset	
+		
+		document.body.scrollTop/document.body.scrollLeft
+	
+		document.documentElement.scrollTop/document.documentElement.scrollLeft
+
+		window.scrollY/window.scrollX
+
+	9. 设置滚动距离
+		window.scrollTo(x,y);
+		document.documentElement.scrollTop = document.body.scrollTop = 0;
+	
+	10. 内容高度
+		document.body.scrollHeight(文档高度+margin)
+
+	11. 文档高度
+		document.body.offsetHeight			
+<div id="box"></div>	
+<script type="text/javascript">
+	console.log(box.getBoundingClientRect());
+</script>
+</body>
+</html>

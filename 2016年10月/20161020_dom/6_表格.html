@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+	window.onload = function(){
+		var table = document.querySelector('table');
+		console.log(table.tHead);
+		console.log(table.tFoot);
+		console.log(table.tBodies);//获取tbody一个table可以有多个获取tbody一个table可以有多个tbody所以获取到是一组元素
+		console.log(table.tBodies[0].rows); //获取tr
+		console.log(table.tBodies[0].rows[0].cells);//获取td或th
+	}
+</script>
+</head>
+<body>
+<table width="500" align="center" border="1">
+	<thead>
+		<tr>
+			<th>th1</th>
+			<th>th2</th>
+			<th>th3</th>
+			<th>th4</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>row1_1</td>
+			<td>row1_2</td>
+			<td>row1_3</td>
+			<td>row1_4</td>
+		</tr>
+		<tr>
+			<td>row2_1</td>
+			<td>row2_2</td>
+			<td>row2_3</td>
+			<td>row2_4</td>
+		</tr>
+		<tr>
+			<td>row3_1</td>
+			<td>row3_2</td>
+			<td>row3_3</td>
+			<td>row3_4</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td>footer_1</td>
+			<td>footer_2</td>
+			<td>footer_3</td>
+			<td>footer_4</td>
+		</tr>
+	</tfoot>
+</table>
+</body>
+</html>

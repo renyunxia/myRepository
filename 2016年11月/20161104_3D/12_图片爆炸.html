@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+#list {
+	width: 600px;
+	height: 440px;
+	margin: 50px auto 0;
+	padding: 0;
+	list-style: none;
+	perspective: 400px;
+}	
+#list li {
+	width: 60px;
+	height: 44px;
+	float: left;
+	background: url(img.jpg) no-repeat;
+	/*transition: 1s box-shadow;*/
+}
+</style>
+<script type="text/javascript" src="miaov.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var a = document.querySelector('audio');
+	var list = document.querySelector('#list');
+	var childs = list.children;
+	var oFrag = document.createDocumentFragment();//文档碎片
+	var liW = 60;
+	var liH = 44;
+	var maxZ = 13;
+	var minZ = 50;
+	var tZ = 200;
+	for(var i = 0; i < 100; i++){
+		var li = document.createElement("li");
+		li.cells = i%10;
+		li.rows = parseInt(i/10);
+		li.style.backgroundPosition = -li.cells*liW+"px -"+(li.rows*liH)+"px";
+		li.onclick = function(){
+			a.play();
+			for(var i = 0; i < childs.length; i++){
+				var disX = childs[i].cells - this.cells;
+				var disY = childs[i].rows - this.rows;
+				fire(childs[i],disX,disY);
+			}
+		};
+		oFrag.appendChild(li);
+	}
+	list.appendChild(oFrag);
+	function fire(el,disX,disY){
+		var R = 300;
+		var delay = Math.abs(disX) + Math.abs(disY);
+		var disZ = Math.sqrt(disX*disX + disY*disY);
+		var translateZ = (maxZ - disZ)/maxZ*tZ+minZ;
+		disX = disX == 0?.5:disX;
+		disY = disY==0?.5:disY;
+		var translateY = disY/Math.abs(disY)*Math.abs(disY)*10;
+		var translateX = disX/Math.abs(disX)*Math.abs(disX)*10;
+		var rotateY =  disX/Math.abs(disX)*360+(Math.random()-.5)*360;
+		var rotateX =  disY/Math.abs(disY)*360+(Math.random()-.5)*360;
+		setTimeout(function(){
+			//el.style.boxShadow = "0 0 10px #f73c0a";
+			mTween(el,{
+					opacity:0,
+					translateZ: translateZ,
+					translateX:translateX,
+					translateY:translateY,
+					rotateY:rotateY,
+					rotateX:rotateX
+				},delay*50+500,"easeOut");
+		},delay*20);
+		console.log(disZ);
+
+	}
+};
+</script>
+</head>
+
+<body>
+<audio src="4008.mp3" id="audio" style="display: none;"></audio>
+<ul id="list">
+</ul>	
+</body>
+</html>

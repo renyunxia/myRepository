@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#wrap{
+		width: 200px;
+	}
+	ul{
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	label{
+		display: block;
+	}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+	<ul>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+		<li><label><input type="checkbox"><span>私奔</span><span>汪峰</span></label></li>
+	</ul>
+	<div><input type="checkbox" id="check"><span>收藏</span><span>添加</span></div>
+</div>
+</body>
+<script>
+	(function(){
+		var wrap = document.getElementById('wrap');
+		var lis = document.querySelectorAll('label');
+		var check = document.getElementById('check');
+		var checkBox = wrap.getElementsByTagName('ul')[0].getElementsByTagName('input');
+		var colors = ["blue","red"];
+		var oldColors = ""; 
+		for (var i = 0; i < lis.length; i++) {
+			lis[i].index = i;
+			lis[i].style.background = colors[i%colors.length];
+			lis[i].onmouseover = function(){
+				oldColors = this.style.background;
+				this.style.background = "pink";
+			}
+			lis[i].onmouseout = function(){
+				this.style.background = oldColors;
+			}
+			lis[i].onclick = function(){
+				var isChecke = true;
+				for (var i = 0; i < checkBox.length; i++) {
+					if(checkBox[i].checked == false){
+						isChecke = false;
+					}
+				};
+				check.checked = isChecke;
+				if(checkBox[this.index].checked){
+					this.style.background = "green";
+				}else{
+					this.style.background = colors[this.index%colors.length];
+				}
+				oldColors = this.style.background;
+			}
+
+			//全选
+			check.onclick = function(){
+				for (var i = 0; i < checkBox.length; i++) {
+					checkBox[i].checked = this.checked;
+					if(this.checked){
+						lis[i].style.background = "green";
+					}else{
+						lis[i].style.background = colors[i%colors.length];
+					}
+				};
+			}
+		};
+	})();
+</script>
+</html>

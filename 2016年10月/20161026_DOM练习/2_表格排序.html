@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+	td{
+		text-align: center;
+	}
+</style>
+</head>
+<body>
+<table width="300" align="center" border="1">
+	<thead>
+		<th>商品</th>
+		<th>价格</th>
+		<th>操作</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>苹果</td>
+			<td>3700</td>
+			<td>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</td>
+		</tr>
+		<tr>
+			<td>锤子</td>
+			<td>2499</td>
+			<td>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</td>
+		</tr>
+		<tr>
+			<td>小米</td>
+			<td>3299</td>
+			<td>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</td>
+		</tr>
+		<tr>
+			<td>坚果</td>
+			<td>799</td>
+			<td>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</td>
+		</tr>
+		<tr>
+			<td>桔子</td>
+			<td>1799</td>
+			<td>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</td>
+		</tr>
+		<tr>
+			<td>梨子</td>
+			<td>1199</td>
+			<td>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<td>价格排序</td>
+		<td><input type="button" value="从高到低"></td>
+		<td><input type="button" value="从低到高"></td>
+	</tfoot>
+</table>
+<script type="text/javascript">
+(function(){
+	var table = document.querySelector('table');
+	var tbody = table.tBodies[0];
+	var rows = tbody.rows;
+	var prevs = document.querySelectorAll('input[value="上移"]');
+	var nexts = document.querySelectorAll('input[value="下移"]');
+	console.log(rows);	
+	for(var i = 0; i < prevs.length; i++){
+		prevs[i].onclick = function(){
+			var tr = this.parentNode.parentNode;
+			var prevTr = tr.previousElementSibling;
+			//console.log(prevTr);
+			if(prevTr){
+				tbody.insertBefore(tr,prevTr);
+			} else {
+				tbody.appendChild(tr);
+			}
+			/*
+			tbody.insertBefore(tr,prevTr);当prevTr为空的时候，在标准下 insertBefore就会把添加进去的元素 放在父级的末尾
+			*/
+		};
+		nexts[i].onclick = function(){
+			var tr = this.parentNode.parentNode;
+			var nextTr = tr.nextElementSibling;
+			if(nextTr){
+				tbody.insertBefore(nextTr,tr);
+			} else {
+				tbody.insertBefore(tr,rows[0]);
+			}
+		};
+	}
+})();
+</script>	
+</body>
+</html>

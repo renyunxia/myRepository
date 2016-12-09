@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body {
+	margin: 0;
+} 
+p {
+	margin: 0;
+	line-height: 30px;
+}
+#wrap {
+	width: 960px;
+	margin: 0 auto;
+}
+#leftBanner {
+	position: absolute;
+	width: 100px;
+	height: 300px;
+	background: red;
+}
+#rightBanner {
+	position: absolute;
+	width: 100px;
+	height: 300px;
+	background: green;
+}
+#backBtn {
+	position: fixed;
+	width: 30px;
+	height: 30px;
+	background: yellow;
+	right: 10px;
+	bottom: 10px;
+	display: none;
+}
+</style>	
+<script type="text/javascript">
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('U(I(d,e,a,c,b,f){b=I(a){J(a<e?"":b(S(a/e)))+(T<(a%=e)?L.V(a+W):a.Q(R))};M(!"".N(/^/,L)){O(;a--;)f[b(a)]=c[a]||b(a);c=[I(a){J f[a]}];b=I(){J"\\\\w+"};a=1}O(;a--;)c[a]&&(d=d.N(X P("\\\\b"+b(a)+"\\\\b","g"),c[a]));J d}(\'5.F=7(){8 4=b.g(\\\'#v\\\');8 6=b.g(\\\'#u\\\');8 1=(5.w-4.y)/2;8 9=b.g(\\\'#9\\\');4.3.1=6.3.1=1+"a";4.3.4=c+"a";6.3.4=b.m.h-6.i-c+"a";5.q=7(){o(5.n>=1){6.3.d=4.3.d="r";6.3.1=4.3.1=0;9.3.k="s"}t{6.3.d=4.3.d="B";6.3.1=4.3.1=1+"a";9.3.k="G"}};5.H=7(){6.3.4=b.m.h-6.i-c+"a"};9.z=7(){p(0)};7 p(e){j(5.f);8 1=5.n;5.f=A(7(){8 l=(e-1)/x;1+=l;o(E.C(e-1)<2){j(5.f);1=e}5.D(0,1)},c)}};\',K,K," Y  Z 10 11 12 I 13 15 16 17 18 19 1a 1b 1c 1d 1e 1f 1g 1h 1i 1j M 1k 1l 1m 1n 1o 1p 1q 1r 14 1s 1t 1u 1v 1w 1x 1y 1z 1A 1B".1C(" "),0,{}));',62,101,'||||||||||||||||||||||||||||||||||||||||||||function|return|44|String|if|replace|for|RegExp|toString|36|parseInt|35|eval|fromCharCode|29|new|top|style|left|window|right|var||backBtn|px|document|20|position|target|scrollTimer|querySelector|clientWidth|offsetWidth|clearInterval|display|speed|documentElement|pageYOffset|moveScroll|onscroll|fixed|block|else|rightBanner|leftBanner|innerHeight|offsetHeight|onclick|setInterval|absolute|abs|scrollTo|Math|onload|none|onresize|split'.split('|'),0,{}));
+</script>
+</head>
+<body>
+<div id="leftBanner"></div>
+<div id="rightBanner"></div>
+<div id="backBtn"></div>
+<div id="wrap"></div>
+<script type="text/javascript">
+var str = "";
+for(var i = 0; i < 100; i++){
+	str += "<p>页面内容"+i+"行</p>"
+}
+wrap.innerHTML += str;
+</script>
+</body>
+</html>

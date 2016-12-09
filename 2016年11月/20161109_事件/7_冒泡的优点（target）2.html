@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+.hide{
+	display: none;
+}
+.show{
+	display: block;
+}
+</style>
+</head>
+<body>
+	<ul id="ul1">
+		<li>
+			<h2>第一级菜单</h2>
+			<ul class="hide">
+				<li>
+					<h2>第二级菜单</h2>
+					<ul class="hide">
+						<li>
+							<h2>第三级菜单</h2>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li><h2>第一级菜单</h2></li>
+		<li>
+			<h2>第一级菜单</h2>
+			<ul class="hide">
+				<li>
+					<h2>第二级菜单</h2>
+					<ul class="hide">
+						<li>
+							<h2>第三级菜单</h2>
+							<ul class="hide">
+								<li>
+									<h2>第四级菜单</h2>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<div></div>
+<script type="text/javascript">
+	/*
+		ev.target:(事件监听、事件委托)
+			事件源：触发事件的源头
+			
+			注意：
+				监听事件源只能监听父级中的子级，父级的兄弟元素是监听不到父级的子元素的。
+		
+	*/
+	var ul1 = document.getElementById('ul1');
+	
+	ul1.onclick = function(ev){
+		if(ev.target.tagName == 'H2'){
+			if(ev.target.nextElementSibling){
+				ev.target.nextElementSibling.className = 'show';
+			}
+		}
+	}
+	
+	
+	
+	
+</script>
+</body>
+</html>

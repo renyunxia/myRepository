@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body {
+	margin: 0;
+}
+div {
+	width: 100px;
+	height: 100px;
+	background: red;
+	margin: 10px;
+	float: left;
+	color: #fff;
+	font: 50px/100px "宋体";
+	text-align: center;
+}
+</style>
+</head>
+<body>
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+<div>6</div>
+<div>7</div>
+<div>8</div>
+<div>9</div>
+<div>10</div>
+<script type="text/javascript" src="miaov.js"></script>
+<script type="text/javascript">
+(function(){
+	var div = document.getElementsByTagName('div');
+	/* 布局转换 -- 浮动布局转换成绝对定位布局 */
+	for(var i = 0; i < div.length; i++){
+		div[i].style.top = div[i].offsetTop + "px";
+		div[i].style.left = div[i].offsetLeft + "px";
+	}	
+	for(var i = 0; i < div.length; i++){
+		div[i].style.position = "absolute";
+		div[i].style.margin = "0";
+		div[i].onclick = function(){
+			mTween(this,{top:300},500,"easeOut");
+			moveNext(this);
+			movePrev(this)
+		};
+	}
+	function moveNext(el){
+		var next = el.nextElementSibling;
+		if(next){
+			setTimeout(function(){
+				mTween(next,{top:300},500,"easeOut");
+				moveNext(next);
+			},100);
+		}
+	}
+	function movePrev(el){
+		var prev = el.previousElementSibling;
+		if(prev){
+			setTimeout(function(){
+				mTween(prev,{top:300},500,"easeOut");
+				movePrev(prev);
+			},100);
+		}
+	}
+})();	
+</script>
+</body>
+</html>

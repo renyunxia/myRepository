@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	div,ul,li,a{
+		padding: 0;
+		margin: 0;
+	}
+	ul{
+		list-style: none;
+	}
+	#wrap{
+		width: 620px;
+		height: 200px;
+		margin: 0 auto;
+		position: relative;
+	}
+	#list{
+		width: 100%;
+	}
+	#list li{
+		width: 150px;
+		height: 200px;
+		float: left;
+		margin-right: 5px
+	}
+	#list img{
+		width: 150px;
+		height: 200px;
+		display: block;
+	}
+	.btn {
+		position: absolute;
+		top: 90px;
+		width: 30px;
+		height: 30px;
+		background: rgba(0,0,0,.5);
+		color: #fff;
+		font: 20px/30px "宋体";
+		text-decoration: none;
+		text-align: center;
+		left: -35px;
+	}
+	.btn+.btn{
+		left: auto;
+		right: -30px;
+	}
+	</style>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script>
+	// var arr = [0,1,2,3];
+	// arr.push(arr.shift());
+	// console.log(arr);
+	// arr.unshift(arr.pop());
+	// console.log(arr);
+	window.onload = function(){
+		var li = document.querySelectorAll('#list li');
+		var btn = document.querySelectorAll('#wrap a');
+
+		var arr = [];
+		for(var i = 0; i<li.length; i++){
+			arr[i] = li[i].offsetLeft;
+			li[i].style.top = li[i].offsetTop + "px";
+			li[i].style.left = li[i].offsetLeft + "px";
+		}
+		for(var i = 0; i<li.length; i++){
+			li[i].style.position = "absolute";
+		}
+
+		btn[0].onclick = function(){
+			arr.push(arr.shift());
+			for(var i = 0; i<arr.length; i++){
+				li[i].style.left = arr[i] + "px";
+			}
+		}
+		btn[1].onclick = function(){
+			arr.unshift(arr.pop());
+			for(var i = 0; i<arr.length; i++){
+				li[i].style.left = arr[i] + "px";
+			}
+		}
+		
+	}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<ul id="list">
+			<li><img src="images/1.JPG"></li>
+			<li><img src="images/2.JPG"></li>
+			<li><img src="images/3.JPG"></li>
+			<li><img src="images/4.JPG"></li>
+		</ul>
+		<a href="javascript:;" class="btn"><</a>
+		<a href="javascript:;" class="btn">></a>
+	</div>
+</body>
+</html>

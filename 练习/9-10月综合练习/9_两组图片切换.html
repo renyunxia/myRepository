@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#wrap{
+			width: 600px;
+			margin: 20px;
+			padding: 15px;
+			border: 1px #000 solid;
+		}
+		input{
+			margin-bottom: 10px;
+		}
+		.clear{
+			zoom: 1;
+		}
+		.clear:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		#left{
+			float: left;
+			width: 220px;
+			padding: 15px;
+			border: 1px #ccc solid;
+		}
+		#left img{
+			width: 220px;
+			height: 220px;
+			cursor: pointer;
+		}
+		#right{
+			float: right;
+			width: 300px;
+			padding: 15px;
+			border: 1px #ccc solid;
+		}
+		#right img{
+			width: 300px;
+			height: 220px;
+			cursor: pointer;
+		}
+		p{
+			text-align: center;
+			font: 14px/28px "宋体";
+		}
+		span{
+			font: 12px/20px "宋体";
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<input type="button" value="上一组"/>
+		<input type="button" value="下一组"/>
+		<div class="clear"></div>
+		<div id="left">
+			<img src="" />
+			<p>加载中</p>
+			<span>0/0</span>
+		</div>
+		<div id="right">
+			<img src="" />
+			<p>加载中</p>
+			<span>0/0</span>
+		</div>
+		<div class="clear"></div>
+	</div>
+</body>
+<script>
+	(function(){
+		var arr = [
+			"images/img1.gif",
+			"images/img2.gif",
+			"images/img3.gif",
+			"images/img4.gif"
+		]
+		var arr2 = [
+			"images/img5.gif",
+			"images/img6.gif",
+			"images/img7.gif",
+			"images/img8.gif"
+		]
+		var arrOtext = [
+			"第一组第1张",
+			"第一组第2张",
+			"第一组第3张",
+			"第一组第4张"
+		]
+		var arrTtext = [
+			"第二组第1张",
+			"第二组第2张",
+			"第二组第3张",
+			"第二组第4张"
+		]
+		var btn = document.querySelectorAll('input');
+		var imgL = document.querySelector('#left img');
+		var textL = document.querySelector('#left p');
+		var pageL = document.querySelector('#left span');
+		var imgR = document.querySelector('#right img');
+		var textR = document.querySelector('#right p');
+		var pageR = document.querySelector('#right span');
+		var nub = 0;
+		var nub2 = 0;
+		imgLtab();
+		imgRtab();
+		imgL.onclick = function(){
+			imgLnext();
+		}
+		imgR.onclick = function(){
+			imgRnext();
+		}
+		btn[0].onclick = function(){
+			imgLprev();
+			imgRprev();
+		}
+		btn[1].onclick = function(){
+			imgLnext();
+			imgRnext();
+		}
+		function imgLtab(){
+			imgL.src = arr[nub];
+			textL.innerHTML = arrOtext[nub];
+			pageL.innerHTML = nub + 1 + '/' + arr.length;
+		}
+		function imgRtab(){
+			imgR.src = arr2[nub2];
+			textR.innerHTML = arrTtext[nub2];
+			pageR.innerHTML = nub2 + 1 + '/' + arrTtext.length;
+		}
+		function imgLnext(){
+			nub++;
+			if(nub > arr.length-1 ){
+				nub = 0;
+			}
+			imgLtab();
+		}
+		function imgRnext(){
+			nub2++;
+			if(nub2 > arr2.length-1 ){
+				nub2 = 0;
+			}
+			imgRtab();
+		}
+		function imgLprev(){
+			nub--;
+			if(nub < 0 ){
+				nub = arr.length-1;
+			}
+			imgLtab();
+		}
+		function imgRprev(){
+			nub2--;
+			if(nub2 < 0 ){
+				nub2 = arr2.length-1;
+			}
+			imgRtab();
+		}
+
+	})();
+</script>
+</html>

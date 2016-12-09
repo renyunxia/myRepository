@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#nav span{
+		font: 40px/60px '微软雅黑';
+		cursor: pointer;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var spans = document.querySelectorAll('nav span'); //获取原色
+		// console .log(spans);
+		var isClick = false;  //设置变量记录是否点击过，默认为false没点击过
+		var clickNub = -1;    //设置变量记录点击第几个，默认是0个，都没点击过
+		for (var i = 0; i < spans.length; i++) {
+			spans[i].index = i;  //设置索引值判断当前颜色
+			spans[i].onmouseover = function(){  
+				for (var i = 0; i < spans.length; i++) {
+					spans[i].style.color = "";  // 清空所有
+				};
+				for (var i = 0; i <= this.index; i++ ) {  //小于等于2个时是灰色
+					if(this.index < 2){       //判断当前元素小于等于2个时
+						spans[i].style.color = "#ccc";  
+					}else {
+						spans[i].style.color = "yellow";
+					}
+				};
+			}
+			spans[i].onclick = function(){
+				isClick = true;   //如果是true就是点击过
+				clickNub = this.index;   //记录点击当前是第几个
+			}
+			spans[i].onmouseout = function(){
+				for (var i = 0; i < spans.length; i++) {
+					spans[i].style.color = "";
+				};
+				if(isClick){
+					for (var i = 0; i <= clickNub; i++) {
+						if(clickNub < 2){
+							spans[i].style.color = "#ccc";
+						}else {
+							spans[i].style.color = "yellow";
+						}
+					};
+				}
+			}
+		};
+
+	}
+	</script>
+</head>
+<body>
+	<nav id="nav">
+		<span>★</span>
+		<span>★</span>
+		<span>★</span>
+		<span>★</span>
+		<span>★</span>
+	</nav>
+</body>
+</html>

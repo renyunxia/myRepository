@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body {
+	background: #ccc;
+}
+canvas {
+	display: block;
+	background: #fff;
+	margin:30px auto;
+}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var c = document.querySelector('canvas');
+	var cxt = c.getContext("2d");
+	cxt.lineWidth = 10;
+	cxt.strokeRect(55,55,110,110);
+};
+</script>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400"></canvas>
+</body>
+</html>

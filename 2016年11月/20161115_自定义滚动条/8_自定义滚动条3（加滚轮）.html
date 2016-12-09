@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+*{
+	margin: 0;
+	padding: 0;
+}
+#div1{
+	width:30px;
+	height: 300px;
+	background: red;
+	position: relative;
+	
+}
+#div2{
+	width:30px;
+	height: 30px;
+	background: #000;
+	position: absolute;
+	top:0;
+	left:0;
+}
+#div3{
+	height: 300px;
+	width: 300px;
+	border: 1px solid #000;
+	position: relative;
+	left: 50px;
+	top:-300px;
+	overflow: hidden;
+}
+#div4{
+	width:300px;
+	position: absolute;
+	top:0;
+	left:0;
+	height: 300px;
+}
+#box{
+	width:700px;
+	height:310px;
+	border: 10px dashed #ccc;
+	margin: 50px auto;
+}	
+</style>
+</head>
+<body style="height: 3000px;">
+<div id="box">
+	<div id="div1">
+		<div id="div2"></div>
+	</div>
+	<div id="div3">
+		<div id="div4">
+			<dl>
+                <dt style="background-color: rgb(147, 207, 216); top: 0px; background-image: url(&quot;/static/ie/images/outlineTree/close.png&quot;); color: rgb(255, 255, 255);">第七章：PC/移动端事件基础 - Event对象、事件流、事件默认行为、mTweenPlus实现</dt>
+                <dd>
+                    <i class="sj"></i>
+                    <i class="dot"></i>7.1 - 焦点事件
+                </dd>
+                <dd>
+                    7.1.1 - onfocus
+                </dd>
+                <dd>7.1.2 - onblur</dd>
+                <dd><i class="dot"></i>
+                        7.2 - Event对象</dd>
+                <dd>7.2.1 - Event对象概念</dd>
+                <dd>7.2.2 - Event常用属性</dd>
+                <dd>7.2.3 - event.clientX / event.clientY</dd>
+                <dd>7.2.4 - event.target</dd>
+                <dd><i class="dot"></i>
+                        7.3 - 事件流</dd>
+                <dd>7.3.1 - 事件流概念</dd>
+                <dd>7.3.2 - 事件冒泡</dd>
+                <dd>7.3.3 - 事件捕获</dd>
+                <dd>7.3.3 - 事件捕获</dd>
+                <dd>7.3.4 - 事件函数绑定</dd>
+                <dd>7.3.5 - 事件注销</dd>
+                <dd><i class="dot"></i>
+                        7.4 - 键盘事件详解</dd>
+                <dd>7.4.1 - onkeydown</dd>
+                <dd>7.4.2 - onkeyup</dd>
+                <dd>7.4.3 - onkeypress</dd>
+                <dd>7.4.4 - keyCode</dd>
+                <dd>7.4.5 - ctrlKey</dd>
+                <dd>7.4.6 - shiftKey</dd>
+                <dd>7.4.7 - altKey</dd>
+                <dd><i class="dot"></i>
+                        7.5 - 事件默认行为</dd>
+                <dd>7.5.1 - 事件默认行为概念</dd>
+                <dd>7.5.2 - 阻止事件默认行为</dd>
+                <dd><i class="dot"></i>
+                        7.6 - 移动端事件</dd>
+                <dd>7.6.1 - touchstart</dd>
+                <dd>7.6.2 - touchmove</dd>
+                <dd>7.6.3 - touchend</dd>
+                <dd>7.6.4 - TouchEvent</dd>
+                <dd>7.6.5 - touches</dd>
+                <dd>7.6.6 - targetTouches</dd>
+                <dd>7.6.7 - changedTouches</dd>
+                <dd><i class="dot"></i>本章节案例&amp;练习：</dd>
+                <dd>
+                    <a style="color:rgb(68, 186, 200); text-decoration:underline;" href="/index.php/Course/homeworkDetail/homeworkId/b31b88f68fadf5de224a2d67a94b3fe6" target="_blank">&gt;&gt; 京东商品放大镜预览</a>
+                </dd>
+                <dd>
+                    <a style="color:rgb(68, 186, 200); text-decoration:underline;" href="/index.php/Course/homeworkDetail/homeworkId/55b24735d1b04dd72e4f6ba2f8f27957" target="_blank">&gt;&gt; 模拟select</a>
+                </dd>
+                <dd>
+                    <a style="color:rgb(68, 186, 200); text-decoration:underline;" href="/index.php/Course/homeworkDetail/homeworkId/dfc93b9cb191c10fb4aae581561b2610" target="_blank">&gt;&gt; 事件委托</a>
+                </dd>
+                <dd>
+                    <a style="color:rgb(68, 186, 200); text-decoration:underline;" href="/index.php/Course/homeworkDetail/homeworkId/34688de3c5add155aa3cb4a8e941b900" target="_blank">&gt;&gt; 多模式切换幻灯片</a>
+                </dd>
+                <dd>
+                    <a style="color:rgb(68, 186, 200); text-decoration:underline;" href="/index.php/Course/homeworkDetail/homeworkId/ffc4ce020591c793aa16113a184de330" target="_blank">&gt;&gt; 下拉菜单</a>
+                </dd>
+                <dd>
+                    <a style="color:rgb(68, 186, 200); text-decoration:underline;" href="/index.php/Course/homeworkDetail/homeworkId/2f29a464cc82f2c5988123139ce6383a" target="_blank">&gt;&gt; 仿系统右键菜单</a>
+                </dd>
+                <dd>
+                    <a style="color:rgb(68, 186, 200); text-decoration:underline;" href="/index.php/Course/homeworkDetail/homeworkId/db1eecba5e17133f55bb1a7e8c5ee355" target="_blank">&gt;&gt; 键盘控制元素移动 - 游戏人物运动</a>
+                </dd>
+            </dl>
+		</div>
+	</div>
+</div>
+<script src="myWheel.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var div1 = document.getElementById('div1');
+	var div2 = document.getElementById('div2');
+	var div3 = document.getElementById('div3');
+	var div4 = document.getElementById('div4');
+	var box = document.getElementById('box');
+	
+	/*
+		clientHeight
+		offsetHeight
+		scrollHeight  不算边框
+	*/
+	div2.addEventListener('mousedown',fnDown);
+//	console.log(div4.scrollHeight);
+	
+	function fnDown(ev){
+		var disY = ev.pageY - div2.offsetTop;
+		document.addEventListener('mousemove',fnMove);
+		document.addEventListener('mouseup',fnUp);
+		function fnMove(ev){
+			var t = ev.pageY - disY;
+			if(t < 0){
+				t = 0;
+			}else if(t > div1.offsetHeight - div2.offsetHeight){
+				t = div1.offsetHeight - div2.offsetHeight;
+			}
+			
+			var scaleY = t/(div1.offsetHeight - div2.offsetHeight);
+			
+			/*
+			 	- 比例 * div4内容撑开的高度 - div3的高度
+			*/
+			
+			div4.style.top = scaleY * (div3.offsetHeight - div4.scrollHeight) + 'px';
+			
+			div2.style.top = t + 'px';
+		}
+		function fnUp(){
+			document.removeEventListener('mousemove',fnMove);
+			document.removeEventListener('mouseup',fnUp);
+		}
+		ev.preventDefault();
+	}
+	
+	//滚轮
+	myWheel(box,function(o){
+		var t = div2.offsetTop;
+		if(o){
+			//向上滚动
+			t-=5;
+			if(t < 0){
+				t = 0;
+			}
+			//div2.style.top = t + 'px';
+			
+		}else{
+			//向下滚动
+			t+=5;
+			if(t > div1.offsetHeight - div2.offsetHeight){
+				t = div1.offsetHeight - div2.offsetHeight;
+			}
+			//div2.style.top = t + 'px';
+		}
+		var scaleY = t/(div1.offsetHeight - div2.offsetHeight);
+//		console.log(scaleY)
+		div4.style.top = scaleY * (div3.offsetHeight - div4.scrollHeight) + 'px';
+		div2.style.top = t + 'px';
+	});
+	
+	
+	
+	
+	
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	form,p,label,input,span,ul,em,a{
+		margin: 0;
+		padding: 0;
+		font: 12px/30px "宋体";
+	}
+	form{
+		width: 750px;
+		height: 300px;
+		margin: 30px;
+	}
+	em{
+	    font-style: normal;
+	}
+	ul{
+		list-style: none;
+	}
+	a{
+	    text-decoration: none;
+	    color: #1b66c7;
+	}
+	.pass-form-item{
+	    position: relative;
+	    clear: both;
+	    margin-bottom: 10px;
+	    zoom: 1;
+	    height: 40px;
+	}
+	.pass-label {
+	    display: block;
+	    float: left;
+	    height: 42px;
+	    width: 65px;
+	    margin-right: 10px;
+	    line-height: 42px;
+	    font-size: 14px;
+	    color: #666;
+	    font-weight: 700;
+	    text-align: right;
+	    cursor: default;
+	}
+	.pass-text-input {
+	    display: block;
+	    position: relative;
+	    float: left;
+	    height: 16px;
+	    width: 300px;
+	    padding: 11px 10px;
+	    margin-right: 10px;
+	    border: 1px solid #ddd;
+	    font-size: 14px;
+	    color: #666;
+	    transition: .3s;
+	    outline: none;
+	}
+	.pass-clearbtn {
+	    display: block;
+	    position: absolute;
+	    width: 16px;
+	    height: 16px;
+	    background: url(img/reg_icons.png) -32px -24px no-repeat;
+	    top: 12px;
+	    left: 398px;
+	    cursor: pointer;
+	}
+	.pass-item-tip {
+	    width: 270px;
+	    float: left;
+	    display: none;
+	}
+	.pass-item-tiptext-userName {
+		color: #666;
+		line-height: 20px;
+	}
+	.pass-item-tip-password {
+	    position: absolute;
+	    left: 400px;
+	    top: 0;
+	    zoom: 1;
+	    z-index: 20;
+	}
+	.pass-item-tiptext-password {
+	    padding-top: 0;
+	}
+	.pwd-checklist-arrow {
+	    position: absolute;
+	    top: 8px;
+	    left: 0;
+	}
+	.pwd-checklist-arrow em {
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    font-size: 20px;
+	    color: #ddd;
+	}
+	.pwd-checklist-arrow em.arrowb {
+	    color: #f9f9f9;
+	    left: 1px;
+	}
+	.pwd-checklist {
+	    margin-left: 10px;
+	    padding: 5px 10px;
+	    border: 1px solid #ddd;
+	    box-shadow: 1px 1px 1px #efefef;
+	    background: #f9f9f9;
+	    width: 200px;
+	}
+	.pwd-checklist-item {
+	    line-height: 20px;
+	    padding-left: 18px;
+	    background: url(img/reg_icons.png) no-repeat -86px -112px;
+	    color: #666;
+	}
+	.pass-form-item-isAgree {
+	    margin-left: 75px;
+	    height: 20px;
+	}
+	.pass-checkbox-isAgree {
+	    vertical-align: middle;
+	}
+	.pass-form-item-isAgree label {
+	    color: #666;
+	    font-size: 12px;
+	    margin-left: 5px;
+	}
+	.pass-form-item-submit {
+	    position: relative;
+	    left: 75px;
+	}
+	.pass-button-submit {
+	    float: left;
+	    width: 320px;
+        display: block;
+	    height: 50px;
+	    font-size: 16px;
+	    font-weight: 700;
+	    cursor: pointer;
+	    color: #fff;
+	    background-image: none;
+	    border-radius: 3px;
+	    border: 0;
+	    -moz-border-radius: 3px;
+	    -webkit-border-radius: 3px;
+	    transition: .3s;
+	    -moz-transition: .3s;
+	    -o-transition: .3s;
+	    -webkit-transition: .3s;
+        background-color: #4490f7;
+	    line-height: 32px;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var form = document.getElementsByTagName('form')[0];
+		var input = document.querySelectorAll('#text input');
+		var btn = document.querySelector('#btn input');
+		var tip = document.querySelectorAll('.pass-item-tip');
+		for (var i = 0; i < input.length; i++) {
+			input[i].index = i;
+			input[i].onfocus = function(){
+				this.style.borderColor = "red";
+				tip[this.index].style.display = "block";
+			}
+			input[i].onblur = function(){
+				this.style.borderColor = "#ddd";
+				tip[this.index].style.display = "";
+			};
+		};
+		form.onsubmit = function(){
+			if(input[0].value == ""){
+				alert("请输入内容");
+				input[0].focus();
+				return false;
+			}
+			if(input[1].value == ""){
+				alert("请输入密码");
+				input[1].focus();
+				return false;
+			}
+		};
+	}
+	</script>
+</head>
+<body>
+	<form action="">
+		<div id="text" class="pass-form-item">
+			<label class="pass-label">用户名</label>
+			<input class="pass-text-input" type="text"  placeholder="请设置用户名">
+			<span class="pass-item-tip pass-item-tiptext-userName">设置后不可更改<br>中英文均可，最长14个英文或7个汉字
+			</span>
+		</div>
+		<div id="text" class="pass-form-item">
+			<label class="pass-label">密码</label>
+			<input class="pass-text-input" type="text"  placeholder="请设置登录密码">
+			<span class="pass-item-tip pass-item-tip-password">
+				<span class="pwd-checklist-arrow">
+					<em class="arrowa">◆</em>
+					<em class="arrowb">◆</em>
+				</span>
+				<ul class="pwd-checklist">
+					<li class="pwd-checklist-item">长度为6~14个字符</li>
+					<li class="pwd-checklist-item">支持数字,大小写字母和标点符号</li>
+					<li class="pwd-checklist-item">不允许有空格</li>
+				</ul>
+			</span>
+		</div>
+		<p class="pass-form-item pass-form-item-isAgree">
+			<input type="checkbox" class="pass-checkbox-isAgree">
+			<label>阅读并接受</label>
+			<a target="_blank" href="#">《百度用户协议》</a>
+		</p>
+		<p id="btn" class="pass-form-item pass-form-item-submit">
+			<input type="submit" value="注册" class="pass-button pass-button-submit">
+		</p>
+	</form>
+</body>
+</html>

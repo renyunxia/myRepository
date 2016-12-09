@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+div{
+	padding: 100px;
+}	
+#div1{
+	background: red;
+}
+#div2{
+	background: blue;
+}
+
+#div3{
+	background: green;
+}
+#div4{
+	width:100px;
+	height: 100px;
+	background: yellow;
+}
+
+</style>
+</head>
+<body id="body">
+	<div id="div1">
+		<div id="div2">
+			<div id="div3">
+				<button id="btn">点击</button>
+			</div>
+		</div>
+	</div>
+	<div id="div4"></div>
+<script type="text/javascript">
+	/*
+		事件流（事件模型）***** 
+			冒泡：
+				当在某个元素身上触发了某个事件并且这个元素身上有事件绑定函数，那么不但会执行这个函数，还会从当前元素向上（从父级）执行这个事件，如果向上的祖先节点也有同样事件绑定函数，那么就会执行。一直到window就结束了
+			
+			传统添加事件绑定函数的时候只有冒泡过程可以监听到，捕获过程不能监听到的。
+			捕获：
+				从window开始，向下传递，直到目标点的这个过程就叫捕获
+		
+		当某个元素事件被触发的时候，从捕获阶段到冒泡阶段的整个过程就叫事件流（事件模型）
+		从window起，到window结束
+		
+		
+		注意：
+			如果事件绑定函数为一个匿名函数，那么有多个相同的事件、元素，那么会依次触发，如果为有名函数，那么只会执行一次。
+			
+			（*）如果目标点相同事件并且有多个事件绑定函数，那么会按顺序依次执行。
+			如果不是目标点，那么会走事件流机制，先捕获然后冒泡，如果捕获或者冒泡有多个事件绑定函数（同一个事件），那么会按顺序依次执行
+
+	*/
+	
+	var div1 = document.getElementById('div1');
+	var div2 = document.getElementById('div2');
+	var div3 = document.getElementById('div3');
+	var div4 = document.getElementById('div4');
+	var body = document.getElementById('body');
+	var btn = document.getElementById('btn');
+	
+	
+	//div1.addEventListener('click',function(){alert('我是红色的')},false);
+	function fn1(){alert('我是绿色的f1')}
+	
+	div3.addEventListener('click',fn1,false);
+	div3.addEventListener('click',function(){alert('我是绿色的f2')},false);
+	
+	div3.addEventListener('click',function(){alert('我是绿色的t')},true);
+	
+	
+	
+	//div1.addEventListener('click',function(){alert('我是红色的')},true);
+	
+	//div2.addEventListener('click',function(){alert('我是蓝色的')},false);
+	
+	
+//	btn.addEventListener('click',function(){alert('我是按钮t3')},true);
+//	btn.addEventListener('click',function(){alert('我是按钮t4')},false);
+//	btn.addEventListener('click',function(){alert('我是按钮t')},true);
+//	btn.addEventListener('click',function(){alert('我是按钮')},true);
+//	btn.addEventListener('click',function(){alert('我是按钮f')},false);
+	
+	
+	
+	
+	
+	
+	//我是黄色的
+	
+	
+	
+	
+</script>
+</body>
+</html>

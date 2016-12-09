@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	ul,p,span{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	#wrap{
+		width: 880px;
+		margin: 30px auto;
+	}
+	h2{
+		font: 14px/30px "宋体";
+		color: #999;
+		border-bottom: 2px #999 solid;
+	}
+	.shopList{
+		height: 280px;
+	}
+	.shopList li{
+		width: 220px;
+		height: 274px;
+		position: relative;
+		float: left;
+		background: red;
+	}
+	.shopList .shop{
+		width: 200px;
+		padding: 0 10px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		background: #fff;
+	}
+	.shopList img{
+		display: block;
+		width: 200px;
+		height: 170px;
+	}
+	.shopList .time{
+		display: block;
+	}
+	.shopList input{
+		margin: 0;
+		padding: 0;
+		border: none;
+		background: none;
+		padding-left: 5px;
+		cursor: pointer;
+	}
+	.shopList input[type=text]{
+		border: 1px #000 solid;
+		width: 160px;
+		height: 24px;
+		cursor: text;
+	}
+	time{
+		display: block;
+		padding: 5px 0;
+		font-size: 14px;
+	}
+	p{
+		padding: 5px 0;
+		font-size: 14px;
+	}
+	#total{
+		font-size: 16px;
+		padding:5px 10px;
+		font-weight: bold;
+	}
+	.header{
+		height: 30px;
+		background: #c9c9c9;
+		text-align: center;
+		font: 14px/30px "微软雅黑";
+	}
+	.header span{
+		display: inline-block;
+		width: 30%;
+	}
+	.header span:first-of-type{
+		width: 35%;
+	}
+	#priceList li{
+		height: 100px;
+		border-top: 2px #fff solid; 
+		background: #c9c9c9;
+		padding: 20px 0;
+		line-height: 100px;
+	}
+	#priceList p{
+		display: inline-block;
+		width: 35%;
+		padding: 0 15px;
+		float: left;
+	}
+	#priceList li span{
+		display: inline-block;
+		text-align: center;
+		width: 30%;
+	}
+	#priceList img{
+		float: right;
+		margin-right: 15px;
+		display: inline-block;
+		width: 100px;
+		height: 100px;
+		border: 1px #fff solid;
+	}
+	</style>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script>
+	var date = new Date();
+	var data = [
+		{
+			name:"这是第一件商品",
+			price:200,
+			img:"images/img1.gif",
+			time:"Fri Oct 16 2016 18:50:28"
+		},
+		{
+			name:"这是第一件商品",
+			price:300,
+			img:"images/img2.gif",
+			time:"Fri Oct 16 2016 18:50:28"
+		},
+		{
+			name:"这是第一件商品",
+			price:40,
+			img:"images/img3.gif",
+			time:"Fri Oct 16 2016 18:50:28"
+		},
+		{
+			name:"这是第一件商品",
+			price:8.9,
+			img:"images/img4.gif",
+			time:"Fri Oct 19 2016 17:50:28"
+		}
+	]
+	
+	function toLayout() {
+		var list = document.querySelector('.shopList');
+		var inner = "";
+		for (var i = 0; i < data.length; i++) {
+			inner +='<li><div class="shop"><input type="text" value="'+data[i].time+'"><input type="button" value="确定"><time>剩余00天00时00分0秒</time><img src="'+data[i].img+'"><p class="name">'+data[i].name+'</p><p class="price">抢购价：<span>￥'+data[i].price+'</span></p></div></li>';
+		}
+		list.innerHTML = inner;
+	}
+	window.onload = function(){
+		toLayout();
+		shopLists = document.querySelectorAll('.shopList .shop');
+		var list2 = document.querySelector('#priceList');
+		var total = document.querySelector('#total span');
+
+		for (var i = 0; i < shopLists.length; i++) {
+			shopLists[i].index = i;
+			setDate(shopLists[i]);
+		}
+		function setDate(shop){
+			var textTime = shop.querySelector('input[type="text"]');
+			var setBtn = shop.querySelector('input[type="button"]');
+			var time = shop.querySelector('time');
+			var timer = 0;
+			var val = textTime.value;
+			console.log("textTime,setBtn,time");
+			console.log(textTime,setBtn,time);
+			setBtn.onclick = function(){
+				if(new Date(textTime.value) == "Invalid Date"){  //Invalid Date 过期时间
+					alert("请正确输入时间");
+					return;
+				}
+				val = textTime.value;
+			}
+			lastDate();
+			timer = setInterval(lastDate,1000);
+			function lastDate(){
+				var targetDate = new Date(val);
+				var nowDate = new Date();
+				var disTime = targetDate.getTime() - nowDate.getTime();
+				if(disTime <= 0){
+					console.log("过期");
+					clearInterval(timer);
+					toShake(shop,"left",20,function(){
+						mTween(shop,{top:200,opacity:0},500,"easeBoth",function(){
+							list2.innerHTML += '<li><p>'+data[shop.index].name+'</p><span>'+data[shop.index].price+'</span><img src="'+data[shop.index].img+'"></li>';
+							total.innerHTML = (parseFloat(total.innerHTML) + data[shop.index].price).toFixed(2);  //toFixed保留几位小数 返回值类型 字符串
+						})
+					})
+				}
+
+				var day = toDB(parseInt(disTime/86400000));
+				var hours = toDB(parseInt((disTime%86400000)/3600000));
+				var minutes = toDB(parseInt((disTime%3600000)/60000));
+				var seconds = toDB(parseInt((disTime%60000)/1000));
+				time.innerHTML = "剩余"+day+"天"+hours+"时"+minutes+"分"+seconds+"秒";
+			}
+		}
+	}
+	function toDB(n){
+		return n < 10 ? '0' + n : '' + n;
+	}
+	</script>
+</head>
+<body>
+	<section id="wrap">
+		<h2>购买时间</h2>
+		<ul class="shopList">
+			<!-- <li>
+				<div class="shop">
+					<input type="text" name="">
+					<input type="button" value="确定">
+					<time>剩余00天00时00分0秒</time>
+					<img src="images/img1.gif">
+					<p class="name"></p>
+					<p class="price">抢购价：<span>￥168</span></p>
+				</div>
+			</li> -->
+		</ul>
+		<div class="header">
+			<span>商品名称</span>
+			<span>价格</span>
+			<span>&nbsp;</span>
+		</div>
+		<ul id="priceList">
+			<!-- <li>
+				<p></p>
+				<span></span>
+			</li> -->
+		</ul>
+		<p id="total">总价：<span>00.00</span>元</p>
+	</section>
+</body>
+</html>

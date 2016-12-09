@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script type="text/javascript">
+		function toShake(el,attr,second){
+			if(el.shake){
+				return;
+			}
+			var arr = [];
+			var b = css(el,attr);
+			var nub = 0;
+			for(var i = second-1; i >= 0; i--){
+				i%2?arr.push(i):arr.push(-i);
+			}
+			el.shake = setInterval(
+				function(){
+					if(nub >= second){
+						clearInterval(el.shake);
+					} else {
+						var val = b + arr[nub];
+						css(el,attr,val);	
+						nub++;
+					}
+				},40
+			);
+		}
+		window.onload = function(){
+			var box = getId("box");
+			toShake(box,"left",10);
+		};
+		/*
+			100
+			109   +9
+			92	  +(-8)
+			107   +7
+			94    +(-6)
+			105   +5
+			96    +(-4)
+			103   +3
+			98    +(-2)
+			101   +1
+			100   +(0)		
+
+		*/
+	</script>
+	<style type="text/css">
+		#box{
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			left: 100px;
+			top: 100px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>

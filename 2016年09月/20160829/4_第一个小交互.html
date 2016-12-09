@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+<input type="button" id="btn" value="按钮">
+<script>
+/*
+	1. 找到要操作的元素
+	2. 添加什么事件
+	3. 要执行的反馈
+
+	btn  
+	onclick
+	btn的样式的背景颜色变成黄色
+
+	获取元素：
+		通过id获取元素：document.getElementById
+						文档     获取元素 通过id
+
+	
+	给元素添加一个点击事件
+	document.getElementById('btn').onclick = function() {
+		点击事件之后，要执行的代码
+	};
+
+
+	js 操作元素的样式，可以直接通过操作元素的style属性，操作元素的行间样式
+
+*/	
+document.getElementById('btn').onclick = function() {
+	document.getElementById('btn').style.background = "yellow";
+};
+</script>
+</body>
+</html>

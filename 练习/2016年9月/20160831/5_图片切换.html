@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#warp{
+		width:300px;
+		border: 2px solid #000;
+		margin: 30px auto;
+		text-align: center;
+		padding: 20px;
+	}
+	</style>
+	<script>
+	var arr = [
+		"images/img1.jpg",
+		"images/img2.jpg",
+		"images/img3.jpg",
+		"images/img4.jpg",
+	]
+	var arrText = [
+		"文字一",
+		"文字二",
+		"文字三",
+		"文字四"
+	]
+	window.onload = function(){
+		var prev = document.getElementById('prev'); 
+		var next = document.getElementById('next'); 
+		var img = document.getElementById('img'); 
+		var txt = document.getElementById('txt'); 
+		var page = document.getElementById('page'); 
+		var nub = 0;
+		prev.onclick = function(){
+			nub--;
+			if(nub<0){
+				// alert("已经是第一张啦");
+				nub = arr.length-1;
+			}
+			img.src = arr[nub];
+			txt.innerHTML = arrText[nub];
+			page.innerHTML = nub + 1 + "/" +arr.length;
+		}
+		next.onclick = function(){
+			nub++;
+			if(nub>arr.length-1){
+				// alert("后面没有了");
+				nub = 0;
+			}
+			img.src = arr[nub];
+			txt.innerHTML = arrText[nub];
+			page.innerHTML = nub + 1 + "/" +arr.length;
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="warp">
+		<a href="javascript:;" id="prev"> 上一张 </a>
+		<a href="javascript:;" id="next"> 下一张 </a>
+		<p id="page">1/4</p>
+		<img src="images/img1.jpg" id="img">
+		<div id="txt">文字一</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		var obj = {
+			leo:{
+				name: "leo",
+				age: 39
+			},
+			h1h1:{
+				name: "leo",
+				age: 39
+			}
+		};
+		for(var s in obj) {
+			alert(s);
+		}
+	</script>
+</head>
+<body>
+	js的组成部分:
+		ECMAscript -- 标准 (javaScript核心标准，也是一个解析器)
+		DOM -- DOM标准，定义对页面文档的相关操作 
+		BOM -- 对浏览器的操作
+		<script type="text/javascript">
+			var div = document.createElement("div");
+			div.className = "list";
+			document.body.appendChild(div);
+		</script>	
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		mark {
+			margin: 0 5px;
+		}
+	</style>
+</head>
+<body>
+<section class="wrap">
+	<div id="selector">
+		你的选择:
+	</div>
+	<ul>
+		<li>
+			品牌：
+				<a href="javascript:;">北京陶然网瘾戒除</a>
+				<a href="javascript:;">山东戒网瘾学校</a>
+				<a href="javascript:;">戒网瘾新未来</a>
+		</li>
+		<li>
+			方法：
+				<a href="javascript:;">电击</a>
+				<a href="javascript:;">杨永信</a>
+		</li>
+		<li>
+			电力：
+				<a href="javascript:;">30v</a>
+				<a href="javascript:;">40v</a>
+				<a href="javascript:;">50v</a>
+				<a href="javascript:;">220v瞬间根治</a>
+		</li>
+	</ul>
+</section>
+<script type="text/javascript">
+(function(){
+	var ul = document.querySelector('ul');
+	var lis = ul.querySelectorAll('li');
+	var option = ul.querySelectorAll('a');
+	var selector = document.querySelector('#selector');
+	for(var i = 0; i < lis.length; i++){
+		lis[i].index = i;
+	}
+	for(var i = 0; i < option.length; i++){
+		option[i].onclick = function(){
+			var pid = this.parentNode.index;
+			console.log(pid);
+			return;
+			var mark = document.createElement("mark");
+			var a = document.createElement("a");
+			a.href = "javascript:;";
+			a.innerHTML = "x";
+			a.onclick = function (){
+				selector.removeChild(mark);
+			};
+			mark.innerHTML = this.innerHTML;
+			mark.appendChild(a);
+			selector.appendChild(mark);
+
+		};
+	}
+})();
+</script>
+</body>
+</html>

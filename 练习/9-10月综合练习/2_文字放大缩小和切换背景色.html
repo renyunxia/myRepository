@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	.red{
+		width: 300px;
+		background: red;
+		padding: 20px;
+		border: 10px #ccc solid;
+		color: yellow;
+		word-wrap: break-word;
+	}
+	.yellow{
+		width: 500px;
+		background: yellow;
+		padding: 20px;
+		border: 20px #d9d9d9 solid;
+		color: red;
+	}
+	p{
+		font-size: 14px;
+	}
+	</style>
+</head>
+<body>
+	<input type="button" value="-">
+	<input type="button" value="+">
+	<input type="button" value="红色">
+	<input type="button" value="黄色">
+	<p>
+		奥迪公司打工工商局风格就是个爱过付款给你骨头肉就是加入apjgsrjgslgjaojs'pogjspoijgspdojg
+	</p>
+</body>
+<script>
+	(function(){
+		var btn = document.querySelectorAll('input');
+		var text = document.querySelector('p');
+		var nub = 15;
+		btn[0].onclick = function(){
+			if(nub > 12){
+				nub--;
+				text.style.fontSize = nub + 'px';
+			}
+		}
+		btn[1].onclick = function(){
+			if(nub < 22){
+				nub++;
+				text.style.fontSize = nub + 'px';
+			}
+		}
+		btn[2].onclick = function(){
+			text.className = 'red';
+		}
+		btn[3].onclick = function(){
+			text.className = 'yellow';
+		}
+	})();
+</script>
+</html>

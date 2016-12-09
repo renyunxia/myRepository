@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#box{
+		width: 100px;
+		height: 100px;
+		background: red;
+		position: absolute;
+		top: 50px;
+		left: 0;
+	}
+	#line{
+		width: 1px;
+		height: 500px;
+		background: #000;
+		position: absolute;
+		top: 0;
+		left: 500px;
+	}
+	</style>
+	<script type="text/javascript" src="MTween.js"></script>
+
+	<script>
+	window.onload = function(){
+		var btn = document.querySelector('input');
+		var box = document.querySelector('#box');
+		// btn.onclick = function(){
+		// 	mTween(box,'left',500,800,'backOut');
+		// }
+		mTween(box,'left',500,800,'backOut');
+	}
+	</script>
+</head>
+<body>
+	<input type="button" value="开始">
+	<div id="box"></div>
+	<div id="line"></div>
+</body>
+</html>

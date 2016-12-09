@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			var box = document.querySelector('div');
+			box.dataset.isLoad = false; //自定义属性的值得类型是字符串
+			if(box.dataset.isLoad){
+				alert(true);
+			}else{
+				alert(false);
+			}
+		};
+	</script>
+</head>
+<body>
+	<div></div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#box {
+		width: 1000px;
+		padding: 20px;
+		/*overflow: auto;*/
+	}
+	#box span{
+		width: 98px;
+		height: 28px;
+		background: green;
+		color: #fff;
+		border: 1px #fff solid;
+		display: inline-block;
+		/*float: left;*/
+		text-align: center;
+		line-height: 28px;
+		position: absolute;
+	}
+	</style>
+</head>
+<body>
+	<div id="box">
+		
+	</div>
+</body>
+<script>
+(function(){
+	var box = document.getElementById('box');
+	inner = "";
+	for (var i = 0; i <= 9; i++) {
+		for (var j = 0; j < i; j++) {
+			var top = (i - 1) * 30;
+			var left = (j - 1) * 100;
+			inner +="<span style='left:"+left+"px;top:"+top+"px;'>"+j+"x"+i+"="+(j*i)+"</span>";
+		};
+	};
+	box.innerHTML = inner;
+})();	
+</script>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+#div1{
+	width:100px;
+	height: 100px;
+	background: red;
+	position: absolute;
+	top:0;
+	left:0;
+}	
+</style>
+</head>
+<body>
+	<div id="div1">
+		dsadsadsadsadsadsadsfkldhfash
+	</div>
+	<script type="text/javascript">
+		/*
+			拖拽三大事件：
+				onmousedown（按下）,onmousemove（移动）,onmouseup（抬起）
+
+			拖拽注意事项：
+			
+				例如：拖拽目标是图片或者其内容部分有文字或者链接，需要注意阻止默认行为
+			记得阻止默认行为。return false;
+
+			
+			
+		*/
+		var div = document.getElementById('div1');
+		document.addEventListener('mousedown',function(ev){
+			ev.preventDefault();
+		});
+		
+		
+		
+		div.addEventListener('mousedown',fnDown);
+		function fnDown(ev){
+			var disX = ev.pageX - this.offsetLeft;
+			var disY = ev.pageY - this.offsetTop;
+			
+			document.addEventListener('mousemove',fnMove);
+			document.addEventListener('mouseup',fnUp);
+			
+			function fnMove(ev){
+				div.style.left = ev.pageX - disX + 'px';
+				div.style.top = ev.pageY - disY + 'px';
+			}
+			
+			function fnUp(){
+				document.removeEventListener('mousemove',fnMove);
+				document.removeEventListener('mouseup',fnUp);
+			}
+			
+			ev.preventDefault();
+			
+		}
+		
+		
+		
+		
+		
+		
+	</script>
+</body>
+</html>

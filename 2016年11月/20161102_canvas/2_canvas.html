@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body {
+	background: #ccc;
+}
+canvas {
+	display: block;
+	background: #fff;
+	margin:30px auto;
+}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var c = document.querySelector('canvas');
+	var cxt = c.getContext("2d");
+	cxt.fillStyle = "red"; //填充颜色
+	cxt.fillRect(50,50,100,100);//填充矩形cxt.fillRect(x,y,w,h);
+	cxt.strokeStyle = "yellow";
+	cxt.lineWidth = 10;
+	cxt.strokeRect(150,150,100,100);//描边矩形strokeRect(x,y,w,h)
+
+	cxt.fillRect(50,50,100,100);
+	cxt.fillStyle = "#000";
+	cxt.fillRect(0,0,100,100);
+};
+</script>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400"></canvas>
+</body>
+</html>

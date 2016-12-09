@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+#list {
+	width: 600px;
+	height: 440px;
+	margin: 50px auto 0;
+	padding: 0;
+	list-style: none;
+}	
+#list li {
+	width: 60px;
+	height: 44px;
+	float: left;
+	background: url(img.jpg) no-repeat;
+}
+</style>
+<script type="text/javascript" src="miaov.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var list = document.querySelector('#list');
+	var childs = list.children;
+	var oFrag = document.createDocumentFragment();//文档碎片
+	var liW = 60;
+	var liH = 44;
+	var max = 10;
+	for(var i = 0; i < 100; i++){
+		var li = document.createElement("li");
+		li.cells = i%10;
+		li.rows = parseInt(i/10);
+		li.style.backgroundPosition = -li.cells*liW+"px -"+(li.rows*liH)+"px";
+		li.onclick = function(){
+				console.log(this.rows,this.cells);
+			for(var i = 0; i < childs.length; i++){
+				var disX = childs[i].cells - this.cells;
+				var disY = childs[i].rows - this.rows;
+				var translateX = (max - disX)*(disX/Math.abs(disX)*10);
+				var translateY = (max - disY)*(disY/Math.abs(disY)*10);
+				translateX = isNaN(translateX)?0:translateX;
+				translateY = isNaN(translateY)?0:translateY;
+				if(translateX < 0){
+					translateX-= 10;
+				} else {
+					translateX += 10;
+				}
+				if(translateY < 0){
+					translateY-= 10;
+				} else {
+					translateY += 10;
+				}
+				mTween(childs[i],{
+					translateX:translateX,
+					translateY:translateY,
+					opacity:0
+				},
+				(Math.abs(disX)+Math.abs(disY))*300+20,
+				"easeOut"
+				);
+			}
+		};
+		oFrag.appendChild(li);
+	}
+	list.appendChild(oFrag);
+
+};
+</script>
+</head>
+
+<body>
+<ul id="list">
+</ul>	
+</body>
+</html>

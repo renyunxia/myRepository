@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body {
+	background: #ccc;
+	margin: 0;
+}
+#c {
+	display: block;
+	margin: 50px auto;
+	background: #fff;
+}
+</style>
+<script type="text/javascript">
+var arr = [1,2,3,4,5,6,7,8,9];
+var work = new Worker("work.js");
+work.postMessage(arr);
+work.onmessage = function(e){
+	console.log(e.data);
+};
+</script>
+</head>
+<body>
+<canvas id="c" width="500" height="400"></canvas>
+</body>
+</html>

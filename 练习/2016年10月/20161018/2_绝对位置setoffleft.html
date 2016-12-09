@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	div{
+		padding: 100px;
+	}
+	#div1{
+		background: red;
+		position: relative;
+		left: 20px;
+	}
+	#div2{
+		background: green;
+		position: relative;
+		left: 50px;
+	}
+	#div3{
+		background: yellow;
+		position: absolute;
+		left: 50px;
+	}
+	</style>
+	<script>
+	window.onload = function () {
+		// var div3 = document.getElementById('div3');
+		// var left = 0;4
+		// var obj = div3;
+		// while(obj){
+		// 	left += obj.offsetLeft;
+		// 	obj = obj.offsetParent;
+		// }
+		// console.log(left);
+
+		// console.log(div3.getBoundingClientRect())  //获取div3左边绝对值的简便方法
+		document.onclick = function(){
+			console.log(div3.getBoundingClientRect().top); //    随着滚动页面获取的top值也在变化，获取的是距离浏览器窗口顶部的距离
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<div id="div2">
+			<div id="div3"></div>
+		</div>
+	</div>
+</body>
+</html>

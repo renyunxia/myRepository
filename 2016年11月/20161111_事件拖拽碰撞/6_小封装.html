@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+#div1{
+	width:100px;
+	height: 100px;
+	background: red;
+	position: absolute;
+	top:0;
+	left:0;
+}	
+#div2{
+	width:100px;
+	height: 100px;
+	background:yellowgreen;
+	position: absolute;
+	top:0;
+	left:100px;
+}
+</style>
+</head>
+<body>
+	<div id="div1"></div>
+	<div id="div2"></div>
+	<script type="text/javascript">
+		
+		Drag('div1');
+		Drag('div2');
+		
+		function Drag(id){
+			var obj = document.getElementById(id);
+			obj.addEventListener('mousedown',fnDown);
+			function fnDown(ev){
+				var disX = ev.pageX - obj.offsetLeft;
+				var disY = ev.pageY - obj.offsetTop;
+				
+				document.addEventListener('mousemove',fnMove);
+				document.addEventListener('mouseup',fnUp);
+				
+				function fnMove(ev){
+					var l = ev.pageX - disX;
+					var t = ev.pageY - disY;	
+					obj.style.left = l + 'px';
+					obj.style.top = t + 'px';
+				}
+				function fnUp(){
+					document.removeEventListener('mousemove',fnMove);
+					document.removeEventListener('mouseup',fnUp);
+				}				
+				ev.preventDefault();//阻止默认行为
+			}
+		}
+		
+		
+		
+		
+		
+		
+	</script>
+</body>
+</html>

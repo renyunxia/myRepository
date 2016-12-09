@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}	
+#wrap {
+	width: 240px;
+	height: 240px;
+	margin: 100px auto;
+	border: 20px solid red;
+	overflow: hidden;
+}
+#list {
+	transform-style: preserve-3d;
+	width: 240px;
+	height: 240px;
+	position: relative;
+	transform-origin: center center -207.85px;
+	transition: .5s;
+}
+#list li{
+	position: absolute;
+	left: 0;
+	top: 0;
+	transform-origin: center center -207.85px;
+}
+.active {
+	background: #333;
+	color: #fff;
+}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var list = document.querySelector('#list');
+	var btns = document.querySelectorAll('input');
+	var lis = list.querySelectorAll('li');
+	var navs = document.querySelectorAll('nav input');
+	var now = 0;
+	for(var i = 0 ; i < lis.length; i++) {
+		lis[i].style.transform = "rotateY("+i*60+"deg)";
+		navs[i].index = i;
+		/*
+			鼠标移入，
+				1. 根据now计算出当前显示的是正数第几个
+					var show = now%navs.length;
+					show = show < 0 ?navs.length + show:show;
+
+				2. 计算下 当鼠标移入和show相差几个
+					var dis = this.index - show;
+				3. 根据相差几个 修改now的值
+					now += dis;	
+		*/
+		navs[i].onmouseover = function(){
+			var show = now%navs.length;
+			show = show < 0 ?navs.length + show:show;
+			if(show == this.index){
+				return;
+			}
+			var dis = this.index - show;
+			now += dis;
+			for(var i = 0 ; i < navs.length; i++){
+				navs[i].className = "";
+			}
+			this.className = "active";
+			list.style.transform = "rotateY("+(-now*60)+"deg)";
+		};
+	}
+	btns[0].onclick = function(){
+		now--;
+		var deg = -now*60;
+		list.style.transform = "rotateY("+deg+"deg)";
+		for(var i = 0 ; i < navs.length; i++){
+			navs[i].className = "";
+		}
+		var show = now%navs.length;
+		show = show < 0 ?navs.length + show:show;
+		navs[show].className = "active";
+	};
+	btns[1].onclick = function(){
+
+		now++;
+		var deg = -now*60;
+		list.style.transform = "rotateY("+deg+"deg)";
+		for(var i = 0 ; i < navs.length; i++){
+			navs[i].className = "";
+		}
+		var show = now%navs.length;
+		show = show < 0 ? navs.length + show:show;
+		navs[show].className = "active";
+	};
+}
+</script>
+</head>
+<body>
+<input type="button" value="上一张">
+<input type="button" value="下一张">
+<div id="wrap">
+	<ul id="list">
+		<li><img src="img/1.jpg"/></li>
+		<li><img src="img/2.jpg"/></li>
+		<li><img src="img/3.jpg"/></li>
+		<li><img src="img/4.jpg"/></li>
+		<li><img src="img/5.jpg"/></li>
+		<li><img src="img/6.jpg"/></li>
+	</ul>
+</div>
+<nav>
+	<input type="button" value="0" class="active">
+	<input type="button" value="1">
+	<input type="button" value="2">
+	<input type="button" value="3">
+	<input type="button" value="4">
+	<input type="button" value="5">
+</nav>
+</body>
+</html>

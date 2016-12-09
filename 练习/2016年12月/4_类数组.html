@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul id="ul">
+		
+		<li>222</li>
+		
+		<li>444</li>
+		
+		<li>111</li>
+		
+		<li>555</li>
+		<li>333</li>
+	</ul>
+	<script>
+	var ul = document.getElementById('ul');
+	// var lis = document.querySelectorAll('li');
+	var lis = document.getElementsByTagName('li'); //动态获取
+	for (var i = 0; i < lis.length; i++) {
+		ul.appendChild(lis[i]);
+	};
+	</script>
+</body>
+</html>

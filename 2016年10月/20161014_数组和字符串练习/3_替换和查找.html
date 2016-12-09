@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body,
+		p,
+		h3 {
+			margin: 0;
+			padding: 0;
+		}
+		textarea {
+			margin: 0;
+			padding: 0;
+			resize: none;
+		}
+		a {
+			text-decoration: none;
+		}
+		#wrap {
+			width: 600px;
+			border: 2px solid #000;
+			margin: 30px auto;
+			overflow: hidden;
+			background: #ccc;
+			padding: 10px;
+		}
+		#left {
+			width: 500px;
+			float: left;
+		}
+		#text {
+			width: 458px;
+			font: 14px/30px "宋体";
+			height: 180px;
+			padding: 5px 10px;
+			margin: 0 10px;
+			display: block;
+		}
+		#dialog {
+			padding: 10px;
+			border: 10px solid #f60;
+			background: #f5f0a7;
+			margin-top: 20px;
+			position: relative;
+			display: none;
+		}
+		.clos {
+			position: absolute;
+			right: 10px;
+			top: 5px;
+			font: 14px/1 Arial;
+			color: #000;
+			transition: .5s;
+		}
+		.clos:hover {
+			transform: rotate(360deg);
+		}
+		#dialog nav {
+			height: 28px;
+			border-bottom: 2px solid #f60;
+			font: 16px/28px "宋体";
+		}
+		#dialog nav a {
+			float: left;
+			padding: 0 16px;
+			color: #000;
+		}
+		#dialog nav .active {
+			background: #f60;
+			color: #fff;
+		}
+		#dialog div {
+			padding: 18px 0;
+			display: none;
+		}
+		#dialog .show {
+			display: block;
+		}
+		#menu {
+			width: 100px;
+			float: right;
+			text-align: center;
+		}
+		#menu h3 {
+			font: 16px/30px "宋体";
+			color: #fff;
+			background: #333;
+		}
+		#menu p {
+			font: 14px/28px "宋体";
+			border-top: 1px solid rgba(0,0,0,0);
+			color: #fff;
+			background: #999;
+			background-clip: padding-box;
+			display: none;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var menu = document.querySelector('#menu h3');
+			var menus = document.querySelectorAll('#menu p');
+			var isMenuShow = false;
+			var dialog = document.querySelector('#dialog');
+			var navs = dialog.querySelectorAll('nav a');
+			var cons = dialog.querySelectorAll('div');
+			var cols = document.querySelector('.clos');
+			var text = document.querySelector('#text');
+			var now = 0;
+			var findInput = cons[0].querySelectorAll("input");
+			var replaceInput = cons[1].querySelectorAll("input");
+			var startInner = text.innerHTML;
+			//console.log();
+			/*var arr = text.innerHTML.split("萌");
+			var val = arr.join("<mark>萌</mark>");
+			console.log(val);
+			text.innerHTML= val;*/
+			findInput[1].onclick = function(){
+				if(findInput[0].value == ""){
+					alert("请输入内容");
+					return;
+				}
+				var arr = startInner.split(findInput[0].value);
+				if(arr.length == 1){
+					alert("找不到输入内容");
+					return;
+				}
+				var val = arr.join("<mark>"+findInput[0].value+"</mark>");
+				text.innerHTML = val;
+			};
+			replaceInput[2].onclick = function(){
+				if(replaceInput[0].value == ""){
+					alert("请输入被替换内容");
+					return;
+				}
+				if(replaceInput[1].value == ""){
+					alert("请输入替换内容");
+					return;
+				}
+				var arr = startInner.split(replaceInput[0].value);
+				if(arr.length == 1){
+					alert("找不到输入内容");
+					return;
+				}
+				var val = arr.join("<mark>"+replaceInput[1].value+"</mark>");
+				startInner = arr.join(replaceInput[1].value);
+				text.innerHTML = val;	
+			};
+			for(var i = 0; i < navs.length; i++){
+				if(navs[i].className == "active"){
+					now = i;
+				}
+				navs[i].index = i;
+				navs[i].onclick = function(){
+					navs[now].className = "";
+					cons[now].className = "";			
+					now = this.index;
+					navs[now].className = "active";
+					cons[now].className = "show";	
+				};
+			}
+			menu.onclick = function(){
+				for(var i = 0; i < menus.length; i++){
+					if(isMenuShow){
+						menus[i].style.display = "none";
+					} else {
+						menus[i].style.display = "block";
+					}
+				}
+				isMenuShow = !isMenuShow;
+			};
+			for(var i = 0; i < menus.length; i++){
+				menus[i].index = i;
+				menus[i].onclick = function(){
+					dialog.style.display = "block";
+					for(var i = 0; i < menus.length; i++){
+						menus[i].style.display = "none";
+					}
+					isMenuShow = false;
+					navs[now].className = "";
+					cons[now].className = "";			
+					now = this.index;
+					navs[now].className = "active";
+					cons[now].className = "show";	
+				};
+			}
+			cols.onclick = function(){
+				dialog.style.display = "none";
+			};
+		};
+	</script>
+</head>
+<body>
+	<article id="wrap">
+		<div id="left">
+			<p id="text">张萌（Alina Zhang），出生于天津市，毕业于澳大利亚悉尼新南威尔士大学，中国内地影视女演员，第53届环球小姐中国区冠军，曾任联合国中国慈善大使、粉红基金明星公益大使。2004年，张萌因获得环球小姐中国区冠军而出道演艺圈[1]  。2005年，张萌接拍了个人首部影视作品《老爸老妈兄弟姐妹》[2]  。</p>
+			<div id="dialog">
+				<nav>
+					<a href="javascript:;" class="active">查找</a>
+					<a href="javascript:;">替换</a>
+				</nav>
+				<div class="show">
+					<input type="text" name="">
+					<input type="button" value="查找">
+				</div>
+				<div>
+					<input type="text" name="">
+					<input type="text" name="">
+					<input type="button" value="替换">
+				</div>
+				<a href="javascript:;" class="clos">X</a>
+			</div>
+		</div>
+		<aside id="menu">
+			<h3>展开</h3>
+			<p>查找</p>
+			<p>替换</p>
+		</aside>
+	</article>
+</body>
+</html>

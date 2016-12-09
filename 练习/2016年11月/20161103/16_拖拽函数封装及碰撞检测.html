@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#box{
+		width: 100px;
+		height: 100px;
+		background: red;
+		position: absolute;
+		left: 0;
+		top: 0;
+		cursor: move;
+	}
+	#box2{
+		width: 100px;
+		height: 100px;
+		/*background: green;*/
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin: -50px 0 0 -50px;
+	}
+	.bg1{
+		background: green;
+	}
+	.bg2{
+		background: yellow;
+	}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<div id="box2" class="bg1"></div>
+	<script>
+	(function(){
+		var box = document.getElementById('box');
+		var box2 = document.getElementById('box2');
+		document.onmousedown = function(ev){
+			var disX = ev.pageX - box.offsetLeft;
+			var disY = ev.pageY - box.offsetTop;
+			document.onmousemove = function(ev){
+				var l1 = ev.pageX - disX;
+				var t1 = ev.pageY - disY;
+				
+				var r1 = l1 + box.offsetWidth;
+				var b1 = t1 + box.offsetHeight;
+
+				var l2 = box2.offsetLeft;
+				var r2 = l2 + box2.offsetWidth;
+				var t2 = box2.offsetTop;
+				var b2 = t2 + box2.offsetHeight;
+				// console.log(t1,b2);
+				if(r1 < l2 || b1 < t2 || l1 > r2 || t1 > b2){
+					box2.className = 'bg1';
+				}else{
+					box2.className = 'bg2';
+				}
+
+				box.style.left = l1 + 'px';
+				box.style.top = t1 + 'px';
+			}
+			document.onmouseup = function(){
+				document.onmouseup = document.onmousemove = null;
+			}
+			return false;
+		}
+	})();
+	</script>
+</body>
+</html>

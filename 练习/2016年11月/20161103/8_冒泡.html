@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#box{
+		width: 100px;
+		height: 100px;
+		background: red;
+		position: relative;
+	}
+	#box span{
+		width: 50px;
+		height: 50px;
+		background: yellow;
+		position: absolute;
+		right: -100px;
+		top: 0;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var box = document.getElementById('box');
+		var span = document.querySelector('span');
+		console.log(box,span)
+		span.onclick = function(e){
+			e.cancelBubble = true;  //取消冒泡
+			// e.stopPropagation();   //取消冒泡 只有标准浏览器才识别
+			box.style.background = 'yellow';
+		}
+		box.onclick = function(){
+			box.style.background = 'red';
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<span></span>
+	</div>
+</body>
+</html>

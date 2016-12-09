@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	nav,p,a{
+		margin: 0;
+		padding: 0;
+	}
+	a{
+		text-decoration: none;
+		color: #000;
+	}
+	ul{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		line-height: 30px;
+	}
+	#nav{
+		width: 360px;
+		margin: 30px auto;
+		padding: 5px 10px;
+		border: 2px #999 solid;
+		background: #f1f1f1;
+		height: 30px;
+	}
+	.list li{
+		float: left;
+		width: 120px;
+		position: relative;
+		text-align: center;
+	}
+	.list p{
+		padding: 2px 2px 0;
+		font: 14px/28px "宋体";
+		text-align: center;
+
+	}
+	.list .active p{
+		border: 2px #666 solid;
+		border-bottom: none;
+		background: #ddd;
+		position: relative;
+		z-index: 2;
+		padding: 0;
+	}
+	.list2{
+		position: absolute;
+		left: 0;
+		top: 28px;
+		width: 140px;
+		background: #ddd;
+		border: 2px #666 solid;
+		z-index: 1;
+		display: none;
+		padding: 5px 3px;
+	}
+	.list .active .list2{
+		display: block;
+	}
+	.list2 li{
+		width: 140px;
+		border-bottom: 1px #000 solid;
+	}
+	.list .list2 p {
+		border: none;
+		background: none;
+		text-align: left;
+		text-indent: 10px;
+		font: 12px/26px "宋体";
+		padding: 1px;
+		padding-right: 0;
+	}
+	.list2 .active p {
+		width: 130px;
+		padding: 0;
+		border: 1px red solid;
+		border-right: none;
+		background: #fff;
+		position: relative;
+		z-index: 2;
+	}
+	.list3{
+		width: 140px;
+		position: absolute;
+		left: 130px;
+		top: 0;
+		display: none;
+		padding: 5px 3px;
+		z-index: 1;
+		background: #fff;
+		border: 1px red solid;
+	}
+	.list2 .list3 p{
+		background: none;
+		border: none;
+	}
+	.list2 .active .list3{
+		display: block;
+	}
+	.list3 .active p {
+		color: red;
+	}
+	</style>
+	<script>
+	window.onload = function  () {
+		var li = document.querySelectorAll('li');
+		for (var i = 0; i < li.length; i++) {
+			li[i].onmouseover = function(){
+				this.className = "active";
+			}
+			li[i].onmouseout = function(){
+				this.className = "";
+			}
+		};
+	}
+	</script>
+</head>
+<body>
+	<nav id="nav">
+		<ul class="list">
+			<li>
+				<p><a href="">所有分类</a></p>
+				<ul class="list2">
+					<li>
+						<p><a href="">数码家电</a></p>
+						<ul class="list3">
+							<li>
+								<p><a href="">居家日用/收纳存储</a></p>
+							</li>
+							<li>
+								<p><a href="">居家日用/收纳存储</a></p>
+							</li>
+							<li>
+								<p><a href="">居家日用/收纳存储</a></p>
+							</li>
+							<li>
+								<p><a href="">居家日用/收纳存储</a></p>
+							</li>
+							<li>
+								<p><a href="">居家日用/收纳存储</a></p>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<p><a href="">户外运动</a></p>
+						<ul class="list3">
+							<li>
+								<p><a href="">居家日用/收纳存储</a></p>
+							</li>
+							<li>
+								<p><a href="">居家日用/收纳存储</a></p>
+							</li>
+							<li>
+								<p><a href="">居家日用/收纳存储</a></p>
+							</li>
+							<li>
+								<p><a href="">居家日用/收纳存储</a></p>
+							</li>
+							<li>
+								<p><a href="">居家日用/收纳存储</a></p>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<p><a href="">妙味课堂</a></p>
+						<ul class="list3">
+							<li>
+								<p><a href="">居家日用/收纳存储</a></p>
+							</li>
+							<li>
+								<p><a href="">居家日用/收纳存储</a></p>
+							</li>
+							<li>
+								<p><a href="">居家日用/收纳存储</a></p>
+							</li>
+							<li>
+								<p><a href="">居家日用/收纳存储</a></p>
+							</li>
+							<li>
+								<p><a href="">居家日用/收纳存储</a></p>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>家具家电</li>
+			<li>妙味课堂</li>
+		</ul>
+	</nav>
+</body>
+</html>

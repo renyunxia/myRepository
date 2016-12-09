@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body {
+		margin: 0;
+	}
+	#box {
+		width: 405px;
+		height: 165px;
+		margin: 30px auto;
+		position: relative;
+		overflow: hidden;
+	}
+	#list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		width: 400%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		transition: .5s;
+	}
+	#list li {
+		float: left;
+	}
+	#list img {
+		display: block;
+		width: 405px;
+		height: 165px;
+	}
+	#navs {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+	}
+	#navs a {
+		float: left;
+		width: 25%;
+		font: 14px/30px "宋体";
+		text-align: center;
+		text-decoration: none;
+		color: #fff;
+		box-sizing: border-box;
+		background: rgba(0,0,0,.4);
+	}
+	#navs .active {
+		background: rgba(255,255,255,.6);
+		color: #000;
+	}
+	</style>
+	<script type="text/javascript">
+		function css(el,attr){
+			if(el.currentStyle) {
+				return el.currentStyle[attr];	
+			} else {
+				return getComputedStyle(el)[attr];
+			}
+		}
+		window.onload = function() {
+			var navs = document.querySelectorAll("#navs a");
+			var list = document.querySelector("#list");
+			var li = list.querySelector("li");
+			var imgW =  parseFloat(css(li,'width')); //计算后样式 获取的是个带单位的字符串
+			//console.log(imgW);
+			// 移入第几个nav list就走 -几个图片的宽度
+			for(var i = 0; i < navs.length; i++){
+				navs[i].index = i;
+				navs[i].onmouseover = function(){
+					for(var i = 0; i < navs.length; i++){
+						navs[i].className = "";
+					}
+					this.className = "active";
+					list.style.left = -imgW*this.index+"px";
+				};
+			}
+		};
+	</script>
+</head>
+<body>
+	<input type="button" value="上一张">
+	<input type="button" value="下一张">
+<div id="box">
+	<ul id="list">
+		<li>
+			<a href="#">
+				<img src="images/img1.gif">
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<img src="images/img2.gif">
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<img src="images/img3.gif">
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<img src="images/img4.gif">
+			</a>
+		</li>
+	</ul>
+	<nav id="navs">
+		<a href="javascript:;" class="active">选项1</a>
+		<a href="javascript:;">选项2</a>
+		<a href="javascript:;">选项3</a>
+		<a href="javascript:;">选项4</a>
+	</nav>
+</div>	
+</body>
+</html>

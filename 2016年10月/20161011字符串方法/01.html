@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var nowTime = new Date();
+		var h = nowTime.getHours(),
+			m = nowTime.getMinutes(),
+			s = nowTime.getSeconds();
+
+		//模板字符串  对于要替换成变量的字符串 用一对大括号包起来
+		// 然后前面写一个$符号  注意：这些字符串放在一对反引号里 ``
+
+		var str = `当前的时间是${h}小时${m}分钟${s}秒`;
+
+		console.log(str);
+
+	</script>
+</body>
+</html>

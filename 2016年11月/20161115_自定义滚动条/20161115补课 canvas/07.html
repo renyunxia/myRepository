@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var cxt = canvas.getContext('2d');
+
+		cxt.shadowColor = 'rgba(0,0,0,1)';
+		cxt.shadowOffsetX = -12;
+		cxt.shadowOffsetY = -12;
+		cxt.shadowBlur = 20;
+
+		cxt.beginPath();
+		cxt.fillStyle = '#FA4B4E';
+		cxt.fillRect(100,100,400,200);
+
+		cxt.beginPath();
+		cxt.lineWidth = 4;
+		cxt.strokeRect(100,400,400,200);
+
+
+	</script>
+</body>
+</html>

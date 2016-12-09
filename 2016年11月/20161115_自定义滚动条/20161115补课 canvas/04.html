@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<canvas id="canvas" width="800" height="600"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var cxt = canvas.getContext('2d');
+
+		var W = canvas.width, H = canvas.height;
+
+		// var linearColor = cxt.createRadialGradient(W/2,50,20,W/2,H,600);
+		// 第一个圆心的坐标加上半径（x1,y1,r1） + 第二个圆心的坐标加上半径
+		// （x2,y2,r2）
+		var linearColor = cxt.createRadialGradient(W/2,H,0,W/2,H,W);
+
+		linearColor.addColorStop(0,'#ACFEC3');
+		linearColor.addColorStop(0.25,'#F1FF56');
+		linearColor.addColorStop(0.5,'#F98748');
+		linearColor.addColorStop(0.75,'#FA96FB');
+		linearColor.addColorStop(1,'#67A2FC');
+
+		cxt.fillStyle = linearColor;
+
+		cxt.fillRect(0,0,canvas.width,canvas.height)
+
+
+
+	</script>
+</body>
+</html>

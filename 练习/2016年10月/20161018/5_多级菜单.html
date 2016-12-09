@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#list ul{
+		display: none;
+	}
+	#list>ul{
+		display: block;
+	}
+	</style>
+	<script>
+	var data = [
+		{
+			name:"选项一",
+				child:[
+					{name:"选项1"},
+					{name:"选项2"},
+					{
+						name:"选项3",
+						child:[
+							{name:"选项(1)"},
+							{name:"选项(2)"},
+							{name:"选项(3)"}
+						]
+					},
+				]
+		},{
+			name:"选项二",
+				child:[
+					{name:"选项2-1"},
+					{name:"选项2-2"},
+				{
+					name:"选项3",
+					child:[
+						{name:"选项(1)"},
+						{name:"选项(2)"},
+						{name:"选项(3)"}
+					]
+				},
+			]
+		},{
+			name:"选项三",
+				child:[
+					{name:"选项3-1"},
+					{name:"选项3-2"},
+				{
+					name:"选项3",
+					child:[
+						{name:"选项(1)"},
+						{name:"选项(2)"},
+						{name:"选项(3)"},
+						{
+							name:"选项4",
+							child:[
+								{name:"选项(1)"},
+								{name:"选项(2)"},
+								{name:"选项(3)"}
+							]
+						}
+					]
+				}
+			]
+		}
+	];
+	window.onload = function(){
+		var list = document.getElementById('list');
+		var p = list.getElementsByTagName('p');
+		var inner = "";
+		setChild(data);
+		list.innerHTML = inner;
+
+		for (var i = 0; i < p.length; i++) {
+			p[i].onclick = function(){
+				var next = this.nextElementSibling;
+				var ul = this.parentNode.parentNode.getElementsByTagName('ul');
+				for (var i = 0; i < ul.length; i++) {
+					if(ul[i] != next){
+						ul[i].style.display = "none";
+					}
+				};
+				if(next){
+					if(next.style.display == "block"){
+						next.style.display = "none";
+					}else{
+						next.style.display = "block";
+					}
+				}
+			}
+		};
+		function setChild(obj){
+			inner += '<ul>';
+			for (var i = 0; i < obj.length; i++) {
+				inner += "<li>";
+				inner += "<p>"+obj[i].name+"</p>";
+				if(obj[i].child){
+					setChild(obj[i].child);
+				}
+				inner += "</li>";
+			};
+			inner += '</ul>';
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="list">
+	</div>
+</body>
+</html>

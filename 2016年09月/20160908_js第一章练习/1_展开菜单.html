@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		h3.active {
+			color: red;
+		}
+		ul {
+			display: none;
+		}
+		li.active {
+			color: yellow;
+		}
+	</style>
+	<script type="text/javascript">
+	window.onload = function() {
+		var h3 = document.getElementsByTagName("h3");
+		var ul = document.getElementsByTagName("ul");
+		var li = document.getElementsByTagName("li");
+		for(var i = 0; i < h3.length; i++){
+			h3[i].index = i;
+			h3[i].onclick = function() {
+				for(var i = 0; i < li.length; i++){
+					li[i].className ="";
+				}
+				/* 如果需要当前显示 再清除其他显示的  否则 之清空当前的 */
+				if(this.className == "") {
+					for(var i = 0; i < h3.length; i++){
+						h3[i].className = "";
+						ul[i].style.display = "none";
+					}
+					this.className = "active";
+					ul[this.index].style.display = "block";
+				} else {
+					this.className = "";
+					ul[this.index].style.display = "";
+				}
+			};
+		}
+		for(var i = 0; i < li.length; i++){
+			li[i].onclick = function() {
+				if(this.className == "") {
+					for(var i = 0; i < li.length; i++){
+						li[i].className ="";
+					}
+					this.className ="active";
+				} else {
+					this.className ="";
+				}
+
+			};
+		}
+	};
+	</script>
+</head>
+<body>
+<section class="wrap">
+	<h3>我的好友</h3>
+	<ul>
+		<li>张三1</li>
+		<li>张三2</li>
+		<li>张三3</li>
+	</ul>
+	<h3>企业好友</h3>
+	<ul>
+		<li>李四1</li>
+		<li>李四2</li>
+		<li>李四3</li>
+	</ul>
+	<h3>黑名单</h3>
+	<ul>
+		<li>任晓刚1</li>
+		<li>任晓刚2</li>
+		<li>任晓刚3</li>
+	</ul>
+</section>
+</body>
+</html>

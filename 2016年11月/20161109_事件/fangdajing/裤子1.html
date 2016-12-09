@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+*{ margin:0; padding:0;}
+#div1{ width:312px; margin:50px auto; position:relative;}
+.small{ width:310px; height:310px; border:1px solid #cdcdcd; overflow:hidden; left:0; top:0; position:absolute;}
+.mark{ position:absolute; width:100%; height:100%; background:#ff0000; filter:alpha(opacity:0); opacity:0; z-index:2;cursor:move;}
+.float1 { width:100px; height:100px; background:#fede4f; border:1px solid #aaa; filter:alpha(opacity:50);opacity:0.5; position:absolute;  display:none;}
+.big{ width:310px; height:310px; border:1px solid #cdcdcd; overflow:hidden; position:absolute; left:320px; top:0; display:none;}
+.big img{ position:absolute; left:0; top:0;}
+#list{ width:288px; height:46px; overflow:hidden; position:absolute; left:10px; top:320px;}
+#list ul{ position:absolute; left:0;}
+#list li{ list-style:none; float:left; padding:4px; overflow:hidden; width:40px; height:40px;}
+#list li img{ border:1px solid #cdcdcd;}
+#list .active img{  border:1px solid #ff0000;}
+#left{ width:10px; height:45px; display:block; background:url(images/left.gif) no-repeat; position:absolute; top:322px; left:0; cursor:pointer;}
+#right{ width:10px; height:45px; display:block; background:url(images/right.gif) no-repeat; position:absolute; top:322px; left:300px; cursor:pointer;}
+</style>
+<script src="../$_1.0.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div id="div1">
+	<div class="small">
+    	<div class="float1"></div>
+    	<div class="mark"></div>
+        <img src="images/bg1.jpg" width="310" height="310" />
+    </div>
+    <div id="big" class="big">
+    	<img src="images/bg1.jpg" id="img1" width="930"/ >
+    </div>
+    <span id="left"></span>
+    <span id="right"></span>
+    <div id="list">
+    	<ul>
+        	<li class="active"><img src="images/s1.jpg" /></li>
+        	<li><img src="images/s2.jpg" /></li>
+        	<li><img src="images/s3.jpg" /></li>
+            <li><img src="images/s4.jpg" /></li>
+        	<li><img src="images/s5.jpg" /></li>
+            <li><img src="images/s6.jpg" /></li>
+            <li><img src="images/s7.jpg" /></li>
+            <li><img src="images/s8.jpg" /></li>
+        	<li><img src="images/s9.jpg" /></li>
+            <li><img src="images/s10.jpg" /></li>
+        </ul>
+    </div>
+</div> 
+<script type="text/javascript">
+	var box = document.getElementById('div1');//最外面的大盒子
+	var small = box.getElementsByClassName('small')[0];//要移入的容器
+	var float1 = small.getElementsByClassName('float1')[0];//移入后显示移动的小框
+	var big = box.getElementsByClassName('big')[0];//放大的容器
+	var img1 = document.getElementById('img1'); //放大的图片
+	var boxP = box.getBoundingClientRect();
+	var imgW = img1.width;
+	//移入移出
+	small.onmousemove = function(ev){
+		float1.style.display = big.style.display = 'block';
+		//控制float1的top/left值
+		//console.log(ev.pageX);
+		//left:页面X坐标 - 最大盒子的绝对left值 - 小盒子宽度的一半
+		
+		
+		//范围限制
+		var l = ev.pageX - boxP.left - float1.offsetWidth/2,
+		t = ev.pageY - boxP.top - float1.offsetHeight/2;
+		
+		if(l < 0){
+			l = 0;
+		}else if(l > small.offsetWidth-float1.offsetWidth){
+			l = small.offsetWidth-float1.offsetWidth;
+		}
+		
+		if(t < 0){
+			t = 0;
+		}else if(t > small.offsetHeight-float1.offsetHeight){
+			t = small.offsetHeight-float1.offsetHeight;
+		}
+		
+		var scaleL = l/(small.offsetWidth-float1.offsetWidth);
+		var scaleT = t/(small.offsetHeight-float1.offsetHeight);
+		//左边的比例 * (big容器 - img的宽度)		
+		img1.style.left = scaleL * (big.offsetWidth-img1.offsetWidth) + 'px';
+		img1.style.top = scaleT * (big.offsetHeight-img1.offsetHeight) + 'px';
+		
+		//console.log(l/(small.offsetWidth-float1.offsetWidth))
+
+		
+//		//大图的宽度:小图*小块的left (同学下来再看)
+//		img1.style.left = -imgW/small.offsetWidth*l + 'px';
+//		img1.style.top = -img1.offsetHeight/small.offsetHeight*t + 'px';
+
+	//	console.log(imgW/small.offsetWidth*l)
+
+		
+		float1.style.left = l + 'px';
+		float1.style.top = t + 'px';
+			
+	}
+	small.onmouseout = function(){
+		float1.style.display = big.style.display = 'none';
+	}
+	
+</script>
+</body>
+</html>

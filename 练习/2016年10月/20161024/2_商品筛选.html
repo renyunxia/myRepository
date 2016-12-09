@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body,div,dl,dt,dd,p,a,span{
+		margin: 0;
+		padding: 0;
+	}
+	a{
+		color: #333;
+		text-decoration: none;
+	}
+	a:hover{
+		color: blue;
+		text-decoration: underline;
+	}
+	#wrap{
+		padding: 20px;
+		font: 14px/30px "微软雅黑";
+	}
+	#selector{
+		height: 30px;
+	}
+	#selector p{
+		width: 100px;
+		float: left;
+	}
+	#selector span{
+		border : 1px blue solid;
+		padding: 1px 15px 1px 2px;
+		position: relative;
+		margin-right: 5px;
+	}
+	#selector a{
+		position: absolute;
+		top: 0;
+		right: 0;
+		background: blue;
+		color: #fff;
+	    display: block;
+	    width: 10px;
+	    height: 10px;
+	    line-height: 6px;
+	    font-size: 10px;
+	    text-align: center;
+	}
+	dl{
+		display: block;
+		clear: both;
+		line-height: 24px;
+		padding: 10px 0;
+	}
+	#selector p,dt{
+		font-weight: 700;
+	}
+	dt,dd{
+		float: left;
+		width: 100px;
+	}
+	</style>
+	
+</head>
+<body>
+	<div id="wrap">
+		<div id="selector">
+			您的选择：
+		</div>
+		<dl>
+			<dt>品牌：</dt>
+			<dd><a href="javascript:;">小米</a></dd>
+			<dd><a href="javascript:;">苹果</a></dd>
+			<dd><a href="javascript:;">三星</a></dd>
+			<dd><a href="javascript:;">华为</a></dd>
+			<dd><a href="javascript:;">酷派</a></dd>
+		</dl>
+		<dl>
+			<dt>价格：</dt>
+			<dd><a href="javascript:;">499元以下</a></dd>
+			<dd><a href="javascript:;">500-999元</a></dd>
+			<dd><a href="javascript:;">1000-1999元</a></dd>
+			<dd><a href="javascript:;">2000-2999元</a></dd>
+			<dd><a href="javascript:;">3000-3999元</a></dd>
+		</dl>
+		<dl>
+			<dt>手机特色：</dt>
+			<dd><a href="javascript:;">学生机</a></dd>
+			<dd><a href="javascript:;">智能</a></dd>
+			<dd><a href="javascript:;">国产</a></dd>
+			<dd><a href="javascript:;">千元机</a></dd>
+			<dd><a href="javascript:;">商务</a></dd>
+			<dd><a href="javascript:;">老人机</a></dd>
+		</dl>
+		<dl>
+			<dt>手机配置：</dt>
+			<dd><a href="javascript:;">电信3G</a></dd>
+			<dd><a href="javascript:;">双核</a></dd>
+			<dd><a href="javascript:;">拍照</a></dd>
+			<dd><a href="javascript:;">四核</a></dd>
+			<dd><a href="javascript:;">双3G</a></dd>
+		</dl>
+	</div>
+</body>
+<script>
+(function(){
+	var dl = document.querySelectorAll('dl');
+	var option = document.querySelectorAll('a');
+	var selector = document.getElementById('selector');
+	var arr = [];
+	for (var i = 0; i < dl.length; i++) {
+		dl[i].index = i;
+	};
+	for (var i = 0; i < option.length; i++) {
+		option[i].onclick = function(){
+			var pid = this.parentNode.parentNode.index;
+			var span = document.createElement('span');
+			var a = document.createElement('a');
+			a.href = 'javascript:;';
+			a.innerHTML = 'x';
+			// selector.appendChild(span);
+			a.onclick = function(){
+				selector.removeChild(span);
+				arr[pid] = '';
+			}
+			span.innerHTML = this.innerHTML;
+			span.appendChild(a);
+			span.pid = pid;
+			console.log(pid);
+			arr[pid] = span;
+			selector.innerHTML = "您的选择：";
+			for (var i = 0; i < arr.length; i++) {
+				if(arr[i]){
+					selector.appendChild(arr[i]);
+				}
+			};
+		}
+	};
+})();
+</script>
+</html>

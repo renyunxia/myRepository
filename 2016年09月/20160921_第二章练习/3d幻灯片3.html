@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" id="css">
+		ul{
+			margin: 0;
+			padding: 0;
+			list-style:  none;
+		}
+		#box {
+			width: 800px;
+			height: 360px;
+			-webkit-perspective: 1200px;
+			perspective: 1200px;
+			margin: 100px auto;
+		}
+		#box li {
+			width: 40px;
+			height: 360px;
+			position: relative;
+			-webkit-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+			float: left;
+			transition: .5s;
+			-webkit-transform-origin: center center -180px; 
+			transform-origin: center center -180px; 
+		}
+		#box span {
+			width: 40px;
+			height: 360px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			-webkit-transform-origin: center center -180px; 
+			transform-origin: center center -180px; 
+		}
+		#box span:nth-of-type(1) {
+			-webkit-transform: rotateX(0);
+			transform: rotateX(0);
+			background: url(img/1.jpg) no-repeat;
+		}
+		#box span:nth-of-type(2) {
+			background: url(img/2.jpg) no-repeat;
+			-webkit-transform: rotateX(90deg);
+			transform: rotateX(90deg);
+		}
+		#box span:nth-of-type(3) {
+			-webkit-transform: rotateX(180deg);
+			transform: rotateX(180deg);
+			background: url(img/3.jpg) no-repeat;
+		}
+		#box span:nth-of-type(4) {
+			-webkit-transform: rotateX(270deg);
+			transform: rotateX(270deg);
+			background: url(img/4.jpg) no-repeat;
+		}
+		#box em {
+			position: absolute;
+			top: 0;
+			width: 360px;
+			height: 360px;
+			background: #ccc;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			var box = document.getElementById("box");
+			var li = box.getElementsByTagName("li");
+			var css = document.getElementById("css");
+			var btns = document.querySelectorAll("button")
+			var style = "";
+			var inner = box.innerHTML;
+			var strli = "";
+			var zIndex = 0;
+			for(var i = 0; i < 20; i++) {
+				if(i > 10) {
+					zIndex--;
+				} else {
+					zIndex++;
+				}
+				style += "#box li:nth-of-type("+(i+1)+"){z-index:"+zIndex+";}";
+				style += "#box li:nth-of-type("+(i+1)+") span{background-position: -"+(i*40)+"px 0px;}";
+				strli += inner;
+			}
+			box.innerHTML = strli;
+			css.innerHTML += style;
+			for(var i = 0; i < btns.length; i++){
+				btns[i].index = i;
+				btns[i].onclick = function() {
+					for(var i = 0; i < li.length; i++){
+						li[i].style.transform = li[i].style.WebkitTransform = "rotateX(-"+(this.index*90)+"deg)";
+					}
+				};
+			}
+		};
+	</script>
+</head>
+<body>
+	<nav>
+		<button>1</button>
+		<button>2</button>
+		<button>3</button>
+		<button>4</button>
+	</nav>
+	<ul id="box">
+		<li>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</li>
+	</ul>
+</body>
+</html>

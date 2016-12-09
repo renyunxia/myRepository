@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script type="text/javascript">
+	//ctrlKey 按下的如果是 ctrl键 返回true 否则返回false ctrl的键值 17
+	//shiftKey 按下的如果是 shift键 返回true 否则返回false shift的键值 16
+	//altKey 按下的如果是 alt 返回true 否则返回false alt的键值 18
+	window.onkeydown = function(e){
+		console.log(e.keyCode);
+		//console.log(e.ctrlKey);
+		//console.log(e.shiftKey);
+		console.log(e.altKey);
+	};
+</script>
+</body>
+</html>

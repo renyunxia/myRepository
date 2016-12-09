@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#wrap{
+		width: 840px;
+		height: 340px;
+		padding: 20px;
+		background: #ccc;
+		margin: 10px auto;
+		text-align: center;
+	}
+	#list{
+		width: 840px;
+		height: 340px;
+		/*background: #ccc;*/
+		position: relative;
+	}
+	#list img{
+		width: 200px;
+		height: 150px;
+		display: block;
+		float: left;
+		margin: 5px;
+	}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<!-- <input type="button" value="从大到小"> -->
+		<input type="button" value="随机排序">
+		<div id="list">
+			<!-- <img src="images/img4.gif">
+			<img src="images/img4.gif">
+			<img src="images/img4.gif">
+			<img src="images/img4.gif">
+			<img src="images/img4.gif">
+			<img src="images/img4.gif">
+			<img src="images/img4.gif">
+			<img src="images/img4.gif">	 -->
+		</div>
+	</div>
+	<script>
+	(function(){
+		var date = [
+			'images/1.jpg',
+			'images/2.jpg',
+			'images/3.jpg',
+			'images/4.jpg',
+			'images/5.jpg',
+			'images/6.jpg',
+			'images/7.jpg',
+			'images/8.jpg'
+		];
+		var dateIndex = {
+			'images/1.jpg':1,
+			'images/2.jpg':2,
+			'images/3.jpg':3,
+			'images/4.jpg':4,
+			'images/5.jpg':5,
+			'images/6.jpg':6,
+			'images/7.jpg':7,
+			'images/8.jpg':8
+		}
+		var list = document.getElementById('list');
+		var btn = document.querySelectorAll('input');
+		creatE();
+		
+		function creatE(){
+			for (var i = 0; i < date.length; i++) {
+				var img = new Image();
+				img.src = date[i];
+				list.appendChild(img);
+			};
+		}
+		btn[0].onclick = function(){
+			var listInner = '';
+			date.sort(function (){
+				return Math.random() - .5;
+			})
+			for (var i = 0; i < date.length; i++) {
+				var img = new Image();
+				img.src = date[i];
+			};
+			list.appendChild(img);
+		}
+		// var imgs = document.querySelectorAll('img');
+		// document.addEventListener('mousedown',function(ev){
+		// 	ev.preventDefault();
+		// });
+		// console.log(imgs.length);
+		// for (var i = 0; i < imgs.length; i++) {
+		// 	imgs.addEventListener('mousedown',fnDown);
+
+		// 	function fnDown(ev){
+		// 		var disX = ev.pageX - imgs.offsetLeft;
+		// 		var disY = ev.pageY - imgs.offsetTop;
+		// 		document.addEventListener('onmousemove',fnMove);
+		// 		document.addEventListener('onmouseup',fnUp);
+		// 		function fnMove(ev){
+		// 			imgs.style.left = ev.pageX - disX + 'px';
+		// 			imgs.style.top = ev.pageY - disY + 'px';
+		// 		}
+		// 		function fnUp(ev){
+		// 			document.addEventListener('onmousemove',fnMove);
+		// 			document.addEventListener('onmouseup',fnUp);
+		// 		}
+		// 		ev.preventDefault();
+		// 	}
+		// };
+	})();
+	</script>
+</body>
+</html>

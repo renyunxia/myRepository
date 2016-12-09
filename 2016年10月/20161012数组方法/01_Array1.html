@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 数组的 length 属性 不仅能读 还能 写，在设置数组length属性的时候
+		//如果 设置 length 小于 原来数组的长度  那么就会截取数组的前 length 个
+		//如果设置length 大于 原来的长度，那么原来的数组 就会用对应个数的undefined
+		//去填充
+
+		//------------------------------------
+		//创建数组的方法 
+		// var arr = [];
+		//var arr = new Array(l1,l2...) /如果只有一个参数，当这个参数是数字的时候，
+		//创建这个参数长度的数组数组中的每一项都是undefined，如果是大于一个参数，
+		//那么就是和 [] 是一样的。如果参数是个0 那么就会创建一个 空数组
+		// var arr = Array.of()  
+
+		//-------------------------------------
+		// Array.isArray(arr) 用来判断某个对象是不是数组，如果是返回true
+		// 如果不是返回 false；
+
+		//-------------------------------------
+		//var arr = ['a','sd','liuxin','hanzhaoke','sd','a'];
+		// arr.indexOf(ele,index) 用来查找数组中的某一项，如果找到了就返回对应位置
+		// 如果没找到 就返回 -1  从前向后查找 index,为可选参数，从第几位开始查找
+		// arr.lastIndexOf(ele,index)  是从后向前查找
+		// arr.lastIndexOf('sd',0);  // -1 从后往前查找，0前面没有了，所以返回-1
+
+		//-------------------------------------
+		//会改变原数组的一种方法
+		// arr.push(l1,l2,l3....) 向数组最后面添加新的数据，返回数组新的长度
+		//var arr = [];
+		//arr.push(1,2)  // 2
+		//arr.pop()  删除数组中最后一位，返回值是被删除的最后一位
+		//var arr = ['a','b','c'];
+		//arr.pop()  // 'c' 
+
+		// arr.unshift(l1,l2,l3...)向数组最最前面添加新的数据，返回数组新的长度
+		//var arr = [2,1];
+		//arr.unshift(0,'a')  // [0,'a',2,1]
+		//arr.shift() // 删除数组中第一位，返回值是被删除的第一个数据
+		//var arr = ['a','b','c'];
+		//arr.shift()  // 'a'; 
+
+		//-----------------------------------------------------
+		//arr.slice(start,end) 用来截取数组，返回值是个数组 
+		//包括start 不包括 end，如果start | end < 0 
+		//就等于 start + length | end + lenght
+		//如果 start > end 就返回 [],其它情况返回被截取到的数组
+
+		//arr.splice(index,delete_num,[l1,l2,l3...]) 用来删除或者替换数组中
+		//指定位置开始的多少个元素。返回值是被删除的那个数组（内的数据是被删除那个位置的）
+		var arr = ["zhaonana", "hanjun", "hanxu", "hanmengtong", "苏鼎立", "yini", "hanzhaoke"];
+
+		//arr.splice(0,1) // ["zhaonana"]
+		//arr.splice(0,1,'zhangmeng') // [ "zhangmeng", "hanxu", "hanmengtong", "苏鼎立", "yini", "hanzhaoke"]; => ['hanjun'];
+
+		//----------------------------------------------------
+
+		/*var n = 7;
+		while(n >= 0){
+			console.log(n);
+			n--;
+		}*/
+
+		/*for(var i=7; i>=0; i--){
+			console.log(i);
+		}*/
+
+		//----------------------------------------------------
+		//Array.from(类数组) 把一个类数组转换为真正的数组
+		// var str = '123';  
+		// Array.from(str)  // ['1','2','3'];
+
+		//Array.reverse() 用来反转数组
+		//var arr = [1,2,3,4,5];
+		//arr.reverse();   //[5,4,3,2,1]
+
+		// arr.forEach(fn) 用来便利数组中的每一项 
+		/*item 代表 数组中的每一项
+		i 代表每一项对应的下标
+		arr 代表数组本身
+		arr.forEach(function(item,i,arr){
+
+		})*/
+
+		// arr.map(fn) 使用方法和forEach(fn)一样，只不过它接受的函数参数可以有
+		// 返回值
+
+		// arr.fill(context,[start,end]); 用来填充数组，第一个参数是要填充的内容
+		// 后面两个可选参数，从哪里开始填充，到哪里结束，返回值就是填充后修改的数组
+
+		//var arr = [1,2,3];
+
+		//arr.fill('genbei');  //["genbei", "genbei", "genbei"]
+		//arr.fill('wangyi',1,2); //[1, "wangyi", 3]
+
+		//----------------------------------------------------
+		// arr.join() 把数组转换为字符串，如果不传参数，默认用 ‘，’连接
+		// 如果传了 空字符串 ‘’ 全部连接到一起，如果是其它呢，用其它连接
+		//var arr = ['wangfang','fufei','hanzhaoke'];
+		//arr.join('') // "wangfangfufeihanzhaoke"
+		//注意：原来的数组不发生改变
+
+		//arr.sort() 数组的排序 如果不传参数 默认按照 数据的 ASC码排序
+		//可以接收一个可选的 排序函数 
+
+		var arr = [1,2,5,3,0];
+
+		//从小到大
+		arr.sort(function(a,b){
+			return a - b;
+		});
+		//从大到小
+		arr.sort(function(a,b){
+			return b - a;
+		});
+		//随机排序
+		arr.sort(function(){
+			return 0.5 - Math.random();
+		});
+
+
+		//----------------------------------------------------
+		// arr.concat(l1,l2,l3....) // 用来进行数组的连接
+
+		var arr1 = [1,2];
+		var arr2 = [3,4];
+
+		var arr3 = arr1.concat(arr2); // [1,2,3,4];
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+

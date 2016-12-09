@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+#box {
+	width: 200px;
+	height: 200px;
+	background: red;
+	margin: 100px auto 0;
+	transform: rotate(30deg);
+}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var box = document.querySelector('#box');
+	console.log(getComputedStyle(box)["transform"]);
+};
+</script>
+</head>
+<body>
+<div id="box"></div>	
+</body>
+</html>

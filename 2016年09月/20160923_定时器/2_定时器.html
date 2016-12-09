@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*
+			setInterval();(系统内置函数) 间隔定时器 每间隔多长时间，就执行某件事情
+			setInterval(fn,间隔时间);
+				fn 我们要重复做的事情  间隔时间单位：ms
+				1s = 1000ms 
+
+			返回值： 定时器编号	
+
+
+			setTimeout();(系统内置函数) 延迟型定时器
+			延迟多长时间去做某件事
+			setTimeout(fn,延迟时间);
+
+			返回值：定时器编号
+		*/
+		var nub = 0;
+		setTimeout(
+			function() {
+				alert(nub);
+				nub++;
+			},1000
+		)
+	</script>
+</body>
+</html>

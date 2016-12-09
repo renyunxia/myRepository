@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		h2 {
+			width: 100px;
+			font:14px/30px "宋体";
+			text-align: center;
+			background:#ccc;
+			margin: 0
+		}
+		ul {
+			width:102px;
+			border:1px solid #000;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			border-bottom: none;
+			display:  none;
+		}
+		li {
+			border-bottom: 1px solid #000;
+			font:12px/24px "宋体";
+			text-indent: 5px;
+		}
+		.show {
+			background: #f60;
+			color: #fff;
+		}
+	</style>
+	<script>
+		/*
+			onmouseover 鼠标移入
+			onmouseout 鼠标移出
+		*/
+		window.onload = function() {
+			var h2 = document.getElementsByTagName("h2")[0];
+			var ul = document.getElementsByTagName("ul")[0];
+			var li = ul.getElementsByTagName("li");
+			h2.onclick = function() {
+				if(ul.style.display == "block") {
+					ul.style.display = "none";
+				} else {
+					ul.style.display = "block";
+				}
+			};
+			for(var i = 0; i < li.length; i++){				
+				li[i].onmouseover = over;
+				li[i].onmouseout = out;
+				li[i].onclick = function(){
+					h2.innerHTML = this.innerHTML;
+					ul.style.display = "none";
+				};
+			}
+			// this 代表发生当前事件的元素
+			function over(){
+				//alert(this.innerHTML);
+				this.className = "show"
+			}
+			function out(){
+				this.className = "";
+			}
+		};
+	</script>
+</head>
+<body>
+	<h2>miaov</h2>
+	<ul>
+		<li>javascript</li>
+		<li>妙味课堂</li>
+		<li>移动端课程</li>
+		<li>html5</li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+	#wrap {
+		width: 600px;
+		min-height: 300px;
+		margin: 0 auto;
+	}
+	#box {
+		display: none;
+		position: relative;
+	}
+	#file {
+		width: 200px;
+		height: 50px;
+		border: 2px solid #000;
+		text-align: center;
+		font: 20px/50px "宋体";
+		display: block;
+		margin:100px auto;
+	}
+	#file input{
+		display: none;
+	}
+	#box canvas {
+		display: block;
+		background: #ccc;
+		margin: 0 auto;
+		position: relative;
+	}
+	#clipBtn {
+		display: block;
+		margin: 10px auto;
+		width: 200px;
+		height: 40px;
+	}
+	#resize {
+		display: none;
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		border: 2px solid #02a4c7;
+		background: rgba(2, 164, 199, .2);
+		top: 100px;
+		left: 600px;
+		cursor: move;
+		box-sizing: border-box;
+	}
+	#resize button {
+		position: absolute;
+		height: 20px;
+		top: -22px;
+	}
+	#resize button:nth-of-type(1){
+		left: 0;
+	}
+	#resize button:nth-of-type(2){
+		right: 0;
+	}
+	#resize span {
+		width: 30px;
+		height: 30px;
+		position: absolute;
+		right: -2px;
+		bottom: -2px;
+		cursor: se-resize;
+	}
+</style>
+<script type="text/javascript" src="miaov.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var file = document.querySelector('#file input');
+	var box = document.querySelector('#box');
+	var clipBtn = document.querySelector('#clipBtn');
+	var c = document.querySelector('canvas');
+	var cxt = c.getContext("2d");
+	var resize = document.querySelector('#resize');
+	var resizeBtn = resize.querySelector('span');
+	file.onchange = function(e){
+		var fileReader = new FileReader();
+		fileReader.onload = function(e){
+			var data = e.target.result;
+			var img = new Image();
+			img.src = data;
+			img.onload = function(){
+				c.width = img.width;
+				c.height = img.height;
+				cxt.drawImage(img,0,0,c.width,c.height);
+				file.parentNode.style.display = "none";
+				box.style.display = "block";
+
+			};
+		};
+		fileReader.readAsDataURL(e.target.files[0]);
+	};
+	clipBtn.onclick = clipStart; 
+	function clipStart(){
+		resize.style.display = "block";
+		//console.log(box.clientWidth,resize.offsetWidth);
+		resize.style.top = (c.height - resize.offsetHeight)/2 + c.offsetTop + "px";
+		resize.style.left = (box.clientWidth - resize.offsetWidth)/2 + "px";
+		drag();
+	};
+	function drag(){
+		var cancelBtn = resize.querySelector('button');
+		var clip = resize.querySelector('button:nth-of-type(2)'); 
+		var startMX = 0;
+		var startMY = 0;
+		var startW = 0;
+		var startH = 0;
+		var startL = 0;
+		var startT = 0;
+		var minTop = c.offsetTop;
+		var maxTop = 0;
+		var minLeft = c.offsetLeft;
+		var maxLeft = 0;
+		var minW = 100;
+		var minH = 100;
+		var maxW = 0;
+		var maxH = 0;
+		cancelBtn.onclick = function(){
+			resize.style.display = "none";
+		};
+		clipBtn.onclick = function(){
+			resize.style.display = "block";
+		};
+		clip.onclick = function(){
+			var x = resize.offsetLeft - c.offsetLeft;
+			var y = resize.offsetTop - c.offsetTop;
+			var w = resize.offsetWidth;
+			var h = resize.offsetHeight;
+			var imgData = cxt.getImageData(x,y,w,h);
+			cxt.clearRect(0,0,c.width,c.height);
+			c.width = w;
+			c.height = h;
+			cxt.putImageData(imgData,0,0);
+			resize.style.display = "none";
+			clipBtn.onclick = clipStart;
+		};
+		resize.onmousedown = function(e){
+			maxTop = minTop + c.height - resize.offsetHeight;
+			maxLeft = minLeft + c.width - resize.offsetWidth;
+			startMX = e.clientX;
+			startMY = e.clientY;
+			startL = css(resize,"left");
+			startT = css(resize,"top");
+			document.onmousemove = function(e){
+				var disX = e.clientX - startMX;
+				var disY = e.clientY - startMY;
+				var left = startL + disX;
+				var top = startT + disY;
+				if(top < minTop){
+					top = minTop;
+				}
+				if(top > maxTop){
+					top = maxTop;
+				}
+				if(left < minLeft){
+					left = minLeft;
+				}
+				if(left > maxLeft){
+					left = maxLeft;
+				}
+				css(resize,"left",left);
+				css(resize,"top",top);
+			};
+			document.onmouseup = function(){
+				document.onmousemove = null;
+				document.onmouseup = null;
+			};
+			return false;
+		};
+		resizeBtn.onmousedown = function(e){
+			console.log(c.width - resize.offsetLeft);
+			maxW = c.width - (resize.offsetLeft - c.offsetLeft);
+			maxH = c.height - (resize.offsetTop - c.offsetTop);
+			e.cancelBubble = true;
+			startMX = e.clientX;
+			startMY = e.clientY;
+			startW = css(resize,"width");
+			startH = css(resize,"height");
+			document.onmousemove = function(e){
+				var disX = e.clientX - startMX;
+				var disY = e.clientY - startMY;
+				var width = startW + disX;
+				var height = startH + disY;
+				if(width < minW){
+					width = minW;
+				}
+				if(width > maxW){
+					width = maxW;
+				}
+				if(height < minH){
+					height = minH;
+				}
+				if(height > maxH){
+					height = maxH;
+				}
+				css(resize,"width",width);
+				css(resize,"height",height);
+			};
+			document.onmouseup = function(){
+				document.onmousemove = null;
+				document.onmouseup = null;
+			};
+			return false;
+		};
+	};
+};
+</script>
+</head>
+<body>
+<section id="wrap">
+	<label id="file"><input type="file" accept="image/*">上传图片</label>
+	<div id="box">
+		<button id="clipBtn">裁切</button>
+		<canvas width="300" height="500"></canvas>
+		<div id="resize">
+			<button>取消</button>
+			<button>确定</button>
+			<span></span>
+		</div>
+	</div>
+</section>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#text {
+			width: 300px;
+			min-height: 200px;
+			margin: 0;
+			padding: 0;
+			resize: none;
+			vertical-align: middle;
+		}
+		#box {
+			width: 300px;
+			min-height: 200px;
+			border: 1px solid #000;
+			display:  inline-block;
+			vertical-align: middle;
+		}
+		#progess {
+			width: 100px;
+			height: 20px;
+			border: 1px solid #000;
+		}
+		#progess span {
+			display: block;
+			width: 0;
+			height: 20px;
+			background: #f60;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var btn = document.querySelector('input[type="button"]');
+			var text = document.querySelector('textarea');
+			var box = document.querySelector('#box');
+			var progess = document.getElementById('progess').getElementsByTagName("span")[0];
+			var p = document.querySelector('p');
+			var length = text.value.length;
+			var timer = 0;
+			p.innerHTML = "0/" + length;
+
+			btn.onclick = function(){
+				timer = setInterval(function(){
+					if(box.innerHTML.length == length){
+						clearInterval(timer);
+					} else {
+						var val = text.value;
+						box.innerHTML += val.substr(0,1);
+						text.value = val.substr(1);
+						p.innerHTML = box.innerHTML.length + "/" + length;
+						progess.style.width = Math.round(box.innerHTML.length/length*100)+"%";
+					}
+				},30);
+			}
+		};
+	</script>
+</head>
+<body>
+	<p>0/0</p>
+	<div id="progess">
+		<span></span>
+	</div>
+	<textarea id="text" readonly>说明： 字符串的substing、slice方法，定时器setInterval，清除定时器clearInterval</textarea>
+	<input type="button" value="截取一位到右边">
+	<div id="box"></div>
+</body>
+</html>

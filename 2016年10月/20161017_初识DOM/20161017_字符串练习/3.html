@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+#list {
+	margin: 30px auto;
+	padding: 0;
+	list-style: none;
+	width: 420px;
+}	
+#list li {
+	float: left;
+	width: 200px;
+	height: 200px;
+	overflow: hidden;
+	position: relative;
+	margin: 5px;
+}
+#list div {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+#list img {
+	display: block;
+	width: 200px;
+}
+</style>
+<script type="text/javascript" src="miaov.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var div = document.querySelectorAll('#list div');
+	var imgH = css(div[0].parentNode,"height");
+	setInterval(function(){
+		var n = parseInt(Math.random()*4);
+		toMove(div[n]);
+	},1000);
+	function toMove(div){
+		var top = css(div,"top");
+		if(top == 0){
+			mTween(div,{top: -imgH},500,"easeOut");
+		} else {
+			mTween(div,{top: 0},500,"easeOut");
+		}
+	}
+};
+</script>
+</head>
+<body>
+<ul id="list">
+	<li>
+		<div>
+			<a href="#">
+				<img src="img/1.jpg" />
+			</a>
+			<a href="#">
+				<img src="img/2.jpg" />
+			</a>
+		</div>
+	</li>
+	<li>
+		<div>
+			<a href="#">
+				<img src="img/3.jpg" />
+			</a>
+			<a href="#">
+				<img src="img/4.jpg" />
+			</a>
+		</div>
+	</li>
+	<li>
+		<div>
+			<a href="#">
+				<img src="img/5.jpg" />
+			</a>
+			<a href="#">
+				<img src="img/6.jpg" />
+			</a>
+		</div>
+	</li>
+	<li>
+		<div>
+			<a href="#">
+				<img src="img/7.jpg" />
+			</a>
+			<a href="#">
+				<img src="img/8.jpg" />
+			</a>
+		</div>
+	</li>
+</ul>
+</body>
+</html>

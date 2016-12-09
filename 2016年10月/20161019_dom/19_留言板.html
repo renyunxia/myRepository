@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body,
+p {
+	margin: 0;
+}	
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+input,
+textarea {
+	border: 1px solid #999;
+	padding: 0;
+	margin: 0;
+	display: block;
+	outline: none;
+}
+textarea {
+	resize: none;
+	overflow: auto;
+}
+#wrap {
+	width: 400px;
+	padding: 10px;
+	background: #ddd;
+	border: 1px solid #999;
+	margin: 30px auto;
+	font: 16px/30px "宋体";
+}
+#message input,
+#message  textarea {
+	width: 100%;
+	height: 30px;
+	padding: 2px 5px;
+	box-sizing: border-box;
+	background: #fff;
+}
+#message  textarea{
+	height: 90px;
+	margin: 10px 0;
+}
+.messageHeader {
+	margin-top: 10px;
+	background: #ccc;
+	padding: 0 5px;
+}
+.list li {
+	background: #fff;
+	border-bottom: 1px solid #999;
+	font-size: 12px;
+}
+.list header {
+	background: #f1f1f1;
+	padding: 0 5px;
+	height: 30px;
+}
+.list span {
+	float: left;
+}
+.list time {
+	float: right;
+}
+.list p {
+	padding: 5px;
+	line-height: 24px;
+}
+#info {
+	background: #fefefe;
+	font: 14px/100px "宋体";
+	text-align: center;
+}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var subBtn = document.querySelector('#message input[type="button"]');
+	var textName = document.querySelector('#message input[type="text"]');
+	var textMessage = document.querySelector('#message textarea');
+	var list = document.querySelector('.list');
+	var info = document.getElementById('info');
+	var lists = list.children;
+	subBtn.onclick = function(){
+		if(!textName.value || !textMessage.value){
+			alert("请输入完整信息");
+			return;
+		}
+		var li = document.createElement("li");
+		var header = document.createElement("header");
+		var span = document.createElement("span");
+		var time = document.createElement("time");
+		var p = document.createElement("p");
+		span.innerHTML = textName.value;
+		time.innerHTML = getTime();
+		p.innerHTML = textMessage.value;
+		header.appendChild(span);
+		header.appendChild(time);
+		li.appendChild(header);
+		li.appendChild(p);
+		//如果元素中需要添加内容，最好实在把元素放入文档之前，把内容添加好
+		list.appendChild(li);
+	};
+};
+function setDB(nub){
+	return nub < 10? "0"+nub:""+nub;
+}
+function getTime(){
+	var date = new Date();
+	var year = date.getFullYear();
+	var month = setDB(date.getMonth()+1);
+	var day = setDB(date.getDate());
+	var hours = setDB(date.getHours());
+	var minutes = setDB(date.getMinutes());
+	return year+"-"+month+"-"+day+" "+hours+":"+minutes;
+}
+</script>
+</head>
+<body>
+<div id="wrap">
+	<div id="message">
+		<input type="text" placeholder="请输入您的名字">
+		<textarea placeholder="请输入留言内容"></textarea>
+		<input type="button" value="提交留言">
+	</div>
+	<div id="messageList">
+		<header class="messageHeader">显示留言</header>
+		<div id="info">-- 抢沙发了 --</div>
+		<ul class="list">
+		</ul>
+	</div>
+</div>
+</body>
+</html>

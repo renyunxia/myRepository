@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body {
+	margin: 0;
+}
+#wrap {
+	width: 520px;
+	margin: 0 auto;
+}
+#list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#list li {
+	width: 240px;
+	height: 240px;
+	border: 1px solid #000;
+	margin: 9px;
+	float: left;
+	background: url(img/loading.gif) no-repeat center center;
+}
+#list img {
+	display: block;
+	opacity: 0;
+}
+#btn {
+	width: 200px;
+	height: 40px;
+	display: block;
+	margin: 0 auto;
+}
+</style>
+<script type="text/javascript">
+var data = [];
+for(var i = 0; i < 100; i++){
+	data.push("img/"+(i%16+1)+".jpg");
+}
+console.log(data);
+</script>
+</head>
+<body>
+<div id="wrap">
+	<ul id="list">
+	</ul>
+	<input type="button" value="加载更多图片" id="btn">
+</div>
+<script type="text/javascript">
+(function(){
+	var list = document.getElementById('list');
+	var btn = document.getElementById('btn');
+	var lis = list.children;
+	var length = 6;
+	var start = 0;
+	//getBoundingClientRect().top
+	create();
+	btn.onclick = function(){
+		start += length;
+		create();
+	};
+	function create(){
+		var end = start + length;
+		for(var i = start; i < end; i++){
+			var li = document.createElement("li");
+			li.dataset.img = data[i];
+			li.isCreate = false;
+			list.appendChild(li);
+		}
+		show();
+	};
+	function show(){
+		for(var i = 0; i < lis.length; i++){
+			var rect = lis[i].getBoundingClientRect();
+			if((rect.top+rect.height)>0
+			 && rect.top < window.innerHeight
+			 && !lis[i].isCreate){
+				createImg(lis[i])
+				lis[i].isCreate = true;
+			}
+		}
+	}
+	function createImg(li){
+		var img = new Image();
+		img.src = li.dataset.img;
+		li.appendChild(img);
+	}
+})();	
+</script>
+</body>
+</html>

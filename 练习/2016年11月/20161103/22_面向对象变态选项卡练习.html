@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.wrap {
+			width: 300px;
+			border: 1px solid #000;
+			margin: 30px auto;
+		}
+		#nav {
+			height: 32px;
+		}
+		#nav a {
+			float: left;
+			width: 98px;
+			font: 14px/30px "宋体";
+			text-align: center;
+			text-decoration: none;
+			color: #000;
+			background: pink;
+			border: 1px solid green;
+		}
+		#nav .active {
+			background: green;
+			color: #fff;
+		}
+		.wrap div {
+			height: 200px;
+			/*background: #000;*/
+			border: 1px solid #fff;
+			text-align: center;
+			font:  80px/200px "宋体";
+			color: #000;
+			display: none;
+		}
+		.wrap .show {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<section class="wrap">
+		<nav id="nav">
+			<a href="javascript:;" class="active">选项一</a>
+			<a href="javascript:;">选项二</a>
+			<a href="javascript:;">选项三</a>
+		</nav>
+		<div class="show">1</div>
+		<div>2</div>
+		<div>3</div>
+	</section>
+	<script>
+		function Tab(){
+			this.nav = document.getElementById('nav');
+			this.as = this.nav.getElementsByTagName('a');
+			this.divs = document.getElementsByTagName('div');
+			this.init();
+		}
+
+		Tab.prototype.init = function(){
+			var _this = this;
+			for (var i = 0; i < this.as.length; i++) {
+				this.as[i].index = i;
+				this.as[i].onclick = function(){
+					_this.change(this);
+				}
+			};
+		}
+
+		Tab.prototype.change = function(_this){
+			for (var i = 0; i < this.as.length; i++) {
+				this.as[i].className = '';
+				this.divs[i].className = '';
+			};
+			_this.className = 'active';
+			this.divs[_this.index].className = 'show';
+		}
+		new Tab();
+		
+	</script>
+</body>
+</html>

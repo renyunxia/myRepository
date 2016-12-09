@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+*{
+	margin: 0;
+	padding: 0;
+}
+img{
+	width:300px;
+	opacity: 0;
+	transition:.5s;
+}
+div{
+	width:620px;
+	border: 1px solid #000;
+}
+</style>
+</head>
+<body style="height: 3000px;">
+	<input type="button" name="btn" id="btn" value="生成页面" />
+	<div id="div1">
+		<!--<img src="img/b1.jpg" alt="" />-->
+	</div>	
+<script type="text/javascript">
+	var div1 = document.getElementById('div1');
+	var btn = document.getElementById('btn');
+	
+	btn.addEventListener('click',createImg);
+	
+	function createImg(){
+		for(var i=0;i<10;i++){
+			var img = document.createElement('img');
+			if(i < 4){
+				img.src = 'img/b'+(i+1)+'.jpg';
+				(function(a){
+					setTimeout(function(){
+						imgs[a].style.opacity = 1;
+					},505);
+				})(i);
+				
+			}else{
+				img.setAttribute('_src','img/b'+(i+1)+'.jpg');
+			}
+			div1.appendChild(img);
+		}
+	}
+	
+	document.addEventListener('scroll',jiazai);
+	var imgs = document.getElementsByTagName('img');
+	function jiazai(){
+		for(var i=0;i<imgs.length;i++){
+			(function(a){
+				if(imgs[i].getBoundingClientRect().top <= window.innerHeight){
+					if(imgs[i].getAttribute('_src')){
+						imgs[i].src = imgs[i].getAttribute('_src');
+						imgs[i].removeAttribute('_src');
+						setTimeout(function(){
+							imgs[a].style.opacity = 1;
+						},505);
+					}
+				}
+			})(i);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		//城市排名:  北京 上海 广州 深圳  杭州 武汉 成都 长沙 大连
+		var arr = ["深圳","成都","北京","大连","武汉","长沙","上海","广州","杭州"];
+		var arrIndex = {
+			北京:1,
+			上海:2,
+			广州:3,
+			深圳:4,
+			杭州:5,
+			武汉:6,
+			成都:7,
+			长沙:8,
+			大连:9
+		};
+		arr.sort(function(a,b){
+			//console.log(a,b);	
+			//return 1;//返回正数 交互 a和b的位置 否则保持不变
+			//return arrIndex[a] - arrIndex[b];
+			/*if(arrIndex[a] > arrIndex[b]){
+				return -1;
+			} else {
+				return 1;
+			}*/
+			return arrIndex[a] - arrIndex[b];
+		});
+		console.log(arr);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

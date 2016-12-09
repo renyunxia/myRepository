@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	nav,p,a{
+		margin: 0;
+		padding: 0;
+	}
+	a{
+		text-decoration: none;
+		color: #000;
+	}
+	ul{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		line-height: 30px;
+	}
+	#nav{
+		width: 360px;
+		margin: 30px auto;
+		padding: 5px 10px;
+		border: 2px #999 solid;
+		background: #f1f1f1;
+		height: 30px;
+	}
+	.list1 li{
+		float: left;
+		width: 120px;
+		position: relative;
+		text-align: center;
+	}
+	.list1 p{
+		padding: 2px 2px 0;
+		font: 14px/28px "宋体";
+		text-align: center;
+
+	}
+	.list1 .active p{
+		border: 2px #666 solid;
+		border-bottom: none;
+		background: #ddd;
+		position: relative;
+		z-index: 2;
+		padding: 0;
+	}
+	.list2{
+		position: absolute;
+		left: 0;
+		top: 28px;
+		width: 140px;
+		background: #ddd;
+		border: 2px #666 solid;
+		z-index: 1;
+		display: none;
+		padding: 5px 3px;
+	}
+	.list1 .active .list2{
+		display: block;
+	}
+	.list2 li{
+		width: 140px;
+		border-bottom: 1px #000 solid;
+	}
+	.list1 .list2 p {
+		border: none;
+		background: none;
+		text-align: left;
+		text-indent: 10px;
+		font: 12px/26px "宋体";
+		padding: 1px;
+		padding-right: 0;
+	}
+	.list2 .active p {
+		width: 130px;
+		padding: 0;
+		border: 1px red solid;
+		border-right: none;
+		background: #fff;
+		position: relative;
+		z-index: 2;
+	}
+	.list3{
+		width: 140px;
+		position: absolute;
+		left: 130px;
+		top: 0;
+		display: none;
+		padding: 5px 3px;
+		z-index: 1;
+		background: #fff;
+		border: 1px red solid;
+	}
+	.list2 .list3 p{
+		background: none;
+		border: none;
+	}
+	.list2 .active .list3{
+		display: block;
+	}
+	.list3 .active p {
+		color: red;
+	}
+	</style>
+	<script>
+	var data = {
+		list:{
+			pid:0,
+			li1:{
+				name:"所有分类",
+				list:{
+					pid:1,
+					li1:{
+						name:"数码家电",
+						list:{
+							pid:2,
+							li1:{
+								name:"居家日用"
+							},
+							li2:{
+								name:"居家日用"
+							},
+							li3:{
+								name:"居家日用"
+							},
+							li4:{
+								name:"居家日用"
+							}
+						}
+					},
+					li2:{
+						name:"户外运动",
+						list:{
+							pid:2,
+							li1:{
+								name:"厨房用品"
+							},
+							li2:{
+								name:"厨房用品"
+							},
+							li3:{
+								name:"厨房用品"
+							},
+							li4:{
+								name:"厨房用品"
+							}
+						}
+					},
+					li3:{
+						name:"妙味课堂",
+						list:{
+							pid:2,
+							li1:{
+								name:"学习乐园"
+							},
+							li2:{
+								name:"学习乐园"
+							},
+							li3:{
+								name:"学习乐园"
+							},
+							li4:{
+								name:"学习乐园"
+							}
+						}
+					}
+				}
+			},
+			li2:{
+				name:"家具家电",
+				list:{
+					pid:1,
+					li1:{
+						name:"数码家电",
+						list:{
+							pid:2,
+							li1:{
+								name:"居家日用"
+							},
+							li2:{
+								name:"居家日用"
+							},
+							li3:{
+								name:"居家日用"
+							},
+							li4:{
+								name:"居家日用"
+							}
+						}
+					},
+					li2:{
+						name:"数码家电",
+						list:{
+							pid:2,
+							li1:{
+								name:"厨房用品"
+							},
+							li2:{
+								name:"厨房用品"
+							},
+							li3:{
+								name:"厨房用品"
+							},
+							li4:{
+								name:"厨房用品"
+							}
+						}
+					},
+					li3:{
+						name:"妙味课堂",
+						list:{
+							pid:2,
+							li1:{
+								name:"学习乐园"
+							},
+							li2:{
+								name:"学习乐园"
+							},
+							li3:{
+								name:"学习乐园"
+							},
+							li4:{
+								name:"学习乐园"
+							}
+						}
+					},
+				}
+			},
+			li3:{
+				name:"妙味视频",
+				list:{
+					pid:1,
+					li1:{
+						name:"数码家电",
+						list:{
+							pid:2,
+							li1:{
+								name:"居家日用"
+							},
+							li2:{
+								name:"居家日用"
+							},
+							li3:{
+								name:"居家日用"
+							},
+							li4:{
+								name:"居家日用"
+							}
+						}
+					},
+					li2:{
+						name:"数码家电",
+						list:{
+							pid:2,
+							li1:{
+								name:"厨房用品"
+							},
+							li2:{
+								name:"厨房用品"
+							},
+							li3:{
+								name:"厨房用品"
+							},
+							li4:{
+								name:"厨房用品"
+							}
+						}
+					},
+					li3:{
+						name:"妙味课堂",
+						list:{
+							pid:2,
+							li1:{
+								name:"学习乐园"
+							},
+							li2:{
+								name:"学习乐园"
+							},
+							li3:{
+								name:"学习乐园"
+							},
+							li4:{
+								name:"学习乐园"
+							}
+						}
+					},
+				}
+			}
+		}
+	}
+	function setLayout(data){
+		var ul = document.createElement('ul');
+		console.log(data.pid);
+	}
+	window.onload = function  () {
+		
+
+	}
+	</script>
+</head>
+<body>
+	<nav id="nav">
+	</nav>
+</body>
+</html>

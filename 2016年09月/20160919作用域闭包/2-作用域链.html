@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	/*
+		作用域关系：
+			1、父级作用域不能访问子级作用域
+			2、子级作用域可以访问父级。
+		作用域链:
+			在一个作用域中访问一个变量或者函数时，如果当前作用域没有这个变量或者函数，这时候会去寻找父级的
+			作用域是否有这个变量或者函数，如果有就调用，如果没有就继续向上查找。如果找到全局作用域还没有就会报错。
+	*/
+	fn1()
+	function fn1(){
+		var a = 1;
+		fn2();
+		// alert(b);
+		// alert(c);
+		function fn2(){
+			
+			var b = 2;
+			// alert(b);
+			// alert(a);
+			alert(c);
+		}
+		function fn3(){
+			var c = 3;
+		}
+	}
+	</script>
+</body>
+</html>

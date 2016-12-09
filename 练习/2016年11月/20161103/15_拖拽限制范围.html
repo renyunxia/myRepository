@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#box{
+		width: 100px;
+		height: 100px;
+		background: red;
+		position: absolute;
+		left: 0;
+		top: 0;
+		cursor: move;
+	}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script>
+	(function(){
+		var box = document.getElementById('box');
+		document.onmousedown = function(){
+			return false;
+		}
+		box.onmousedown = function(ev){
+			var disX = ev.pageX - box.offsetLeft;
+			var disY = ev.pageY - box.offsetTop;
+			document.onmousemove = function(ev){
+				var l = ev.pageX - disX;
+				var t = ev.pageY - disY;
+				
+				if(l < 0){
+					l = 0;
+				}else if(l > document.documentElement.clientWidth - box.clientWidth){
+					l = document.documentElement.clientWidth - box.clientWidth;	
+				}
+				
+				//磁力吸附；还没到顶边就强行拉到顶边。
+				if(t < 50){
+					t = 0;
+				}else if(t > document.documentElement.clientHeight - box.clientHeight){
+					t = document.documentElement.clientHeight - box.clientHeight;
+				}
+				
+				box.style.left = l + 'px';
+				box.style.top = t + 'px';
+			}
+			document.onmouseup = function(){
+				document.onmouseup = document.onmousemove = null;
+			}
+			return false;
+		}
+	})();
+	</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+#list {
+	width: 600px;
+	height: 440px;
+	margin: 50px auto 0;
+	padding: 0;
+	list-style: none;
+	perspective: 400px;
+}	
+#list li {
+	width: 60px;
+	height: 44px;
+	float: left;
+	background: url(img.jpg) no-repeat;
+}
+</style>
+<script type="text/javascript" src="miaov.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var list = document.querySelector('#list');
+	var childs = list.children;
+	var oFrag = document.createDocumentFragment();//文档碎片
+	var liW = 60;
+	var liH = 44;
+	var max = 10;
+	for(var i = 0; i < 100; i++){
+		var li = document.createElement("li");
+		li.cells = i%10;
+		li.rows = parseInt(i/10);
+		li.style.backgroundPosition = -li.cells*liW+"px -"+(li.rows*liH)+"px";
+		li.onclick = function(){
+				console.log(this.rows,this.cells);
+			for(var i = 0; i < childs.length; i++){
+				var disX = childs[i].cells - this.cells;
+				var disY = childs[i].rows - this.rows;
+				fire(childs[i],disX,disY);
+			}
+		};
+		oFrag.appendChild(li);
+	}
+	list.appendChild(oFrag);
+	function fire(el,disX,disY){
+		var delay = Math.abs(disX) + Math.abs(disY);
+		disX = disX == 0?.5:disX;
+		disY = disY==0?.5:disY;
+		var rotateY =  disX/Math.abs(disX)*720;
+		var rotateX =  disY/Math.abs(disY)*720;
+		var translateY = disY/Math.abs(disY)*(9 - Math.abs(disY))*10;
+		var translateX = disX/Math.abs(disX)*(9 - Math.abs(disX))*10;
+		var rotateX =  disY/Math.abs(disY)*720;
+		setTimeout(function(){
+			mTween(el,{
+					opacity:0,
+					translateX:translateX,
+					translateY:translateY,
+					translateZ: 200,
+					rotateY:rotateY,
+					rotateX:rotateX
+				},delay*300+100,"easeOut");
+		},delay*40);
+	}
+};
+</script>
+</head>
+
+<body>
+<ul id="list">
+</ul>	
+</body>
+</html>

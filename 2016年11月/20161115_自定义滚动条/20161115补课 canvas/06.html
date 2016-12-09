@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var cxt = canvas.getContext('2d');
+
+		var W = canvas.width, H = canvas.height;
+
+		cxt.lineWidth = 5;
+		cxt.setLineDash([10,20,30,40]);
+
+		cxt.moveTo(10,10);
+		cxt.lineTo(400,400);
+
+		cxt.stroke();
+
+
+
+	</script>
+</body>
+</html>

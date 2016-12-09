@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script src="digit.js"></script>
+<script>
+	(function(){
+		
+		//-------------------------------------------------
+
+		var W = window.innerWidth, H = window.innerHeight;
+		var R = ((window.innerWidth / 108) - 1)/2;
+		var L = (window.innerWidth - 108*(R + 1))/2, T = H/14;
+
+		var endTime = new Date();
+		endTime.setTime(endTime.getTime() + 3600 * 1000)
+
+		var balls = [];
+		//-------------------------------------------------
+		
+		var canvas = document.getElementById('canvas');
+		var cxt = canvas.getContext('2d');
+
+		canvas.width = W;
+		canvas.height = H;
+
+		window.onresize = function(){
+			canvas.width = W;
+			canvas.height = H;
+			R = ((window.innerWidth / 108) - 1)/2;
+			L = (window.innerWidth - 108*(R + 1))/2;
+			T = H/10;
+		};
+
+		var showCurrentTime = getCurrentTime();
+
+		setInterval(function(){
+			update();
+			render(cxt);
+			//console.log(balls);
+		}, 30);
+
+
+		//-------------------------------------------------
+
+		function getCurrentTime(){
+			var nowTime = new Date().getTime();
+			var ret = Math.round((endTime - nowTime)/1000);
+			return ret > 0 ? ret : 0;
+		}
+
+		function update(){
+			var curTime = getCurrentTime();
+			var curHours = parseInt(curTime / 3600);
+			var curMins = parseInt((curTime - curHours * 3600)/60);
+			var curSecs = curTime % 60;
+
+			var showHours = parseInt(showCurrentTime / 3600);
+			var showMins = parseInt((showCurrentTime - showHours * 3600)/60);
+			var showSecs = showCurrentTime % 60;
+
+			if(showSecs != curSecs){
+
+				if(parseInt(showHours / 10) != parseInt(curHours / 10)){
+					addBall(L, T, parseInt(showHours / 10))
+				}
+				if(parseInt(showHours % 10) != parseInt(curHours % 10)){
+					addBall(L + 15*(R + 1), T, parseInt(showHours % 10))
+				}
+
+				if(parseInt(showMins / 10) != parseInt(curMins / 10)){
+					addBall(L + 39*(R + 1), T, parseInt(showMins / 10))
+				}
+				if(parseInt(showMins % 10) != parseInt(curMins % 10)){
+					addBall(L + 54*(R + 1), T, parseInt(showMins % 10))
+				}
+
+				if(parseInt(showSecs / 10) != parseInt(curSecs / 10)){
+					addBall(L + 78*(R + 1), T, parseInt(showSecs / 10))
+				}
+				if(parseInt(showSecs % 10) != parseInt(curSecs % 10)){
+					addBall(L + 93*(R + 1), T, parseInt(showSecs % 10))
+				}
+
+				showCurrentTime = curTime;
+			}
+
+			moveBalls();
+		}
+
+		function addBall(x, y, num){
+			for(var i=0; i<digit[num].length; i++){
+				for(var j=0; j<digit[num][i].length; j++){
+					if(digit[num][i][j] == 1){
+						var ball = {
+							x:x + 2*j*(R+1) + (R+1),
+							y:y + 2*i*(R+1) + (R+1),
+							g:1.5 + Math.random(),
+							vx:Math.pow(-1,Math.ceil(Math.random() * 1000)) * 4,
+							vy:-parseInt(Math.random() * 10),
+							color:colors[Math.round(Math.random() * (colors.length - 1))]
+						}
+						balls.push(ball);
+					}
+				}
+			}
+			//balls.length = 200;
+		}
+		function moveBalls(){
+			for (var i = 0; i < balls.length; i++) {
+				balls[i].x += balls[i].vx;
+				balls[i].y += balls[i].vy;
+				balls[i].vy += balls[i].g;
+				if(balls[i].y + R > canvas.height){
+					balls[i].y = canvas.height - R;
+					balls[i].vy = -balls[i].vy * 0.75;
+				}
+			}
+		}
+
+		function render(cxt){
+			cxt.clearRect(0, 0, cxt.canvas.width, cxt.canvas.height);
+
+			var showHours = parseInt(showCurrentTime / 3600);
+			var showMins = parseInt((showCurrentTime - showHours * 3600)/60);
+			var showSecs = showCurrentTime % 60;
+
+			renderDigit(L, T, parseInt(showHours / 10), cxt);
+			renderDigit(L + 15*(R + 1), T, showHours % 10, cxt);
+
+			renderDigit(L + 30*(R + 1), T, 10, cxt);
+
+			renderDigit(L + 39*(R + 1), T, parseInt(showMins / 10), cxt);
+			renderDigit(L + 54*(R + 1), T, parseInt(showMins % 10), cxt);
+
+			renderDigit(L + 69*(R + 1), T, 10, cxt);
+
+			renderDigit(L + 78*(R + 1), T, parseInt(showSecs / 10), cxt);
+			renderDigit(L + 93*(R + 1), T, parseInt(showSecs % 10), cxt);
+
+			renderBalls(cxt);
+		}
+
+		function renderBalls(cxt){
+
+			for(var i=0; i<balls.length; i++){
+				cxt.fillStyle = balls[i].color;
+				cxt.beginPath();
+				cxt.arc(balls[i].x, balls[i].y, R, 0, 2*Math.PI);
+				cxt.fill();
+			}
+
+			var n = 0;
+			for(var i=0; i<balls.length; i++){
+				if(balls[i].x + R > 0 && balls[i].x - R < canvas.width){
+					balls[n++] = balls[i];
+				}
+			}
+			balls.length = n;
+			while(balls.length > Math.min(balls.length,300)){
+				balls.pop();
+			}
+		}
+
+		function renderDigit(x, y, num, cxt){
+			cxt.fillStyle = '#f88';
+			for(var i=0; i<digit[num].length; i++){
+				for(var j=0; j<digit[num][i].length; j++){
+					if(digit[num][i][j] == 1){
+						cxt.beginPath();
+						cxt.arc(x + 2*j*(R+1) + (R+1), y + 2*i*(R+1)+(R+1),R,0,Math.PI*2);
+						cxt.fill();
+					}
+				}
+			}
+		}
+
+
+
+
+
+
+
+
+	})()
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		input {
+			outline: none;
+			border: 1px solid #000;
+		}
+	</style>
+	<script type="text/javascript">
+	window.onload = function(){
+		var form = document.getElementsByTagName('form')[0];
+		var input = document.getElementsByTagName('input');
+		//onsubmit 当表单提交的时候触发
+		form.onsubmit = function(){
+			console.log("haha");
+			return false; //阻止提交
+		};
+	};
+	</script>
+</head>
+<body>
+<form action="http://www.baidu.com">
+	<input type="text" name="">
+	<input type="password" name="">
+	<input type="submit" value="提交">
+</form>
+</body>
+</html>

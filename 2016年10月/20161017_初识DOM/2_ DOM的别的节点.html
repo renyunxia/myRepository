@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<ul id="ul1"><!--这是注释-->
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+		
+		
+		
+	
+<script type="text/javascript" charset="utf-8">
+	
+	/*
+		DOM:
+			Document  Object  Model(文档对象模型)
+			
+		文档对象模型（Document Object Model，简称DOM），是W3C组织推荐的处理可扩展标志语言的*标准*编程接口。在网页上，组织页面（或文档）的对象被组织在一个*树形结构*中，用来表示文档中对象的标准模型就称为DOM。
+		
+		通过document对开发者提供了一些操作页面的接口，赋予开发者操作页面的能力。
+		
+		var div = document.getElementById('div1');
+		div.innerHTML
+		
+		DOM树
+		
+		DOM结构划分：
+			1.按照结构划分：
+				父子级
+				兄弟级
+				祖孙级（子孙级）|| （当前节点往上的所有节点都是祖先节点 ||当前节点往下的所有节点都是孙级节点）
+				
+				
+			
+			2.按照节点类型划分：
+				文档中的所有内容都是节点对象。
+				
+				（number值）nodeType:DOM对象上的一个属性。通过这个属性就能查看到某个节点是什么类型的。
+				
+				查看某个节点下的*所有*子级（高版本浏览器）：
+					obj.childNodes,复合属性（如果选择指定的某个，那么要加下标）
+				
+				注意：
+					在低版本浏览器下(IE9以下浏览器)查看（获取）某个节点下的*元素*节点。
+				
+				nodeName:查看某个节点的名字
+				
+				nodeValue：查看某个节点的值
+				
+				
+				1：元素节点[所有标签]。（数字1）
+				
+				2: document   (数字9)
+				
+				3: 文本节点 （数字3）
+					注意：纯文字、空格、空白文本、制表符都是文本节点。
+				
+				4：注释节点	(数字8)
+				
+				5：属性节点 （比较特殊） (数字2)
+					
+				
+				
+	*/
+	var ul = document.getElementById('ul1');
+//	console.log(ul.attributes[0].nodeValue);
+	
+	console.log(ul.childNodes[0].nodeValue);
+</script>
+</body>
+</html>

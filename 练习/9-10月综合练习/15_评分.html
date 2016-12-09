@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#wrap{
+		padding: 30px;
+	}
+	#wrap span{
+		float: left;
+		font: 14px.20px "宋体";
+	}
+	.stars{
+		float: left;
+	}
+	.stars a{
+		float: left;
+		width: 16px;
+		height: 16px;
+		color: #ccc;
+		border: 2px #fff solid;
+		text-decoration: none;
+	}
+	.stars .showlow{
+		color: #999;
+	}
+	.stars .show{
+		color: yellow;
+	}
+	.text{
+		display: none;
+	}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<span>总体评价：</span>
+		<nav class="stars">
+			<a href="JavaScript:;">★</a>
+			<a href="JavaScript:;">★</a>
+			<a href="JavaScript:;">★</a>
+			<a href="JavaScript:;">★</a>
+			<a href="JavaScript:;">★</a>
+			<span class="text">很差</span>
+			<span class="title">小提示</span>
+		</nav>
+	</div>
+</body>
+<script>
+	(function(){
+	var stars = document.querySelectorAll(".stars a");
+	var text = document.querySelector(".text");
+	var title = document.querySelector(".title");
+	var arr = ["很差","较差","还行","推荐","力荐"];
+	var now = -1;
+	for (var i = 0; i < stars.length; i++) {
+		stars[i].index = i;
+		stars[i].onmouseover = function(){
+			var show = "show";
+			if(this.index < 2){
+				show = "showlow";
+			}
+			for (var i = 0; i < stars.length; i++) {
+				if(i <= this.index){
+					stars[i].className = show;
+				}else{
+					stars[i].className = "";
+				}
+			};
+			title.style.display = "none";
+			text.innerHTML = arr[this.index];
+			text.style.display = "block";
+		}
+		stars[i].onclick = function(){
+			now = this.index;
+		}
+		stars[i].onmouseout = function(){
+			var show = "show";
+			if(now < 2){
+				show = "showlow";
+			}
+			for (var i = 0; i < stars.length; i++) {
+				if(i <= now){
+					stars[i].className = show;
+				}else{
+					stars[i].className = "";
+				}
+			};
+			if(now < 0){
+				title.style.display = "block";
+				text.style.display = "none";
+			}
+		}
+	};
+	})();
+</script>
+
+</html>

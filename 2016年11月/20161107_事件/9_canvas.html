@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body {
+	background: #ccc;
+	margin: 0;
+}
+#c {
+	display: block;
+	margin: 50px auto;
+	background: #fff;
+}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var c = document.querySelector('canvas');
+	var cxt = c.getContext("2d");
+	var img = new Image();
+	img.src = "img.jpg"; 
+	img.onload = function(){
+		c.width = img.width;
+		c.height = img.height;
+		cxt.drawImage(img,0,0,c.width,c.height);
+		var data = cxt.getImageData(0,0,c.width,c.height);
+		cxt.clearRect(0,0,c.width,c.height);
+		var imgageData = [];
+		for(var i = 0; i < data.data.length; i++){
+			imgageData[i] = data.data[i];
+		}
+		var arrIndex = []; 
+		var index = 0;
+		var length = data.width*data.height;
+		var int = 49;
+		var now = 0;
+		var timer = 0;
+		var sortLength = Math.ceil(length/int);
+		for(var i = 0; i <data.data.length; i+=4) {
+			data.data[i+3] = 0; //循环所有的像素，然后把它变成透明的
+			arrIndex.push(index);
+			index++;
+		}
+		randomNub();
+		function randomNub(){
+			arrIndex.sort(function(){
+				return Math.random() - .5;
+			});
+			for(var i = 0; i < sortLength; i++){
+				var index = arrIndex.pop();
+				var alpha = imgageData[index*4+3];
+				console.log(alpha);
+				data.data[index*4+3] = alpha;
+			}
+			cxt.putImageData(data,0,0);
+		}
+	};	
+};
+</script>
+</head>
+<body>
+<canvas id="c" width="500" height="400"></canvas>
+</body>
+</html>

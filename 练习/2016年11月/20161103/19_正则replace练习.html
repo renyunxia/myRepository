@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	// var str = '安居房合格后个安慰了咖啡馆会计师的咖啡馆花见花开';
+	// var s = str.replace(/安慰了|会计师/g,function($0){  //本身  索引位置  全部
+	// 	var temp = '';
+	// 	for (var i = 0; i < $0.length; i++) {
+	// 		temp += '*';
+	// 	};
+	// 	return temp;
+	// });
+	// console.log(s)
+
+	window.onload = function () {
+		var aInput = document.getElementsByTagName('input');
+		var str = ''
+		var re = /^[1-9]\d{4,11}$/;
+		aInput[1].onclick = function () {
+			if(re.test(aInput[0].value)){
+				console.log('是QQ号')
+			}else{
+				console.log('不是QQ号');
+			}
+		}
+	}
+
+	//中文   [\u4e00-\u9fa5]
+	//网址   [a-zA-z]+://[^\s]*
+	//QQ号   [1-9][0-9]{4,9}  
+	//email  ^\w+@[a-z0-9]+(\.[a-z]+){1,3}$
+	//身份证 [1-9]\d{14}|[1-9]\d{17}|[1-9]\d{16}x
+	
+	var str ='';
+
+	str.num = 10;
+	str.num++;
+	alert(str.num);
+	</script>
+	QQ：
+	<input type="text">
+	<input type="button" value="确定">
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#box {
+		width: 1000px;
+		border:1px #000 solid;
+		/*overflow: auto;*/
+	}
+	#box span{
+		width: 98px;
+		height: 28px;
+		background: green;
+		color: #fff;
+		border: 1px #fff solid;
+		display: inline-block;
+		/*float: left;*/
+		text-align: center;
+		line-height: 28px;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var inner = "";
+		for(var i=1; i<=9; i++){
+			for(var j=1; j<=i; j++){
+				// console.log(j,i,i*j)
+				inner+="<span>"+j+"x"+i+"="+i*j+"</span>";
+			}
+			inner+="<br clear='all'/>"
+		}
+		document.getElementById("box").innerHTML = inner;
+	}
+	</script>
+</head>
+<body>
+	<div id="box">
+		
+	</div>
+</body>
+</html>

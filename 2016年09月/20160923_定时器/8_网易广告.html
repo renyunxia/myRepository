@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body {
+			margin: 0;
+		} 
+		#banner {
+			background: #d9534f;
+			height: 0;
+			overflow: hidden;
+		}
+		img {
+			display: block;
+			margin:0 auto;
+		}
+	</style>
+	<script>
+	function css(el,attr){
+		if(el.currentStyle) {
+			return el.currentStyle[attr];	
+		} else {
+			return getComputedStyle(el)[attr];
+		}
+	}
+	window.onload = function(){
+		var banner = document.querySelector("#banner");
+		var btn = document.querySelector("input");
+		var timer = 0;
+		var target = 185;
+		// setTimeout(
+		// 	function(){
+				timer = setInterval(
+					function(){
+						var height = parseFloat(css(banner,"height"));
+						if(height >= target){
+							clearInterval(timer);
+							setTimeout(function() {
+								timer = setInterval(
+									function(){
+										var height = parseFloat(css(banner,"height"));
+										// console.log("该回去了")
+										if(target = 0){
+											clearInterval(timer);
+										}else{
+											banner.style.height = height - 5 + "px";
+										}
+									},30
+								)
+							},3000);
+						}else{
+							banner.style.height = height + 5 + "px";
+						}
+					},20
+				)
+		// 	},2000
+		// )
+	}
+	</script>
+</head>
+<body>
+<!--
+	1. 页面加载完整之后
+	2. 延迟2秒
+	3. banner高度动画展开
+	4. 展示3秒
+	5. banner高度动画收缩
+-->
+<div id="banner">
+	<img src="banner.png">
+</div>
+<img src="wrap.png">
+</body>
+</html>

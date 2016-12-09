@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function (){
+	var btn = document.getElementById("btn");
+	var attr = document.getElementById("attr");
+	var val = document.getElementById("val");
+	var unit = document.getElementById("unit");
+	var box = document.getElementById("box");
+	/*
+		btn点击的时候 = function() {
+			box.style[attr的value] = val的value + unit的value
+		};
+	*/
+	btn.onclick = function() {
+			box.style[attr.value] = val.value + unit.value;
+	};
+};
+</script>
+<style>
+#box {
+	width: 100px;
+	height: 100px;
+	border: 5px solid #000;
+}
+</style>
+</head>
+<body>
+请输入要修改的样式：<input type="text" id="attr"> <br />
+请输入样式的值：<input type="text" id="val" > <br />
+请选择单位：
+	<select id="unit">
+    	<option>%</option>
+        <option>px</option>
+        <option>em</option>
+    </select>
+<br /><input type="button" value="确定" id="btn">
+<div id="box"></div>
+</body>
+</html>

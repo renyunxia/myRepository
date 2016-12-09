@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#wrap {
+			width: 302px;
+			margin: 30px auto;
+		}
+		#text{
+			height: 200px;
+			border: 1px solid #000;
+			overflow: auto;
+		}
+		#text span {
+			float: left;
+			width: 20px;
+			height: 30px;
+			margin: 2px;
+			font: 12px/20px "宋体";
+			text-align: center;
+		}
+		#text span:nth-of-type(3n){
+			background: red;
+		}
+		#text span:nth-of-type(3n+1){
+			background: blue;
+		}
+		#text span:nth-of-type(3n-1){
+			background: green;
+		}
+		#message{
+			width: 300px;
+			display: block;
+			height: 200px;
+			margin: 10px 0 0;
+			padding: 0;
+			border: 1px solid #000;
+			resize: none;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var text = document.querySelector('#text');
+			var message = document.querySelector('#message');
+			var btn = document.querySelector('input');
+			btn.onclick = function(){
+				var val = message.value;
+				val = val.split("");
+				val = '<span>' + val.join("</span><span>") + '</span>';
+				text.innerHTML = val;
+			};
+		};
+	</script>
+</head>
+<body>
+<div id="wrap">
+	<div id="text"></div>
+	<textarea id="message"></textarea>
+	<input type="button" value="发送">
+	<span>a</span><span>b</span><span>v</span>
+</div>
+</body>
+</html>

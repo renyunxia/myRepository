@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+img {
+	display: block;
+	width: 300px;
+	margin: 0 auto;
+}
+</style>
+<script>
+window.onload = function () {
+	var img = document.getElementById("img");
+	var now = 0;
+	img.onclick = function() {
+		now = now + 1;
+		alert(now);
+	};
+};
+</script>
+</head>
+<body>
+<img src="img2/0.jpg"  id="img"/>
+</body>
+</html>

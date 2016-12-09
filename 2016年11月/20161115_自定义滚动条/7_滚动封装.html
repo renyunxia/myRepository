@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body style="height: 3000px;">
+<script src="myWheel.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	
+	myWheel(document,function(o){
+		//console.log(o)
+		if(o){
+			alert('上');
+		}else{
+			alert('下');
+		}
+	});
+	
+	
+	
+//	function myWheel(obj,callback){
+//		obj.addEventListener('DOMMouseScroll',whellFn);
+//		obj.addEventListener('mousewheel',whellFn);	
+////		if(window.navigator.userAgent.toLowerCase().indexOf('firefox')!=-1){
+////			//obj.addEventListener('DOMMouseScroll',whellFn);
+////		}else{
+////			obj.addEventListener('mousewheel',whellFn);	
+////		}
+//		function whellFn(ev){
+//			var down = true;
+//			if(ev.wheelDelta){
+//				down = ev.wheelDelta > 0 ? true : false;
+//			}else{
+//				down = ev.detail < 0 ? true : false;
+//			}
+//			
+//			//1.传callback，2.callback必须为函数
+//			//callback(down);
+//			if(callback && typeof callback === 'function'){
+//				callback(down);
+//			}
+//		}
+//	}
+	
+</script>
+</body>
+</html>

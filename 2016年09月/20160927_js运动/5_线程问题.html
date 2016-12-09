@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+	<script type="text/javascript">
+		/*
+			js本身是单线程操作,定时器除外
+			每开启一个定时器，就相当于开启了一个新的线程
+		*/
+		function fn() {
+			console.log(1);
+		}
+		function fn2() {
+			console.log(2);
+		}
+		/*fn();
+		fn2();*/
+		setTimeout(fn,30);
+		fn2();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

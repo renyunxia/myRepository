@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+body {
+	margin: 0;
+}
+#box {
+	width: 405px;
+	height: 165px;
+	margin: 30px auto;
+	position: relative;
+	overflow: hidden;
+}
+#list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	width: 400%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+#list li {
+	float: left;
+	position: relative;
+}
+#list img {
+	display: block;
+	width: 405px;
+	height: 165px;
+}
+#list p{
+	margin: 0;
+	position: absolute;
+	left: 0;
+	bottom: -50px;
+	width: 365px;
+	padding: 10px 20px;
+	font: 16px/30px "宋体";
+	color: #fff;
+	background: rgba(0, 0, 0, .7);
+}
+</style>
+<script type="text/javascript" src="MTween.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var box = getId("box");
+	var list = getId("list");
+	var li = getTag(list,"li");
+	var imgW = css(li[0],"width");
+	var now = 0;
+	var timer = 0;
+	tab();
+	timer = setInterval(next,3000);
+	box.onmouseover = function() {
+		clearInterval(timer);
+	};
+	box.onmouseout = function() {
+		timer = setInterval(next,3000);
+	};
+	function next() {
+		now++;
+		if(now > li.length - 1){
+			now = 0;
+		}
+		tab();
+	};
+	function tab() {
+		var p = getTag(li[now],"p")[0];
+		/*
+			总切换时间 3000
+			我们的这个动画要占用最后 400 
+			在这个动画之前要延时 2600	
+		*/
+		mTween(list,"left",-imgW*now,600,"easeBoth");
+		setTimeout(
+			function(){
+				mTween(p,"bottom",0,400,"easeBoth");
+			},600
+		);
+		setTimeout(
+			function(){
+				mTween(p,"bottom",-50,400,"easeBoth");
+			},2600
+		);
+	}
+};
+</script>
+</head>
+<body>
+<div id="box">
+	<ul id="list">
+		<li>
+			<a href="#">
+				<img src="images/img1.gif">
+			</a>
+			<p>我是第一张图片哟</p>
+		</li>
+		<li>
+			<a href="#">
+				<img src="images/img2.gif">
+			</a>
+			<p>我是第二张图片哟</p>
+		</li>
+		<li>
+			<a href="#">
+				<img src="images/img3.gif">
+			</a>
+			<p>我是第三张图片哟</p>
+		</li>
+		<li>
+			<a href="#">
+				<img src="images/img4.gif">
+			</a>
+			<p>我是第四张图片哟</p>
+		</li>
+	</ul>
+</div>	
+</body>
+</html>

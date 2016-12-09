@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		html,
+		body {
+			margin: 0;
+			height: 100%;
+		}
+		#box {
+			position: absolute;
+			width: 300px;
+			height: 200px;
+			background: red;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var box = document.querySelector('#box');
+			var parent = box.offsetParent;
+			var parentRect = parent.getBoundingClientRect();
+			var boxRect = box.getBoundingClientRect();
+			box.style.left = (parentRect.width - boxRect.width)/2 + "px";
+			box.style.top = (parentRect.height - boxRect.height)/2 + "px";
+		};
+	</script>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>

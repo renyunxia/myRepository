@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		ul, 
+		ol {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		img {
+			vertical-align: top;
+		}
+		#wrap {
+			width: 400px;
+			height: 200px;
+			border: 2px solid #000;
+			margin: 30px auto;
+		}
+		#left {
+			float: left;
+			width: 98px;
+			border-right: 2px solid #000;
+		}
+		#imgs {
+			float: left;
+			width: 200px;
+		}
+		#right{
+			float: right;
+			width: 98px;
+			border-left: 2px solid #000;
+		}
+		#right li,
+		#left li {
+			height: 48px;
+			border-bottom: 2px solid #000;
+			font: 16px/48px "宋体";
+			text-align: center;
+		}
+		#right .active,
+		#left .active {
+			background: #ccc;
+		}
+		#imgs img {
+			width: 200px;
+		}
+		#imgs li {
+			display: none;
+		}
+		#imgs .show {
+			display: block;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var wrap = document.getElementById("wrap");
+			var uls = wrap.getElementsByTagName("ol");
+			var navs = [];
+			for(var i = 0; i < uls.length; i++){
+				var lis = uls[i].getElementsByTagName("li");
+				for(var j = 0; j < lis.length; j++){
+					navs.push(lis[j]);
+				}
+			}
+			console.log(navs);
+		};
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<ol id="left">
+			<li class="active">选项一</li>
+			<li>选项二</li>
+			<li>选项三</li>
+			<li>选项四</li>
+		</ol>
+		<ul id="imgs">
+			<li class="show"><img src="img/1.jpg"></li>
+			<li><img src="img/2.jpg"></li>
+			<li><img src="img/3.jpg"></li>
+			<li><img src="img/4.jpg"></li>
+			<li><img src="img/5.jpg"></li>
+			<li><img src="img/6.jpg"></li>
+			<li><img src="img/7.jpg"></li>
+			<li><img src="img/8.jpg"></li>
+		</ul>
+		<ol id="right">
+			<li>选项五</li>
+			<li>选项六</li>
+			<li>选项七</li>
+			<li>选项八</li>
+		</ol>
+	</div>
+</body>
+</html>

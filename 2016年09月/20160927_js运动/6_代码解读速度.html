@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		function getTime() {
+			var date = new Date().getTime(); //时间戳
+			console.log(date);
+		}
+		for(var i = 0; i < 100; i++){
+			setTimeout(
+				getTime,
+				200
+			);
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

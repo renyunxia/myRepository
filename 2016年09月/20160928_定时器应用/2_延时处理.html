@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+	.box {
+		width: 300px;
+		height: 400px;
+		background: #ccc;
+		position: absolute;
+		right: 20px;
+		top: 50px;
+		border: 1px solid #000;
+	}
+	.name {
+		width: 60px;
+		height: 60px;
+		background: red;
+		position: absolute;
+		left: 30px;
+		top: 50px;
+	}
+	.details {
+		width: 200px;
+		height: 260px;
+		position: absolute;
+		left: -210px;
+		top: 0;
+		background: blue;
+		display: none;
+	}
+</style>
+<script type="text/javascript">
+	window.onload = function() {
+		var name = document.getElementsByClassName("name")[0];
+		var datails = document.getElementsByClassName("details")[0];
+		var timer = 0;
+		datails.onmouseover = name.onmouseover = function(){
+			clearTimeout(timer);
+			datails.style.display = "block";
+		};
+		datails.onmouseout = name.onmouseout = function(){
+			timer = setTimeout(function(){
+				datails.style.display = "none";	
+			},500);
+		};
+	};
+</script>
+</head>
+<body>
+	<section class="box">
+		<div class="name"></div>
+		<div class="details"></div>
+	</section>
+</body>
+</html>

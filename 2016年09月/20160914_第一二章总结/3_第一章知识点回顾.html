@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+/*
+	获取元素：
+		
+		document.getElementById('id名字'); //通过id获取 
+		parent.getElementsByTagName('标签名字'); //在父级通过标签名获取
+		
+
+		document.querySelector('css selector'); 找到一组中的第0个
+		document.querySelectorAll('css selector');找到整个一组
+
+		引入外部的js <script src="js文件的路径">	
+	事件：
+		window.onload 页面加载完成
+		onclick 鼠标点击
+		onmouseover 鼠标移入
+		onmouseout	鼠标移出
+
+		onmousedown 鼠标按下 -- :active
+		onmouseup 鼠标抬起
+
+	变量
+		变量声明 var a;
+		变量赋值 a = 10;
+		变量调用 a;
+
+	函数
+		函数声明    function name() {};
+		函数表达式	var name = function(){};
+		函数的非事件调用  name();
+		函数的事件调用  el.onclick = name;
+		函数传参  function name(v形参){} name(3实参);
+	
+	属性操作
+		.   只能是写死值，不能用变量这些东西
+		[]  []中间接受的是个字符串，所以可以用变量	
+*/
+window.onload = function() {
+	var btn = document.querySelector("input");
+	var box = document.querySelector("#box");
+	var div  = document.querySelectorAll("#box div"); //通过querySelector获取元素的时候，元素必须已经添加在页面文档中了
+	var div2  = box.getElementsByTagName("div"); //我们在调用div2的时候，会自动去重新获取一下
+	//parent.getElementsByClassName() 通过className去获取元素
+	btn.onclick = function() {
+		box.innerHTML += "<div></div>";
+		console.log(div.length,div2.length); 
+	};
+};
+</script>
+</head>
+<body>
+<input type="button" value="生成">
+<div id="box"></div>
+</body>
+</html>

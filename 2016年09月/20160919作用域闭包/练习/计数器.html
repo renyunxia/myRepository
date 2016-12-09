@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function(){function m(a){var b=f[a].getElementsByTagName("input"),d=f[a].getElementsByTagName("strong")[0],e=f[a].getElementsByTagName("em")[0],c=f[a].getElementsByTagName("span")[0];b[1].onclick=function(){var a=Number(d.innerHTML),b=parseFloat(e.innerHTML);d.innerHTML=++a;c.innerHTML=a*b+"\u5143";h()};b[0].onclick=function(){var a=Number(d.innerHTML),b=parseFloat(e.innerHTML);0<a&&(d.innerHTML=--a);c.innerHTML=a*b+"\u5143";h()}}function h(){for(var a=0,b=0,d=0,e=0,c=0;c<k.length;c++)e=
+Number(k[c].innerHTML),a+=e,b+=parseFloat(n[c].innerHTML),0!=e&&parseFloat(l[c].innerHTML)>d&&(d=parseFloat(l[c].innerHTML));p.innerHTML="\u5546\u54c1\u5408\u8ba1\u5171\uff1a"+a+"\u4ef6\uff0c\u5171\u82b1\u8d39\u4e86\uff1a"+b+"\u5143<br/>\u5176\u4e2d\u6700\u8d35\u7684\u5546\u54c1\u5355\u4ef7\u662f\uff1a"+d+"\u5143"}for(var f=document.getElementById("list").getElementsByTagName("li"),k=document.getElementsByTagName("strong"),l=document.getElementsByTagName("em"),n=document.getElementsByTagName("span"),
+p=document.getElementsByTagName("p")[0],g=0;g<f.length;g++)m(g)};
+</script>
+</head>
+
+<body>
+
+<ul id="list">
+	<li>
+	  	<input type="button" value="-" />
+	    <strong>0</strong>
+	  	<input type="button" value="+" />
+	    单价：<em>12.5元</em>
+	    小计：<span>0元</span>
+    </li>
+	<li>
+  	<input type="button" value="-" />
+    <strong>0</strong>
+  	<input type="button" value="+" />
+    单价：<em>10.5元</em>
+    小计：<span>0元</span>
+  </li>
+	<li>
+  	<input type="button" value="-" />
+    <strong>0</strong>
+  	<input type="button" value="+" />
+    单价：<em>8.5元</em>
+    小计：<span>0元</span>
+  </li>
+	<li>
+  	<input type="button" value="-" />
+    <strong>0</strong>
+  	<input type="button" value="+" />
+    单价：<em>8元</em>
+    小计：<span>0元</span>
+  </li>
+	<li>
+  	<input type="button" value="-" />
+    <strong>0</strong>
+  	<input type="button" value="+" />
+    单价：<em>14.5元</em>
+    小计：<span>0元</span>
+  </li>
+</ul>
+
+<p>
+商品合计共：0件，共花费了：0元<br />
+其中最贵的商品单价是：0元
+</p>
+
+</body>
+</html>

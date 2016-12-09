@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			var input = document.querySelector("input");
+			var ul = document.querySelector("ul");
+			var li  = document.getElementsByTagName("li");
+			for(var i = 0; i < li.length; i++){
+				li[i].index = i;
+				li[i].onclick = function(){
+					alert(this.index);
+				};
+			}
+			input.onclick = function() {
+				ul.innerHTML += ul.innerHTML;
+				for(var i = 0; i < li.length; i++){
+					li[i].index = i;
+					li[i].onclick = function(){
+						alert(this.index);
+					};
+				}
+			};
+			/*
+				操作了innerHTML之后，我们加给元素的事件和自定义属性 都会消失;
+			*/
+		};
+	</script>
+</head>
+<body>
+<input type="button" value="复制一份">
+<ul class="list">
+	<li>选项1</li>
+	<li>选项2</li>
+	<li>选项3</li>	
+</ul>
+</body>
+</html>

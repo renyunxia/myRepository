@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	#wrap{
+		width: 600px;
+		height: 30px;
+		background: #94dff8;
+		border-radius: 5px;
+		border: 1px solid #50aac7;
+		margin: 20px auto 0;
+	}
+	.navs{
+		font: 14px/30px "微软雅黑";
+	}
+	.navs a{
+		text-decoration: none;
+		display: block;
+		text-align: center;
+		color: #fff;
+		position: relative;
+		width: 20%;
+		float: left;
+	}
+	.navs a.active{
+		background: #1e95bc;
+		border-radius: 5px;
+	}
+	.list{
+		position: absolute;
+		top: 35px;
+		left: 0px;
+		color: #fff;
+		display: none;
+		font: 12px/30px "微软雅黑";
+		background: #50aac7;
+		border: 1px solid #94dff8;
+
+	}
+	.list li{
+		float: left;
+		padding: 0 8px;
+		border-right: 1px solid #94dff8;
+	}
+	</style>
+	<script type="text/javascript" src="MTween.js"></script>
+	<script>
+	 window.onload = function(){
+	 	var navs = document.getElementsByClassName("navs");
+	 	var Anavs = document.querySelectorAll("a");
+	 	var list = document.querySelectorAll("ul");
+	 	// console.log(navs,navsLi,list);
+	 	var now = 0;
+	 	var timer = 0;
+	 	for (var i = 0; i < Anavs.length; i++) {
+			Anavs[i].index = i;
+			if(navs[i].className == "active") {
+				now = i;
+				Anavs[i].onmouseover = function(){
+		 			for (var i = 0; i < Anavs.length; i++) {
+		 				Anavs[i].className = "";
+		 				list[i].style.display = "";
+		 			};
+		 			this.className = "active";
+			 		list[this.index].style.display = "block";
+		 		}
+			}else{
+	 			// for (var i = 0; i < Anavs.length; i++) {
+	 				Anavs[i].className = "";
+	 				list[i].style.display = "";
+	 			// };
+	 		}
+	 	};
+	 }
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<nav class="navs">
+			<a href="javascript:;" class="active">首页
+				<ul class="list">
+					<li>1-2</li>
+					<li>1-2</li>
+					<li>1-2</li>
+				</ul>
+			</a>
+			<a href="javascript:;">开班信息
+				<ul class="list">
+					<li>2-2</li>
+					<li>2-2</li>
+					<li>2-2</li>
+				</ul>
+			</a>
+			<a href="javascript:;">课程
+				<ul class="list">
+					<li>3-2</li>
+					<li>3-2</li>
+					<li>4-2</li>
+				</ul>
+			</a>
+			<a href="javascript:;">论坛
+				<ul class="list">
+					<li>1-4</li>
+					<li>1-4</li>
+					<li>1-4</li>
+				</ul>
+			</a>
+			<a href="javascript:;">关于我们
+				<ul class="list">
+					<li>1-5</li>
+					<li>1-5</li>
+					<li>1-5</li>
+				</ul>
+			</a>
+		</nav>
+
+	</div>
+</body>
+</html>

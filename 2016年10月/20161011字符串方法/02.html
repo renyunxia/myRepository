@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>字符串方法</title>
+</head>
+<body>
+	<script>
+		//var str = 'zhangmeng';
+		//indexOf(meedle,index) 用于查找字符串，第一个参数是
+		//要查找的字符串，第二个参数可选，用于指定从哪里开始查找
+		// 如果找到了返回找到字符的位置，如果没找到返回 -1
+		//对应的  lastIndexOf() 从后往前查找
+		//str.indexOf(n)  //3
+		//str.indexOf(men) //5
+		//str.includes() 用来查找指定字符串，找打了返回ture否则false
+		//str.startsWith() 用来判断要查找的字符串是否在开头位置 
+		//str.endsWith() 用来判断要查找的字符串是否在结尾位置 
+		//如果在开头或者结尾位置就返回 true  否则 就是false
+		//str.includes(men)  //true
+		//str.includes(men1)  //false
+		//var str = 'wangyi'；
+		//str.startsWith('wa') //true;
+		//str.startsWith('1w') //false;
+
+		//-----------------------------------------
+		var str = 'zhouyi';
+		//str.slice(start,end) 用来截取字符串的，接受两个参数
+		// 起始位 和 结束位 ，返回的结果包含起始位不包含结束位
+		//如果 start > end 返回 ''，如果 start < 0,或者 end < 0
+		// 那么 就等于 从 start + length  到 end + length
+		// 如果start  < - length  那么 默认就等于 0 
+		// 如果 end > length 那么默认就等于 length
+
+		var str = 'nieweihao';
+		//str.substr(start,nums) 用来截取字符串，第一个是从哪里截取
+		//第二个参数 是截取多少位 如果start < 0 = start + length;
+		//str.substring(start,end); 如果 start end < 0 
+		// 默认等于0 如果 start > end 会交换位置
+
+		var str = 'hanzhaoke';
+		//str.split(separator,[limit]); 用来分割字符串，第一个参数
+		//是用什么来分割字符串，第二个参数是取分割后数组中的前几位（可选）
+		//str.split('',2)  // ['h','a']
+		//str.split('adsd') // ['hanzhaoke']
+		//str.split('zhao') // ['han','ke']
+
+		//str1.toUpperCase().toLowerCase().substr(0,2)
+		//----------------------------------------------
+		//str.toUpperCase()  == str.toLocaleUpperCase();
+		//讲字符串所有的字母 转化为 大写
+
+		//str.toLowerCase()  == str.toLocaleLowerCase();
+		//讲字符串所有的字母 转化为 小写
+
+		//-----------------------------------------------
+		//str.charAt(position) if position false  = > ‘’;
+		//用来查找对应下标的字符 如果是负数 返回 ‘’；
+
+		//str.charCodeAt(position) 用来返回对应字符的Unicode编码
+		/*var str = '123j4';
+		for(var i=0; i<str.length; i++){
+			if(str.charCodeAt(i) < 48 || str.charCodeAt(i) > 57){
+				alert('不全是数字');
+			}
+		}*/
+		
+		//---------------------------------------
+		var str = 'zhaonana'；
+		// replace(value,newValue) 用来查找指定的内容，并替换为新内容
+		//var str1 = str.replace('zhaonana','liuxin');
+		// === 》 'liuxin';
+
+		//---------------------------------------
+		//trim() 用来去掉字符串的 前后空格
+		var str = ' 121 ';
+		var str1 = str.trim()  // 123
+
+		//---------------------------------------
+		var str = 'haoge';
+		var str1 = str.repeat(3) // 'haogehaogehaoge'
+		var str2 = str.repeat(0) // ''
+		//var str3 = str.repeat(-1) //报错
+	</script>
+</body>
+</html>

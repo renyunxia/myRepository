@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+#div1{
+	width:100px;
+	height: 100px;
+	position: absolute;
+	top:0;
+	left:0;
+}
+		
+.c1{
+	background:yellowgreen;
+}
+.c2{
+	background:blue;
+}
+.c3{
+	background:red;
+}
+.c4{
+	background:green;
+}
+	
+#div2{
+	width:100px;
+	height: 100px;
+	margin: 150px auto;
+}
+</style>
+</head>
+<body>
+	<div id="div1" class="c3"></div>
+	<div id="div2" class="c1"></div>
+	<script src="duang.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//Drag('div1',obj2);
+		/*
+			id:要拖拽的id
+			id2:要碰撞的元素id
+			fnDuang:碰到之后做啥
+			fnNoDuang：没碰到的时候做啥
+			
+			
+			function fn1(a) //形式上的参数：形参
+			fn1(1) //实实在在的参数：实参
+			
+		*/
+		
+		Drag({
+			id:'div1',
+			fnDuang:function(o1,o2){
+				o1.className = 'c4';
+			},
+			id2:'div2',
+			fnNoDuang:function(o1,o2){
+				o1.className = 'c3';
+			}
+		});
+		
+//		Drag({
+//			id:'div1'
+//		});
+
+	</script>
+</body>
+</html>

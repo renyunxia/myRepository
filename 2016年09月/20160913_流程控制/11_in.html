@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		// null 空对象不可以做属性操作
+		/*var box = document.getElementById("box");
+			box.onclick = function(){
+
+			};
+		*/
+		window.onload = function() {
+			var div = document.getElementById("div");
+			// in  判断对象中有没有这个属性 有这个就返回true否则就返回false
+			alert("className" in div);
+		};
+	</script>
+</head>
+<body>
+<div id="div"></div>
+</body>
+</html>

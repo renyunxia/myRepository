@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	div,img,span,a{
+		margin: 0;
+		padding: 0;
+	}
+	#box{
+		background: #fff;
+		width: 270px;
+		height: 350px;
+		padding: 10px;
+		border: 1px #000 solid;
+		margin: 20px auto;
+	}
+	.top{
+		text-align: center;
+		font-size: 12px;
+		line-height: 24px;
+	}
+	#img_box{
+		width: 240px;
+		height: 240px;
+		padding: 8px;
+		background: #999;
+		margin: 10px auto;
+		position: relative;
+	}
+	#img_box img{
+		width: 240px;
+		height: 240px;
+	}
+	.text_top,.text_bottom{
+		background: #000;
+		opacity: 0.8;
+		filter: alpha(opacity=80);
+		line-height: 26px;
+		text-align: center;
+		color: #fff;
+		position: absolute;
+		left: 0;
+		right: 0;
+	}
+	.text_top{
+		top: 8px;
+	    margin: 0 8px;
+	}
+	.tab_left,.tab_right{
+		width: 30px;
+		height: 30px;
+		background: #999;
+		opacity: 0.8;
+		filter: alpha(opacity=80);
+		color: #333;
+		position:absolute;
+		top: 115px;
+		text-align: center;
+		line-height: 30px;
+		text-decoration: none;
+	}
+	.tab_left{
+		left: 10px;
+	}
+	.tab_left:hover,.tab_right:hover{
+		opacity: 0.6;
+		filter: alpha(opacity=60);
+	}
+	.tab_right{
+		right: 10px;
+	}
+	.text_bottom{
+		font-size: 14px;
+		bottom: 8px;
+		margin: 0 8px;
+		font-weight:600; 
+	}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="top">
+			<input type="button" value="顺序切换">
+			<input type="button" value="循环切换">
+			<p>图片只能到最后一张或只能到第一张切换</p>
+		</div>
+		<div id="img_box">
+			<img src="images/img1.gif">
+			<div class="text_top">
+				<span></span>
+			</div>
+			<a href="javascript:;" class="tab_left"><</a>
+			<a href="javascript:;"class="tab_right">></a>
+			<div class="text_bottom">
+				文字一
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	
+	(function(){
+		var arrUrl = [
+			"images/img1.gif",
+			"images/img2.gif",
+			"images/img3.gif",
+			"images/img4.gif"
+		];
+		var arrText = [
+			"文字一",
+			"文字二",
+			"文字三",
+			"文字四"
+		]
+		var btn = document.querySelectorAll('input');
+		var Pt = document.querySelector('p');
+		var imgBox = document.getElementById('img_box');
+		var prev = imgBox.getElementsByTagName('a')[0];
+		var next = imgBox.getElementsByTagName('a')[1];
+		var img = document.querySelector('img');
+		var page = document.querySelector('span');
+		var text = document.querySelector('.text_bottom');
+		console.log(page);
+		var isPlay = true;
+		var nub = 0;
+		page.innerHTML = nub + 1 + '/' + arrUrl.length;
+		btn[0].onclick = function(){
+			isPlay = true;
+			Pt.innerHTML = "图片只能到最后一张或只能到第一张切换";
+		}
+		btn[1].onclick = function(){
+			isPlay = false;
+			Pt.innerHTML = "图片可从最后一张跳转到第一张循环切换";
+		}
+		prev.onclick = fnPrev;
+		next.onclick = fnNext;
+		function fnPrev(){
+			nub--;
+			if(nub < 0){
+				if(isPlay){
+					nub = 0;
+					alert("已经是第一张啦");
+				}else{
+					nub = arrUrl.length-1;
+				}
+			}
+			tab();
+		}
+		function fnNext(){
+			nub++;
+			if(nub > arrUrl.length-1){
+				if(isPlay){
+					nub = arrUrl.length-1;
+					alert("已经是最后一张啦");
+				}else{
+					nub = 0;
+				}
+			}
+			tab();
+		}
+		function tab(){
+			img.src = arrUrl[nub];
+			page.innerHTML = nub + 1 + '/' + arrUrl.length;
+			text.innerHTML = arrText[nub];
+		}
+	})();
+</script>
+</html>

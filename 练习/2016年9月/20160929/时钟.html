@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#box{
+		width: 200px;
+		height: 200px;
+		border: 5px solid #000;
+		border-radius: 50%;
+		margin: 30px auto;
+		position: relative;
+		box-shadow: inset 0 0 3px rgba(0,0,0,5);
+	}
+	#list{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		width: 200px;
+		position: relative;
+	}
+	#list li{
+		width: 2px;
+		height: 6px;
+		background: #999;
+		position: absolute;
+		left: 99px;
+		-webkit-transition-origin: center 100px;
+		-moz-transition-origin: center 100px;
+		-ms-transition-origin: center 100px;
+		-o-transition-origin: center 100px;
+		transition-origin: center 100px;
+	}
+	#list li:nth-of-type(1){
+		-webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	#list li:nth-of-type(2){
+		-webkit-transform: rotate(6deg);
+		-moz-transform: rotate(6deg);
+		-ms-transform: rotate(6deg);
+		transform: rotate(6deg);
+	}
+	#list li:nth-of-type(3){
+		-webkit-transform: rotate(12deg);
+		-moz-transform: rotate(12deg);
+		-ms-transform: rotate(12deg);
+		transform: rotate(12deg);
+	}
+	#list li:nth-of-type(4){
+		-webkit-transform: rotate(18deg);
+		-moz-transform: rotate(18deg);
+		-ms-transform: rotate(18deg);
+		transform: rotate(18deg);
+	}
+	#list li:nth-of-type(4){
+		-webkit-transform: rotate(24deg);
+		-moz-transform: rotate(24deg);
+		-ms-transform: rotate(24deg);
+		transform: rotate(24deg);
+	}
+	#list li:nth-of-type(5n+1){
+		height: 15px;
+	}
+	#hours{
+		width: 6px;
+		height: 60px;
+		background: #000;
+		position: absolute;
+		left: 97px;
+		top: 40px;
+	}
+	{
+		width: 4px;
+		height: 75px;
+		background: green;
+		position: absolute;
+		left: 98px;
+		top: 25px;
+	}
+	{
+		width: 20px;
+		height: 90px;
+		background: red;
+		position: absolute;
+		left: 99px;
+		top: 99px;
+	}
+	{
+		width: 16px;
+		height: 1px;
+		background: #000;
+		position: absolute;
+		top: 92px;
+		left: 92px;
+		box-shadow: 0 0 3px rgba(0,0,0,5);
+	}
+	</style>
+	<script>
+	function setList () {
+		var list = document.getElementById('list');
+		var li = "";
+		for (var i = 0; i < 60; i++) {
+			li +='<li style="transform: rotate(24deg);"'
+		};
+	}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<ul id="list">
+		</ul>
+		<div id="hours"></div>
+		<div id="mintes"></div>
+	</div>
+</body>
+</html>

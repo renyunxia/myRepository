@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		/*
+			倒计时:
+				1. 目标时间
+				2. 求当前时间和目标时间的时间差
+		*/
+		var target = new Date(2017,0,1,0,0,0,0);
+		var now = new Date();
+		var dis = target.getTime() - now.getTime();
+		// console.log(Number(now));
+		//console.log(dis);
+		var date = parseInt(dis/86400000);
+		var hours = parseInt((dis%86400000)/3600000);
+		var min = parseInt((dis%3600000)/60000);
+		var sec = parseInt((dis%60000)/1000);
+		console.log(date,hours,min,sec);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

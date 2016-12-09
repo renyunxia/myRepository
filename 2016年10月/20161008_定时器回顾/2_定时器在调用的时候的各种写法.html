@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		function fn2(a){
+			console.log(a);
+		}
+		/*setTimeout(function(){
+			fn2(1);
+		},5000);*/
+		setTimeout("fn2(2)",3000);// 接收一个函数执行的字符串
+		/*setTimeout(function(){
+			alert("abc");
+		},3000);*/
+		setTimeout("alert('abc')",3000);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

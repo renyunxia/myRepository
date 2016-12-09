@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#warp{
+		width: 800px;
+	}
+	.box{
+		width:70px;
+		height:30px;
+		line-height: 30px;
+		float: left;
+		/*border:1px solid #000;*/
+		margin: 5px;
+		color: #fff;
+		background: red;
+		text-align: center;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var input = document.getElementsByTagName("input")[0];
+		var div = document.getElementById("warp");
+		input.onclick = function(){
+			for(var i=1; i<101; i++){
+				div.innerHTML += "<div class='box'>" + i + "<div>";
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+	<input type="button" value="创建100个div">
+	<div id="warp">
+		
+	</div>
+</body>
+</html>

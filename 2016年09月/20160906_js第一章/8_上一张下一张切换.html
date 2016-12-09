@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body {
+			margin: 0;
+		}
+		a {
+			text-decoration: none;
+		}
+		#wrap {
+			width: 300px;
+			margin: 30px auto;
+			border: 10px solid #ccc;
+			background: #ccc;
+			position:  relative;
+			overflow: -hidden;
+		}
+		#box {
+			width: 300px;
+			height: 200px;
+		}
+		#box div {
+			height: 200px;
+			background: #000;
+			color: #fff;
+			font: 100px/200px "宋体";
+			text-align: center;
+			display: none; 
+		}
+		#box .show {
+			display: block;
+		}
+		#box a {
+			position: absolute;
+			top: 85px;
+			width: 30px;
+			height: 30px;
+			background: #fff;
+			color: #000;
+			text-align: center;
+			font: 20px/30px "宋体";
+		}
+		#prev {
+			left: 0;
+		}
+		#next {
+			right: 0;
+		}
+		#navs {
+			overflow: hidden;
+			border-top: 5px solid #ccc;
+		}
+		#navs a {
+			width: 90px;
+			float: left;
+			margin: 0 5px;
+			font: 16px/40px "宋体";
+			color: #fff;
+			background: #666;
+			text-align: center;
+		}
+		#navs .active {
+			background: #000;
+		}
+	</style>
+	<script type="text/javascript">
+		/*
+			选项卡:
+				1.获取所有的选项和对应的显示内容
+				2.添加一个变量 记录 当前显示的是第几个
+				3.循环所有选项，添加事件 索引值 
+				4.鼠标移入之后，清除上一个显示
+				5.把当前的显示出来
+				6.同步记录当前显示的是第几个
+
+		*/
+		window.onload = function() {
+			var navs = document.querySelectorAll("#navs a");
+			var divs = document.querySelectorAll("#box div");
+			var prev = document.querySelector('#prev');
+			var next = document.querySelector('#next');
+			var now = 0;
+			for(var i = 0; i < navs.length; i++){
+				navs[i].index = i;
+				navs[i].onmouseover = function(){
+					now = this.index;
+					for(var i = 0; i < navs.length; i++){
+						navs[i].className = "";
+						divs[i].className = "";
+					}
+					navs[now].className = "active";
+					divs[now].className = "show";
+				};
+			}
+			prev.onclick = function() {
+				now--;
+				if(now < 0) {
+					now = navs.length - 1;
+				}
+				for(var i = 0; i < navs.length; i++){
+					navs[i].className = "";
+					divs[i].className = "";
+				}
+				navs[now].className = "active";
+				divs[now].className = "show";
+			};
+			next.onclick = function() {
+				now++;
+				if(now > navs.length - 1) {
+					now = 0;
+				}
+				for(var i = 0; i < navs.length; i++){
+					navs[i].className = "";
+					divs[i].className = "";
+				}
+				navs[now].className = "active";
+				divs[now].className = "show";
+			};
+		};
+	</script>
+</head>
+<body>
+<section id="wrap">
+	<div id="box">
+		<a href="javascript:;" id="prev"><</a>
+		<div class="show">A</div>
+		<div>B</div>
+		<div>C</div>
+		<a href="javascript:;" id="next">></a>
+	</div>
+	<nav id="navs">
+		<a href="javascript:;" class="active">1</a>
+		<a href="javascript:;">2</a>
+		<a href="javascript:;">3</a>
+	</nav>
+</section>
+</body>
+</html>

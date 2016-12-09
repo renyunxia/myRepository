@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" name="" id="btn1" value="第一组数据" />
+	<input type="button" name="" id="btn2" value="第二组数据" />
+<script type="text/javascript">
+	var arr = [
+		1111,
+		2222,
+		3333
+	];
+	var arr2 = [
+		4444,
+		5555,
+		6666
+	]
+//	document.onclick = function(){
+//		//window.location.href url地址栏信息
+//		//window.location.search 地址栏查询信息   ?到#号之间的信息（但不包括#号，但包括?）会刷新页面
+//		//window.location.hash 锚信息 #包括#之后的信息  不会刷新页面
+//		//console.log(window.location.href);
+//		//console.log(window.location.search)
+////		console.log(window.location.hash)
+//	}
+	
+	btn1.onclick = function(){
+		window.location.hash = 'data=1';
+	}
+	btn2.onclick = function(){
+		window.location.hash = 'data=2';
+	}
+	
+	window.onhashchange = function(){
+		var hash = window.location.hash.split('=')[1];
+		
+		if(hash == 1){
+			console.log(arr)
+		}else{
+			console.log(arr2)
+		}
+		
+	}
+	
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" value="+">
+	<span>0</span>
+	<input type="button" value="-">
+</body>
+<script>
+	(function(){
+		var input = document.querySelectorAll('input');
+		var text = document.querySelector('span');
+		var nub = 0;
+		input[0].onclick = function(){
+			nub++;
+			if( nub > 5){
+				nub = 0;
+			}
+			text.innerHTML = nub;
+		}
+		input[1].onclick = function(){
+			nub--;
+			if( nub < 0){
+				nub = 5;
+			}
+			text.innerHTML = nub;
+		}
+	})();
+</script>
+</html>

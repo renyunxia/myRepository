@@ -1,0 +1,82 @@
+body{
+	margin: 0;
+	background: #ffe1c9;
+}
+.snakeWrap{
+	width: 600px;
+	border: 2px ridge #ffba56;
+	margin: 0 auto;
+	padding-bottom: 10px;
+}
+#info{
+    height: 50px;
+    border-bottom: 2px solid slateblue;
+    text-align: center;
+    font: 20px/50px "微软雅黑";
+}
+#map {
+	border-bottom: 2px solid slateblue;
+}
+table,th,td { border: 1px solid #8BFFFF;}
+table{border-width: 1px 0 0 1px;}
+th,td{border-width:0 1px 1px 0;}
+tr{border: none;}
+#map table {
+	margin: 0 auto;
+	border-spacing: 0;
+}
+#map table td {
+	width: 15px;
+	height: 15px;
+	/*border: 1px solid #8BFFFF;*/
+	background: #E4FFE9;
+}
+#map table td.snake{
+	background: deepskyblue;
+}
+#map table td.food{
+	background: skyblue;
+}
+#map table td.block{
+	background: #000000;
+}
+#map table td.skate{
+	background: greenyellow;
+}
+#map table td.brake{
+	background: darkred;
+}
+.help {
+	height: 50px;
+	border-bottom: 2px solid slateblue;
+	margin-bottom: 10px;
+}
+.help span {
+	float: left;
+	height: 20px;
+	margin: 13px 5px 0 5px;
+	line-height: 20px;
+}
+.box {
+	width: 20px;
+	border: 1px solid #ccc;
+}
+.help span:nth-of-type(even){
+	margin-right: 15px;
+}
+#btn {
+	width: 140px;
+	height: 40px;
+	border: 2px solid #FFBA56;
+	margin: 0 auto;
+	font: 20px/40px "微软雅黑";
+	text-align: center;
+	border-radius: 10px;
+	box-shadow: 0 0 5px #000;
+	color: red;
+	cursor: pointer;
+	-webkit-user-select: none;
+}
+#btn.active {
+	color: #ccc;
+}

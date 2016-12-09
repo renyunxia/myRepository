@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		/*function $(selector){
+			return document.querySelectorAll(selector);
+		}
+		window.onload = function() {
+			var span = $("span")[1];
+			var input = $("input");
+			console.log(span);
+		};
+			为什么要用函数返回值 --- 方便函数复用
+			函数执行完成后都有返回值
+				不使用return默认返回值为undefined
+				使用return 返回值为return后面的值	
+
+				
+		
+		*/
+		function $(selector) {
+			return document.querySelectorAll(selector);
+		}
+		window.onload = function () {
+			var a = $("#div");
+			console.log(a);
+		};
+	</script>
+</head>
+<body>
+	<div id="div">商品：iphone7 单价：$<span>998</span> 数量 <input type="number" min="0" value="0">
+	总价: $<span>0</span> </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body {
+			margin: 0;
+		}
+		div{
+			width: 50px;
+			height: 50px;
+			background: red;
+			float: left;
+			margin: 10px;
+			font: 50px/50px "宋体";
+			text-align: center;
+			color: #fff;
+		}
+	</style>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script type="text/javascript">
+		function setLayout(){
+			var div = getTag(document,"div");
+			for(var i = 0; i < div.length; i++){
+				div[i].style.top = div[i].offsetTop + "px";
+				div[i].style.left = div[i].offsetLeft + "px";
+			}
+			for(var i = 0; i < div.length; i++){
+				div[i].style.position = "absolute";
+				div[i].style.margin = 0;
+				div[i].innerHTML = i;
+			}
+		}
+		window.onload = function(){
+			setLayout();
+			var div = getTag(document,"div");
+			var center = parseInt(div.length/2);
+			var timer = 0;
+			toOut();
+			function toOut(){
+				var nub = 1;
+				mTween(div[center],{top:200},300,"easeBoth");
+				timer = setInterval(
+					function(){
+						var prev = center - nub;
+						var next = center + nub;
+						if(prev < 0 && next > div.length-1) {
+							clearInterval(timer);	
+							toBack();
+						} else {
+							if(div[prev]){
+								mTween(div[prev],{top:200},300,"easeBoth");
+							}
+							if(div[next]){
+								mTween(div[next],{top:200},300,"easeBoth");
+							}
+							nub++;
+						}
+					},30
+				);
+			}
+			function toBack(){
+				var nub = 1;
+				mTween(div[center],{top:0},300,"easeBoth");
+				timer = setInterval(
+					function(){
+						var prev = center - nub;
+						var next = center + nub;
+						if(prev < 0 && next > div.length-1) {
+							clearInterval(timer);	
+							toOut();
+						} else {
+							if(div[prev]){
+								mTween(div[prev],{top:0},300,"easeBoth");
+							}
+							if(div[next]){
+								mTween(div[next],{top:0},300,"easeBoth");
+							}
+							nub++;
+						}
+					},30
+				);
+			}
+		};
+	</script>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>

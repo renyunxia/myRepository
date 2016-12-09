@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#list ul{
+		display: none;
+	}
+	#list>ul{
+		display: block;
+	}
+	</style>
+	<script type="text/javascript" src="data.js"></script>
+	<script type="text/javascript" src="jquery-3.1.1.js" ></script>
+</head>
+<body>
+	<div id="list"></div>
+	<script>
+	(function(){
+		var $list = $('#list');
+		function setChild(obj){
+			var $ul = $('<ul>');
+			for (var i = 0; i < obj.length; i++) {
+				var $li = $('<li>');
+				var $p = $('<p>');
+				$p.html(obj[i].name);
+				$p.appendTo($li);
+				if(obj[i].child){
+					var ul = setChild(obj[i].child);
+					ul.appendTo($li);
+				}
+				$li.appendTo($ul);
+			};
+			return $ul
+		}
+		var ul = setChild(data);
+		ul.appendTo($list);
+
+		var $p = $('p');
+		$p.click(function(){
+		var $next = $(this).next();
+		var $uls = $(this).parent().parent().find('ul');
+		if($uls != $next){
+			$uls.css("display", "none");
+		}
+		if($next){
+			if($next.css("display") == "block"){
+				$next.css('display','none');
+			}else{
+				$next.css('display','block');
+			}
+		}
+	})
+
+	})();
+	</script>
+</body>
+</html>

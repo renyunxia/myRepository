@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无缝滚动</title>
+	<style>
+	*{
+		margin: 0;
+		text-align: center;
+	}
+	input{
+
+	}
+	#wrap{
+		width: 300px;
+		height: 300px;
+		border: 1px green solid;
+		margin: 10px auto;
+		position: relative;
+		overflow: hidden;
+	}
+	.inner{
+		width: 200%;
+		height: 300px;
+		background: rgba(0,0,0,.5);
+		color: #fff;
+		font: 80px/300px "微软雅黑";
+		position: absolute;
+	}
+	.inner div{
+		width: 300px;
+		height: 300px;
+		float: left;
+	}
+	</style>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script>
+	window.onload = function(){
+		var btn = document.getElementsByTagName('input');
+		var wrap = document.getElementById('wrap');
+		var inner = document.getElementsByClassName('inner')[0];
+		var divs = inner.getElementsByTagName('div');
+		var arr = [0,1,2,3];
+		var n = 0;
+		btn[0].onclick = function(){
+			divs[0].innerHTML = arr[n];
+			inner.style.left = -300 + 'px';
+			divs[0].innerHTML = arr[n = n > 0 ? --n : arr.length-1];
+			mTween(inner,{left:0},20,'linear');
+		}
+		btn[1].onclick = function(){
+			divs[0].innerHTML = arr[n];
+			inner.style.left = 0;
+			divs[1].innerHTML = arr[n = n < arr.length-1 ? ++n : 0];
+			mTween(inner,{left:-300},20,'linear');
+		}
+	}
+	</script>
+</head>
+<body>
+	<input type="button" value="上一张">
+	<input type="button" value="下一张">
+	<div id="wrap">
+		<div class="inner">
+			<div>0</div>
+			<div>1</div>
+		</div>
+	</div>
+</body>
+</html>

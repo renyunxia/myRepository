@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script>
+		window.onload = function() {
+			//var input = document.getElementsByTagName("input");
+			var box = document.getElementById("box");
+			var input = box.getElementsByTagName("input");
+			/*input[0].style.background = "red";
+			input[1].style.background = "red";
+			input[2].style.background = "red";
+			input[3].style.background = "red";*/
+			for(var i = 0; i<input.length; i++){
+				input[i].style.background = "red";
+			}
+		};
+	</script>
+</head>
+<body>
+<div id="box">
+	<input type="button" value="按钮1" />
+	<input type="button" value="按钮2" />
+	<input type="button" value="按钮3" />
+	<input type="button" value="按钮4" />
+</div>
+</body>
+</html>

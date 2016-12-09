@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+#ul1{
+	
+}
+#ul1 li{
+	width:20px;
+	height: 20px;
+	background: red;
+	margin: 5px;
+	transition:width 1s;
+}
+</style>
+</head>
+<body style="height:2000px;">
+	<ul id="ul1">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+<script type="text/javascript">
+	/*
+		问题：
+			在高版本浏览器下childNodes获取的是所有子节点，会把文本节点和元素节点..都获取到，而文本没有width这个属性，所以报错了
+			
+		解决：
+			思路：只要元素节点（nodeType == 1就是元素节点）
+			
+		
+			children:获取某个节点下的所有元素节点。（它不是标准，但是所有浏览器都兼容）
+			
+			
+			
+	*/
+	var ul = document.getElementById('ul1');
+	//var li = ul.childNodes;
+	var li = ul.children;
+	console.log(li.length)
+	ul.onclick = function(){
+		//alert(1);
+//		for(var i=0;i<li.length;i++){
+//			if(li[i].nodeType === 1){
+//				li[i].style.width = '200px';
+//			}
+//		}
+		for(var i=0;i<li.length;i++){
+			li[i].style.width = '200px';
+		}
+	}
+</script>
+</body>
+</html>

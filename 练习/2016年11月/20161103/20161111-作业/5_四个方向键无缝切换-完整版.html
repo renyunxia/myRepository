@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无缝滚动</title>
+	<style>
+		*{
+			margin: 0;
+			text-align: center;
+		}
+		input{
+
+		}
+		#wrap{
+			width: 300px;
+			height: 300px;
+			border: 1px red solid;
+			margin: 10px auto;
+			position: relative;
+			overflow: hidden;
+		}
+		.inner{
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.inner img{
+			width: 300px;
+			height: 300px;
+			position: absolute;
+		}
+		.inner img2{
+			z-index: 1;
+		}
+	</style>
+	<script type="text/javascript" src="js/miaov.js"></script>
+</head>
+<body>
+	<div id="wrap">
+		<div class="inner">
+			<img src="images/img1.gif">
+			<img class="img2" src="images/img2.gif">
+		</div>
+	</div>
+	<script>
+	(function(){
+		var inner = document.getElementsByClassName('inner')[0];
+		var img = inner.getElementsByTagName('img');
+		var num = 1;
+		inner.onOff = true;
+		
+		window.onkeydown = function(ev){
+			var code = ev.keyCode;
+			switch(code){
+				case 37:
+					if(inner.onOff){
+						num--;
+						move(-300,'left');
+					}
+				break;
+				case 38:
+					if(inner.onOff){
+						num--;
+						move(-300,'top');
+					}
+				break;
+				case 39:
+					if(inner.onOff){
+						num++;
+						move(300,'left');
+					}
+				break;
+				case 40:
+					if(inner.onOff){
+						num++;
+						move(300,'top');
+					}
+				break;
+			}
+		}
+		function move(end,attr){
+			inner.onOff = false;
+			img[0].style.left = img[1].style.left = 0;
+			img[0].style.top = img[1].style.top = 0;
+			if(num>5) num=1;
+			if(num<1) num = 5;
+
+			img[1].src = 'images/img'+num+'.gif';
+			img[1].style[attr] = end + 'px';
+
+			inner.style.transition = '.3s';
+			inner.style[attr] = -end + 'px';
+			setTimeout(function(){
+				inner.style.transition = 'none';
+				img[0].src = 'images/img'+num+'.gif';
+				inner.style[attr] = '0';
+				inner.onOff = true;
+			},305)
+		}
+	})();
+	</script>
+</body>
+</html>

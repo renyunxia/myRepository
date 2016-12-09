@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script>
+		window.onload = function(){
+			var input = document.getElementsByTagName("input");
+			var isChecked = false;
+			input[input.length - 1].onclick = function(){
+				/*if(isChecked) {
+					for(var i = 0; i < input.length - 1; i++) {
+						input[i].checked = false;
+					}
+				} else {
+					for(var i = 0; i < input.length - 1; i++) {
+						input[i].checked = true;
+					}
+				}*/
+				for(var i = 0; i < input.length - 1; i++) {
+					if(isChecked) {
+						input[i].checked = false;
+					} else {
+						input[i].checked = true;
+					}
+					/*
+						isChecked = true的时候， 	input[i].checked = false;
+						isChecked = false的时候,  input[i].checked = true;
+					*/
+				}
+				isChecked = !isChecked;
+			};
+			/*
+				1.获取所有input
+				2.点击最后一个input
+				3.判断 除了最后一个input之外的所有input如果是全部选中的
+				4.就全部不选中
+				5.否则就全部选中
+				
+					
+				如果 今天是周五
+					明天就放假
+				否则
+					明天就上课
+					
+				if(今天是周五) {
+					明天就放假
+				} else {
+					明天就上课
+				}
+
+				
+			*/
+		};
+	</script>
+</head>
+<body>
+	<input type="checkbox" />
+	<input type="checkbox" />
+	<input type="checkbox" />
+	<input type="checkbox" />
+	<input type="checkbox" />
+	<input type="checkbox" />
+	<input type="checkbox" />
+	<input type="checkbox" />
+	<input type="checkbox" />
+	<input type="checkbox" /><br />
+	<input type="button" value="全选/全不选" />
+</body>
+</html>

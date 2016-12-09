@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+window.onload = function() {
+	var btn = document.querySelectorAll("input");
+	for(var i = 0; i < btn.length; i++){
+		setEv(i);
+	}
+	function setEv(nub) {
+		btn[nub].onclick = function() {
+			console.log(nub);
+		};
+	}
+	/*
+		第一次执行函数:
+			nub = 0;
+			btn[0].onclick = function() {
+				console.log(0);
+			};
+----------------------------------------------
+		第二次执行函数:	
+			nub = 1;
+			btn[1].onclick = function() {
+				console.log(1);
+			};
+
+	*/
+};
+</script>
+</head>
+<body>
+<input type="button" value="按钮1">
+<input type="button" value="按钮2">
+<input type="button" value="按钮3">
+</body>
+</html>

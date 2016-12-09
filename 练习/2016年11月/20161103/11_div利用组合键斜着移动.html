@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#box{
+		width: 100px;
+		height: 100px;
+		background: red;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script>
+	(function(){
+		var box = document.getElementById('box');
+		var timer = null;
+		var dir = {
+			l:false,
+			r:false,
+			t:false,
+			b:false
+		};
+		setInterval(function(){
+			if(dir.l){
+				box.style.left = box.offsetLeft - 5 + 'px';
+			};
+			if(dir.t){
+				box.style.top = box.offsetTop - 5 + 'px';
+			};
+			if(dir.r){
+				box.style.left = box.offsetLeft + 5 + 'px';
+			};
+			if(dir.b){
+				box.style.top = box.offsetTop + 5 + 'px';
+			};
+		},20);
+
+		document.onkeydown = function(ev){
+			ev.preventDefault();
+			clearInterval(timer);
+			var code = ev.keyCode;
+			switch (code){
+					case 37:
+					dir.l = true;
+				break;
+					case 38:
+					dir.t = true;
+				break;
+					case 39:
+					dir.r = true;
+				break;
+					case 40: 
+					dir.b = true;
+				break;
+			}
+		}
+		document.onkeyup = function(ev){
+			ev.preventDefault();
+			clearInterval(timer);
+			var code = ev.keyCode;
+			switch (code){
+					case 37:
+					dir.l = false;
+				break;
+					case 38:
+					dir.t = false;
+				break;
+					case 39:
+					dir.r = false;
+				break;
+					case 40: 
+					dir.b = false;
+				break;
+			}
+		}
+
+
+		// var timer1 = null;
+		// var timer2 = null;
+		// var timer3 = null;
+		// var timer4 = null;
+		// document.onkeydown = function(ev){
+		// 	// clearInterval(timer);
+		// 	var code = ev.keyCode;
+		// 	switch (code){
+		// 		case 37:
+		// 		 timer1 = setInterval(function(){
+		// 			box.style.left = box.offsetLeft - 5 + 'px';
+		// 		},30)
+		// 		break;
+		// 			case 38:
+		// 			timer2 = setInterval(function(){
+		// 				box.style.top = box.offsetTop - 5 + 'px';
+		// 			},30)
+		// 		break;
+		// 			case 39:
+		// 			timer3 = setInterval(function(){
+		// 				box.style.left = box.offsetLeft + 5 + 'px';
+		// 			},30)
+		// 		break;
+		// 			case 40: 
+		// 			timer4 = setInterval(function(){
+		// 				box.style.top = box.offsetTop + 5 + 'px';
+		// 			},30)
+		// 		break;
+		// 	}
+		// }
+		// document.onkeyup = function(ev){
+		// 	clearInterval(timer1);
+		// 	clearInterval(timer2);
+		// 	clearInterval(timer3);
+		// 	clearInterval(timer4);
+		// }
+	})();
+	</script>
+</body>
+</html>

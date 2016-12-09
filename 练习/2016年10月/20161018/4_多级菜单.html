@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	var data = [
+		{
+			name:"选项一",
+				child:[
+					{name:"选项1"},
+					{name:"选项2"},
+				{
+				name:"选项3",
+					child:[
+						{name:"选项(1)"},
+						{name:"选项(2)"},
+						{name:"选项(3)"}
+					]
+				}
+			]
+		},{
+			name:"选项二",
+				child:[
+					{name:"选项2-1"},
+					{name:"选项2-2"},
+				{
+				name:"选项3",
+					child:[
+						{name:"选项(1)"},
+						{name:"选项(2)"},
+						{name:"选项(3)"}
+					]
+				}
+			]
+		},{
+			name:"选项三",
+				child:[
+					{name:"选项3-1"},
+					{name:"选项3-2"},
+				{
+				name:"选项3",
+					child:[
+						{name:"选项(1)"},
+						{name:"选项(2)"},
+						{name:"选项(3)"},
+						{
+							name:"选项4",
+							child:[
+								{name:"选项(1)"},
+								{name:"选项(2)"},
+								{name:"选项(3)"}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+	//生成结构
+	window.onload = function(){
+		var list = document.getElementById('list');
+		var li = list.children;
+		var inner = "";
+		for (var i = 0; i < data.length; i++) {
+			inner += '<li>';
+			inner += '<p><span></span>'+data[i].name+'</p>';
+			if(data[i].child){
+				setChild(data[i].child);
+			}
+			inner += '</li>';
+		};
+		list.innerHTML = inner;
+		function setChild(obj){
+			inner += '<ul>' 
+			for (var i = 0; i < obj.length; i++) {
+				inner += '<li>';
+				inner += '<p><span></span>'+obj[i].name+'</p>';
+				if(obj[i].child){
+					setChild(obj[i].child);
+				}
+				inner += '</li>';
+			};
+			inner += '</ul>';
+		}
+
+		//隐藏
+		function subListNone(list){
+			for (var i = 0; i < list.length; i++) {
+				if(list[i].children[1]){  //如果list下有下标为 1 的元素节点，证明有除了title以外的元素节点
+					list[i].children[1].style.display = "none";  //list下所有下标为 1 的元素节点都隐藏
+					// $("span",list[i].children[0])[0].innerHTML = "+";
+					list[i].children[0].onOff = true;  //添加一个开关
+				}
+			};
+		}
+		subListNone(li);  //隐藏子级list
+		function onOff(parent){
+			for (var i = 0; i < parent.length; i++) {     //循环第一级
+				var Op = parent[i].children;                 //获取第一级下的子级
+				for (var j = 0; j < Op.length; j++) {     //循环子级
+					if(Op[j].nodeName === "P"){        //如果子级第j个的节点名字为"P",执行下面的代码
+						Op[j].onclick = function(){    //当P被点击时
+							var next = this.nextElementSibling;  //存一下P的下一个兄弟元素
+							if(next){        //如果有下一个兄弟元素，则执行下面的代码
+								var subList = next.children;     //获取到下一个兄弟元素的子级
+								subListNone(subList);    //隐藏下一个兄弟元素的子级list
+								if(this.onOff){
+									subListNone(parent);    //隐藏父级所有的list   //清掉所有
+									next.style.display = "block";
+									// $("span",this)[0].innerHTML = "-";
+									this.onOff = false;
+									onOff(next.children);
+								}else{
+									next.style.display = "none";
+									// $("span",this)[0].innerHTML = "+";
+									this.onOff = true;
+								}
+							}
+						}
+					}
+				};
+			};
+		}
+		onOff(li);
+	}
+	</script>
+</head>
+<body>
+	<ul id="list">
+		<!-- <li>
+			<p>选项一</p>
+			<ul>
+				<li>选项二</li>
+			</ul>
+		</li> -->
+	</ul>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#box{
+		width: 100px;
+		height: 100px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin: -50px 0 0 -50px;
+		background: red;
+	}
+	</style>
+	
+</head>
+<body>
+	<div id="box"></div>
+</body>
+<script>
+(function(){
+	var box = document.querySelector('#box');
+		box.style.left = box.offsetLeft + 'px';
+		box.style.top = box.offsetTop + 'px';
+		box.style.margin = 0 + 'px';
+
+	window.onkeydown = function(e){
+		var code = e.keyCode;
+		switch(code){
+			case 37:
+			box.style.left = box.offsetLeft - 10 + 'px';
+			break;
+			case 38:
+			box.style.top = box.offsetTop - 10 + 'px';
+			break;
+			case 39:
+			box.style.left = box.offsetLeft + 10 + 'px';
+			break;
+			case 40:
+			box.style.top = box.offsetTop + 10 + 'px';
+			break;
+		}
+	}
+})();
+</script>
+</html>

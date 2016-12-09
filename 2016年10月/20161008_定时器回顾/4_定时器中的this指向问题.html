@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			var btns = document.getElementsByTagName("input");
+			for(var i = 0; i < btns.length; i++){
+				btns[i].onclick = function(){
+					/* 注意在定时器中 this指向window */
+					var _this = this;
+					setTimeout(
+						function(){
+							console.log(_this);
+						},400
+					);
+				};
+			}
+		};
+	</script>
+</head>
+<body>
+	<input type="button" value="1">
+	<input type="button" value="2">
+	<input type="button" value="3">
+	<input type="button" value="4">
+</body>
+</html>

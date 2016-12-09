@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+window.onload = function(){
+	var file = document.querySelector('input');
+	var c = document.createElement("canvas");
+	var cxt = c.getContext("2d");
+	file.onchange = function(e){
+		//console.log(e);
+		var src = e.target.files; 
+		//console.log(e.target.files);
+		cxt.drawImage(e.target.files[0],0,0,100,100);
+		document.body.appendChild(c);
+	};
+};
+</script>
+</head>
+<body>
+<input type="file" accept="image/*">
+</body>
+</html>

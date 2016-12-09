@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	textarea,.box{
+		width: 200px;
+		height: 200px;
+		border: 1px #999 solid;
+		float: left;
+		resize: none;
+	}
+	#progess{
+		width: 110px;
+		height: 20px;
+		border: 1px #999 solid;
+	}
+	#progess span{
+		display: block;
+		width: 0;
+		height: 20px;
+		background: #f60;
+	}
+	</style>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script>
+	window.onload = function () {
+		var btn = document.querySelector('input[type="button"]');
+		var box = document.querySelector('.box');
+		var txtW = document.querySelector('textarea');
+		var Op = document.querySelector('p');
+		var progess = document.getElementById('progess');
+
+		var len = txtW.value.length;
+		var timer = null;
+		Op.innerHTML = "0/" + len;
+		btn.onclick = function(){
+			// 1.获取textare的val
+			// 2.利用substring截取0
+			// 3.把截取到的字符串 加入到 box.inner
+			// 4.利用substring截取1,length
+			// 5.添加到 textare的val
+
+			timer = setInterval(function(){
+				var val = txtW.value;
+				box.innerHTML += val.substr(0,1);
+				txtW.innerHTML = val.substr(1);
+				Op.innerHTML = box.innerHTML.length+"/"+len;
+
+				/*
+					进度条:
+						用当前添加的字符个数/总个数 得去进度的比例
+						用比例 乘总宽度
+				*/
+				var wdh = (box.innerHTML.length/len)*110
+				var span = document.querySelector('span');
+				mTween(span,{width:wdh},100,"linear");
+			},100)
+		}
+	}
+	</script>
+</head>
+<body>
+	<textarea id="text" readonly>要查找的字符串，第二个参数可选，用于指定从哪里开始查找 如果找到了返回找到字符的位置，如果没找到返回 -1 对应的  lastIndexOf() 从后往前查找
+	</textarea>
+	
+	<div style="float:left; padding:0 5px; text-align:center;">
+		<input type="button" value="截取一位到右边">
+		<p>0/0</p>
+		<div id="progess">
+		<span></span>
+	</div>
+	</div>
+	
+	<div class="box"></div>
+</body>
+</html>

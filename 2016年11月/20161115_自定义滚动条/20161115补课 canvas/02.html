@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var cxt = canvas.getContext('2d');
+
+		cxt.lineWidth = 1;
+
+		cxt.moveTo(50,50);
+		cxt.lineTo(500,50);
+		cxt.stroke();  //实际绘制的是两像素
+
+		cxt.moveTo(50,85.5);
+		cxt.lineTo(500,85.5);
+		cxt.stroke(); //实际绘制的是1像素
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+#div1{
+	width: 100px;
+	height: 100px;
+	background: red;
+	position: absolute;
+	top:0;
+	left: 0;
+}	
+</style>
+</head>
+
+<body>
+<div id="div1"></div>
+<!--<input type="" name="" id="" value="" />-->
+<script type="text/javascript">
+	
+	//作业1，两个方向键，斜着跑
+	/*
+		{
+			上:true,
+			右:false,
+		}
+	*/
+	var div = document.getElementById('div1');
+	var timer = null;
+	document.onkeydown = function(ev){
+		clearInterval(timer);
+		timer = setInterval(function(){
+			if(ev.keyCode == 37){
+				div.style.left = div.offsetLeft - 5 + 'px';
+			}else if(ev.keyCode == 38){
+				div.style.top = div.offsetTop - 5 + 'px';
+			}else if(ev.keyCode == 39){
+				div.style.left = div.offsetLeft + 5 + 'px';
+			}else if(ev.keyCode == 40){
+				div.style.top = div.offsetTop + 5 + 'px';
+			}
+		},30)
+	}
+	document.onkeyup = function(ev){
+		clearInterval(timer);
+	}
+	
+	
+	
+	
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+var data = [
+	{
+		name:"选项一",
+		child: [
+			{name:"选项1"},
+			{name:"选项2"},
+			{
+				name:"选项3",
+				child: [
+					{name: "选项(1)"},
+					{name: "选项(2)"},
+					{name: "选项(3)"}
+				]
+			}
+		]
+	},{
+		name:"选项二",
+		child: [
+			{name:"选项2_1"},
+			{name:"选项2_2"},
+			{name:"选项2_3"},
+			{
+				name:"选项2_4",
+				child: [
+					{name: "选项(1)"},
+					{name: "选项(2)"},
+					{name: "选项(3)"}
+				]
+			}
+		]
+	}
+];
+window.onload = function(){
+	var list = document.querySelector('#list');
+	var inner = "";
+	for(var i = 0; i<data.length; i++){
+		inner +="<li>";
+		inner += "<p>"+data[i].name+"</p>";
+		if(data[i].child){
+			setChild(data[i].child);
+		}
+		inner += "</li>";
+	}
+	list.innerHTML = inner;
+	function setChild(obj){
+		inner += "<ul>";
+		for(var i = 0; i<obj.length; i++){
+			inner +="<li>";
+			inner += "<p>"+obj[i].name+"</p>";
+			if(obj[i].child){
+				setChild(obj[i].child)
+			}
+			inner += "</li>";
+		}
+		inner += "</ul>";
+	}
+};
+</script>
+</head>
+<body>
+<ul id="list">
+	<li>
+		<p>选项一</p>
+		<ul></ul>
+	</li>
+</ul>
+</body>
+</html>

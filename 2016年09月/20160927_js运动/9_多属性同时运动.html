@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box {
+			width: 100px;
+			height: 100px;
+			border: 2px solid #000;
+			background: red;
+		}
+	</style>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script type="text/javascript">
+		//target = {width:300,height:400};
+		function mTween(el,target,time,type) {
+			var t = 0;
+			var b = {}; 
+			var c = {}; 	
+			var d = time/20; 
+			for(var s in target) {
+				b[s] = css(el,s);  
+				c[s] = target[s] - b[s];
+				//第一次循环
+				//b["width"] = css(el,"width");
+				//c["width"] = target["width"] - b["width"];
+				//第二次循环
+				//b["height"] = css(el,"height");
+				//c["height"] = target["height"] - b["height"]
+			}
+			console.log(b,c);
+		}
+		window.onload = function() {
+			var box = getId("box");
+			box.onmouseover = function() {
+				mTween(this,{width:300,height:400},600,"elasticOut");
+			};
+		};
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>

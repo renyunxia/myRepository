@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		var arr = [12,234,23,12,124,3,23,12,3];
+		/*
+			记录每个数字 ，在数组中保存了多少个
+		*/
+		var obj = {};
+		for(var i = 0 ; i < arr.length; i++){
+			if(obj[arr[i]]){
+				obj[arr[i]] += 1;
+			} else {
+				obj[arr[i]] = 1;
+			}
+		}
+		console.log(obj);
+		var newArr = [];
+		for(var s in obj){
+			newArr.push(s);
+		}
+		console.log(newArr);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

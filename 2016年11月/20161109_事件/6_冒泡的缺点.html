@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+#div{
+	width:100px;
+	height: 100px;
+	background: red;
+	display: none;
+}
+</style>
+</head>
+<body>
+	<input type="button" id="btn" value="按钮" />
+	<div id="div"></div>
+<script type="text/javascript">
+	/*
+		ev.cancelBubble = true; 阻止冒泡  （并不是标准，但是所有浏览器都兼容）
+		ev.stopPropagation(); 是标准，但是低版本IE不兼容。阻止冒泡
+		
+		**** 因为冒泡是个向上的过程（一般都是触发了子级的事件绑定函数，不让祖先级的事件绑定函数触发），阻止冒泡一般都在自身设置。
+		
+	*/
+	var div = document.getElementById('div');
+	var btn = document.getElementById('btn');
+	
+	btn.onclick = function(ev){
+		div.style.display = 'block';
+		ev.cancelBubble = true;
+		//ev.stopPropagation();
+	}
+	document.onclick = function(){
+		div.style.display = 'none';
+	}
+	
+</script>
+</body>
+</html>

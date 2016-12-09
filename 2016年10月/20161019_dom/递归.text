@@ -1,0 +1,170 @@
+function fn(a){
+	a--;
+	if(a > 0){ 
+		fn(a); //
+	}
+	console.log(a); 
+}	
+fn(3);
+---------------------------------------------------
+3--;
+if(2 > 0) {
+	2--;
+	if(1 > 0){
+		i --;
+		c
+	}
+}
+------------------------------------------------------
+function fn(3){
+	if(nub > 0 ){
+		function fn(2){
+			if(nub > 0 ){
+				//fn(nub-1);
+				function fn(1){
+					if(nub > 0 ){
+						//fn(nub-1);
+						function fn(0){
+							if(nub > 0 ){
+								//fn(nub-1);
+							}
+							console.log(nub); //0
+						}
+					}
+					console.log(nub); // 1
+				}
+			}
+			console.log(nub);//2
+		}
+	}
+	console.log(nub); //3
+}
+------------------------------------------------------
+function fn(3){
+	console.log(nub); //3
+	if(nub > 0 ){
+		function fn(2){
+			console.log(nub); // 2
+			if(nub > 0 ){
+				function fn(1){
+					console.log(nub); // 1
+					if(nub > 0 ){
+						function fn(0){
+							console.log(nub); //0
+							if(nub > 0 ){
+								
+							}
+							console.log(nub); //0
+						}
+					}
+					console.log(nub); //1
+				}
+			}
+			console.log(nub); //2
+		}
+	}
+	console.log(nub);//3
+}
+-------------------------------------------------------------------------------------
+function fn(3){
+	console.log(nub); // 3
+	if(nub > 0 ){
+		//fn(nub-1);
+		function fn(2){
+			console.log(nub); //2
+			if(nub > 0 ){
+				//fn(nub-1);
+				function fn(1){
+					console.log(nub); //1
+					if(nub > 0 ){
+						//fn(nub-1);
+						function fn(0){
+							console.log(nub); //0
+						}
+						//fn(nub-2);
+						function fn(-1){
+							console.log(nub); // -1
+						}
+					}
+				}
+				//fn(nub-2);
+				function fn(0){
+					console.log(nub); //0
+				}
+			}
+		}
+		//fn(nub-2);
+		function fn(1){
+			console.log(nub); //1
+			if(nub > 0) {
+				//fn(nub - 1);
+				function fn(0){
+					console.log(nub); //0
+				}
+				//fn(nub - 2);
+				function fn(-1){
+					console.log(nub); //-1
+				}
+			}
+		}
+	}
+}
+----------------------------------------------------------------------------------------------------------
+function fn(3){
+	if(nub > 0 ){
+		nub--;
+		//fn(nub);
+		function fn(2){
+			if(nub > 0 ){
+				nub--;
+				//fn(nub);
+				function fn(1){
+					if(nub > 0 ){
+						nub--;
+						//fn(nub); 
+						function fn(0){
+						}
+						console.log(nub); //0
+						nub--;
+						function fn(-1){
+						}
+						console.log(nub); //-1
+					}
+				}
+				console.log(nub); //1
+				nub--;
+				function fn(0){
+				}
+				console.log(nub); //0
+			}
+		}
+		console.log(nub); //2
+		nub--;
+		//fn(nub);
+		function fn(1){
+			if(nub > 0 ){
+				nub--;
+				//fn(0);
+				console.log(nub); //0
+				nub--;
+				//fn(-1);
+				console.log(nub); //-1
+			}
+		}
+		console.log(nub); //1
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	div,ul,li,p,span,h4{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		background: #f2f2f2;
+		font-size: 12px; 
+		font: 12px/1.5 Tahoma,'\5FAE\8F6F\96C5\9ED1','Microsoft Yahei',"hiragino sans gb", Helvetica, Arial, "\5b8b\4f53", 'sans-serif';
+	}
+	ul{
+		list-style: none;
+	}
+	.index_box{
+		width: 992px;
+		padding: 0 70px;
+		margin: 20px auto;
+		position: relative;
+	}
+	.group_pre,.group_next{
+        position: absolute;
+	    top: 116px;
+	    width: 60px;
+	    height: 66px;
+	    /*display: none;*/
+	    text-indent: 100%;
+	    white-space: nowrap;
+	    overflow: hidden;
+	    z-index: 200;
+	    background: url(img/ico_sliding_910.png) no-repeat;
+	    color: #333;
+	}
+	.group_pre{
+		left: 0;
+		background-position: 0 -300px;
+	}
+	.group_pre:hover {
+	    background-position: 0 -366px;
+	}
+	.group_next{
+		right: 0;
+		background-position: -60px -300px;
+	}
+	.group_next:hover {
+	    background-position: -60px -366px;
+	}
+	.index_list_w{
+		position: relative;
+		/*width: 1000px;*/
+		height: 298px;
+		/*margin: 0 auto;*/
+		overflow: hidden;
+	}
+	.index_list{
+		width: 300%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 298px;
+	}
+	.index_list li{
+		float: left;
+		width: 992px;
+		height: 298px;
+	}
+	/*.mv_1x2 {
+	    float: left;
+	    position: relative;
+	    width: 226px;
+	    margin-right: 22px;
+	}*/
+	.mvinfo_box{
+		width: 226px;
+		height: 130px;
+	    float: left;
+	    /*padding: 2px;*/
+	    position: relative;
+	    background-color: #fff;
+	    display: block;
+	    /*border: 1px #e8e8e8 solid;*/
+	    margin: 0 11px 19px 11px;
+	    display: inline-block;
+	}
+	.mvinfo_pic_info:hover {
+	    box-shadow: 0 0 3px #690;
+	    -webkit-box-shadow: 0 0 3px #690;
+	    -moz-box-shadow: 0 0 3px #690;
+	    border: 1px #b4c88b solid;
+	}
+	.mv_pic{
+		width: 220px;
+		height: 124px;
+		position: relative;
+	    display: block;
+	    overflow: hidden;
+	}
+	/*.mvinfo_box:hover .mv_pic{
+		z-index: 9;
+	}*/
+	.mv_pic img {
+	    vertical-align: top;
+	    border: none;
+	}
+	.play_name{
+	    width: 100%;
+	    height: 124px;
+	    position: absolute;
+	    left: 0;
+	    bottom: 0;
+	    color: #fff;
+	    background: url("img/index_play_bg.png") repeat-x left bottom;
+	}
+	.title{
+	    padding: 0 10px;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    width: 90%;
+	    display: block;
+	    margin-top: 80px;
+	    font-weight: 700;
+	}
+	.author{
+		padding: 0 10px;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    width: 90%;
+	    display: block;
+        color: #cf9;
+	}
+	.ico_play {
+	    position: absolute;
+	    left: 50%;
+	    top: 50%;
+	    margin: -23px 0 0 -23px;
+	    width: 46px;
+	    height: 46px;
+	    display: none;
+	    cursor: pointer;
+	    line-height: 1000px;
+	    overflow: hidden;
+	    background: url("img/ico_play_718.png") 0 -60px no-repeat;
+	}
+	.mv_pic_info {
+	    width: 220px;
+	    height: 124px;
+	    padding: 2px;
+	    position: absolute;
+	    left: 0px;
+	    top: 0px;
+	    background-color: #F6F9F1;
+	    overflow: hidden;
+	    /*-webkit-box-shadow: 0 0 2px #690;
+	    -moz-box-shadow: 0 0 2px #690;
+	    box-shadow: 0 0 2px #690;*/
+	    border: 1px #b4c88b solid;
+	}
+	.mvinfo_box .active .mv_pic_info {
+		-webkit-box-shadow: 0 0 2px #690;
+	    -moz-box-shadow: 0 0 2px #690;
+	    box-shadow: 0 0 2px #690; 
+	}
+	.mvinfo_box .active .ico_play{
+		display: block;
+	}
+	/*.mvinfo_box:hover .mv_pic_info{
+		display: block;
+	}*/
+	/*.mvinfo_box:hover .mv_pic_info{
+		z-index: 10;
+	}*/
+	.summary{
+	    padding: 3px 3px 0 6px;
+	    background-color: #fff;
+	    color: #996;
+	    overflow: hidden;
+	}
+	.num{
+	    height: 20px;
+	    padding: 5px 0 5px 10px;
+	    background-color: #fff;
+	}
+	.paly{
+		padding-left: 18px;
+		background: url("img/ico20_1113.png") no-repeat 0 2px;
+	    color: #999;
+	    margin-right: 10px;
+	}
+	.message{
+		padding-left: 18px;
+		background: url("img/ico20_1113.png") no-repeat 0 -18px;
+	    color: #999;
+	    margin-right: 10px;
+	}
+	.list{
+		padding-left: 22px;
+	    margin-right: 0;
+	    background: url("img/ico20_1113.png") no-repeat 0 -43px;;
+	    color: #999;
+	}
+	.describe{
+		padding: 10px;
+	    line-height: 22px;
+	    color: #666;
+	    display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+		overflow: hidden;
+	}
+	</style>
+	<script type="text/javascript" src="data.js"></script>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script>
+	window.onload = function(){
+	//生成数据
+		var wrap = document.createElement('div');
+		var ul = document.createElement('ul');
+		var indexBox = document.querySelector('.index_box');
+		wrap.appendChild(ul);
+		indexBox.appendChild(wrap);
+		
+		var aPre = document.createElement('a');
+		var aNext = document.createElement('a');
+		indexBox.appendChild(aPre);
+		indexBox.appendChild(aNext);
+
+		wrap.className = "index_list_w";
+		ul.className = "index_list";
+		aPre.className = "group_pre";
+		aNext.className = "group_next";
+		for (var i = 0; i < data.length; i++) {
+			var li = document.createElement('li');
+			ul.appendChild(li);
+			for (var j = 0; j < data[i].length; j++) {
+				//console.log(j)
+				var mvInfoBox = document.createElement('div');
+				var a = document.createElement('a');
+				var mvPicInfo = document.createElement('div');
+				var playName = document.createElement('div');
+				var img = document.createElement('img');
+				// var img = new Image();
+				var h4 = document.createElement('h4');
+				var author = document.createElement('p');
+				var summary = document.createElement('p');
+				var num = document.createElement('p');
+				var describe = document.createElement('p');
+				var icoPlay = document.createElement('span');
+				var paly = document.createElement('span');
+				var message = document.createElement('span');
+				var list = document.createElement('span');
+
+				img.src = data[i][j].img;
+				h4.innerHTML = data[i][j].title;
+				author.innerHTML = data[i][j].author;
+				summary.innerHTML = data[i][j].summary;
+				paly.innerHTML = data[i][j].message;
+				list.innerHTML = data[i][j].list;
+				describe.innerHTML = data[i][j].describe;
+
+				a.appendChild(img);
+				playName.appendChild(h4);
+				playName.appendChild(author);
+				a.appendChild(playName);
+				mvPicInfo.appendChild(a);
+				mvPicInfo.appendChild(icoPlay);
+				mvPicInfo.appendChild(summary);
+				num.appendChild(paly);
+				num.appendChild(message);
+				num.appendChild(list);
+				mvPicInfo.appendChild(num);
+				mvPicInfo.appendChild(describe);
+
+				mvInfoBox.appendChild(mvPicInfo);
+				li.appendChild(mvInfoBox);
+				// console.log(i,j)
+				mvInfoBox.className = "mvinfo_box";
+				a.className = "mv_pic";
+				img.style.width = "220" + 'px';
+				img.style.height = "124" + 'px';
+				playName.className = "play_name";
+				h4.className = "title";
+				author.className = "author";
+				icoPlay.className = "ico_play";
+				mvPicInfo.className = "mv_pic_info";
+				summary.className = "summary";
+				num.className = "num";
+				paly.className = "paly";
+				message.className = "message";
+				list.className = "list";
+				describe.className = "describe";
+			};
+		}
+
+		//获取元素
+		var prev = document.querySelector('.group_pre');
+		var next = document.querySelector('.group_next');
+		var indexList = document.querySelector('ul');
+		var lis = document.querySelectorAll('li');
+		var mvInfoBox = document.querySelectorAll('.mvinfo_box');
+		var mvPic = document.querySelectorAll('a');
+		var mvPicInfo = document.querySelector('.mv_pic_info');
+
+		//展开动画
+		for (var i = 0; i < mvInfoBox.length; i++) {
+			mvInfoBox[i].index = i;
+			// var n = this.index;
+			mvInfoBox[i].onmouseover = function(){
+				mvPicInfo.style.zIndex = 100;
+				mvInfoBox.className = "active";
+				mTween(mvPicInfo,{height:275},700,"linear");
+			}
+			mvInfoBox[i].onmouseout = function(){
+				mvInfoBox.className = "";
+				mTween(mvPicInfo,{height:124},700,"linear");
+			}
+		};
+
+		//无缝滚动
+		var now = 0;
+		var imgW = css(indexBox,"width");
+		indexList.appendChild(indexList.children[0].cloneNode(true));
+		css(indexList,"width",indexList.children.length*imgW);
+		prev.onclick = function(){
+			if(now <= 0){
+				now = indexList.children.length-1;
+				css(indexList,"left",-now*imgW);
+			}
+			now--;
+			mTween(indexList,{left:-now*imgW},700,"easeOut");
+		}
+		next.onclick = function(){
+			if(now >= indexList.children.length-1){
+				now = 0;
+				css(indexList,"left",-now*imgW);
+			}
+			now++;
+			mTween(indexList,{left:-now*imgW},700,"easeOut");
+		}
+	}
+	</script>
+</head>
+<body>
+	<div class="index_box">
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	div,select,input,p,textarea{
+		margin: 0;
+		padding: 0;
+	}
+	#wrap{
+		width: 400px;
+		height: 370px;
+		margin: 10px auto;
+		border: 2px red solid;
+		padding: 20px;
+	}
+	#top{
+		width: 380px;
+		height: 100px;
+		border: 1px #939393 solid;
+		font: 14px/28px "微软雅黑";
+		padding: 5px 10px;
+		overflow: auto;
+	}
+	#top span{
+		padding:2px 10px;
+	}
+	#select{
+		margin: 10px 0;
+		border: 1px #939393 solid;
+	}
+	textarea{
+		width: 400px;
+		height: 100px;
+		border: 1px #939393 solid;
+		resize: none;
+	}
+	</style>
+	<script>
+	/*
+	 1、获取要用到的元素；
+
+     2、声明一个数组变量（arrColor）存放颜色值；
+
+     3、给按钮添加点击事件；
+
+     4、获取文本框的value值，并用split方法把文本框的字符串值转换成数组（arr）存放；
+
+     5、循环取出存数组（arr）中的值并添加上span标签；
+
+     6、设置span标签的背景色：从数组（arrColor）循环取值；
+
+     7、把设定好的内容添加到div中；
+     */
+
+	window.onload = function(){
+		var top = document.getElementById('top');
+		var select = document.getElementById('select');
+		var textarea = document.getElementById('textarea');
+		var btn = document.querySelector('input');
+		var arrColor = ['pink','yellow','green','brown','red','orange','blue']
+		btn.onclick = function(){
+			var str = textarea.value;
+			var str2 = str.trim();
+			var arr = str2.split('');
+			if(select.value == "气球文字"){
+				for (var i = 0; i < arr.length; i++) {
+					arr[i] = '<span style="background:'+arrColor[i%arrColor.length]+'">'+arr[i]+'</span>';
+				};
+			}
+			if(textarea.value == ""||str2.length == 0){
+				alert("请输入内容");
+			}else{
+				top.innerHTML += arr.join('');
+				top.innerHTML += "<br>";
+				textarea.value = "";
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<div id="top"></div>
+		<select name="select" id="select">
+			<option>普通文字</option>
+			<option>气球文字</option>
+		</select>
+		<textarea id="textarea" cols="45" rows="5"></textarea>
+		<input id="btn" type="button" value="确定">
+	</div>
+</body>
+</html>

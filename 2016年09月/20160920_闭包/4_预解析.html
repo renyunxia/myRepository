@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+	/*
+		var a;
+		var a;
+		var b;
+		function b() {
+			console.log(a);
+		}
+		b(); // undefined
+		console.log(a+b); // undefinedfunction
+		a = 0;
+		a = b(); // 0
+		console.log(a); //undefined
+		b = 3;
+		console.log(b); //3
+		b = a;
+		console.log(a+b); // NaN
+	*/
+
+
+		b();
+		console.log(a+b);
+		var a = 0;
+		function b () {
+			console.log(a);
+		}
+		var a = b();
+		console.log(a);
+		var b = 3;
+		console.log(b);
+		b = a;
+		console.log(a+b);
+		/* 
+			1. undefined
+			2. undefinedfunction(){}
+			3. 0
+			4. undefined
+			5. 3
+			6. undefinedundefined
+		*/
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	.clear{
+		zoom:1;
+	}
+	.clear:after{
+		content:"";
+		display: block;
+		clear: both;
+	}
+	#box{
+		width: 220px;
+		height: 300px;
+		border:1px #000 solid;
+		padding:20px;
+	}
+	#img{
+		display:block;
+		width:30px;
+		height:30px;
+		border-radius: 15px;
+		margin:5px;
+		float:left;
+	}
+	#text{
+		margin-top: 5px;
+	}
+	.left{
+		float: left;
+		padding-left: 40px;
+		position: relative;
+	}
+	.left img{
+		position: absolute;
+		left: 10px;
+		top: 0;
+		width: 20px;
+		height: 20px;
+		border-radius: 15px;
+	}
+	.left p,.right p{
+		padding: 0;
+		margin: 0;
+	}
+	.right{
+		float: left;
+		padding-right: 40px;
+		position: relative;
+	}
+	.right img{
+		position: absolute;
+		right: 10px;
+		top: 0px;
+		width: 20px;
+		height: 20px;
+		border-radius: 15px;
+	}
+	</style>
+	<script>
+	window.onload = function () {
+		var text = document.getElementById("text");
+		var btn = document.getElementById("btn");
+		var box= document.getElementById("box");
+		btn.onclick = function(){
+			var val = text.value;
+			box.innerHTML = "<div>"+val+"<div>"+box.innerHTML;
+			text.value="";
+		}
+		var img = document.getElementById("img");
+		var now = 0;
+		img.onclick = function() {
+			now = now + 1;  
+			img.src = "img2/" + (now%2) + ".jpg"; 
+		};
+	}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<!-- <div class="clear">
+				<div class="left">
+					<img src="img/img.jpg" alt="">
+					<p>asdgasdgdsfggsda</p>
+				</div>
+			<div class="clear">
+				<div class="right">
+					<img src="img/img2.jpg" alt="">
+					<p>asdgasdgdsfggsda</p>
+				</div>
+			</div> -->
+	</div>
+		<div>
+			<img src="img2/0.jpg" id="img">
+			<input type="text" id="text">
+			<input type="button" value="发送" id="btn" >
+		</div>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			var btn = document.getElementsByTagName("input")[0];
+			var val = parseInt(btn.value);
+			var timer = 0;
+			btn.onclick = function(){
+				if(timer) {
+					return;
+				}
+				var _this = this;
+				var target = val + 10;
+				timer = setInterval(
+					function(){
+						if(val >= target) {
+							clearInterval(timer);
+							timer = 0;
+						} else {
+							val++;
+							_this.value = val;
+						}
+					},100
+				);
+			};
+			/*
+				1. 定时器管理的第一种思路;
+				 先关闭再开启
+				2. 定时器管理的第二种思路;
+				 判断定时器在执行，就不开启新的定时器，否则在开启新的	
+			*/
+		};
+	</script>
+</head>
+<body>
+	<input type="button" value="0">
+</body>
+</html>

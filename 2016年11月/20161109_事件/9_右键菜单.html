@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	ul,li{
+		list-style: none;
+	}
+	.show{
+		display:block;
+	}
+	.hide{
+		display:none;
+	}
+	ul{
+		position: absolute;
+		left:0;
+		top:0;
+	}
+	li{
+		width:50px;
+		height:20px;
+		border: 1px dashed #000;
+		text-align: center;
+		line-height: 20px;
+	}
+	li:hover{
+		background:pink;
+		color: #fff;
+	}
+</style>
+</head>
+<body>
+	<ul class="hide" id="ul1">
+		<li>1111</li>
+		<li>2222</li>
+		<li>3333</li>
+		<li>4444</li>
+		<li>5555</li>
+	</ul>
+<script type="text/javascript">
+//	document.onclick = function(ev){
+//		console.log(ev.button)
+//	}
+	var ul1 = document.getElementById('ul1');
+	document.oncontextmenu = function(ev){
+		ul1.className = 'show';
+		
+		ul1.style.cssText = 'left:'+ev.pageX+'px;top:'+ev.pageY+'px;'; 
+		return false;
+	}
+	document.onclick = function(){
+		ul1.className = 'hide';
+	}
+</script>
+</body>
+</html>

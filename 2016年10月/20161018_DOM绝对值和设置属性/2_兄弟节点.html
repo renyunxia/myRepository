@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<ul>
+		<li>111</li>
+		<li>222</li>
+		<li id="li3">333</li>
+		<li>444</li>
+	</ul>
+<script type="text/javascript">
+	/*
+		children
+		childNodes
+		
+		parentNode
+		
+		兄弟节点：
+			obj.previousElementSibling  (找到某个元素的上一个兄弟节点)
+			obj.nextElementSibling (找到某个元素的下一个兄弟节点)
+	*/
+	var li3 = document.getElementById('li3');
+	li3.previousElementSibling.style.background = 'red';
+	li3.previousElementSibling.previousElementSibling.style.background = 'yellow';
+	li3.nextElementSibling.style.background = 'green';
+//	console.log(li3.previousElementSibling);
+	console.log(li3.nextElementSibling);
+	
+</script>	
+</body>
+</html>

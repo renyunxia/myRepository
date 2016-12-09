@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+	a {
+		color: blue;
+		display: block;
+	}
+	.active {
+		color: red;
+	}
+	ul {
+		display: none;
+	}
+</style>
+<script type="text/javascript">
+window.onload = function () {
+	var box = document.getElementById("box");
+	var a = box.getElementsByTagName("a");
+	var ul = box.getElementsByTagName("ul");
+	var now = 0;
+	for(var i = 0; i < a.length; i++) {
+		if(a[i].className == "active") {
+			now = i;
+		}
+		a[i].onclick = function () {
+
+		};
+	}
+	console.log(now);
+	/*
+		1）清除选中的
+				第一种思路: 全部清除
+				第二种思路: 记录选中的是哪一个,只清除选中的 
+
+		2）给当前加上选中
+	*/
+};
+</script>
+</head>
+<body>
+<div id="box">
+	<a href="javascript:;">列表1</a>
+	<ul>
+		<li>列表1</li>
+		<li>列表1</li>
+		<li>列表1</li>
+	</ul>
+	<a href="javascript:;"  class="active">列表2</a>
+	<ul  style="display: block">
+		<li>列表1</li>
+		<li>列表1</li>
+		<li>列表1</li>
+	</ul>
+	<a href="javascript:;">列表3</a>
+	<ul>
+		<li>列表1</li>
+		<li>列表1</li>
+		<li>列表1</li>
+	</ul>
+</div>
+</body>
+</html>

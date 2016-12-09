@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+#box {
+	width: 100px;
+	height: 100px;
+	background: red;
+	position: absolute;
+	left: 0;
+	top: 0;
+	cursor: move;
+}
+</style>
+<script type="text/javascript" src="miaov.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var box = document.querySelector('#box');
+	var startMouseX = 0;
+	var startMouseY = 0; 
+	var startElX = 0;
+	var startElY = 0;
+	box.onmousedown = function(e){
+		startMouseX = e.clientX;//鼠标在可视区中的x坐标
+		startMouseY = e.clientY;//鼠标在可视区中的y坐标
+		startElX = css(box,"left");
+		startElY = css(box,"top");
+		document.onmousemove = function(e){
+			var disX = e.clientX - startMouseX;
+			var disY = e.clientY - startMouseY;
+			var top = startElY+disY;
+			var left =  startElX+disX;
+			if(top < 0){
+				top = 0;
+			}
+			if(left < 0){
+				left = 0;
+			}
+			if(left >= window.innerWidth - box.offsetWidth){
+				left = window.innerWidth - box.offsetWidth;
+			}
+			if(top >= window.innerHeight - box.offsetHeight){
+				top = window.innerHeight- box.offsetHeight;
+			}
+			css(box,"left",left);
+			css(box,"top",top);
+		};
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+		}
+	};
+};
+</script>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>

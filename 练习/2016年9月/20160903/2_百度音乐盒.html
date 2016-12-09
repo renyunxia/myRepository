@@ -1,0 +1,189 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#wrap{
+		width: 300px;
+		background: #fff;
+		margin: 20px;
+	}
+	#wrap li{
+		height: 24px;
+		font-size: 12px;
+		line-height: 24px;
+		padding: 0 15px 0 40px;
+		position: relative;
+		color: #000;
+		list-style: none;
+	}
+	#wrap ul input{
+		position: absolute;
+		left: 20px;
+		top:3px;
+	}
+	#wrap span{
+		display: inline-block;
+	}
+	.left{
+		float: left;
+	}
+	.right{
+		float: right;
+	}
+	.bottom{
+		height: 25px;
+		font-size: 12px;
+		border-top:1px #666 solid;
+		padding:8px 15px 0 15px;
+	}
+	.bottom label{
+		float: left;
+		margin-right:15px; 
+	}
+	.bottom input{
+		border: 1px #999 solid;
+		color: #999;
+		background: #ebebeb;
+		float: left;
+		margin: 0 5px;
+		border-radius: 5px;
+		padding: 0 8px;
+	}
+	.bottom .btnsty{
+		border:1px #333 solid;
+		color: #333;
+	}
+	/*隔行颜色*/
+	.bg1{
+		background: #dff7fc;
+	}
+	/*鼠标滑过颜色*/
+	.bg2{
+		background: #fdd2af;
+	}
+	/*鼠标点击也就是选中的颜色*/
+	.bg3{
+		background: #72e575;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+			var btn = document.getElementById("btn");
+
+			var li = box.getElementsByTagName("li");
+		        
+
+			
+			var input = box.getElementsByTagName("input");
+			btn.onclick = function(){
+				for(var i = 0; i < input.length; i++) {
+					if(input[i].type='checkbox')
+					{
+						input[i].checked = btn.checked;
+						if(btn.checked)
+						{
+						     input[i].parentNode.style.background='#72e575';
+						}
+						else
+						{
+						     for(var j = 0; j < input.length; j++) {
+						if(j%2==0)
+						{
+				     			li[j].style.background='#dff7fc';
+						}
+						else
+							li[j].style.background='';
+					}
+						}
+					}
+				}
+			};
+
+			for(var i = 0; i < input.length; i++) {
+					li[i].onmouseover=function()
+					{
+						this.style.background='#fdd2af';
+					}
+					li[i].onmouseout=function()
+					{
+						if(this.childNodes[0].checked)
+						{
+							this.style.background='#72e575';
+						}
+						else
+						{
+							for(var i = 0; i < input.length; i++) {
+							if(!input[i].checked)
+							{
+							if(i%2==0)
+							{
+				     			     li[i].style.background='#dff7fc';
+							}
+							else
+								li[i].style.background='';
+							}
+							}
+						}
+						
+					}
+					if(i%2==0)
+					{
+				     		li[i].style.background='#dff7fc';
+					}
+					if(input[i].type='checkbox')
+					{
+					input[i].onclick = function(){
+					var flag=true;
+					if(this.checked)
+						this.parentNode.style.background='#72e575';
+					else
+					{
+						
+					       for(var a = 0; a < input.length; a++) {
+						if(!input[a].checked)
+						{
+						if(a%2==0)
+						{
+				     			li[a].style.background='#dff7fc';
+						}
+						else
+							li[a].style.background='';
+						}
+						}
+					}
+					
+					for(var j = 0; j < input.length; j++)
+					{
+						if(!input[j].checked)
+						{
+							flag=false;
+						}
+					}
+						btn.checked=flag;
+					}
+	
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<ul id="box">
+			<li><input type="checkbox" >私奔<span class="right">私奔</span></li>
+			<li><input type="checkbox">喜欢你<span class="right">私奔</span></li>
+			<li><input type="checkbox">春天里<span class="right">私奔</span></li>
+			<li><input type="checkbox">北京北京<span class="right">梁博</span></li>
+			<li><input type="checkbox">回来<span class="right">梁博</span></li>
+			<li><input type="checkbox">爱要有你才完美<span class="right">梁博，那英</span></li>
+		</ul>
+		<div class="bottom"><label for=""><input type="checkbox" id="btn">全选</label><input type="button" value="收藏" class="btnsty"><input type="button" value="添加" class="btnsty"><input type="button" value="删除" class="btnsty"></div>
+	</div>
+</body>
+</html>

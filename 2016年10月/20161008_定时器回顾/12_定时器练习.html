@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box {
+			width: 400px;
+			height: 40px;
+			border: 1px solid #000;
+			margin: 170px auto 0;
+			position: relative;
+		}
+		#progress {
+			width: 0;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background: skyBlue;
+		}
+		#nubs {
+			position: relative;
+		}
+		#nubs span {
+			float: left;
+			width: 40px;
+			height: 40px;
+			font: 20px/40px "宋体";
+			text-align: center;
+		}
+	</style>
+	<script type="text/javascript" src="miaov.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			var box = getId("box");
+			var nubs = getTag(box,"span");
+			var progress = getId("progress");
+			var timer = 0;
+			for(var i = 0; i<nubs.length; i++){
+				nubs[i].style.top = nubs[i].offsetTop + "px";
+				nubs[i].style.left = nubs[i].offsetLeft + "px";
+			}
+			for(var i = 0; i<nubs.length; i++){
+				nubs[i].style.position = "absolute";
+			}
+			box.onclick = setOut; 
+			function setOut(){
+				box.onclick = null;
+				var nub = 0;
+				mTween(progress,{width:400},500,"linear",function(){
+					mTween(progress,{opacity:0},500,"linear");
+				});
+				timer = setInterval(function(){
+					if(nub < nubs.length - 1) {
+						mTween(nubs[nub],{top:-100,opacity:0},800,"easeOut");
+						nub++;
+					} else {
+						clearInterval(timer);
+						mTween(nubs[nub],{top:-100,opacity:0},800,"easeOut",function(){
+							box.onclick = setBack;
+						});
+					}
+				},100);
+			};
+			function setBack(){
+				box.onclick = null;
+				var nub = nubs.length - 1;
+				timer = setInterval(function(){
+					if(nub > 0) {
+						mTween(nubs[nub],{top:0,opacity:100},800,"easeOut");
+						nub--;
+					} else {
+						clearInterval(timer);
+						mTween(nubs[nub],{top:0,opacity:100},800,"easeOut");
+					}
+				},100);
+				mTween(progress,{opacity:100},1000,"linear",function(){
+					mTween(progress,{width:0},500,"linear",function(){
+							box.onclick = setOut;
+						});
+				});
+			}
+		};
+	</script>
+</head>
+<body>
+<div id="box">
+	<div id="progress"></div>
+	<div id="nubs">
+		<span>+1</span>
+		<span>+1</span>
+		<span>+1</span>
+		<span>+1</span>
+		<span>+1</span>
+		<span>+1</span>
+		<span>+1</span>
+		<span>+1</span>
+		<span>+1</span>
+		<span>+1</span>
+	</div>
+</div>
+</body>
+</html>

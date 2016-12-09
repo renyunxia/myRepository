@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+		//var num = rP([-1,5]);
+
+		//var arr = [1,2,3,4,5,6]
+
+		function rP(arr) {
+			var max = Math.max(arr[0],arr[1]),
+				min = Math.min(arr[0],arr[1]);
+			return Math.round(Math.random() * (max - min)) + min;	
+		}
+
+		var arr = [22,34,12,54,65,231,54];
+
+		var m = Math.max.apply(null,arr); //求数组中的最大值
+
+		var n = Math.min.apply(null,arr); // 求数组中的最小值
+
+
+
+		console.log(n);
+	</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+window.onload = function(){
+	var h1 = document.getElementById("date");
+	var dayInner = ["天","一","二","三","四","五","六"];
+	setTime();
+	setInterval(setTime,1000);
+	function setTime(){
+		var date = new Date();
+		var year = date.getFullYear();
+		var month = toDB(date.getMonth() + 1);
+		var date2 = toDB(date.getDate());
+		var hours = toDB(date.getHours());
+		var minutes = toDB(date.getMinutes());
+		var seconds = toDB(date.getSeconds());
+		var day = date.getDay();
+		//console.log(year,month,date2,hours,minutes,seconds);
+		h1.innerHTML = year+"-"+month+"-"+date2+" "+hours+":"+minutes+":"+seconds + " 星期" + dayInner[day];
+	} 
+	function toDB(nub){
+		return nub < 10?"0"+nub:""+nub;
+	}
+};
+</script>
+</head>
+<body>
+<h1 id="date"></h1>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	window.onload = function(){
+		var spans = document.querySelectorAll('nav span'); //获取原色
+		// console .log(spans);
+		for (var i = 0; i < spans.length; i++) {
+			spans[i].index = i;  //设置索引值判断当前颜色
+			spans[i].onmouseover = function(){  
+				for (var i = 0; i < spans.length; i++) {
+					spans[i].style.color = "";  // 清空
+				};
+				for (var i = 0; i <= this.index; i++) {  //小于等于2个时是灰色
+					if(this.index < 2){       //判断当前元素小于等于2个时
+						spans[i].style.color = "#ccc";  
+					}else {
+						spans[i].style.color = "red";
+					}
+				};
+			}
+			var now = -1;
+			spans[i].onclick = function(){
+				now = this.index;
+			}
+			spans[i].onmouseout = function(){
+				for (var i = 0; i < spans.length; i++) {
+					spans[i].style.color = "";
+				};
+				for (var i = 0; i <= now; i++) {
+					if(now < 2){
+						spans[i].style.color = "#ccc";
+					}else {
+						spans[i].style.color = "red";
+					}
+				};
+			}
+		};
+
+	}
+	</script>
+</head>
+<body>
+	<nav id="nav">
+		<span>★</span>
+		<span>★</span>
+		<span>★</span>
+		<span>★</span>
+		<span>★</span>
+	</nav>
+</body>
+</html>

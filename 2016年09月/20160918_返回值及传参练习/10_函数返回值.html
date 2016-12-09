@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		function getPrice(p,i){
+			//p*i;
+			return p*i;
+
+		}
+		// 当我们需要在函数外边 拿到函数执行的结果的时候，就需要使用 函数返回值；
+		window.onload = function() {
+			var span = document.querySelectorAll("span");
+			var btn = document.querySelector("input");
+			var price = Number(span[0].innerHTML);
+			// onchange 当input的value发生变化的时候
+			btn.onchange = function() {
+				var nub = Number(this.value);
+				//console.log(getPrice(price,nub));
+				span[1].innerHTML = getPrice(price,nub);
+			};
+		};
+	</script>
+</head>
+<body>
+	<div>商品：iphone7 单价：$<span>998</span> 数量 <input type="number" min="0" value="0">
+	总价: $<span>0</span> </div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function() {
+
+		};
+	</script>
+	<style type="text/css">
+		#wrap {
+			position: relative;
+		}
+		#wrap div {
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			var div = document.querySelectorAll("#wrap div");
+			var btn = document.querySelector("input");
+			var now = 0;
+			btn.onclick = function() {
+				if(now%4 == 0) {
+					fn1();
+				} else if(now%4 == 1){
+					fn2();
+				} else if(now%4 == 2) {
+					fn3();
+				} else {
+					fn4();
+				}
+				now++;
+			};
+			function fn1() {
+				var t = 0;
+				var l = 0;
+				for(var i = 0; i < div.length; i++) {
+					div[i].style.cssText = "left:"+(l*100)+"px;top:"+(t*100)+"px";
+					t++;
+					if(i < 2){
+						l++;
+					} else {
+						l--;
+					}
+				}
+			}
+			function fn2() {
+				var t = 0;
+				var l = 0;
+				for(var i = 0; i < div.length; i++) {
+					div[i].style.cssText = "left:"+(l*100)+"px;top:"+(t*100)+"px";
+					l++;
+					if(i < 2){
+						t++;
+					} else {
+						t--;
+					}
+				}
+			}
+			function fn3() {
+				var t = 0;
+				var l = 4;
+				for(var i = 0; i < div.length; i++) {
+					div[i].style.cssText = "left:"+(l*100)+"px;top:"+(t*100)+"px";
+					t++;
+					if(i < 2){
+						l--;
+					} else {
+						l++;
+					}
+				}
+			}
+			function fn4() {
+				var t = 4;
+				var l = 0;
+				for(var i = 0; i < div.length; i++) {
+					div[i].style.cssText = "left:"+(l*100)+"px;top:"+(t*100)+"px";
+					l++;
+					if(i < 2){
+						t--;
+					} else {
+						t++;
+					}
+				}
+			}
+		};
+	</script>
+	<!--
+		t = 0;
+		l = 0;
+		0 1 2 1 0
+		0 100 200 100 0
+		0 1 2 3 4
+		0 100 200 300 400
+		for(var i = 0; i < 5; i++) {
+			t++;
+			if(i > 2) {
+				l--;	
+			} else {
+				l++;
+			}
+		}
+	-->
+</head>
+<body>
+<input type="button" value="下一个">
+<div id="wrap">
+	<div>1</div>
+	<div>2</div>
+	<div>3</div>
+	<div>3</div>
+	<div>4</div>
+</div>
+</body>
+</html>

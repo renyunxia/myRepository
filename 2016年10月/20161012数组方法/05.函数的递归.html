@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		/*var n = 7;
+		while(n >= 0){
+			console.log(n);
+			n--;
+		}
+
+		for(var i=7; i>=0; i--){
+			console.log(i);
+		}*/
+		// var n = 0;
+		// function fn() {
+		// 	n++;
+		// 	console.log(n);
+		// 	setTimeout(fn, 1000);
+		// }
+
+		// fn();
+
+		//函数的递归：在函数内部调用函数自己。
+
+		// fn0(7);
+
+		// function fn0(n) {
+		// 	console.log(n);
+		// 	n--;
+		// 	if(n >= 0){
+		// 		fn0(n)
+		// 	}
+		// }
+
+		//阶乘运算
+
+		function jiecheng(n) {
+			if(n <= 1){
+				return 1;
+			}
+			return n * jiecheng(n - 1);  //4 * 3 * 2 * 1
+		}
+
+		var x = jiecheng(4);
+
+		console.log(x);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>

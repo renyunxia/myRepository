@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无缝滚动</title>
+	<style>
+	*{
+		margin: 0;
+		text-align: center;
+	}
+	input{
+
+	}
+	#wrap{
+		width: 300px;
+		height: 300px;
+		border: 5px red solid;
+		margin: 10px auto;
+		position: relative;
+		overflow: hidden;
+	}
+	.inner{
+		height: 300px;
+		/*background: rgba(0,0,0,.5);*/
+		color: #fff;
+		font: 80px/300px "微软雅黑";
+		position: absolute;
+	}
+	.inner img{
+		width: 300px;
+		height: 300px;
+		float: left;
+	}
+	</style>
+	<script type="text/javascript" src="js/miaov.js"></script>
+</head>
+<body>
+	<div id="wrap">
+		<div class="inner">
+			<img src="images/img1.gif">
+			<img src="images/img2.gif">
+		</div>
+	</div>
+	<script>
+	(function(){
+		var inner = document.getElementsByClassName('inner')[0];
+		var imgs = inner.getElementsByTagName('img');
+		var wrapW = css(wrap,"width");
+		var wrapH = css(wrap,"height");
+		var innerChild = inner.children;
+		var arr = ['images/img1.gif','images/img2.gif','images/img3.gif','images/img4.gif'];
+		var n = 0;
+		
+		window.onkeydown = function(ev){
+			var code = ev.keyCode;
+			switch(code){
+				case 37:
+					css(inner,"width",innerChild.length*wrapW);
+					inner.style.height = 300 + 'px';
+					inner.style.top = 0;
+					imgs[0].src = arr[n];
+					inner.style.left = 0;
+					imgs[1].src = arr[n = n < arr.length-1 ? ++n : 0];
+					mTween(inner,{left:-300},800,'easeOut');
+					break;
+				case 38:
+					css(inner,"height",innerChild.length*wrapH);
+					inner.style.width = 300 + 'px';
+					inner.style.left = 0;
+					imgs[0].src = arr[n];
+					inner.style.top = -300 + 'px';
+					imgs[1].src = arr[n = n > 0 ? --n : arr.length-1];
+					mTween(inner,{top:0},800,'easeOut');
+					break;
+				case 39:
+					css(inner,"width",innerChild.length*wrapW);
+					inner.style.height = 300 + 'px';
+					inner.style.top = 0;
+					imgs[0].src = arr[n];
+					inner.style.left = -300 + 'px';
+					imgs[1].src = arr[n = n < arr.length-1 ? ++n : 0];
+					mTween(inner,{left:0},800,'easeOut');
+					break;
+				case 40:
+					css(inner,"height",innerChild.length*wrapH);
+					inner.style.width = 300 + 'px';
+					inner.style.left = 0;
+					imgs[0].src = arr[n];
+					inner.style.top = 0;
+					imgs[1].src = arr[n = n > 0 ? --n : arr.length-1];
+					mTween(inner,{top:-300},800,'easeOut');
+					break;
+			}
+		}
+	})();
+	</script>
+</body>
+</html>

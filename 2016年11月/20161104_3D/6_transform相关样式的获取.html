@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+#box {
+	width: 200px;
+	height: 200px;
+	background: red;
+	margin: 100px auto 0;
+	/*transform: rotate(30deg);*/
+}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var box = document.querySelector('#box');
+	var a = 1;
+	var b = 0;
+	var c = 0;
+	var d = 1;
+	var e = 0;
+	var f = 0;
+	e += 100;
+	f += 100;
+	a = Math.cos(30/180*Math.PI);
+	b = Math.sin(30/180*Math.PI);
+	c = -Math.sin(30/180*Math.PI);
+	d = Math.cos(30/180*Math.PI);
+	a = a*.5;
+	c = c*.5;
+	e = e*.5;
+	b = b*.5;
+	d = d*.5;
+	f = f*.5;
+	box.style.transform = "matrix("+a+", "+b+", "+c+", "+d+", "+e+", "+f+")";
+	//console.log(getComputedStyle(box)["transform"]);
+};
+</script>
+</head>
+<body>
+<div id="box"></div>	
+</body>
+</html>

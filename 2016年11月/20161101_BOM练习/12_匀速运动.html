@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+function css(el,attr,val) {
+	if(arguments.length < 3) {
+		var val  = 0;
+		if(el.currentStyle) {
+			val = el.currentStyle[attr];
+		} else {
+			val = getComputedStyle(el)[attr];
+		}
+		if(attr == "opacity") {
+			val*=100;
+		}
+		return parseFloat(val);
+	}
+	if(attr == "opacity") {
+		el.style.opacity = val/100;
+		el.style.filter = "alpha(opacity = "+val+")";
+	} else {
+		el.style[attr] = val + "px";
+	}
+}
+window.onload = function(){
+	var btn = document.querySelector('input');
+	var box = document.querySelector('#box');
+	btn.onclick = function(){
+		move1();
+	};
+	function move1(){
+		linearMove(box,{width:200,height:200,left:300,top:300,opacity:50},20,move2);
+	}
+	function move2(){
+		linearMove(box,{width:100,height:100,left:600,top:100,opacity:100},20,move3);
+	}
+	function move3(){
+		linearMove(box,{width:200,height:200,left:300,top:300,opacity:50},20,move4);
+	}
+	function move4(){
+		linearMove(box,{width:100,height:100,left:0,top:100,opacity:100},20,move1);
+	}
+};
+function linearMove(el,target,speed,callBack){
+	clearInterval(el.timer);
+	var d = 0;
+	var t = 0;
+	var speeds = {};
+	for(var s in target){
+		var now = css(el,s);
+		var dis = target[s] - now;
+		var sD = Math.ceil(Math.abs(dis/speed));
+		d = Math.max(d,sD);
+	}
+	for(var s in target){
+		var now = css(el,s);
+		var dis = target[s] - now;
+		speeds[s] = dis/d;
+	}
+	el.timer = setInterval(function(){
+		t++;
+		if(t >= d){
+			clearInterval(el.timer);
+			callBack&&callBack();
+		}
+		for(var s in target){
+			var now = css(el,s);
+			now += speeds[s];
+			css(el,s,now);
+		}
+	},20);
+
+}
+</script>
+<style type="text/css">
+#box {
+	position: absolute;
+	left: 0px;
+	top: 100px;
+	width: 100px;
+	height: 100px;
+	background: red;
+}
+</style>
+</head>
+<body>
+<input type="button" value="跑!">
+<div id="box"></div>
+</body>
+</html>

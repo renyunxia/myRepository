@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!--
+		1. 需要有5个元素，和一个隐藏的文字元素以及一个显示的提示元素
+
+		2. 添加鼠标移入:
+			1). 隐藏提示元素
+			2). 移入到第几课星 就给他之前的星星切换新背景,在他之后的星星保持原始背景
+					*注意：只移入两颗星，和移入两颗以上的星要切换的背景不一致
+			3). 显示文字元素，根据当前移入的是第几课星，切换文字的内容
+
+		3. 移出:
+			1) 没有点击过:
+				1.还原所有星星的背景
+				2.隐藏文字元素
+				3.显示提示元素
+			2) 发生过点击：
+				1.鼠标移出 保持 点击的元素之前的背景，之后的还原
+
+
+		1. 获取相关元素
+		2. 循环stars，给stars添加移入事件，索引值
+		3. 鼠标移入，循环所有stars，如果在第this.index 之前 切换新背景，在当前个之后，恢复原来背景;
+		4. 在切换新背景的时候，如果移入是前两个，新背景就是showLow，否则新背景就是show
+
+		5. 鼠标移出
+
+
+		功能分析 -- 布局 --思路 --开始实现
+	-->
+	<script type="text/javascript">
+		window.onload = function() {
+			var stars = document.querySelectorAll(".stars a");
+			var text = document.querySelector(".text");
+			var title = document.querySelector(".title");
+			var arr = ["很差","较差","还行","推荐","力荐"];
+			var now = -1;
+			for(var i = 0; i < stars.length; i++){
+				stars[i].index = i;
+				stars[i].onmouseover = function() {
+					var show = "show";
+					if(this.index < 2){
+						show = "showLow";
+					}
+					for(var i = 0; i < stars.length; i++){
+						if(i <= this.index) {
+							stars[i].className = show;
+						} else {
+							stars[i].className = "";
+						}
+					}
+
+					title.style.display = "none";
+					text.innerHTML = arr[this.index];
+					text.style.display = "block";
+				};
+				stars[i].onclick = function() {
+					now = this.index;	
+				};
+				stars[i].onmouseout = function(){
+					var show = "show";
+					if(now < 2){
+						show = "showLow";
+					}
+					for(var i = 0; i < stars.length; i++){
+						if(i <= now) {
+							stars[i].className = show;
+						} else {
+							stars[i].className = "";
+						}
+					}
+
+					if(now < 0 ){
+						title.style.display = "block";
+						text.style.display = "none";	
+					}
+				};
+			}
+		};
+	</script>
+	<style type="text/css">
+		#wrap {
+			padding: 30px;
+		} 
+		#wrap span {
+			float: left;
+			font: 14px/20px "宋体";
+		}
+		.stars {
+			float: left;
+		}
+		.stars a {
+			float: left;
+			width: 16px;
+			height: 16px;
+			background: #ccc;
+			border:  2px solid #fff;
+		}
+		.stars .showLow {
+			background: #666;
+		}
+		.stars .show {
+			background: yellow;
+		}
+		.text {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+<div id="wrap">
+	<span>总体评价:</span>
+	<nav class="stars">
+		<a href="javascript:;"></a>
+		<a href="javascript:;"></a>
+		<a href="javascript:;"></a>
+		<a href="javascript:;"></a>
+		<a href="javascript:;"></a>
+	</nav>
+	<span class="text">很差</span>
+	<span class="title">小提示……</span>
+</div>
+</body>
+</html>

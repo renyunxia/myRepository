@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	window.onload = function(){
+		var oBtn1= document.getElementById('btn1');
+		var oBtn2= document.getElementById('btn2');
+		var oP= document.getElementById('p1');
+		var num = 15;
+		oBtn2.onclick = function(){
+			// num = num + 1;
+			// num += 1;
+			num ++;
+			oP.style.fontSize = num + 'px';
+			// alert(num);
+		}
+		oBtn1.onclick = function(){
+			num --;
+			oP.style.fontSize = num + 'px';
+		}
+	}
+	</script>
+</head>
+<body>
+	<input id="btn1" type="button" value="-">
+	<input id="btn2" type="button" value="+">
+	<p id="p1" style="font-size:14px;">
+		奥迪公司打工工商局风格就是个爱过付款给你骨头肉就是加入apjgsrjgslgjaojs'pogjspoijgspdojg
+	</p>
+</body>
+</html>

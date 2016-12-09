@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">	
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.wrap {
+	width: 240px;
+	margin: 40px auto;
+}
+nav {
+	text-align: center;
+	margin: 10px 0;
+}
+#imgs {
+	position: relative;
+	height: 240px;
+	overflow: hidden;
+}
+#list {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 500%;
+}
+#list li {
+	float: left;
+}
+.active {
+	background: #333;
+	color: #fff;
+}
+</style>
+<script type="text/javascript" src="miaov.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var wrap = document.querySelector('.wrap');
+	var navs = wrap.querySelectorAll('nav');
+	var prev = navs[0].children[0];
+	var next = navs[0].children[1];
+	var nav = navs[1].children;
+	var list = document.querySelector('#list');
+	var lis = list.children;
+	var imgW = css(wrap,"width");
+	var now = 0;
+	var arr = [];
+	css(list,"left",-imgW);
+	for(var i = 0; i < nav.length; i++){
+		if(nav[i].className == "active"){
+			now = i;
+		}
+		lis[i].style.left = lis[i].offsetLeft + "px";
+		lis[i].style.top = lis[i].offsetTop + "px";
+		arr.push(lis[i].offsetLeft);
+	}
+	lis[now].style.zIndex = 2;
+	arr[now].zIndex = 2;
+	for(var i = 0; i < lis.length; i++){
+		lis[i].style.position = "absolute";
+	}
+	next.onclick = function(){
+		arr.unshift(arr.pop());
+		for(var i = 0 ; i < lis.length; i++ ){
+			//lis[i].style.zIndex = arr[i].zIndex;
+			
+			//mTween(lis[i],{left:arr[i].left},1000,"easeOut");
+			css(lis[i],"left",arr[i]);
+		}
+		css(list,"left",0);
+		mTween(list,{left:-imgW},300,"easeOut");
+	};
+	prev.onclick = function(){
+		
+	};
+};
+</script>
+</head>
+<body>
+<div class="wrap">
+	<nav>
+		<input type="button" value="上一张">
+		<input type="button" value="下一张">
+	</nav>
+	<div id="imgs">
+		<ul id="list">
+			<li><img src="img/1.jpg"></li>
+			<li><img src="img/2.jpg"></li>
+			<li><img src="img/3.jpg"></li>
+			<li><img src="img/4.jpg"></li>
+			<li><img src="img/5.jpg"></li>
+		</ul>
+	</div>
+	<nav>
+		<input type="button" value="0">
+		<input type="button" value="1" class="active">
+		<input type="button" value="2">
+		<input type="button" value="3">
+		<input type="button" value="4">
+	</nav>
+</div>
+</body>
+</html>

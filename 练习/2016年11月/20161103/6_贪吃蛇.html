@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/page.css">
+</head>
+<body>
+	<div class="snakeWrap">
+		<div id="info">贪吃蛇</div>
+		<div id="map"></div>
+		<div class="help">
+			<span class="box"></span><span>好吃的</span>
+			<span class="box"></span><span>地沟油</span>
+			<span class="box"></span><span>滑板</span>
+			<span class="box"></span><span>刹车</span>
+			<span>得分：<strong id="score">0</strong></span>
+		</div>
+		<div id="btn">开始游戏</div>
+	</div>
+	<script>
+	(function (doc){
+		var list = Array.from(doc.querySelectorAll('.box')),
+			colors = ['#57D7FF','#000','#6FFF67','#FF472D'];
+		var map = doc.getElementById('map');
+		var tab = doc.createElement('table');
+		list.forEach(function (item,i){
+			item.style.background = colors[i];
+		})
+		for (var i = 0; i < 20; i++) {
+			var tr = doc.createElement('tr');
+			tab.appendChild(tr);
+			for (var j = 0; j < 20; j++) {
+				var td = doc.createElement('td');
+				tr.appendChild(td);
+			};
+		};
+		map.appendChild(tab);
+	})(document);
+	</script>
+</body>
+</html>

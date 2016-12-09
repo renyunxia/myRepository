@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+	var url1 = [
+		"img/img1.jpg",
+		"img/img2.jpg",
+		"img/img3.jpg",
+		"img/img4.jpg"
+	];
+	var txt1 = [
+		"第一组图片第1张",
+		"第一组图片第2张",
+		"第一组图片第3张",
+		"第一组图片第4张"
+	];
+	var url2 = [
+		"img2/1.jpg",
+		"img2/2.jpg",
+		"img2/3.jpg",
+		"img2/4.jpg",
+		"img2/5.jpg"
+	];
+	var txt2 = [
+		"第二组图片第1张",
+		"第二组图片第2张",
+		"第二组图片第3张",
+		"第二组图片第4张",
+		"第二组图片第5张"
+	];
+	window.onload = function() {
+		var btn = document.querySelectorAll("#wrap>input");
+		var img1 = document.querySelector(".left img");
+		var img2 = document.querySelector(".right img");
+		var text1 = document.querySelector('.left p');
+		var text2 = document.querySelector('.right p');
+		var page1 = document.querySelector(".left span");
+		var page2 = document.querySelector(".right span");
+		var now = 0;
+		var now2 = 0;
+		img1Tab();
+		img2Tab();
+		img1.onclick = function() {
+			img1Next()
+		};
+		img2.onclick = function() {
+			img2Next();
+		};
+		btn[0].onclick = function() {
+			img1Prev();
+			img2Prev();
+		};
+		btn[1].onclick = function() {
+			img1Next();
+			img2Next();
+		};
+		/* 第一张图片的切换 */
+		function img1Tab() {
+			img1.src = url1[now];
+			text1.innerHTML = txt1[now];
+			page1.innerHTML = (now+1)+"/"+url1.length;
+		}
+		/* 第二张图片的切换 */
+		function img2Tab() {
+			img2.src = url2[now2];
+			text2.innerHTML = txt2[now2];
+			page2.innerHTML = (now2+1)+"/"+url2.length;
+		}
+		/* 第一张图片的下一张 */
+		function img1Next() {
+			now++;
+			if(now > url1.length -1){
+				now = 0;	
+			}
+			img1Tab();
+		}
+		/* 第二张图片的下一张 */
+		function img2Next() {
+			now2++;
+			if(now2 > url2.length -1){
+				now2 = 0;	
+			}
+			img2Tab();
+		}
+		function img1Prev() {
+			now--;
+			if(now < 0){
+				now = url1.length -1;	
+			}
+			img1Tab();
+		}
+		/* 第二张图片的上一张 */
+		function img2Prev() {
+			now2--;
+			if(now2 < 0){
+				now2 = url2.length -1;	
+			}
+			img2Tab();
+		}
+	};
+	</script>
+</head>
+<body>
+<div id="wrap">
+	<input type="button" value="上一组">
+	<input type="button" value="下一组">
+	<div class="left">
+		<img src="">
+		<p>加载中</p>
+		<span>0/0</span>
+	</div>
+	<div class="right">
+		<img src="">
+		<p>加载中</p>
+		<span>0/0</span>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#wrap{
+				margin: 20px;
+				width: 150px;
+				border: 1px #000 solid;
+			}
+			li{
+				list-style: none;
+				padding: 0 25px;
+			}
+			a{
+				text-decoration: none;
+				display: block;
+				font: 14px/22px "宋体";
+				padding: 0 20px;
+				position: relative;
+				background: #63f7ff;
+			}
+			.active{
+				background: #f7f794;
+			}
+			.active:after{
+				border-color: #666 transparent transparent transparent;
+				top: 8px;
+			}
+			a:after{
+				content: "";
+				width: 0;
+				height: 0;
+				position: absolute;
+				left: 3px;
+				top: 6px;
+				border: 5px solid;
+				border-color: transparent transparent transparent #666;
+			}
+			ul{
+				display: none;
+				padding: 5px 0;
+			    margin: 0;
+				line-height: 22px;
+			}
+			.show{
+				display: block;
+			}
+		</style>
+		<script>
+		window.onload = function () {
+			var title = document.querySelectorAll("#wrap a");
+			var list = document.querySelectorAll("#wrap ul");
+			var li = wrap.getElementsByTagName("li");
+			var now = 0;
+			var oldColor = "";
+			for (var i = 0; i < title.length; i++) {
+				title[i].index = i;
+				title[i].onclick = function(){
+					title[now].className = "";
+					list[now].className= "";
+					this.className = "active";
+					list[this.index].className = "show";
+					now = this.index;
+				}
+			};
+			for (var i = 0; i < li.length; i++) {
+				li[i].index = i;
+				li[i].onclick = function(){
+					oldColor = this.style.background;
+					this.style.background = "#63f7ff";
+				}
+			};
+		}
+		</script>
+	</head>
+	<body>
+		<div id="wrap">
+			<a href="javascript:;" class="active">我的好友</a>
+			<ul class="show">
+				<li>张三</li>
+				<li>张三</li>
+				<li>张三</li>
+				<li>张三</li>
+				<li>张三</li>
+			</ul>
+			<a href="javascript:;">企业好友</a>
+			<ul>
+				<li>李四</li>
+				<li>李四</li>
+				<li>李四</li>
+				<li>李四</li>
+				<li>李四</li>
+			</ul>
+			<a href="javascript:;">黑名单</a>
+			<ul>
+				<li>张小三</li>
+				<li>李思思</li>
+			</ul>
+		</div>
+	</body>
+</html>

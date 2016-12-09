@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	.box {
+		width: 100px;
+		height: 100px;
+		background: red;
+		margin:30px 0;
+	}
+	#line {
+		width: 1px;
+		height: 500px;
+		background: #000;
+		position: absolute;
+		left: 500px;
+		top: 0;
+	}
+	</style>
+	<script type="text/javascript" src="MTween.js"></script>
+	<script>
+	window.onload = function(){
+		var box = document.querySelectorAll(".box");
+		for (var i = 0; i < box.length; i++) {
+			box[i].onmouseover = function(){
+				mTween(this,"width",300,800,"elasticOut");
+			}
+			box[i].onmouseout = function(){
+				mTween(this,"width",100,800,"elasticOut");
+			}
+		};
+	}
+	</script>
+</head>
+<body>
+	<div class="box"></div>
+	<div class="box"></div>
+</body>
+</html>

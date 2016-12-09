@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#wrap{
+		width: 300px;
+		background: #fff;
+		margin: 20px;
+	}
+	#wrap li{
+		height: 24px;
+		font-size: 12px;
+		line-height: 24px;
+		padding: 0 15px 0 40px;
+		position: relative;
+		color: #000;
+		list-style: none;
+	}
+	#wrap ul input{
+		position: absolute;
+		left: 20px;
+		top:3px;
+	}
+	#wrap span{
+		display: inline-block;
+	}
+	.left{
+		float: left;
+	}
+	.right{
+		float: right;
+	}
+	.bottom{
+		height: 25px;
+		font-size: 12px;
+		border-top:1px #666 solid;
+		padding:8px 15px 0 15px;
+	}
+	.bottom label{
+		float: left;
+		margin-right:15px; 
+	}
+	.bottom input{
+		border: 1px #999 solid;
+		color: #999;
+		background: #ebebeb;
+		float: left;
+		margin: 0 5px;
+		border-radius: 5px;
+		padding: 0 8px;
+	}
+	.bottom .btnsty{
+		border:1px #333 solid;
+		color: #333;
+	}
+	</style>
+	<script>
+
+	window.onload = function (){
+		var box = document.getElementById("box");
+		var input = box.getElementsByTagName("input");
+		var isCkecked =false;
+		
+		//input点击函数
+
+		//alert(input.length);
+		// for(var i=0; i<input.length; i++)
+		// {
+		// 	input[i].onclick = function(){
+		// 		alert(i);
+
+		// 		if(input[i].checked == true)
+		// 		{
+		// 			/*如果是选中状态，点击后变成未选中，此时
+		// 			判断其他input是否全选中，如果是，则置btn为未选中状态！
+		// 			*/
+		// 			input[i] = false;
+		// 			var otherchecked = true;
+		// 			for(var j=0; j<input.length; j++)
+		// 			{
+		// 				if(i!=j && input[j].checked != true)
+		// 				{
+		// 					otherchecked = false;
+		// 					break;
+		// 				}
+		// 			}
+		// 			if(otherchecked)
+		// 			{
+		// 				btn.checked = false;
+		// 			}
+		// 		}
+		// 		else
+		// 		{
+		// 			/*如果是未选中状态，点击后变成选中，此时
+		// 			判断其他input是否全选中，如果是，则置btn为选中状态！
+		// 			*/
+		// 			input[i] = true;
+		// 			var otherchecked = true;
+		// 			for(var j=0; j<input.length; j++)
+		// 			{
+		// 				if(i!=j && input[j].checked != true)
+		// 				{
+		// 					otherchecked= false;
+		// 					break;
+		// 				}
+		// 			}
+		// 			if(otherchecked)
+		// 			{
+		// 				btn.checked = true;
+		// 			}
+		// 		}
+		// 	};
+		// }
+
+		//
+		btn.onclick = function(){
+			for(var i=0; i<input.length; i++){
+				input[i].checked=!isCkecked;
+			}
+			isCkecked = !isCkecked;
+		};
+	}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<ul id="box">
+			<li><input type="checkbox"><span class="left">私奔</span><span class="right">私奔</span></li>
+			<li><input type="checkbox"><span class="left">喜欢你</span><span class="right">私奔</span></li>
+			<li><input type="checkbox"><span class="left">春天里</span><span class="right">私奔</span></li>
+			<li><input type="checkbox"><span class="left">北京北京</span><span class="right">梁博</span></li>
+			<li><input type="checkbox"><span class="left">回来</span><span class="right">梁博</span></li>
+			<li><input type="checkbox"><span class="left">爱要有你才完美</span><span class="right">梁博，那英</span></li>
+		</ul>
+		<div class="bottom"><label for=""><input type="checkbox" id="btn">全选</label><input type="button" value="收藏" class="btnsty"><input type="button" value="添加" class="btnsty"><input type="button" value="删除" class="btnsty"></div>
+	</div>
+</body>
+</html>

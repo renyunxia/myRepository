@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	.active{
+		background: green;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var list = document.getElementById("list");
+		var uls = list.getElementsByTagName("ul");
+		var lis = [];
+		var now = 0;
+		var timer = 0;
+		var speed = 1;
+		for (var i = 0; i < uls.length; i++) {
+			var li = uls[i].getElementsByTagName("li");
+			for (var j = 0; j < li.length; j++) {
+				lis.push(li[j]);
+			};
+		}
+		console.log(lis);
+		clearInterval(timer);
+		timer = setInterval(function(){
+			lis[now].className = "";
+			now++;
+			if(now == lis.length-1){
+				clearInterval(timer);
+				timer = setInterval(function(){
+					lis[now].className = "";
+					now--;
+					if(now == 0){
+						clearInterval(timer);
+					}
+					lis[now].className = "active";
+				},500)
+			}
+			lis[now].className = "active";
+		},500)
+	}
+	</script>
+</head>
+<body>
+	<ul id="list">
+		<li>
+			<ul>
+				<li class="active">选项1</li>
+				<li>选项2</li>
+				<li>选项3</li>
+				<li>选项4</li>
+				<li>选项5</li>
+			</ul>
+			<ul>
+				<li>选项6</li>
+				<li>选项7</li>
+				<li>选项8</li>
+				<li>选项9</li>
+				<li>选项10</li>
+			</ul>
+		</li>
+		<li>
+			<ul>
+				<li>选项11</li>
+				<li>选项12</li>
+				<li>选项13</li>
+				<li>选项14</li>
+				<li>选项15</li>
+			</ul>
+		</li>
+		<li>
+			<ul>
+				<li>选项16</li>
+				<li>选项17</li>
+				<li>选项18</li>
+				<li>选项19</li>
+				<li>选项20</li>
+			</ul>
+		</li>
+	</ul>
+</body>
+</html>

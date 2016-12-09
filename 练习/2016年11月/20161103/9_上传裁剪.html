@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#wrap{
+		width: 600px;
+		min-height: 300px;
+		margin: 0 auto;
+	}
+	#box{
+		display: none;
+		/*position: relative;*/
+	}
+	#fill{
+		width: 200px;
+		height: 30px;
+		border: 1px #000 solid;
+		text-align: center;
+		margin: 20px auto;
+		display: block;
+		font: 16px/30px "微软雅黑";
+	}
+	#fill input{
+		display: none;
+	}
+	#box canvas{
+		display: block;
+		background: #ccc;
+		margin: 20px auto;
+		position: relative;
+		width: 400px;
+		height: 600px;
+	}
+	#clipBtn{
+		display: block;
+		margin: 10px auto;
+		width: 200px;
+		height: 40px;
+	}
+	#resize{
+		width: 100px;
+		height: 100px;
+		border: 2px solid #02a4c7;
+		background: rgba(2,164,199,.2);
+		display: none;
+		position: absolute;
+		top: 200px;
+		left: 600px;
+		cursor: move;
+	}
+	#resize button{
+		position: absolute;
+		height: 20px;
+		top: -22px;
+	}
+	#resize button:nth-of-type(1){
+		left: 0;
+	}
+	#resize button:nth-of-type(2){
+		right: 0;
+	}
+	#resize span{
+		width: 30px;
+		height: 30px;
+		cursor: se-resize;
+		position: absolute;
+		right: -2px;
+		bottom: -2px;
+	}
+	</style>
+	<script>
+	
+	</script>
+</head>
+<body>
+	<section id="wrap">
+		<label id="fill"><input type="fill">上传图片</label>
+		<div id="box">
+			<button id="clipBtn">裁切</button>
+			<canvas width="600" heigth="800"></canvas>
+			<div id="resize">
+				<button>取消</button>
+				<button>确定</button>
+				<span></span>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

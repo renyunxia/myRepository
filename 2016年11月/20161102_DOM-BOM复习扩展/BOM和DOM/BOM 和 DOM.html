@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html class="theme theme-white">
+<head>
+<meta charset="utf-8">
+<title>BOM 和 DOM</title>
+<link href="https://www.zybuluo.com/static/assets/template-theme-white.css" rel="stylesheet" media="screen">
+<style type="text/css">
+
+#wmd-preview h1  {
+    color: #0077bb; /* 将标题改为蓝色 */
+}</style>
+</head>
+<body class="theme theme-white">
+<div id="wmd-preview" class="wmd-preview wmd-preview-full-reader"><div class="md-section-divider"></div><div class="md-section-divider"></div><h1 data-anchor-id="fxsq" id="bom-和-dom">BOM 和 DOM</h1><p data-anchor-id="tow2"><code>JavaScript基础</code></p><hr><div class="md-section-divider"></div><h3 data-anchor-id="xqvu" id="什么是-bom">什么是 BOM ?</h3><p data-anchor-id="ovzs">1.浏览器对象模型 Browser Object Model  <br>
+2.BOM的核心对象是window，同时window也是JavaScript的全局对象 <br>
+3.BOM主要负责来对浏览器窗口进行操作和窗口与窗口之间的交互</p><hr><p data-anchor-id="lcdd">主要包括： <br>
+navigator 导航器对象、history 历史对象、screen、显示器对象、location 对象、对话框、定时器、document</p><div class="md-section-divider"></div><h4 data-anchor-id="ngv4" id="navigator">navigator</h4><blockquote data-anchor-id="k782" class="white-blockquote">
+  <ul>
+  <li>appCodeName  返回浏览器的代码名</li>
+  <li>appName 返回浏览器厂商名称</li>
+  <li>appVersion 返回浏览器的平台和版本信息</li>
+  <li>cookieEnabled 返回浏览器是否开启cookie的布尔值</li>
+  <li>platform 返回浏览器的操作系统平台</li>
+  <li>userAgent 返回客户机发送到服务器的 user-agent头部信息</li>
+  </ul>
+</blockquote><hr><blockquote data-anchor-id="aoky" class="white-blockquote">
+  <p>userAgent 可以用来检测当前浏览器型号和版本</p>
+</blockquote><hr><div class="md-section-divider"></div><h4 data-anchor-id="y3rt" id="history">history</h4><blockquote data-anchor-id="iyl5" class="white-blockquote">
+  <ul>
+  <li>back() 返回前一个url</li>
+  <li>forward() 返回下一个url</li>
+  <li>go(index) 返回具体的某个页面，正数是前面的，负数是后面的，超出返回undefined</li>
+  </ul>
+</blockquote><hr><div class="md-section-divider"></div><h4 data-anchor-id="emr5" id="screen">screen</h4><blockquote data-anchor-id="yv1j" class="white-blockquote">
+  <ul>
+  <li>avaiHeight  返回显示器的可用高度</li>
+  <li>avaiWidth 返回显示器的可用宽度</li>
+  <li>Height 返回屏幕的像素高度</li>
+  <li>Width 返回屏幕的像素宽度</li>
+  <li>colorDepth 返回屏幕的颜色位数</li>
+  </ul>
+</blockquote><div class="md-section-divider"></div><pre class="prettyprint linenums prettyprinted" data-anchor-id="thdk"><ol class="linenums"><li class="L0"><code><span class="pln">window</span><span class="pun">.</span><span class="pln">screen</span><span class="pun">.</span><span class="pln">width</span><span class="pun">/</span><span class="pln">height </span><span class="com">//在移动端可以获取到设备的屏幕宽高</span></code></li></ol></pre><p data-anchor-id="h29w">注意这些属性都是只读的。</p><hr><div class="md-section-divider"></div><h4 data-anchor-id="5b8l" id="location">location</h4><blockquote data-anchor-id="vgix" class="white-blockquote">
+  <ul>
+  <li>属性 <br>
+  <ul><li>hash 设置或者返回从#开始的URL</li>
+  <li>host 返回主机和当前URL的端口号</li>
+  <li>hostname 返回不带端口号的服务器名称</li>
+  <li>href 设置或者返回完整的URL，location对象的toString()方法也可以返回这个值</li>
+  <li>pathname 设置或者返回URL的路径部分</li>
+  <li>search 返回从?到#号之间包括?的URL查询字符串</li>
+  <li>port 返回URL中指定的端口号，如果不存在返回 ""</li></ul></li>
+  <li>方法 <br>
+  <ul><li>assign(url) 打开新的URL并在浏览器历史记录里生成一条记录，如果用location.href 或者 window.location 也是调用这个方法</li>
+  <li>reload() 重新加载当前页面 (刷新)</li>
+  <li>replace() 用新的文档替换当前文档，（替换历史记录）</li></ul></li>
+  </ul>
+</blockquote><hr><div class="md-section-divider"></div><h4 data-anchor-id="3rud" id="定时器">定时器</h4><p data-anchor-id="qkif">setInterval(fn,delay)   ===&gt;  clearInterval(index)</p><p data-anchor-id="cloc">setTimeout(fn,delay) ===&gt; clearTimeout(index)</p><div class="md-section-divider"></div><h4 data-anchor-id="3ysz" id="弹窗对话框">弹窗、对话框</h4><blockquote data-anchor-id="1cc1" class="white-blockquote">
+  <ul>
+  <li>alert() </li>
+  <li>confirm() 确定返回true 取消返回false</li>
+  <li>prompt() 确定返回输入的文本 取消返回null</li>
+  </ul>
+</blockquote><div class="md-section-divider"></div><h4 data-anchor-id="9v71" id="焦点事件">焦点事件</h4><blockquote data-anchor-id="th8s" class="white-blockquote">
+  <ul>
+  <li>focus 窗口 聚焦</li>
+  <li>blur 窗口失焦</li>
+  </ul>
+</blockquote><div class="md-section-divider"></div><pre class="prettyprint linenums prettyprinted" data-anchor-id="xcvb"><ol class="linenums"><li class="L0"><code><span class="com">// 应用：定时器的开关</span></code></li><li class="L1"><code><span class="pln">window</span><span class="pun">.</span><span class="pln">onfocus </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){};</span></code></li><li class="L2"><code><span class="pln">window</span><span class="pun">.</span><span class="pln">onblur </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){};</span></code></li></ol></pre><div class="md-section-divider"></div><h4 data-anchor-id="qio3" id="窗口尺寸和滚动条">窗口尺寸和滚动条</h4><blockquote data-anchor-id="n4gj" class="white-blockquote">
+  <ul>
+  <li>window.innerWidth/window.innerHeight 浏览器文档的可视宽高</li>
+  <li>window.outerWidth/window.outerHeight 浏览器窗口的可视宽高</li>
+  <li>window.pageXOffset/window.pageYOffset 浏览器滚动条的滚动距离</li>
+  </ul>
+</blockquote><ul data-anchor-id="5hor">
+<li>如果需要兼容按照下面的做法:(以纵向滚动条为例)</li>
+</ul><div class="md-section-divider"></div><pre class="prettyprint linenums prettyprinted" data-anchor-id="a3k9"><ol class="linenums"><li class="L0"><code><span class="kwd">var</span><span class="pln"> sTop </span><span class="pun">=</span><span class="pln"> window</span><span class="pun">.</span><span class="pln">pageYOffset </span><span class="pun">||</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">body</span><span class="pun">.</span><span class="pln">scrollTop </span><span class="pun">||</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">documentElement</span><span class="pun">.</span><span class="pln">scrollTop</span></code></li></ol></pre><ul data-anchor-id="5nlc">
+<li>scrollTo(x,y) 方法可以将滚动条移动到指定位置 <br>
+<ul><li>此方法只在文档加载的时候可以自动触发，文档加载完成，页面刷新是无法触发的，解决办法：放到定时器里。</li></ul></li>
+</ul><div class="md-section-divider"></div><pre class="prettyprint linenums prettyprinted" data-anchor-id="vhql"><ol class="linenums"><li class="L0"><code><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">win</span><span class="pun">){</span></code></li><li class="L1"><code><span class="pln">    </span><span class="kwd">var</span><span class="pln"> timer </span><span class="pun">=</span><span class="pln"> setInterval</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L2"><code><span class="pln">        </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">win</span><span class="pun">.</span><span class="pln">pageYOffset </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">0</span><span class="pun">){</span></code></li><li class="L3"><code><span class="pln">            win</span><span class="pun">.</span><span class="pln">scrollTo</span><span class="pun">(</span><span class="lit">0</span><span class="pun">,</span><span class="lit">0</span><span class="pun">);</span></code></li><li class="L4"><code><span class="pln">        </span><span class="pun">}</span><span class="kwd">else</span><span class="pun">{</span></code></li><li class="L5"><code><span class="pln">            clearInterval</span><span class="pun">(</span><span class="pln">timer</span><span class="pun">);</span></code></li><li class="L6"><code><span class="pln">        </span><span class="pun">}</span></code></li><li class="L7"><code><span class="pln">    </span><span class="pun">},</span><span class="lit">20</span><span class="pun">)</span></code></li><li class="L8"><code><span class="pun">})(</span><span class="pln">window</span><span class="pun">)</span></code></li></ol></pre><hr><div class="md-section-divider"></div><h1 data-anchor-id="allm" id="dom">DOM</h1><p data-anchor-id="iz70">1.文档对象模型 Document Object Model <br>
+2.一套HTML和XML提供的API（应用程序编程接口） <br>
+3.DOM描述了一个层次化的节点，允许添加、移除、修改页面中的某个部分。</p><div class="md-section-divider"></div><h4 data-anchor-id="seo4" id="节点层次">节点层次</h4><p data-anchor-id="7xkt">DOM可以将任何HTML或者XML文档描绘成一个由多层节点构成的结构。节点分为不同的类型，这里咱们主要学习HTML中的节点类型。</p><div class="md-section-divider"></div><pre class="prettyprint linenums prettyprinted" data-anchor-id="lsj4"><ol class="linenums"><li class="L0"><code><span class="dec">&lt;!DOCTYPE html&gt;</span></code></li><li class="L1"><code><span class="tag">&lt;html</span><span class="pln"> </span><span class="atn">lang</span><span class="pun">=</span><span class="atv">"en"</span><span class="tag">&gt;</span></code></li><li class="L2"><code><span class="tag">&lt;head&gt;</span></code></li><li class="L3"><code><span class="pln">    </span><span class="tag">&lt;meta</span><span class="pln"> </span><span class="atn">charset</span><span class="pun">=</span><span class="atv">"UTF-8"</span><span class="tag">&gt;</span></code></li><li class="L4"><code><span class="pln">    </span><span class="tag">&lt;title&gt;</span><span class="pln">Document</span><span class="tag">&lt;/title&gt;</span></code></li><li class="L5"><code><span class="tag">&lt;/head&gt;</span></code></li><li class="L6"><code><span class="tag">&lt;body&gt;</span></code></li><li class="L7"><code><span class="pln">    </span><span class="tag">&lt;h2&gt;</span></code></li><li class="L8"><code><span class="pln">        </span><span class="tag">&lt;span&gt;&lt;/span&gt;</span></code></li><li class="L9"><code><span class="pln">        </span><span class="tag">&lt;span&gt;&lt;/span&gt;</span></code></li><li class="L0"><code><span class="pln">    </span><span class="tag">&lt;/h2&gt;</span></code></li><li class="L1"><code><span class="pln">    </span><span class="tag">&lt;p&gt;</span></code></li><li class="L2"><code><span class="pln">        </span><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">""</span><span class="tag">&gt;&lt;/a&gt;</span></code></li><li class="L3"><code><span class="pln">    </span><span class="tag">&lt;/p&gt;</span></code></li><li class="L4"><code><span class="tag">&lt;/body&gt;</span></code></li><li class="L5"><code><span class="tag">&lt;/html&gt;</span></code></li></ol></pre><p data-anchor-id="u4zk">可以将上面这个简单的HTML文档表示为一个层次结构：</p><p data-anchor-id="cclc"><img src="http://static.zybuluo.com/maxleader/q4dk6wwf807brlyadspquzof/2.png" alt="2.png-60.3kB" title=""></p><p data-anchor-id="43dg">DOM1级定义了一套Node接口，这套接口将由DOM的所有的节点来实现。在JS中这套接口是由Node接口来实现的（不懂得话，可以无视这句话）。</p><blockquote data-anchor-id="aa63" class="white-blockquote">
+  <p>每个节点都有一个nodeType属性，用来判断这个节点是个什么类型</p>
+</blockquote><p data-anchor-id="s3ai">主要要掌握的节点类型：</p><blockquote data-anchor-id="hpl2" class="white-blockquote">
+  <ul>
+  <li>元素节点 对应数字 1  #Element  null</li>
+  <li>属性节点 对应数字 2  #attr value</li>
+  <li>文本节点 对应数字 3  #text value</li>
+  <li>注释节点 对应数字 8  #comment value</li>
+  <li>文档节点 对应数字 9  #document null</li>
+  </ul>
+</blockquote><p data-anchor-id="8nd6">获取元素的子节点                           </p><blockquote data-anchor-id="xnyk" class="white-blockquote">
+  <p>每个节点都有一个childNodes方法，用来获取当前元素的所有子节点(可以用item()也可以用[])</p>
+</blockquote><div class="md-section-divider"></div><pre class="prettyprint linenums prettyprinted" data-anchor-id="4uqx"><ol class="linenums"><li class="L0"><code><span class="tag">&lt;body&gt;</span></code></li><li class="L1"><code><span class="pln">    </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"box"</span><span class="tag">&gt;</span></code></li><li class="L2"><code><span class="pln">        </span><span class="com">&lt;!-- 注释 --&gt;</span></code></li><li class="L3"><code><span class="pln">        </span><span class="tag">&lt;span&gt;</span><span class="pln">1</span><span class="tag">&lt;/span&gt;</span></code></li><li class="L4"><code><span class="pln">        </span><span class="tag">&lt;span&gt;</span><span class="pln">2</span><span class="tag">&lt;/span&gt;</span></code></li><li class="L5"><code><span class="pln">        </span><span class="tag">&lt;span&gt;</span><span class="pln">3</span><span class="tag">&lt;/span&gt;</span></code></li><li class="L6"><code><span class="pln">    </span><span class="tag">&lt;/div&gt;</span></code></li><li class="L7"><code><span class="pln">    </span><span class="tag">&lt;script&gt;</span></code></li><li class="L8"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> box </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">'box'</span><span class="pun">);</span></code></li><li class="L9"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> childs </span><span class="pun">=</span><span class="pln"> box</span><span class="pun">.</span><span class="pln">childNodes</span><span class="pun">;</span></code></li><li class="L0"><code></code></li><li class="L1"><code><span class="pln">        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">childs</span><span class="pun">.</span><span class="pln">length</span><span class="pun">);</span><span class="pln">  </span><span class="com">//9</span></code></li><li class="L2"><code><span class="pln">    </span><span class="tag">&lt;/script&gt;</span></code></li><li class="L3"><code><span class="tag">&lt;/body&gt;</span></code></li></ol></pre><p data-anchor-id="som9">用 childNodes 获取到的是当前一层的所有子节点，包括文本和注释节点。</p><blockquote data-anchor-id="pe7j" class="white-blockquote">
+  <p>每个节点有一个childNodes属性，其中保存着一个NodeList对象,NodeList是一种类数组对象，用于保存一组有序的节点，可以通过为止来访问这些节点。请注意，虽然可以通过方括号[]的语法来访问NodeList的值，而且这个对象也有length属性，但它并不是Array的实例。NodeList对象的独特之处在于，它实际上是基于DOM结构动态执行查询的结果，因此DOM结构的变化能够自动反应在NodeList对象中。我们常说，NodeList是由生命，有呼吸的的对象，而不是我们第一次访问它们的某个瞬间拍摄下来的一张快照。</p>
+  
+  <p>每个节点都有nodeName和nodeValue属性，分别用来获取节点的名字和节点的值，对于文档节点和元素节点，获取到的nodeValue永远都是null，对于注释节点文本节点获取到的就是它们本身。</p>
+</blockquote><p data-anchor-id="pj9j">一张图看懂各个节点之间的关系：</p><p data-anchor-id="qbh8"><img src="http://static.zybuluo.com/maxleader/sydkjhq46k0buvg08w8mrpul/1.jpg" alt="1.jpg-31.6kB"></p><div class="md-section-divider"></div><h4 data-anchor-id="hmsr" id="操作元素节点">操作元素节点</h4><blockquote data-anchor-id="c1tk" class="white-blockquote">
+  <ul>
+  <li><p>创建元素节点 </p>
+  
+  <ul><li>document.createElement(tag)</li></ul></li>
+  <li><p>创建文本节点</p>
+  
+  <ul><li>document.createTextNode(text)</li></ul></li>
+  <li><p>全部都是 父级.方法 剪切操作 返回添加的节点 剪切后的事件依然存在</p>
+  
+  <ul><li>appendChild(node) 向父节点最后添加节点 </li>
+  <li>insertBefore(new,old) 向某个元素前面添加节点，如果第二个参数是null那么它的功能就是appendChild。</li>
+  <li>replaceChild(new,old) 替换节点</li>
+  <li>removeChild(node) 删除节点</li></ul></li>
+  <li>克隆节点 <br>
+  <ul><li>cloneNode(boolean)不写参数默认false只克隆当前节点，写true的话会进行深度复制。但是不会复制事件。</li></ul></li>
+  </ul>
+</blockquote><div class="md-section-divider"></div><h4 data-anchor-id="v22p" id="操作文本节点">操作文本节点</h4><blockquote data-anchor-id="dekl" class="white-blockquote">
+  <ul>
+  <li>全部都是 文本节点.方法 返回添加的节点 <br>
+  <ul><li>appendData(text) 将text添加到节点的末尾</li>
+  <li>deleteData(offset,count) 从offset指定的位置开始删除count个字符</li>
+  <li>insertData(offset,text) 在offset指定的位置插入text</li>
+  <li>replaceData(offset,count,text) 用text替换从offset指定的位置开始到 offset + count为止处的文本。</li></ul></li>
+  </ul>
+</blockquote><div class="md-section-divider"></div><h4 data-anchor-id="zcem" id="document-的一些属性和方法">document 的一些属性和方法</h4><blockquote data-anchor-id="kfvf" class="white-blockquote">
+  <ul>
+  <li>document.documentElement  ===&gt; html</li>
+  <li>document.body ===&gt; body</li>
+  <li>document.image ===&gt; 文档中所有图片的集合</li>
+  <li>document.from ===&gt; 文档中所有表单元素的集合</li>
+  <li>document.links ===&gt; 文档中所有链接a元素的集合</li>
+  </ul>
+</blockquote><div class="md-section-divider"></div><h4 data-anchor-id="nw5i" id="元素的属性操作">元素的属性操作</h4><blockquote data-anchor-id="jq8s" class="white-blockquote">
+  <ul>
+  <li>ele.getAttribute('attr')  获取元素的某个属性</li>
+  <li>ele.setAttribute('attr',value) 给元素设置属性</li>
+  <li>ele.removeAttribute('attr') 删除元素身上的某个属性</li>
+  </ul>
+</blockquote><p data-anchor-id="j5zx">以上这些方法操作的都是元素标签身上的属性，用 ele.attr 的是无法获取和设置的，对应设置节点属性，如果使用大写的字符，会自动转换成小写。</p><ul data-anchor-id="ydlk">
+<li>ele.style获取的是style对象，getAttribute('style') 获取到的是后面的字符串。</li>
+<li>ele.src 获取绝对路径 getAttribute('src') 获取到的src后面的字符串</li>
+</ul><p data-anchor-id="vq3b">获取元素的属性集合: ele.attributes  (可以用item()也可以用[],然后使用nodeName获取对应的属性名，使用nodeValue获取元素的属性值)</p><p data-anchor-id="ki11">HTML5新增的自定义属性 使用 data-name="value" 注意 如果是这种格式的：data-hello-world 会转换为 helloWorld ,在JS中使用ele.dataset可以获取到元素自定义属性的一个对象，这个对象不是类数组。</p><div class="md-section-divider"></div><h4 data-anchor-id="bb4v" id="获取元素节点">获取元素节点</h4><blockquote data-anchor-id="d7pm" class="white-blockquote">
+  <ul>
+  <li>node.children 获取节点下的所有元素节点</li>
+  <li>node.firstElementChild 获取节点下的第一个元素节点</li>
+  <li>node.lastElementChild 获取节点下的最后一个元素节点</li>
+  <li>node.previousElementSibling 获取元素的上一个兄弟节点</li>
+  <li>node.nextElementSibling 获取元素的下一个兄弟节点</li>
+  </ul>
+</blockquote><p data-anchor-id="aduh">两个动态获取元素的方法:</p><blockquote data-anchor-id="zfez" class="white-blockquote">
+  <ul>
+  <li>document||content.getElementsByTagName(tag)</li>
+  <li>document||content.getElementsByClassName(class1 class2 ...)</li>
+  </ul>
+</blockquote><div class="md-section-divider"></div><h4 data-anchor-id="wdq9" id="classlist-对象">classList 对象</h4><p data-anchor-id="5ueq">通过 元素.classList 获取到当前元素的class列表 （类数组）</p><ul data-anchor-id="sjua">
+<li>在这个对象下有4个方法 <br>
+
+
+<blockquote class="white-blockquote">
+  <ul>
+  <li>add(class) 将指定的字符串添加到class列表中 <br></li>
+  <li>contains(class) 判断列表中是否有某个class <br></li>
+  <li>remove(class) 移除某个class <br></li>
+  <li>toggle(class) 如果列表中已经存在就删除返回false，否则添加返回true</li>
+  </ul> <br>
+  <div class="md-section-divider"></div></blockquote></li>
+  </ul><h4 data-anchor-id="msid" id="对表格的操作">对表格的操作</h4><div class="md-section-divider"></div><pre class="prettyprint linenums prettyprinted" data-anchor-id="knu5"><ol class="linenums"><li class="L0"><code><span class="tag">&lt;table</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"table"</span><span class="tag">&gt;</span></code></li><li class="L1"><code><span class="pln">    </span><span class="tag">&lt;tr&gt;</span></code></li><li class="L2"><code><span class="pln">        </span><span class="tag">&lt;td&gt;&lt;/td&gt;</span></code></li><li class="L3"><code><span class="pln">        </span><span class="tag">&lt;td&gt;&lt;/td&gt;</span></code></li><li class="L4"><code><span class="pln">        </span><span class="tag">&lt;td&gt;&lt;/td&gt;</span></code></li><li class="L5"><code><span class="pln">    </span><span class="tag">&lt;/tr&gt;</span></code></li><li class="L6"><code><span class="pln">    </span><span class="tag">&lt;tr&gt;</span></code></li><li class="L7"><code><span class="pln">        </span><span class="tag">&lt;td&gt;&lt;/td&gt;</span></code></li><li class="L8"><code><span class="pln">        </span><span class="tag">&lt;td&gt;&lt;/td&gt;</span></code></li><li class="L9"><code><span class="pln">        </span><span class="tag">&lt;td&gt;&lt;/td&gt;</span></code></li><li class="L0"><code><span class="pln">    </span><span class="tag">&lt;/tr&gt;</span></code></li><li class="L1"><code><span class="tag">&lt;/table&gt;</span></code></li><li class="L2"><code><span class="tag">&lt;script&gt;</span></code></li><li class="L3"><code><span class="pln">    </span><span class="kwd">var</span><span class="pln"> tab </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">'table'</span><span class="pun">);</span></code></li><li class="L4"><code><span class="pln">    tab</span><span class="pun">.</span><span class="pln">tBodies</span><span class="pun">[</span><span class="lit">0</span><span class="pun">].</span><span class="pln">rows</span><span class="pun">[</span><span class="lit">0</span><span class="pun">].</span><span class="pln">cells</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]</span></code></li><li class="L5"><code><span class="tag">&lt;/script&gt;</span></code></li></ol></pre><blockquote data-anchor-id="o0cl" class="white-blockquote">
+  <ul>
+  <li>以下全部为 #tableElement.方法 <br>
+  <ul><li>createTHead() 创建thead元素，并自动插入</li>
+  <li>createTFoot() 创建tfoot元素，并自动插入</li>
+  <li>createCaption() 创建caption，并自动插入</li>
+  <li>deleteTHead() 删除thead元素</li>
+  <li>deleteTFoot() 删除tfoot元素</li>
+  <li>deleteCaption() 删除caption元素</li>
+  <li>insertRow(pos) 向rows合集中插入一行</li></ul></li>
+  <li>rows.insertCell(pos) 向cells合集中插入一个单元格</li>
+  </ul>
+</blockquote><hr><div class="md-section-divider"></div><h1 data-anchor-id="r0w7" id="获取元素的宽高和位置">获取元素的宽高和位置</h1><div class="md-section-divider"></div><pre class="prettyprint linenums prettyprinted" data-anchor-id="82q0"><ol class="linenums"><li class="L0"><code><span class="pln">ele</span><span class="pun">.</span><span class="pln">getBoundingClientRect</span><span class="pun">()</span><span class="pln"> </span><span class="com">//返回一个对象，对象里面有元素的绝对 left\top\bottom\right 以及元素的 width 和 height</span></code></li></ol></pre><div class="md-section-divider"></div><h4 data-anchor-id="wh8n" id="详解-offset-client-scroll">详解 offset client scroll</h4><ul data-anchor-id="rs9d">
+<li>相关参考</li>
+<li><a href="http://blog.csdn.net/lzding/article/details/46371609" target="_blank">http://blog.csdn.net/lzding/article/details/46371609</a></li>
+<li><p><a href="http://www.jb51.net/article/32801.htm" target="_blank">http://www.jb51.net/article/32801.htm</a></p></li>
+<li><p>代码示例：</p></li>
+</ul><div class="md-section-divider"></div><pre class="prettyprint linenums prettyprinted" data-anchor-id="w7e4"><ol class="linenums"><li class="L0"><code><span class="dec">&lt;!DOCTYPE html&gt;</span></code></li><li class="L1"><code><span class="tag">&lt;html&gt;</span></code></li><li class="L2"><code><span class="tag">&lt;head&gt;</span></code></li><li class="L3"><code><span class="tag">&lt;meta</span><span class="pln"> </span><span class="atn">charset</span><span class="pun">=</span><span class="atv">"UTF-8"</span><span class="tag">&gt;</span></code></li><li class="L4"><code><span class="tag">&lt;title&gt;</span><span class="pln">offsetWidth、clientWidth、width、scrollWidth区别及js与jQuery获取的方式</span><span class="tag">&lt;/title&gt;</span></code></li><li class="L5"><code><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"jquery.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></li><li class="L6"><code></code></li><li class="L7"><code><span class="tag">&lt;/head&gt;</span></code></li><li class="L8"><code><span class="tag">&lt;body</span><span class="pln"> </span><span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">border</span><span class="pun">:</span><span class="lit">1px</span><span class="pln"> solid </span><span class="com">#ccc</span><span class="atv">"</span><span class="tag">&gt;</span></code></li><li class="L9"><code><span class="pln">        </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"div"</span><span class="pln"> </span><span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="lit">100px</span><span class="pun">;</span><span class="pln">height</span><span class="pun">:</span><span class="lit">80px</span><span class="pun">;</span><span class="pln">left</span><span class="pun">:</span><span class="lit">10px</span><span class="pun">;</span><span class="pln">top</span><span class="pun">:</span><span class="lit">8px</span><span class="pun">;</span><span class="pln">position</span><span class="pun">:</span><span class="pln">relative</span><span class="pun">;</span><span class="pln">border</span><span class="pun">:</span><span class="lit">1px</span><span class="pln"> solid </span><span class="com">#ccc;margin:20px 10px;padding:7px 6px;</span><span class="atv">"</span><span class="tag">&gt;</span></code></li><li class="L0"><code><span class="pln">        </span><span class="tag">&lt;/div&gt;</span></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="pln">    </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="tag">&gt;</span></code></li><li class="L3"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> divObj </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">"div"</span><span class="pun">);</span></code></li><li class="L4"><code></code></li><li class="L5"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> dOffsetWidth </span><span class="pun">=</span><span class="pln"> divObj</span><span class="pun">.</span><span class="pln">offsetWidth</span><span class="pun">;</span><span class="com">//返回元素的宽度（包括元素宽度、内边距和边框，不包括外边距）</span></code></li><li class="L6"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> $dOffsetWidth </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="pln">divObj</span><span class="pun">).</span><span class="pln">outerWidth</span><span class="pun">(</span><span class="kwd">false</span><span class="pun">);</span><span class="com">//参数为true，包括外边距</span></code></li><li class="L7"><code></code></li><li class="L8"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> dOffsetHeight </span><span class="pun">=</span><span class="pln"> divObj</span><span class="pun">.</span><span class="pln">offsetHeight</span><span class="pun">;</span><span class="com">//返回元素的高度（包括元素高度、内边距和边框，不包括外边距）</span></code></li><li class="L9"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> $dOffsetHeight </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="pln">divObj</span><span class="pun">).</span><span class="pln">outerHeight</span><span class="pun">(</span><span class="kwd">false</span><span class="pun">);</span><span class="com">//参数为true，包括外边距</span></code></li><li class="L0"><code></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> dClientWidth </span><span class="pun">=</span><span class="pln"> divObj</span><span class="pun">.</span><span class="pln">clientWidth</span><span class="pun">;</span><span class="com">//返回元素的宽度（包括元素宽度、内边距，不包括边框和外边距）</span></code></li><li class="L3"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> $dClientWidth </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="pln">divObj</span><span class="pun">).</span><span class="pln">innerWidth</span><span class="pun">();</span></code></li><li class="L4"><code></code></li><li class="L5"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> dClientHeight </span><span class="pun">=</span><span class="pln"> divObj</span><span class="pun">.</span><span class="pln">clientHeight</span><span class="pun">;</span><span class="com">//返回元素的高度（包括元素高度、内边距，不包括边框和外边距）</span></code></li><li class="L6"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> $dClientHeight </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="pln">divObj</span><span class="pun">).</span><span class="pln">innerHeight</span><span class="pun">();</span></code></li><li class="L7"><code></code></li><li class="L8"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> dWidth </span><span class="pun">=</span><span class="pln"> divObj</span><span class="pun">.</span><span class="pln">style</span><span class="pun">.</span><span class="pln">width</span><span class="pun">;</span><span class="com">//返回元素的宽度（包括元素宽度，不包括内边距、边框和外边距）</span></code></li><li class="L9"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> $dWidth </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="pln">divObj</span><span class="pun">).</span><span class="pln">width</span><span class="pun">();</span><span class="com">//width(val)设置宽</span></code></li><li class="L0"><code></code></li><li class="L1"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> dHeight </span><span class="pun">=</span><span class="pln"> divObj</span><span class="pun">.</span><span class="pln">style</span><span class="pun">.</span><span class="pln">height</span><span class="pun">;</span><span class="com">//返回元素的高度（包括元素高度，不包括内边距、边框和外边距）</span></code></li><li class="L2"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> $dHeight </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="pln">divObj</span><span class="pun">).</span><span class="pln">height</span><span class="pun">();</span><span class="com">//height(val)设置高</span></code></li><li class="L3"><code></code></li><li class="L4"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> dscrollWidth </span><span class="pun">=</span><span class="pln"> divObj</span><span class="pun">.</span><span class="pln">scrollWidth</span><span class="pun">;</span><span class="com">//返回元素的宽度（包括元素宽度、内边距和溢出尺寸，不包括边框和外边距），无溢出的情况，与clientWidth相同</span></code></li><li class="L5"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> dscrollHeight </span><span class="pun">=</span><span class="pln"> divObj</span><span class="pun">.</span><span class="pln">scrollHeight</span><span class="pun">;</span><span class="com">//返回元素的高度（包括元素高度、内边距和溢出尺寸，不包括边框和外边距），无溢出的情况，与clientHeight相同</span></code></li><li class="L6"><code></code></li><li class="L7"><code></code></li><li class="L8"><code><span class="pln">        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"dOffsetWidth:"</span><span class="pun">+</span><span class="pln">dOffsetWidth</span><span class="pun">+</span><span class="str">",dOffsetHeight:"</span><span class="pun">+</span><span class="pln">dOffsetHeight</span><span class="pun">+</span><span class="str">",dClientWidth:"</span><span class="pun">+</span><span class="pln">dClientWidth</span><span class="pun">+</span><span class="str">",dClientHeight:"</span><span class="pun">+</span><span class="pln">dClientHeight</span><span class="pun">+</span><span class="str">",dWidth:"</span><span class="pun">+</span><span class="pln">dWidth</span><span class="pun">+</span><span class="str">",dHeight:"</span><span class="pun">+</span><span class="pln">dHeight</span><span class="pun">+</span><span class="str">",dscrollWidth:"</span><span class="pun">+</span><span class="pln">dscrollWidth</span><span class="pun">+</span><span class="str">",dscrollHeight:"</span><span class="pun">+</span><span class="pln">dscrollHeight</span><span class="pun">);</span></code></li><li class="L9"><code></code></li><li class="L0"><code><span class="pln">        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"$dOffsetWidth:"</span><span class="pun">+</span><span class="pln">$dOffsetWidth</span><span class="pun">+</span><span class="str">",$dOffsetHeight:"</span><span class="pun">+</span><span class="pln">$dOffsetHeight</span><span class="pun">+</span><span class="str">",$dClientWidth:"</span><span class="pun">+</span><span class="pln">$dClientWidth</span><span class="pun">+</span><span class="str">",$dClientHeight:"</span><span class="pun">+</span><span class="pln">$dClientHeight</span><span class="pun">+</span><span class="str">",$dWidth:"</span><span class="pun">+</span><span class="pln">$dWidth</span><span class="pun">+</span><span class="str">",$dHeight:"</span><span class="pun">+</span><span class="pln">$dHeight</span><span class="pun">);</span></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="com">/*</span></code></li><li class="L3"><code><span class="com">    注意：offsetWidth(offsetHeight)与style.width(style.height)的区别</span></code></li><li class="L4"><code><span class="com">    1. style.height 返回的是字符串，如28px，offsetWidth返回的是数值28，如果需要对取得的值进行计算，用offsetWidth比较方便;如果拿到offsetWidth设置style.left的值，需加'px'。</span></code></li><li class="L5"><code><span class="com">    2. style.width/style.height与scrollWidth/scrollHeight是可读写的属性，clientWidth/clientHeight与offsetWidth/offsetHeight是只读属性</span></code></li><li class="L6"><code><span class="com">    3. style.height的值需要事先定义，否则取到的值为空。而且必须要定义在html里，如果定义在css里，style.height的值仍然为空，但元素偏移有效；而offsetWidth则仍能取到。</span></code></li><li class="L7"><code><span class="com">*/</span></code></li><li class="L8"><code></code></li><li class="L9"><code><span class="com">/*</span></code></li><li class="L0"><code><span class="com">    总结：</span></code></li><li class="L1"><code><span class="com">    1、通过style.width(style.height)或者jQuery的$(divObj).width()/$(divObj).height()获取/设置元素的宽高</span></code></li><li class="L2"><code><span class="com">    2、若要获取元素包含边框的宽度，则可通过divObj.offsetWidth/divObj.offsetHeight或jQuery的$(divObj).outerWidth(false)/$(divObj).outerHeight(false)获取</span></code></li><li class="L3"><code><span class="com">    3、通过$(divObj).outerWidth(true)/$(divObj).outerHeight(true)获取带外边距的宽度</span></code></li><li class="L4"><code><span class="com">    4、通过$(divObj).innerWidth()/$(divObj).innerHeight()获取不包含边框、不包含外边距的宽度</span></code></li><li class="L5"><code><span class="com">*/</span></code></li><li class="L6"><code><span class="pln">    </span><span class="tag">&lt;/script&gt;</span></code></li><li class="L7"><code><span class="tag">&lt;/body&gt;</span></code></li><li class="L8"><code><span class="tag">&lt;/html&gt;</span></code></li></ol></pre></div>
+</body>
+</html>

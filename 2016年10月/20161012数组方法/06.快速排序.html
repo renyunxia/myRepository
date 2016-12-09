@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var arr = [4,2,0,3,5,1];  //[0,1,2,3,4,5]
+
+		var newArr = quickSort(arr);
+
+		console.log(newArr);
+
+		var arr = [3,4,2,1];  //len = 4
+
+
+
+		function quickSort(arr) {
+			//停止条件
+			if(arr.length <= 1){
+				return arr;
+			}
+			//2
+			var first = arr.shift(); //[1]
+			var left = []; //[1]
+			var right = []; // []
+
+			while(arr.length){
+				if(arr[0] < first){
+					left.push(arr.shift())
+				}else{
+					right.push(arr.shift())
+				}
+			}
+			//[1] [2] []== > [1,2] [3] ==> [1,2,3] + [4] == > [1,2,3,4];
+			return quickSort(left).concat(first,quickSort(right));
+
+		}
+	</script>
+</body>
+</html>

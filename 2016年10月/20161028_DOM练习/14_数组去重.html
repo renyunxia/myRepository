@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+/*
+12,12,12,124,23,23,234,3,3
+*/
+	var arr = [12,234,23,12,124,3,23,12,3];
+	var re = [];
+	arr.sort();
+	re[0] = arr[0];
+	for(var i = 1; i < arr.length; i++){
+		if(arr[i] !== re[re.length-1]){
+			re.push(arr[i]);
+		}
+	}
+	console.log(re);
+</script>
+</head>
+<body>
+	
+</body>
+</html>

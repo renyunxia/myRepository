@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script>
+	window.onload = function(){
+		var box = document.querySelector('.box');
+
+		var arr = [
+			{
+				src:'1.jpg',
+				caption:'图片1'
+			},
+			{
+				src:'2.jpg',
+				caption:'图片2'
+			},
+			{
+				src:'3.jpg',
+				caption:'图片3'
+			},
+			{
+				src:'4.jpg',
+				caption:'图片4'
+			}
+		];
+
+		var _html = box.innerHTML;
+
+		var data = [];
+		for(var i=0; i<arr.length; i++){
+			var temp_ = _html.replace('{{img}}',arr[i].src)
+							 .replace('{{caption}}',arr[i].caption);
+			data.push(temp_);
+		}
+
+		box.innerHTML = data.join('');
+
+	};
+</script>
+<body>
+	<div class="box">
+		<div class="pic">
+			<img src="{{img}}" alt="">
+			<h3>{{caption}}</h3>
+		</div>
+	</div>
+</body>
+</html>

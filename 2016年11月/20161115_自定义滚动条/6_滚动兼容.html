@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body style="height: 3000px;">
+<script type="text/javascript">
+	//console.log(window.navigator.userAgent);
+	//console.log(window.navigator.userAgent.toLowerCase().indexOf('firefox')!=-1);
+	//说明是ff
+	
+//	function fn2(o){
+//		alert(o)
+//	}
+	if(window.navigator.userAgent.toLowerCase().indexOf('firefox')!=-1){
+		//ff就要走DOMMouseScroll
+		document.addEventListener('DOMMouseScroll',fn1);
+	}else{
+		//chrome就要走mousewheel
+		document.addEventListener('mousewheel',fn1);
+	}
+	
+	function fn1(ev){
+		var down = true;//代理
+		//如果支持ev.wheelDelta说明不是ff
+		if(ev.wheelDelta){
+			//如果ev.wheelDelta大于0,说明向上（true），否则向下（false）
+			down = ev.wheelDelta > 0 ? true : false;
+		}else{
+			//ev.detail小于0为向上，大于0向下 
+			down = ev.detail < 0 ? true : false;
+		}
+		
+		//fn2(down)
+		
+		if(down){
+			alert('上')
+		}else{
+			alert('下')
+		}
+		
+	}
+	
+</script>
+</body>
+</html>

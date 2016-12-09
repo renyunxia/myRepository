@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		function fn() {
+			alert("哈哈哈哈");
+		}
+		window.onload = function() {
+			var btn = document.getElementById('btn');
+			btn.onclick = fn;
+		};
+		/*fn();
+		fn();
+		fn();
+		fn();*/
+		/*
+			函数声明:
+				function name() {
+
+				}
+				匿名函数：（匿名就是不写名字的函数，暂时匿名只能写在事件上，否则会报错）
+				function (){
+	
+				}
+			函数调用：
+				1. 正常调用 name();
+				2. 事件调用	onclick = name;
+		*/
+	</script>
+</head>
+<body>
+<input type="button" value="按钮" id="btn">
+</body>
+</html>

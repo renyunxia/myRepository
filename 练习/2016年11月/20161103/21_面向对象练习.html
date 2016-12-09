@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	/*
+	__proto__     对象找原型链 --> 构造函数 --> 原型
+	              函数找原型  --> 构造函数 --> 原型  --> 原型链   
+	              (函数原型给实例化对象用的，自身用不了，所以如果是自身那就找链)
+    */
+	function Teacher(name,age){
+		this.age = age;
+		this.name = name;
+		// this.say = {
+		// 	'我叫'+this.name+'我的高龄'+this.age+'岁';
+		// }
+	}
+	Object.prototype.say = function(){   //原型   节省内存浪费，提高性能
+		// alert('我叫'+this.name+'我的高龄'+this.age+'岁');
+	}
+	var t1 = new Teacher('momo',400);
+	var t2 = new Teacher('fuqiang',1000);
+
+	t1.say = function(){
+		// alert('1');
+	}
+	t1.say();
+	t2.say(); //t2并没有say方法，没有就会自动去Teacher的原型去找
+	// console.dir(Teacher);
+
+	var str = '234';  //简单数据类型
+	var str2 = new String('abd');   //对象
+	str.num = 2;   //undefined
+	str2.num = 1;
+	str.length = 0;
+
+	// console.log(str2.num)
+
+	var obj = {
+		name:'momo',
+		age:10
+	}
+	console.log(JSON.stringify(obj,function(key,val){
+		if(key == 'age'){
+			return 11;
+		}
+		return val;
+	}))
+
+	// instanceof 查看某个'对象'的父级   arr instanceof Arrey/String，不能检测简单类型的
+	</script>
+</body>
+</html>

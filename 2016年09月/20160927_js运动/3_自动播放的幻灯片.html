@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+body {
+	margin: 0;
+}
+#box {
+	width: 405px;
+	height: 165px;
+	margin: 30px auto;
+	position: relative;
+	overflow: hidden;
+}
+#list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	width: 400%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+#list li {
+	float: left;
+}
+#list img {
+	display: block;
+	width: 405px;
+	height: 165px;
+}
+#navs {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
+#navs a {
+	float: left;
+	width: 25%;
+	font: 14px/30px "宋体";
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	box-sizing: border-box;
+	background: rgba(0,0,0,.4);
+}
+#navs .active {
+	background: rgba(255,255,255,.6);
+	color: #000;
+}
+.btn {
+	position: absolute;
+	top: 52px;
+	width: 30px;
+	height: 30px;
+	background: rgba(0,0,0,.5);
+	color: #fff;
+	font: 20px/30px "宋体";
+	text-decoration: none;
+	text-align: center;
+	left: 0;
+}
+.btn+.btn{
+	left: auto;
+	right: 0;
+}
+</style>
+<script type="text/javascript" src="MTween.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var box = getId("box");
+	var nav = getId("navs");
+	var navs = getTag(nav,"a");
+	var list = getId("list");
+	var btn = getClass(document,"btn");
+	var img = getTag(list,"img")[0];
+	var imgW = css(img,"width");
+	var now = 0;
+	var timer = 0;
+	for(var i = 0; i < navs.length; i++){
+		navs[i].index = i;
+		navs[i].onmouseover = function() {
+			now = this.index;
+			tab();
+		};
+	}
+	timer = setInterval(next,3000);
+	box.onmouseover = function() {
+		clearInterval(timer);
+	};
+	box.onmouseout = function() {
+		timer = setInterval(next,3000);
+	};
+	btn[0].onclick = prev; 
+	function prev() {
+		now--;
+		if(now < 0){
+			now = navs.length - 1;
+		}
+		tab();
+	};
+	btn[1].onclick = next;
+	function next() {
+		now++;
+		if(now > navs.length - 1){
+			now = 0;
+		}
+		tab();
+	};
+	function tab() {
+		for(var i = 0; i < navs.length; i++){
+			navs[i].className = "";
+		}
+		navs[now].className = "active";
+			//list.style.left = -imgW*now + "px"; 
+			mTween(list,"left",-imgW*now,600,"easeBoth");
+	}
+};
+</script>
+</head>
+<body>
+<div id="box">
+	<ul id="list">
+		<li>
+			<a href="#">
+				<img src="images/img1.gif">
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<img src="images/img2.gif">
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<img src="images/img3.gif">
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<img src="images/img4.gif">
+			</a>
+		</li>
+	</ul>
+	<nav id="navs">
+		<a href="javascript:;" class="active">选项1</a>
+		<a href="javascript:;">选项2</a>
+		<a href="javascript:;">选项3</a>
+		<a href="javascript:;">选项4</a>
+	</nav>
+	<a href="javascript:;" class="btn"><</a>
+	<a href="javascript:;" class="btn">></a>
+</div>	
+</body>
+</html>

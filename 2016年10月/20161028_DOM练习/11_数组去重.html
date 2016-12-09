@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		var arr = [12,234,23,12,124,3,23,12,3];
+		var newArr = [];
+		var obj = {};
+		//console.log(arr.indexOf(2343));
+		for(var i = 0; i < arr.length; i++){
+			if(newArr.indexOf(arr[i]) < 0){
+				newArr.push(arr[i]);
+				obj[arr[i]] = 1;
+			} else {
+				obj[arr[i]]++;
+			}
+		}
+		console.log(newArr,obj);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

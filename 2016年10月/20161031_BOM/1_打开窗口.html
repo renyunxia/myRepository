@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+window.onload = function(){
+	var btns = document.querySelectorAll('input');
+	var cWindow = null;
+	btns[0].onclick = function(){
+		cWindow = window.open("http://www.baidu.com","_blank","width=500,height=500");
+	};
+	btns[1].onclick = function(){
+		console.log(window.open("http://www.baidu.com","_blank","width=500,height=500"));
+	};
+};
+</script>
+</head>
+<body>
+	<input type="button" value="百度">
+	<input type="button" value="腾讯">
+</body>
+</html>

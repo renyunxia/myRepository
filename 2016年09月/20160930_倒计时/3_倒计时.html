@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			var input =	document.querySelectorAll('input');
+			input[3].onclick = function(){
+				for(var i = 0; i < input.length-1; i++){
+					if(input[i].value == ""){
+						alert("请输入完整");
+						input[i].focus();
+						return;
+					}
+				}
+				var targetDate = new Date();
+				targetDate.setFullYear(input[0].value,input[1].value - 1,input[2].value);
+				targetDate.setHours(0,0,0,0);
+				var nowDate = new Date();
+				var disTime = targetDate.getTime() - nowDate.getTime();
+				if(disTime < 0 ){
+					alert("输入时间已过期");
+				}
+			};
+		};
+	</script>
+</head>
+<body>
+<div id="box">
+	<div id="row1">
+		<input type="text"> 年
+		<input type="text"> 月
+		<input type="text"> 日
+		<input type="button" value="开始计时">
+	</div>
+	<p>
+		距离2017年10月20日还有多少天多少小时多少分钟多少秒钟
+	</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div id="wrap">
+		<div class="small">
+			<div class="float1"></div>
+			<div class="mark"></div>
+			<img src="images/bg1.jpg" width="310" height="310">
+		</div>
+		<div id="big" class="big">
+			<img src="images/bg1.jpg" id="img1" width="930">
+		</div>
+		<span id="left"></span>
+		<span id="right"></span>
+		<div id="list">
+			<ul>
+				<li class="active"><img src="images/s1.jpg"></li>
+				<li><img src="images/s2.jpg"></li>
+				<li><img src="images/s3.jpg"></li>
+				<li><img src="images/s4.jpg"></li>
+				<li><img src="images/s5.jpg"></li>
+				<li><img src="images/s6.jpg"></li>
+				<li><img src="images/s7.jpg"></li>
+				<li><img src="images/s8.jpg"></li>
+				<li><img src="images/s9.jpg"></li>
+				<li><img src="images/s10.jpg"></li>
+			</ul>
+		</div>
+	</div>
+</body>
+<script>
+	(function(){
+		var box = document.getElementById('wrap');
+		var small = document.querySelector('.small');
+		var float1 = document.querySelector('.float1');
+		var img1 = document.getElementById('img1');
+		var big = document.getElementById('big');
+		var boxRect = box.getBoundingClientRect();
+		var imgW = img1.width;
+		small.onmousemove = function(ev){
+			float1.style.display = big.style.display = 'block';
+			// console.log(ev.pageX);
+			//范围限制
+			var l = ev.pageX - boxRect.left - float1.offsetWidth/2;
+			var t = ev.pageY - boxRect.top - float1.offsetHeight/2;
+			
+			if(l < 0){
+				l = 0;
+			}else if(l > small.offsetWidth - float1.offsetWidth){
+				l = small.offsetWidth - float1.offsetWidth;
+			}
+
+			if(t < 0){
+				t = 0;
+			}else if(t > small.offsetHeight - float1.offsetHeight){
+				t = small.offsetHeight - float1.offsetHeight;
+			}
+			float1.style.left = l + 'px';
+			float1.style.top = t + 'px';
+
+			//左边的比例
+			var scaleL = l/(small.offsetWidth - float1.offsetWidth);
+			var scaleT = t/(small.offsetHeight - float1.offsetHeight);
+			//右边图
+			img1.style.left = scaleL * (big.offsetWidth-img1.offsetWidth) + 'px';
+			img1.style.top = scaleT * (big.offsetHeight-img1.offsetHeight) + 'px';
+		}
+		small.onmouseout = function(){
+			float1.style.display = big.style.display = 'none';
+		}
+	})();
+</script>
+</html>

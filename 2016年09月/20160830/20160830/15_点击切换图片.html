@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+img {
+	display: block;
+	width: 300px;
+	margin: 0 auto;
+}
+</style>
+<script>
+window.onload = function () {
+	var img = document.getElementById("img");
+	var isTab = false; /* 开关，如果没有判断条件，就可以自定义一个开关 */
+	/*
+		! 取反
+	*/
+	img.onclick = function() {
+		//alert(!isTab);
+		/*if(isTab) {
+			img.src = "img/img.jpg";
+			isTab = !isTab;
+		} else {
+			img.src = "img/img2.jpg";
+			isTab = !isTab;
+		}*/
+		if(isTab) {
+			img.src = "img/img.jpg";
+		} else {
+			img.src = "img/img2.jpg";
+		}
+		isTab = !isTab;
+	};
+};
+</script>
+</head>
+<body>
+<img src="img/img.jpg"  id="img"/>
+</body>
+</html>

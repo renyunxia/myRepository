@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>forEach</title>
+</head>
+<style>
+	.wrap {
+		width: 570px;
+		height: 280px;
+		border: 2px solid #000;
+		position: relative;
+		padding: 10px;
+		overflow: hidden;
+	}
+	.wrap div {
+		width: 120px;
+		height: 120px;
+		background: #FEB13A;
+		float: left;
+		margin: 10px;
+		text-align: center;
+		font: 80px/120px '宋体';
+	}
+</style>
+<script src="tools.js"></script>
+<script>
+	window.onload = function(){
+		var divs = Array.from(document.querySelectorAll('.box'));
+		//console.log(divs.pop());
+		//console.log(divs);
+		//console.log(Array.isArray(divs));
+
+		//arr.forEach()
+
+		/*for(var i=0,len = divs.length; i<len; i++){
+			divs[i].onclick = function(){
+				alert(this.innerHTML);
+			}
+		}*/
+
+		/*var i = 0;
+
+		while(i<divs.length){
+			divs[i].onclick = function(){
+				alert(this.innerHTML);
+			}
+			i++;
+		}*/
+
+		//forEach(fn) 接受一个函数参数
+
+		/*divs.forEach(function(item,i,arr){ //每一项  对应下标  数组本身
+			item.onclick = function(){
+				alert(this.innerHTML);
+			}
+		});*/
+
+		/*divs.forEach(function(item,i,arr){ //每一项  对应下标  数组本身
+			console.log(i);
+		});*/
+
+		var arr = [];
+
+		divs.forEach(function(item){
+			arr.push([item.offsetLeft,item.offsetTop]);
+		});
+
+
+		divs.forEach(function(item,i){
+			item.style.margin = '0';
+			item.style.position = 'absolute';
+			item.style.left = arr[i][0] + 'px';
+			item.style.top = arr[i][1] + 'px';
+		});
+
+		console.log(arr);
+
+		/*document.onclick = function(){
+
+			arr.reverse();
+
+			console.log(arr);
+
+			divs.forEach(function(item,i){
+				mTween(item,{
+					left:arr[i][0],
+					top:arr[i][1]
+				})
+			});
+
+		};*/
+
+		/*divs.forEach(function(item,i,arr){
+			//item.index = i;
+			item.onclick = function(){
+				alert(i);
+			}
+		});*/
+
+		/*for(var i=0; i<=9; i++){
+			for(var j=0; j<=i; j++){
+
+			}
+		}*/
+
+		// arr.forEach(function(item,i){
+		// 	item.forEach(function(item,i){
+		// 		console.log(item);
+		// 	});
+		// });
+
+		//map();
+		/*divs.map(function(item,i,arr){
+			item.onclick = function(){
+				alert(i);
+			};
+		})*/
+
+		//var arr = [1,2,3,4,5];
+		// var newArr = arr.map(function(item,i,arr){
+		// 	return;
+		// });
+		// var newArr = arr.forEach(function(item,i,arr){
+		// 	return item*item;
+		// });
+
+		//console.log(newArr);
+
+
+		function M(sele) {
+			var first = sele.substr(0,1);
+			var isArr = sele.split(' ');
+			if(first === '#' && isArr.length == 1){
+				return document.getElementById(sele.substr(1));
+			}else{
+				var arr = Array.from(document.querySelectorAll(sele));
+				return arr.length == 1 ? arr[0] : arr;
+			}
+		}
+
+		window.M = M;
+
+
+	};
+</script>
+<body>
+	<div class="wrap" id="wrap">
+		<div class="box">1</div>
+		<div class="box">2</div>
+		<div class="box">3</div>
+		<div class="box">4</div>
+		<div class="box">5</div>
+		<div class="box">6</div>
+		<div class="box">7</div>
+		<div class="box">8</div>
+	</div>
+</body>
+</html>

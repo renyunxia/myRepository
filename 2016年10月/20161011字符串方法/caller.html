@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//fn1();
+		fn2();
+		function fn1() {
+			console.log('我真帅!');
+			setTimeout(fn1.caller,1000);
+		}
+
+		function fn2() {
+			console.log('我帅么?');
+			fn1();
+		}
+
+	</script>
+</body>
+</html>

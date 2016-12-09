@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body{
+		background: #efefe7;
+	}
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.clear{
+		zoom: 1;
+	}
+	.clear:after{
+		content:"";
+		display: block;
+		clear: both;
+	}
+	ul li{
+		list-style: none;
+	}
+	#wrap{
+		width: 500px;
+		height: 350px;
+		margin: 10px;
+		position: relative;
+	}
+	#top{
+		width: 480px;
+		height: 180px;
+		background: #fff;
+		font: 14px/30px "宋体";
+		padding: 10px;
+	}
+	#nav{
+		display: inline-block;
+		width: 50px;
+		position: absolute;
+		right: -55px;
+		top: 5px;
+		font-size: 14px;
+	}
+	#nav input{
+		width: 50px;
+		height: 30px;
+		background: #94948c;
+		color: #fff;
+		border: none;
+	}
+	#nav p{
+		width: 50px;
+		height: 28px;
+		line-height: 28px;
+		text-align: center;
+		color: #000;
+		border-top: 1px #fff solid;
+		display: none;
+		background: #94948c;
+	}
+	#nav p:active{
+		background: #f62d06;
+		color: #fff;
+	}
+	.show,#bottom .show{
+		display: block;
+	}
+	.hide{
+		display: none;
+	}
+	#bottom{
+		width: 450px;
+		height: 80px;
+		margin-top: 10px;
+		border: 5px #fa0953 solid;
+		background: #f1dcb5;
+		padding: 20px;
+		position: relative;
+		display: none;
+	}
+	#bottom .close{
+		width: 20px;
+		height: 20px;
+		border: none;
+		background: none;
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		font-size:18px; 
+		transition:.5s;
+		outline: none;
+	}
+	.close:hover{
+		-webkit-transform: rotate(360deg);
+		-moz-transform: rotate(360deg);
+		-ms-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+	#bottom .tab{
+		color: #000;
+		height: 30px;
+		border-bottom: 2px #f62d06 solid;
+		margin-bottom: 10px;
+	}
+	#bottom .tab li{
+		width: 60px;
+		height: 30px;
+		font: 14px/30px "宋体";
+		text-align: center;
+		float: left;
+		cursor: pointer;
+	}
+	#bottom div{
+		display: none;
+	}
+	#bottom .active{
+		background: #f62d06;
+		color: #fff;
+	}
+	</style>
+	<script>
+	// 查找 分割 组合
+	window.onload = function(){
+		var text = document.getElementById('top');
+		var menu = document.getElementById('btn');
+		var menus = document.querySelectorAll('#nav p');
+		var bottom = document.getElementById('bottom');
+		var tabNav = document.querySelectorAll('.tab li');
+		var tabDiv = document.querySelectorAll('#bottom div')
+		var tabClos = document.querySelector('#bottom .close')
+		var findInput = tabDiv[0].querySelectorAll('input')
+		var replaceInput = tabDiv[1].querySelectorAll('input')
+
+		var isMenushow = false;
+		var now = 0;
+
+		// var arr = text.innerHTML.split("用");  //将text下的内容转成数组并用split分割字符串
+		// var val = arr.join("<mark>用</mark>"); //把数组转为字符串
+		// text.innerHTML = val;  //text.innerHTML等于val转换的字符串
+
+		startInner = text.innerHTML;
+		//查找
+		findInput[1].onclick = function(){
+			if(findInput[0].value == ""){
+				alert("请输入内容");
+				return;
+			}
+			var arr = startInner.split(findInput[0].value);
+			if(arr.length == 1){
+				alert("找不到输入的内容");
+				return;
+			}
+			var val = arr.join("<mark>"+findInput[0].value+"</mark>");
+			text.innerHTML = val;
+		}
+
+		//替换
+		replaceInput[2].onclick = function(){
+			if (replaceInput[0].value == "") {
+				alert("请输入被替换的内容");
+				return;
+			};
+			if(replaceInput[1].value == ""){
+				alert("请输入替换内容");
+				return;
+			}
+			var arr = startInner.split(replaceInput[0].value);
+			if (arr.length == 1) {
+				alert("找不到输入内容");
+				return;
+			};
+			var val = arr.join("<mark>"+replaceInput[1].value+"</mark>");
+			startInner = arr.join(replaceInput[1].value);
+			text.innerHTML = val;
+		}
+
+		//查找替换tab切换
+		for (var i = 0; i < tabNav.length; i++) {
+			if(tabNav[i].className == "active"){
+				now = i;
+			}
+			tabNav[i].index = i;
+			tabNav[i].onclick = function(){
+				tabNav[now].className = "";
+				tabDiv[now].className = "";
+
+				now = this.index;
+				tabNav[now].className = "active";
+				tabDiv[now].className = "show";
+			}
+		};
+
+		//展开菜单
+		menu.onclick = function () {
+			for (var i = 0; i < menus.length; i++) {
+				if(isMenushow){
+					menus[i].style.display ="none";
+				}else{
+					menus[i].style.display ="block";
+				}
+			}
+			isMenushow = !isMenushow;
+		}
+
+		//展开菜单
+		for (var i = 0; i < menus.length; i++) {
+			menus[i].index = i;
+			menus[i].onclick = function(){
+				bottom.style.display = "block";
+				for (var i = 0; i < menus.length; i++) {
+					menus[i].style.display = "none";
+				};
+				isMenushow = false;
+				tabNav[now].className = "";
+				tabDiv[now].className = "";
+
+				now = this.index;
+				tabNav[now].className = "active";
+				tabDiv[now].className = "show";
+			}
+		};
+
+		tabClos.onclick = function(){
+			bottom.style.display = "none";
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<div id="top">用来填充数组，第一个参数是要填充的内容，后面两个可选参数，从哪里开始填充，到哪里结束，返回值就是填充后修改的数组用来填充数组，第一个参数是要填充的内容，后面两个可选参数，从哪里开始填充，到哪里结束，返回值就是填充后修改的数组</div>
+		<div id="nav">
+			<input id="btn" type="button" value="展开">
+			<p class="active">查找</p>
+			<p>替换</p>
+		</div>
+		<div id="bottom">
+			<input class="close" type="button" value="x">
+			<ul class="tab">
+				<li class="active">查找</li>
+				<li>替换</li>
+			</ul>
+			<div class="show">
+				<input id="find" type="text">
+				<input id="findBtn" type="button" value="查找">
+			</div>
+			<div>
+				<input type="text">
+				<input type="text">
+				<input type="button" value="替换">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

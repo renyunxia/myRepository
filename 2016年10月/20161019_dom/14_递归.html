@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+// 函数执行完 在执行下一步
+// 执行代码写在函数调用前边，先进去，先执行
+// 执行代码写在函数调用后边，先进去，后执行
+function fn(a){
+	a--;
+	console.log(a);
+	if(a > 0){ 
+		fn(a); 
+	}
+	console.log(a); 
+}	
+fn(3);
+// 2 1 0 0 1 2
+</script>
+</head>
+<body>
+	
+</body>
+</html>

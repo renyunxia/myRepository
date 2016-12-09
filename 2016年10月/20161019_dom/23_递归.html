@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script type="text/javascript">
+	// 一个函数执行完之后，在执行下边的代码 --- js本身是单线程的语言	
+	function fn(nub){
+		console.log(nub);
+		if(nub > 0 ){
+			fn(nub-1);
+		}
+	}
+	fn(3);
+	/*
+		function fn(3){
+			console.log(nub);  //3
+			if(nub > 0 ){
+				//fn(nub-1);
+				function fn(2){
+					console.log(nub); //2
+					if(nub > 0 ){
+						//fn(nub-1);
+						function fn(1){
+							console.log(nub); //1
+							if(nub > 0 ){
+								//fn(nub-1);
+								function fn(0){
+									console.log(nub); // 0
+									if(nub > 0 ){
+										//fn(nub-1);
+										
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	
+
+	*/
+</script>
+</body>
+</html>

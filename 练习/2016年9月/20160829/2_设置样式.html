@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	#box{
+		border:3px #000 solid;
+		width:100px;
+		height:100px;
+		margin:20px 10px;
+	}
+	.box{
+		border:3px #000 solid;
+		width:100px;
+		height:100px;
+		margin:20px 10px;
+	}
+	#style-box{
+		width: 320px;
+		background:#999;
+		padding:15px;
+	    position: absolute;
+	    left: 35%;
+	    top: 10%; 
+		display: none;
+	}
+	#style-btn{
+		width:70px;
+		height:30px;
+		color:#fff;
+		background:red;
+		border:none;
+	}
+	input{
+		margin: 5px;
+		border: none;
+	}
+	#red{
+		background:#f95630;
+		color: #fff;
+	}
+
+	#yellow{
+		background: #f1e159;
+		color: #fff;
+	}
+
+	#blue{
+		background: #65acd0;
+		color: #fff;
+	}
+
+	ul input{
+		background: #ececec;
+		width:30px;
+		height: 30px;
+		color: #666;
+	}
+	ul input:hover{
+		background: #fac74d;
+	}
+	.bottom{
+		text-align: center;
+		padding: 10px 0;
+	}
+	.bottom input{
+		background: #33357c;
+		color:#fff;
+		width: 50px;
+		height: 30px;
+	}
+	</style>
+	<script>
+
+	function RecoverDiv(){
+		var oBox = document.getElementById("box");
+		oBox.style = "none";
+	};
+
+    function SetUI(){
+    	var oBox2 = document.getElementById("style-box");
+    	oBox2.style.display = 'block';
+    };
+    
+    function CloseUI(){
+    	var oBox2 = document.getElementById("style-box");
+    	oBox2.style.display = 'none';
+    };
+
+	function ChangeColor(mcolor){
+		var oBox = document.getElementById("box");
+		oBox.style.background = mcolor;
+	};
+
+	function ChangeWidth(mwidth){
+		var oBox = document.getElementById("box");
+		oBox.style.width = mwidth;
+	};
+
+	function ChangeHeight(mheight){
+		var oBox = document.getElementById("box");
+		oBox.style.height = mheight;
+	};
+
+	</script>
+</head>
+<body>
+	<h2>请为下面的div设置样式：
+		<input type="button" value="点击设置" id="style-btn" onclick="SetUI()">
+	</h2>
+	<div class="box" id="box">
+	</div>
+	<div id="style-box">
+		<div style="background:#fff; width:300px; height:170px; padding:10px;">
+			<ul>
+				<li id="ChangeColor"> 请选择背景色：
+					<input type="button" value="红" onclick="ChangeColor('red')"
+						style="background:red">
+					<input type="button" value="黄" onclick="ChangeColor('yellow')"
+						style="background:yellow">
+					<input type="button" value="蓝" onclick="ChangeColor('blue')"
+						style="background:blue">
+				</li>
+				<li>请选择宽(px)：
+					<input type="button" value="200" onclick="ChangeWidth('200px')">
+					<input type="button" value="300" onclick="ChangeWidth('300px')">
+					<input type="button" value="400" onclick="ChangeWidch('400px')">
+				</li>
+				<li>请选择高(px)：
+					<input type="button" value="200" onclick="ChangeHeight('200px')">
+					<input type="button" value="300" onclick="ChangeHeight('300px')">
+					<input type="button" value="400" onclick="ChangeHeight('400px')">
+				</li>
+			</ul>
+			<div class="bottom">
+				<input type="button" value="恢复" id="hf" onclick="RecoverDiv()">
+				<input type="button" value="确定" id="qd" onclick="CloseUI()">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

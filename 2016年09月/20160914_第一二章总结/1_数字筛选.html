@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script type="text/javascript">
+	var arr = [ '100px', 'abc'-6, [], -98765, 34, -2, 0, '300', , function(){alert(1);}, null, document, [], true, '200px'-30,'23.45元', 5, Number('abc'), function(){ alert(3); }, 'xyz'-90 ];
+	/*
+	for(var i = 0; i < arr.length; i++) {
+		if(typeof arr[i] == "number"
+			&& isNaN(arr[i]) == false	
+		) {
+			console.log(arr[i],i);
+		}
+
+	}
+	
+		找到所有的数字
+			1) 先找所有数字类型的数据
+			2) 识别出不是NaN的数字 
+	*/
+
+	/*		找到所有的NaN
+		类型的数据
+			2）识别出是NaN的数字
+	
+	for(var i = 0; i < arr.length; i++) {
+		if(typeof arr[i] == "number"
+			&&isNaN(arr[i])	
+		) {
+			console.log(arr[i],i);
+		}
+
+	}
+	*/
+	/*
+		1. parseFloat 转换
+		2. 识别出 转换完的数据中 不是 NaN的数据
+	*/
+	var maxNub = 0;
+	for(var i = 0; i < arr.length; i++){
+		var nub = parseFloat(arr[i]);
+		if(!isNaN(nub)) {
+			/*
+			if(nub > maxNub) {
+				maxNub = nub;
+			} else {
+				maxNub = maxNub;
+			}
+			*/
+			//maxNub = (nub > maxNub ? nub : maxNub);
+			maxNub = Math.max(nub,maxNub);// Math.max(nub,nub2)  返回两个数 大的那个数;
+			console.log(arr[i]);
+		}
+	}
+	console.log(maxNub);
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		nav span {
+			float: left;
+			font: 30px/1 "宋体";
+			margin: 0 2px;
+		}
+		
+	</style>
+	<script type="text/javascript">
+		/*
+			1.  鼠标移入：
+
+					1) 给当前以及他前边的元素加颜色
+					2) 给当前后边的元素清颜色
+
+					1) 清除所有的颜色
+					2) 给当前以及他前边的元素加颜色
+		*/
+		window.onload = function() {
+			var span = document.querySelectorAll("nav span");
+			for(var i = 0; i < span.length; i++) {
+				span[i].index = i;
+				// 0,1,2,3,4
+				// 0,1,2
+				span[i].onmouseover = function() {
+					for(var i = 0; i < span.length; i++) {
+						span[i].style.color = "";
+					}
+					for(var i = 0; i <= this.index; i++) {
+						if( this.index < 2) {
+							span[i].style.color = "#ccc";
+						} else {
+							span[i].style.color = "red";
+						}
+					}
+				};
+			}			
+		};
+	</script>
+</head>
+<body>
+<nav>
+	<span>♥</span>
+	<span>♥</span>
+	<span>♥</span>
+	<span>♥</span>
+	<span>♥</span>	
+</nav>
+</body>
+</html>

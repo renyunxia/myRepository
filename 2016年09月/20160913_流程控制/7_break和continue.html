@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		/*for(var i = 0; i < 5; i++){
+			if( i == 3){
+				break; //终止本次语句
+			}
+			console.log(i);
+		}*/
+		for1:for(var i = 0; i < 3; i++) {
+			for(var j = 0; j < 3; j++){
+				if(i == 1){
+					continue for1;
+				}
+				console.log(i,j,i*j);
+			}
+		}
+		/*
+			0
+			0
+			0
+			break;
+			0
+			2
+			4
+		*/
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

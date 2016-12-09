@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body {
+			background: url(images/img1.gif);
+		}
+	</style>
+	<script type="text/javascript">
+		var arr = [
+			"images/img1.gif",
+			"images/img2.gif",
+			"images/img3.gif",
+			"images/img4.gif",
+			"images/img5.gif"
+		];
+		window.onload = function() {
+			var btn =  document.querySelectorAll("input");
+			var body = document.body;
+			var nub = 0;
+			/*
+				setInterval 第一次执行 也是在间隔时间之后执行的
+			*/
+			btn[0].onclick = function() {; 
+				setTab(); //点击之后，由于定时器第一次执行 是在间隔时间之后执行，所以先手动调用一次，这样体验比较好
+				setInterval(setTab,1000);
+				function setTab() {
+					nub++;
+					if(nub > arr.length-1) {
+						nub = 0;
+					}
+					body.style.background = "url("+arr[nub]+")";
+				}
+			};
+		};
+	</script>
+</head>
+<body>
+<input type="button" value="开始自动切换背景">
+<input type="button" value="停止">	
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		input {
+			outline: none;
+			border: 1px solid #000;
+		}
+	</style>
+	<script type="text/javascript">
+	window.onload = function(){
+		var input = document.getElementsByTagName('input');
+		//onfocus 获得焦点
+
+		input[1].onfocus = function(){
+			this.style.borderColor = "red";
+		};
+		//onblur 失去焦点
+		input[1].onblur = function(){
+			this.style.borderColor = "#000";
+		};
+		input[1].focus(); // 得到焦点
+		input[0].onfocus = function(){
+			setTimeout(function(){
+				input[0].blur(); //失去焦点
+			},500);
+			
+		};	
+	};
+	</script>
+</head>
+<body>
+<form action="http://www.baidu.com">
+	<input type="text" name="">
+	<input type="password" name="">
+	<input type="submit" value="提交">
+</form>
+</body>
+</html>

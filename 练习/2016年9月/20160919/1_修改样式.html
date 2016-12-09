@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	#box{
+	width:100px;
+	height:80px;
+	background:red;
+	}
+</style>
+<body>
+	<script>
+	window.onload = function(){
+		var box = document.getElementById('box');
+		var w = css(box,'height','300px');
+		alert(w);
+		function css(){
+			// 如果传入的是2个参数，就是获取元素的某个样式
+
+			// 如果传入的是3个参数，就是设置元素的某个样式
+		}
+		css();
+	}
+	</script>
+</body>
+</html>

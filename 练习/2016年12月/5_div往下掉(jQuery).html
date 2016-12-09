@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#wrap{
+
+	}
+	div{
+		width: 80px;
+		height: 80px;
+		background: red;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	</style>
+	<script type="text/javascript" src="jquery-3.1.1.js" ></script>
+</head>
+<body>
+	<section id="wrap"></section>
+	<script>
+	(function(){
+		var len = 15;
+		var mun = 0;
+		var $wrap = $('#wrap');
+		for (var i = 0; i < len; i++) {
+			$wrap.html($wrap.html()+'<div style="left:'+i*90+'px">'+mun+'</div>');
+			mun++;
+		};
+
+		var $divs = $('div');
+		$($divs).click(function(){
+			$(this).animate({
+				top:500
+			});
+			moveNext($(this));
+			movePrev($(this));
+		})
+		function moveNext(el){
+			var $next = el.next();
+			if($next){
+				setTimeout(function(){
+					($next).animate({
+						top:500
+					});
+					moveNext($next);
+				},100);
+			}
+		}
+		function movePrev(el){
+			var $prev = el.prev();
+			if($prev){
+				setTimeout(function(){
+					($prev).animate({
+						top:500
+					});
+					movePrev($prev);
+				},100);
+			}
+		}
+
+	})();
+	</script>
+</body>
+</html>

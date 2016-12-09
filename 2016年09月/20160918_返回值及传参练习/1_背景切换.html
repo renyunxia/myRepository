@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		li {
+			margin: 5px;
+		}
+		.edit {
+			display: none;
+		}
+	</style>
+	<script type="text/javascript">
+		/*
+			点击修改按钮:
+				1. show隐藏
+				2. edit 显示
+				3. edit下边的input的value = show中span的内容
+
+			点击保存按钮：
+				1. edit 消失
+				2. show 显示
+				3. show中span的内容 = edit下边的input的value
+
+			点击取消按钮：	
+				1. edit 消失
+				2. show 显示
+		*/
+		window.onload = function() {
+			var li = document.querySelector("li");
+			var show = li.getElementsByClassName("show")[0];
+			var edit = li.getElementsByClassName("edit")[0];
+			var btn1 = show.getElementsByTagName("input")[0];
+			var span = show.getElementsByTagName("span")[0];
+			var text = edit.getElementsByTagName("input")[0];
+			var save = edit.getElementsByTagName("a")[0];
+			var cancel = edit.getElementsByTagName("a")[1];
+			btn1.onclick = function() {
+				show.style.display = "none";
+				edit.style.display = "block";
+				text.value = span.innerHTML;
+			};
+			save.onclick = function() {
+				/*show.style.display = "block";
+				edit.style.display = "none";*/
+				show.style.cssText = "";
+				edit.style.cssText = "";
+				span.innerHTML = text.value;
+
+			};
+			cancel.onclick = function() {
+				show.style.cssText = "";
+				edit.style.cssText = "";
+			};
+		};
+	</script>
+</head>
+<body>
+<ul id="list">
+	<li>
+		<div class="show">
+			<span>又开始学习了好开心啊</span>
+			<input type="button" value="修改">
+		</div>
+		<div class="edit">
+			<input type="text">
+			<a href="javascript:;">保存</a>
+			<a href="javascript:;">取消</a>
+		</div>
+	</li>
+	<li>
+		<div class="show">
+			<span>又开始学习了好开心啊</span>
+			<input type="button" value="修改">
+		</div>
+		<div class="edit">
+			<input type="text" >
+			<a href="javascript:;">保存</a>
+			<a href="javascript:;">取消</a>
+		</div>
+	</li>
+	<li>
+		<div class="show">
+			<span>又开始学习了好开心啊</span>
+			<input type="button" value="修改">
+		</div>
+		<div class="edit">
+			<input type="text" >
+			<a href="javascript:;">保存</a>
+			<a href="javascript:;">取消</a>
+		</div>
+	</li>
+</ul>
+</body>
+</html>

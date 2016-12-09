@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#box {
+			width: 1000px;
+			position: relative;
+		}
+		#box span {
+			position: absolute;
+			width: 98px;
+			height: 28px;
+			background: #333;
+			color: #fff;
+			border: 1px solid #fff;
+			text-align: center;
+			line-height:28px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+	</div>
+	<script>
+		var inner = "";
+		for(var i = 1; i <= 9; i++){
+			for(var j = 1; j <= i; j++){
+				var t = (i-1)*30;
+				var l = (j-1)*100;
+				inner+="<span style='left:"+l+"px;top:"+t+"px;'>"+j + "x"+i+"="+(j*i)+"</span>";
+			}
+		}
+		document.getElementById("box").innerHTML = inner;
+		//http://www.miaov.com/index.php/Course/homeworkDetail/hid/9.html
+	</script>
+</body>
+</html>

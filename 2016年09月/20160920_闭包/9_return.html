@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		function fn() {
+			var a = 0;
+			return function() {
+				a++;
+				console.log(a);
+			};
+
+		}
+		/*
+			js垃圾回收机制:
+				1. 变量都是存在哪? -- 内存
+				2. 满足某些条件的时候，js就把存入内存数据删掉
+					1) 关闭页面
+					2) 当这条数据 不在被调用的时候
+				函数执行完之后，就把这个函数的作用域中的数据，从内存释放掉	
+		*/
+		/*function fn() {
+			var a = 0;
+			fn();
+		}
+		fn(); 递归 */
+		window.onload = function() {
+			var btn = document.querySelector("input");
+			btn.onclick = fn();
+		};
+	</script>
+</head>
+<body>
+	<input type="button">
+</body>
+</html>

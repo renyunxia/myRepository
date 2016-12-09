@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		var arr = [12,234,23,12,124,3,23,12,3];
+		var nub = 0;
+		var position = [];
+		var i = 0;
+		while(arr.indexOf(12,i) >= 0){
+			var index = arr.indexOf(12,i);
+			nub++;
+			position.push(index);
+			i = index+1;
+		}
+		console.log(nub,position);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

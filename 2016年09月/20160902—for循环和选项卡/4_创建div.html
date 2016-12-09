@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#wrap {
+			position:  relative;
+		}
+		#wrap div {
+			width: 48px;
+			height: 48px;
+			position: absolute;
+			border: 1px solid #000;
+			background: red;
+			font-size: 20px;
+			line-height: 48px;
+			text-align: center;
+			color: #fff;
+		}
+	</style>
+	<script>
+		window.onload = function (){
+			/*
+				1. 获取btn 和 wrap
+				2. 点击btn的时候，在wrap 添加100div
+					1). 创建一个字符串
+					2). 循环100次
+					3). 每次在字符串中 +上 <div></div>
+					4). 把字符串 放入wrap的innerHTML
+				3. 让100个div按照10行10列进行显示
+			*/
+			var btn = document.getElementById('btn');
+			var wrap = document.getElementById('wrap');
+			btn.onclick = function() {
+				var html = "";
+				for(var i = 0; i < 100; i++){
+					html = html + '<div>'+i+'</div>';
+				}
+				wrap.innerHTML = html;
+				var div = wrap.getElementsByTagName("div");
+				for(var i = 0; i < 10; i++){
+					for(var j = 0; j < 10; j++){
+						var top = i * 50; // i 代表的行  当前是第几行上边就应该有几行的距离
+						var left = j * 50; // j 代表的列  当前是第几列上边就应该有几列的距离
+						div[i*10+j].style.cssText ="left:"+left+"px;top:"+top+"px";
+					}
+				}
+				/*
+					cssText 元素行间style中的所有内容
+				*/
+			};
+		};
+	</script>
+</head>
+<body>
+	<input type="button" id="btn" value="创建100个div" />
+	<div id="wrap"></div>
+</body>
+</html>

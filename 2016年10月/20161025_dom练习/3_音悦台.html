@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<link href="css/index.css" rel="stylesheet">
+<script type="text/javascript">
+var data = [];
+window.onload = function(){
+	var imgList = document.querySelector('#imgList');
+	for(var i = 0; i < imgList.children.length; i++){
+		var ul = [];
+		var lis = imgList.children[i].children;
+		for(var j = 0; j < lis.length; j++){
+			var li = {};
+			li.src =  lis[j].getElementsByTagName('img')[0].getAttribute("src");
+			li.title = lis[j].getElementsByClassName('title')[0].innerHTML;
+			li.author = lis[j].getElementsByClassName('author')[0].innerHTML;
+			if(lis[j].id != "index") {
+				li.description = lis[j].getElementsByClassName('description')[0].innerHTML;
+				li.play = lis[j].getElementsByClassName('play')[0].innerHTML;
+				li.MVDescription = lis[j].getElementsByClassName('MVDescription')[0].innerHTML;
+				li.message = lis[j].getElementsByClassName('message')[0].innerHTML;
+				li.list = lis[j].getElementsByClassName('list')[0].innerHTML;
+			}
+			ul.push(li);
+		}
+		data.push(ul);
+	}
+	console.log(JSON.stringify(data)); 
+};
+</script>
+</head>
+<body>
+<div id="wrap">
+	<a href="javascript:;" class="btn"><</a>
+	<div id="imgWrap">
+		<section id="imgList">
+			<ul>
+				<li id="index">
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img1.gif">
+							<span class="gradient"></span>
+							<strong class="title">Fighter</strong>
+							<span class="author">安室奈美惠</span>
+							<span class="playIco"></span>
+						</a>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img2.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+							<span class="playIco"></span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img2.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img2.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img2.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img2.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img2.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img3.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img3.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img3.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img3.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img3.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img3.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img3.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img3.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img3.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img3.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img4.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img4.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img4.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img4.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img4.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img4.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img4.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img4.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img4.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+				<li>
+					<div class="imgs">
+						<a href="#">
+							<img src="img/img4.jpg">
+							<span class="gradient"></span>
+							<strong class="title">等一个人 交练习</strong>
+							<span class="author">吴俊余</span>
+						</a>
+						<p class="description">悦耳的伴奏搭配他干净零杂质的声线，刮起沁人心脾的清凉</p>
+						<div>
+							<span class="play">21984</span>
+							<span class="message">63</span>
+							<span class="list">7</span>
+						</div>
+						<p class="MVDescription">MV描述：此次专辑第一主打歌《等一个人》,吴俊余包揽词曲,悦耳的伴奏搭配吴俊余干净零杂质的声线,...</p>
+					</div>
+				</li>
+			</ul>
+		</section>
+	</div>
+	<a href="javascript:;" class="btn">></a>
+</div>	
+</body>
+</html>

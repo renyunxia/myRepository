@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.active {
+			background: yellow;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			var list = document.getElementById("list");
+			var uls = list.getElementsByTagName("ul");
+			var lis = [];
+			var now = 0;
+			var speed = 1;
+			for(var i = 0; i < uls.length; i++) {
+				var li = uls[i].getElementsByTagName("li");
+				for(var j = 0; j < li.length; j++){
+					lis.push(li[j]);
+				}
+			}
+			setInterval(function(){
+				lis[now].className = "";
+				now += speed;
+				if(now == lis.length-1) {
+					speed = -1;
+				}
+				if(now == 0){
+					speed = 1;
+				}
+				lis[now].className = "active";
+			},200);
+		};
+	</script>
+</head>
+<body>
+	<ul id="list">
+		<li>
+			<ul>
+				<li class="active">选项1</li>
+				<li>选项2</li>
+				<li>选项3</li>
+				<li>选项4</li>
+			</ul>
+			<ul>
+				<li>选项5</li>
+				<li>选项6</li>
+				<li>选项7</li>
+				<li>选项8</li>
+			</ul>	
+		</li>
+		<li>
+			<ul>
+				<li>选项9</li>
+				<li>选项10</li>
+				<li>选项11</li>
+				<li>选项12</li>
+			</ul>	
+		</li>
+		<li>
+			<ul>
+				<li>选项13</li>
+				<li>选项14</li>
+				<li>选项15</li>
+				<li>选项16</li>
+			</ul>	
+		</li>		
+	</ul>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+*{
+	margin: 0;
+}
+div{
+	padding: 100px;
+	border:20px solid #fff;
+}	
+#div1{
+	background:red;
+	/*position: relative;*/
+}
+#div2{
+	background:green;
+	position: relative;
+	left:50px;
+}
+#div3{
+	background:yellow;
+	left:50px;
+	position: absolute;
+}
+</style>
+</head>
+<body>
+	<div id="div1">32321
+		<div id="div2">32321
+			<div id="div3">32321</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		/*
+			先找到div3距离定位父级的左距离 ，找到这个值之后，把div3变成div2，又去找div2距离定位父级的左距离，div2变成div1 .... （继续找），一直找到body
+			
+			number string boolean undefined null object  
+			
+			number string boolean undefined function object
+		*/
+		var div3 = document.getElementById('div3');
+		var left = 0;
+		var obj = div3;//div2
+		while(obj){
+			/*
+				第一次：
+					50
+					obj = div3.offsetParent    (div2)
+				
+				第二次：
+					150 + 50
+					obj = div2.offsetParent   (body)
+					
+					200
+			*/
+			left+=obj.offsetLeft;
+//			alert(1)
+			obj = obj.offsetParent;
+//			alert(obj.id)
+		}
+		
+		console.log(left); //A :undefined  B:报错  C:0  D:not define   
+		
+	</script>
+</body>
+</html>

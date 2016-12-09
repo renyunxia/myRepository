@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	/*
+		变量预解析：
+			把变量的声明提前到当前作用域的顶部。
+
+		函数预解析：
+			函数表达式走的是变量预解析
+			函数声明走函数预解析----函数预解析把整个函数提升到当前作用域的顶部。
+	*/
+	/*var a;
+	alert(a);
+	var a = 1;*/
+	fn();
+	function fn(){
+
+		var a;
+		fn1();
+		var a = 1;
+
+		var fn1 = function (){
+			alert(1);
+		}
+	}
+
+	</script>
+</body>
+</html>

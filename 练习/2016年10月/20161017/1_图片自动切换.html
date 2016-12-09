@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	ul,li{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	#list{
+		width: 220px;
+		height: 350px;
+	}
+	#list li{
+		width: 100px;
+		height: 80px;
+		margin: 5px 5px 0 0;
+		float: left;
+		overflow: hidden;
+		position: relative;
+	}
+	#list div{
+		height: 200%;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	#list img{
+		width: 100px;
+		height: 80px;
+		display: block;
+	}
+	</style>
+	<script type="text/javascript" src="miaov.js"></script>
+
+	<script>
+	window.onload = function(){
+		var lis = document.querySelectorAll('#list li');
+		var divs = document.querySelectorAll('#list div');
+		var imgH = css(lis[0],'height');
+		toMove(divs[0]);
+		setTimeout(
+			function(){
+				toMove(divs[0]);
+			},1000
+		);
+
+		function toMove(divs){
+			var top = css(divs,'top');
+			console.log(top);
+			if(top == 0){
+				mTween(divs,{top:-imgH},500,"easeOut");
+			}else{
+				mTween(divs,{top:0},500,"easeOut");
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+	<ul id="list">
+		<li>
+			<div>
+				<a href=""><img src="images/img1.gif"></a>
+				<a href=""><img src="images/img2.gif"></a>
+			</div>
+		</li>
+		<li>
+			<div>
+				<a href=""><img src="images/img3.gif"></a>
+				<a href=""><img src="images/img4.gif"></a>
+			</div>
+		</li>
+		<li>
+			<div>
+				<a href=""><img src="images/img5.gif"></a>
+				<a href=""><img src="images/img6.gif"></a>
+			</div>
+		</li>
+		<li>
+			<div>
+				<a href=""><img src="images/img7.gif"></a>
+				<a href=""><img src="images/img8.gif"></a>
+			</div>
+		</li>
+		<li>
+			<div>
+				<a href=""><img src="images/img9.gif"></a>
+				<a href=""><img src="images/img10.gif"></a>
+			</div>
+		</li>
+		<li>
+			<div>
+				<a href=""><img src="images/img11.gif"></a>
+				<a href=""><img src="images/img12.gif"></a>
+			</div>
+		</li>
+		<li>
+			<div>
+				<a href=""><img src="images/img1.gif"></a>
+				<a href=""><img src="images/img2.gif"></a>
+			</div>
+		</li>
+		<li>
+			<div>
+				<a href=""><img src="images/img3.gif"></a>
+				<a href=""><img src="images/img4.gif"></a>
+			</div>
+		</li>
+	</ul>
+</body>
+</html>
